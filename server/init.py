@@ -1,7 +1,8 @@
-from flask import Flask, g, jsonify, render_template, request
+from flask import Flask, g, render_template, request
 import sqlite3
 from contextlib import closing
 import os
+import json
 
 DATABASE = "./db/smoke-screen.db"
 DEBUG = True
@@ -45,7 +46,7 @@ def show_entries():
     feed = request.args.get('id', 0, type=int)
     cur = g.db.execute('select title, text from entries where feed_id = ?', [feed])
     entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
-    return jsonify(entries)
+    return json.dumps(entries)
 
 if __name__ == "__main__":
     app.run()
