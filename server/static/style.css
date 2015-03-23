@@ -1,0 +1,27 @@
+#container {
+    margin: 0 auto;
+    width: 100%;
+}
+
+#feeds {
+    float: left;
+    width: 200px;
+}
+#feeds ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#entries_container {
+    float: left;
+    width: 600px;
+}
+
+#entries {
+    clear: left;
+    float: left;
+    width: 100%;
+    padding: 0 0;
+    margin: 0 0 0 0;
+}

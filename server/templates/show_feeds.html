@@ -10,15 +10,19 @@
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
   </script>
   <script type="text/javascript" src="{{ url_for('static', filename='show_entries.js') }}"></script>
-  <div id="feeds">
-    <ul class="feed_list">
-      {% for feed in feeds %}
-      <li class="feed" id="{{ feed.id }}"> <a href="#" id="{{ feed.id }}">{{ feed.title }}</a></li>
-      {% else %}
-      <li><em>No feeds!</em></li>
-      {% endfor %}
-    </ul>
-  </div>
+  <div id="container">
+    <div id="feeds">
+      <ul class="feed_list">
+        {% for feed in feeds %}
+        <li class="feed" id="{{ feed.id }}"> <a href="#" id="{{ feed.id }}">{{ feed.title }}</a></li>
+        {% else %}
+        <li><em>No feeds!</em></li>
+        {% endfor %}
+      </ul>
+    </div>
 
-  <div id="entries"></div>
+    <div id="entries_container">
+      <div id="entries"></div>
+    </div>
+  </div>
 {% endblock %}
