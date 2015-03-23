@@ -1,0 +1,21 @@
+<!doctype html>
+<head>
+  <title>Feeds</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+{% block body %}
+<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+
+<script type="text/javascript">
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+  <script type="text/javascript" src="{{ url_for('static', filename='show_entries.js') }}"></script>
+  <div id="feeds">
+    <ul class="feed_list">
+      {% for feed in feeds %}
+      <li id="{{ feed.id }}">{{ feed.title }}</li>
+      {% else %}
+      <li><em>No feeds!</em></li>
+      {% endfor %}
+    </ul>
+{% endblock %}
