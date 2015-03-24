@@ -1,6 +1,6 @@
 from flask import Flask, g, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
-from database.models import db, Feed, Entry, as_dict
+from database.models import db, Feed, Entry
 from contextlib import closing
 import os
 import json
@@ -31,8 +31,8 @@ def shutdown_session(exception=None):
 @app.route('/_show_entries')
 def show_entries():
     feed = request.args.get('id', 0, type=int)
-    entries = db.session.query(Entry).filter(Entry.feed_id == feed)
-    return json.dumps(as_dict(entries))
+    entries = db.session.query(Entry).filter(Entry.feed_id == feed).all()
+    return json.dumps([e.serialize() for e in entries])
 
 if __name__ == "__main__":
     app.run()

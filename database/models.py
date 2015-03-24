@@ -10,8 +10,8 @@ class Feed(db.Model):
     def __init__(self, title):
         self.title = title
 
-    def __repr__(self):
-        return '<title {}>'.format(self.body)
+    def __unicode__(self):
+        return u'<title {}>'.format(self.title)
 
 class Entry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,5 +23,8 @@ class Entry(db.Model):
         self.title = title
         self.text = text
 
-    def __repr__(self):
-        return '<title {}>'.format(self.body)
+    def __unicode__(self):
+        return u'<title {}, text {}>'.format(self.title, self.text)
+
+    def serialize(self):
+        return {'title': self.title, 'text': self.text}
