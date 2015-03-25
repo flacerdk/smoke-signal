@@ -5,9 +5,6 @@ import os
 
 DATABASE = "database/smoke-signal.db"
 DEBUG = True
-SECRET_KEY = "my_key"
-USERNAME = "admin"
-PASSWORD = "admin"
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 DATABASE_PATH = os.path.join(basedir, DATABASE)
