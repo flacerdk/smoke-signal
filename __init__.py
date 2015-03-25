@@ -19,14 +19,14 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 db.init_app(app)
 
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()
+
 @app.route('/')
 def show_feeds():
     feeds = db.session.query(Feed)
     return render_template('show_feeds.html', feeds=feeds)
-
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db.session.remove()
 
 @app.route('/_show_entries')
 def show_entries():
