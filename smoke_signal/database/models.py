@@ -5,10 +5,12 @@ db = SQLAlchemy()
 class Feed(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
+    url = db.Column(db.String, nullable=False)
     entries = db.relationship('Entry', backref='feed', lazy='dynamic')
 
-    def __init__(self, title):
+    def __init__(self, title, url):
         self.title = title
+        self.url = url
 
     def __unicode__(self):
         return u'<title {}>'.format(self.title)
