@@ -18,12 +18,15 @@ class Feed(db.Model):
 class Entry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
+    guid = db.Column(db.String, nullable=False)
     text = db.Column(db.String, nullable=False)
     feed_id = db.Column(db.Integer, db.ForeignKey('feed.id'))
 
-    def __init__(self, title, text):
+    def __init__(self, title, guid, text, feed_id):
         self.title = title
+        self.guid = guid
         self.text = text
+        self.feed_id = feed_id
 
     def __unicode__(self):
         return u'<title {}, text {}>'.format(self.title, self.text)
