@@ -22,10 +22,10 @@ class Entry(db.Model):
     text = db.Column(db.String, nullable=False)
     feed_id = db.Column(db.Integer, db.ForeignKey('feed.id'))
 
-    def __init__(self, title, guid, text, feed_id):
+    def __init__(self, title, guid, description, feed_id):
         self.title = title
         self.guid = guid
-        self.text = text
+        self.text = description
         self.feed_id = feed_id
 
     def __unicode__(self):

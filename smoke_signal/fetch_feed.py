@@ -11,11 +11,17 @@ def read_feed(feed):
     root = tree.getroot()
     entries = root.find('channel').findall('item')
     for e in entries:
-        title = e.find('title').text
-        guid = e.find('guid').text
-        text = e.find('description').text
-        if db.session.query(Entry).filter(Entry.guid == guid).all() == []:
-            entry = Entry(title, guid, text, feed_id)
+        attributes = {'feed_id': feed_id}
+        tags = ['title', 'guid', 'description']
+        for t in tags:
+            attr = e.find(t)
+            if attr != None:
+                content = attr.text
+            else:
+                content = ""
+            attributes[t] = content
+        if db.session.query(Entry).filter(Entry.guid == attributes['guid']).all() == []:
+            entry = Entry(**attributes)
             with app.app_context():
                 db.session.add(entry)
                 db.session.commit()
