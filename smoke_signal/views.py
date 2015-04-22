@@ -17,6 +17,11 @@ def show_feeds():
 def show_entries():
     feed_id = request.args.get('id', 0, type=int)
     feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
-    read_feed(feed)
     entries = db.session.query(Entry).filter(Entry.feed_id == feed_id).all()
     return json.dumps([e.serialize() for e in entries])
+
+@app.route('/_refresh_entries')
+def refresh_entries():
+    feed_id = request.args.get('id', 0, type=int)
+    feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
+    read_feed(feed)
