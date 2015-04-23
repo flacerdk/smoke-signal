@@ -28,7 +28,10 @@ def read_rss20(feed_id, root):
         for t in tags:
             attr = e.find(t)
             if attr != None:
-                content = attr.text
+                if attr.getchildren() == []:
+                    content = attr.text
+                else:
+                    content = "".join(etree.tostring(s) for s in attr.getchildren())
             else:
                 content = ""
             attributes[t] = content
@@ -47,7 +50,10 @@ def read_atom(feed_id, root):
         for t in tags:
             attr = e.find(("{ns}" + t).format(ns=ns))
             if attr != None:
-                content = attr.text
+                if attr.getchildren() == []:
+                    content = attr.text
+                else:
+                    content = "".join(etree.tostring(s) for s in attr.getchildren())
             else:
                 content = ""
             attributes[t] = content
@@ -67,7 +73,10 @@ def read_rss10(feed_id, root):
         for t in tags:
             attr = e.find(("{ns}" + t).format(ns=ns))
             if attr != None:
-                content = attr.text
+                if attr.getchildren() == []:
+                    content = attr.text
+                else:
+                    content = "".join(etree.tostring(s) for s in attr.getchildren())
             else:
                 content = ""
             attributes[t] = content

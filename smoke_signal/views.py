@@ -25,3 +25,4 @@ def refresh_entries():
     feed_id = request.args.get('id', 0, type=int)
     feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
     read_feed(feed)
+    return 0
