@@ -1,0 +1,11 @@
+Clicking on a feed name to display its entries only shows entries already saved
+in the database; fetching newer entries requires refreshing. This is currently
+done in order to avoid fetching it again all the time. In the future there'll be
+a smarter way to do this, or at least a button to refresh all feeds at once.
+
+Right now, entries just show the content of the <description> element
+verbatim. That is, there's no HTML parsing. We could just strip all tags, but
+ideally, we should strip potentially dangerous tags while leaving harmless ones
+in.
+
+There's essentially no styling yet, so the website looks very ugly.
