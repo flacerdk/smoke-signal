@@ -8,8 +8,7 @@ function showEntries(feedId) {
         return false;
     }
 
-    $.getJSON($SCRIPT_ROOT + '/_show_entries', {
-        id: feedId
+    $.getJSON($SCRIPT_ROOT + '/feeds/' + feedId, {
     }, function(data) {
         $('#entries').attr('feedId', feedId);
         data.map(function(entry) {
@@ -32,8 +31,7 @@ $(document).ready(function () {
         var feedId = $('#entries').attr('feedId');
         if (typeof feedId == "undefined")
             feedId = -1;
-        $.getJSON($SCRIPT_ROOT + '/_refresh_entries', {
-            id: feedId
+        $.getJSON($SCRIPT_ROOT + '/_refresh_entries/' + feedId, {
         });
         showEntries(feedId);
     });
