@@ -7,6 +7,47 @@ NSMAP = {"atom": "http://www.w3.org/2005/Atom",
          "rss10": "http://purl.org/rss/1.0/",
          "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"}
 
+class FeedFormat():
+    def __init__(self, entries_path, tag_map, ns):
+        self.entries_path = entries_path
+        self.tag_map = tag_map
+        self.ns = ns
+        self.attributes = {}
+
+    def read(self, feed_id, root):
+        attributes = {'feed_id': feed_id}
+        node = root
+        for tag in self.entries_path:
+            node = node.findall(("{ns}"+tag).format(ns=self.ns))
+            if len(node) == 1:
+                node = node[0]
+        for entry in node:
+            for attr in self.tag_map.keys():
+                tag = entry.find(("{ns}" + self.tag_map[attr]).format(ns=self.ns))
+                if tag != None:
+                    if tag.getchildren() == []:
+                        content = tag.text
+                    else:
+                        content = "".join(etree.tostring(s) for s in tag.getchildren())
+                else:
+                    content = ""
+                attributes[attr] = content
+            if db.session.query(Entry).filter(Entry.guid == attributes['guid']).all() == []:
+                entry = Entry(**attributes)
+                with app.app_context():
+                    db.session.add(entry)
+                    db.session.commit()
+
+rss10 = FeedFormat(["item"],
+                   {"title": "title", "guid": "link", "text": "description"},
+                   "{" + NSMAP["rss10"] + "}")
+rss20 = FeedFormat(["channel", "item"],
+                   {"title": "title", "guid": "guid", "text": "description"},
+                   "")
+atom = FeedFormat(["entry"],
+                   {"title": "title", "guid": "id", "text": "content"},
+                   "{" + NSMAP["atom"] + "}")
+
 def read_feed(feed):
     feed_id = feed.id
     url = feed.url
@@ -14,75 +55,8 @@ def read_feed(feed):
     tree = etree.parse(rss)
     root = tree.getroot()
     if None in root.nsmap and root.nsmap[None] == NSMAP["rss10"]:
-        read_rss10(feed_id, root)
+        rss10.read(feed_id, root)
     elif None in root.nsmap and root.nsmap[None] == NSMAP["atom"]:
-        read_atom(feed_id, root)
+        atom.read(feed_id, root)
     else:
-        read_rss20(feed_id, root)
-
-def read_rss20(feed_id, root):
-    entries = root.find('channel').findall('item')
-    for e in entries:
-        attributes = {'feed_id': feed_id}
-        tags = ['title', 'guid', 'description']
-        for t in tags:
-            attr = e.find(t)
-            if attr != None:
-                if attr.getchildren() == []:
-                    content = attr.text
-                else:
-                    content = "".join(etree.tostring(s) for s in attr.getchildren())
-            else:
-                content = ""
-            attributes[t] = content
-        if db.session.query(Entry).filter(Entry.guid == attributes['guid']).all() == []:
-            entry = Entry(**attributes)
-            with app.app_context():
-                db.session.add(entry)
-                db.session.commit()
-
-def read_atom(feed_id, root):
-    ns = "{" + NSMAP["atom"] + "}"
-    entries = root.findall("{ns}entry".format(ns=ns))
-    for e in entries:
-        attributes = {'feed_id': feed_id}
-        tags = ['title', 'id', 'content']
-        for t in tags:
-            attr = e.find(("{ns}" + t).format(ns=ns))
-            if attr != None:
-                if attr.getchildren() == []:
-                    content = attr.text
-                else:
-                    content = "".join(etree.tostring(s) for s in attr.getchildren())
-            else:
-                content = ""
-            attributes[t] = content
-        if db.session.query(Entry).filter(Entry.guid == attributes['id']).all() == []:
-            entry = Entry(attributes['title'], attributes['id'],
-                          attributes['content'], attributes['feed_id'])
-            with app.app_context():
-                db.session.add(entry)
-                db.session.commit()
-
-def read_rss10(feed_id, root):
-    ns = "{" + NSMAP["rss10"] + "}"
-    entries = root.findall('{ns}item'.format(ns=ns))
-    for e in entries:
-        attributes = {'feed_id': feed_id}
-        tags = ['title', 'link', 'description']
-        for t in tags:
-            attr = e.find(("{ns}" + t).format(ns=ns))
-            if attr != None:
-                if attr.getchildren() == []:
-                    content = attr.text
-                else:
-                    content = "".join(etree.tostring(s) for s in attr.getchildren())
-            else:
-                content = ""
-            attributes[t] = content
-        if db.session.query(Entry).filter(Entry.guid == attributes['link']).all() == []:
-            entry = Entry(attributes['title'], attributes['link'],
-                          attributes['description'], attributes['feed_id'])
-            with app.app_context():
-                db.session.add(entry)
-                db.session.commit()
+        rss20.read(feed_id, root)
