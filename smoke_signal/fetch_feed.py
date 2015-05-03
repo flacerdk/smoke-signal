@@ -25,10 +25,12 @@ class FeedFormat():
         for entry in node:
             for attr in self.tag_map.keys():
                 tag = entry.find(("{ns}" + self.tag_map[attr]).format(ns=self.ns))
-                if tag != None:
+                if tag is not None:
                     if attr == "text":
                         # strip all HTML tags. Should do something smarter in the future
                         content = BeautifulSoup(tag.text).text
+                    elif attr == "url" and tag.text is None:
+                        content = tag.attrib['href']
                     else:
                         content = tag.text
                 else:
@@ -40,14 +42,19 @@ class FeedFormat():
                     db.session.add(entry)
                     db.session.commit()
 
+# An RSS entry is identified by the tag "item"
 rss10 = FeedFormat(["item"],
-                   {"title": "title", "guid": "link", "text": "description"},
+                   {"title": "title", "guid": "link", "url": "link", "text": "description"},
+                   # RSS 1.0 requires a namespace
                    "{" + NSMAP["rss10"] + "}")
+
+# differently from RSS 1.0, items are inside a "channel" element.
 rss20 = FeedFormat(["channel", "item"],
-                   {"title": "title", "guid": "guid", "text": "description"},
+                   {"title": "title", "guid": "guid", "url": "link", "text": "description"},
+                   # no namespace, though!
                    "")
 atom = FeedFormat(["entry"],
-                   {"title": "title", "guid": "id", "text": "content"},
+                   {"title": "title", "guid": "id", "url": "link[@rel='alternate']", "text": "content"},
                    "{" + NSMAP["atom"] + "}")
 
 def read_feed(feed):
@@ -56,6 +63,9 @@ def read_feed(feed):
     rss = urllib2.urlopen(url)
     tree = etree.parse(rss)
     root = tree.getroot()
+    # identify the format based on which namespace they're using (or not, in
+    # the case of RSS 2.0). probably not the smartest way to do this, but it
+    # is working so far.
     if None in root.nsmap and root.nsmap[None] == NSMAP["rss10"]:
         rss10.read(feed_id, root)
     elif None in root.nsmap and root.nsmap[None] == NSMAP["atom"]:

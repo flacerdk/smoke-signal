@@ -12,7 +12,8 @@ function showEntries(feedId) {
     }, function(data) {
         $('#entries').attr('feedId', feedId);
         data.map(function(entry) {
-            entryTitle = document.createElement('p');
+            entryTitle = document.createElement('a');
+            entryTitle.setAttribute('href', entry.url);
             entryTitle.appendChild(document.createTextNode(entry.title));
             $('#entries').append(entryTitle);
             entryText = document.createElement('p');

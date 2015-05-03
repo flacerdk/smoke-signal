@@ -20,16 +20,18 @@ class Entry(db.Model):
     title = db.Column(db.String, nullable=False)
     guid = db.Column(db.String, nullable=False)
     text = db.Column(db.String, nullable=False)
+    url = db.Column(db.String, nullable=False)
     feed_id = db.Column(db.Integer, db.ForeignKey('feed.id'))
 
-    def __init__(self, title, guid, text, feed_id):
+    def __init__(self, title, guid, url, text, feed_id):
         self.title = title
         self.guid = guid
         self.text = text
+        self.url = url
         self.feed_id = feed_id
 
     def __unicode__(self):
         return u'<title {}, text {}>'.format(self.title, self.text)
 
     def serialize(self):
-        return {'title': self.title, 'text': self.text}
+        return {'title': self.title, 'text': self.text, 'url': self.url}
