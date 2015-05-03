@@ -1,5 +1,6 @@
 import urllib2
 from lxml import etree
+from BeautifulSoup import BeautifulSoup
 from smoke_signal import db, app
 from smoke_signal.database.models import Feed, Entry
 
@@ -25,10 +26,11 @@ class FeedFormat():
             for attr in self.tag_map.keys():
                 tag = entry.find(("{ns}" + self.tag_map[attr]).format(ns=self.ns))
                 if tag != None:
-                    if tag.getchildren() == []:
-                        content = tag.text
+                    if attr == "text":
+                        # strip all HTML tags. Should do something smarter in the future
+                        content = BeautifulSoup(tag.text).text
                     else:
-                        content = "".join(etree.tostring(s) for s in tag.getchildren())
+                        content = tag.text
                 else:
                     content = ""
                 attributes[attr] = content
