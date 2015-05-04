@@ -28,7 +28,7 @@ class FeedFormat():
                 if tag is not None:
                     if attr == "text":
                         # strip all HTML tags. Should do something smarter in the future
-                        content = BeautifulSoup(tag.text).text
+                        content = BeautifulSoup(tag.text, convertEntities=BeautifulSoup.HTML_ENTITIES).text
                     elif attr == "url" and tag.text is None:
                         content = tag.attrib['href']
                     else:
