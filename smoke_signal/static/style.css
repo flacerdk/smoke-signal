@@ -7,10 +7,16 @@
     float: left;
     width: 200px;
 }
-#feeds ul
-{
+
+#feeds ul {
     margin: 0;
     padding: 0;
+}
+
+.feed {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #entries_container {

@@ -14,7 +14,7 @@
   <div id="feeds">
     <ul class="feed_list">
       {% for feed in feeds %}
-      <li class="feed" id="{{ feed.id }}"> <a href="#" id="{{ feed.id }}">{{ feed.title }}</a></li>
+      <li class="feed" id="{{ feed.id }}"> <a href="#" id="{{ feed.id }}" class="feed" title="{{ feed.title }}">{{ feed.title }}</a></li>
       {% else %}
       <li><em>No feeds!</em></li>
       {% endfor %}
