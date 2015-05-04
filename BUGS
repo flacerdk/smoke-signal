@@ -9,3 +9,5 @@ ideally, we should strip potentially dangerous tags while leaving harmless ones
 in.
 
 There's essentially no styling yet, so the website looks very ugly.
+
+Should have the ability to add a new feed.

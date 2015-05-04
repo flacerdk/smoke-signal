@@ -21,6 +21,7 @@ class Entry(db.Model):
     guid = db.Column(db.String, nullable=False)
     text = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
+    read = db.Column(db.Boolean, nullable=False)
     feed_id = db.Column(db.Integer, db.ForeignKey('feed.id'))
 
     def __init__(self, title, guid, url, text, feed_id):
@@ -28,6 +29,7 @@ class Entry(db.Model):
         self.guid = guid
         self.text = text
         self.url = url
+        self.read = False
         self.feed_id = feed_id
 
     def __unicode__(self):
