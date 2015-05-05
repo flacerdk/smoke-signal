@@ -32,7 +32,6 @@ def refresh_entries():
     feed = feeds.filter(Feed.id == feed_id).one()
     entries = read_feed(feed)
     try:
-        print len(entries)
         for entry in entries:
             db.session.add(entry)
         db.session.commit()

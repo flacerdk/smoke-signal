@@ -63,7 +63,6 @@ def read_feed(feed):
     try:
         rss = urllib2.urlopen(url)
     except urllib2.HTTPError, e:
-        print e.read()
         raise
     tree = etree.parse(rss)
     root = tree.getroot()
