@@ -2,6 +2,7 @@ function addEntries(entries) {
     if (entries.error) {
         errorDiv = document.createElement('div');
         errorDiv.setAttribute('class', 'error');
+        $('#entries').append(errorDiv);
         errorText = document.createElement('p');
         errorText.appendChild(document.createTextNode(entries.error));
         errorDiv.appendChild(errorText);
