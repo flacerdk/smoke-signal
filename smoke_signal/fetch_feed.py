@@ -60,7 +60,11 @@ atom = FeedFormat(["entry"],
 def read_feed(feed):
     feed_id = feed.id
     url = feed.url
-    rss = urllib2.urlopen(url)
+    try:
+        rss = urllib2.urlopen(url)
+    except urllib2.HTTPError, e:
+        print e.read()
+        raise
     tree = etree.parse(rss)
     root = tree.getroot()
     # identify the format based on which namespace they're using (or not, in

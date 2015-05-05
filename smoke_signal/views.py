@@ -15,12 +15,19 @@ def show_feeds():
 
 @app.route('/feeds/<feed_id>')
 def show_entries(feed_id):
-    feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
-    entries = db.session.query(Entry).filter(Entry.feed_id == feed_id).all()
+    # feed_id is non-negative iff feed could be fetched
+    if feed_id >= 0:
+        feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
+        entries = db.session.query(Entry).filter(Entry.feed_id == feed_id).all()
+    else:
+        entries = []
     return json.dumps([e.serialize() for e in entries])
 
 @app.route('/_refresh_entries/<feed_id>')
 def refresh_entries(feed_id):
     feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
-    read_feed(feed)
+    try:
+        read_feed(feed)
+    except:
+        feed_id = -1
     return show_entries(feed_id)
