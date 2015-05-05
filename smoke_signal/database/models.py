@@ -36,4 +36,5 @@ class Entry(db.Model):
         return u'<title {}, text {}>'.format(self.title, self.text)
 
     def serialize(self):
-        return {'title': self.title, 'text': self.text, 'url': self.url}
+        return {'title': self.title, 'text': self.text,
+                'url': self.url, 'entry_id': self.id}

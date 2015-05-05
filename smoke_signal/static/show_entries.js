@@ -12,13 +12,17 @@ function showEntries(feedId) {
     }, function(data) {
         $('#entries').attr('feedId', feedId);
         data.map(function(entry) {
+            entryDiv = document.createElement('div');
+            entryDiv.setAttribute('class', 'entry');
+            entryDiv.setAttribute('id', entry.entry_id);
+            $('#entries').append(entryDiv);
             entryTitle = document.createElement('a');
             entryTitle.setAttribute('href', entry.url);
             entryTitle.appendChild(document.createTextNode(entry.title));
-            $('#entries').append(entryTitle);
+            entryDiv.appendChild(entryTitle);
             entryText = document.createElement('p');
             entryText.appendChild(document.createTextNode(entry.text));
-            $('#entries').append(entryText);
+            entryDiv.appendChild(entryText);
         });
     });
     return false;
