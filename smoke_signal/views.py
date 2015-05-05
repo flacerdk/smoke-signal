@@ -27,15 +27,16 @@ def show_entries(feed_id):
 
 @app.route('/_refresh_entries')
 def refresh_entries():
-    feed_id = request.args.get('feedId', -1, type=int)
     feeds = db.session.query(Feed)
+    feed_id = request.args.get('feedId', -1, type=int)
+    if feed_id == -1:
+        return json.dumps({"error": "feed is invalid"})
     feed = feeds.filter(Feed.id == feed_id).one()
-    entries = read_feed(feed)
     try:
-        for entry in entries:
-            db.session.add(entry)
-        db.session.commit()
-        return json.dumps([e.serialize() for e in entries])
+        entries = read_feed(feed)
     except:
-        feed_id = -1
-        return json.dumps({})
+        return json.dumps({"error": "couldn't fetch feed"})
+    for entry in entries:
+        db.session.add(entry)
+    db.session.commit()
+    return json.dumps([e.serialize() for e in entries])
