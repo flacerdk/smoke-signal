@@ -1,5 +1,5 @@
 from smoke_signal import app
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for, jsonify
 from smoke_signal.database.models import db, Feed, Entry
 from smoke_signal.fetch_feed import read_feed
 import json
@@ -17,17 +17,26 @@ def show_feeds():
 def show_entries(feed_id):
     # feed_id is non-negative iff feed could be fetched
     if feed_id >= 0:
-        feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
+        feeds = db.session.query(Feed)
+        feed = feeds.filter(Feed.id == feed_id).one()
         entries = db.session.query(Entry).filter(Entry.feed_id == feed_id).all()
     else:
+        feeds = []
         entries = []
-    return json.dumps([e.serialize() for e in entries])
+    return render_template('show_feeds.html', feed=feed, feeds=feeds, entries=entries)
 
-@app.route('/_refresh_entries/<feed_id>')
-def refresh_entries(feed_id):
-    feed = db.session.query(Feed).filter(Feed.id == feed_id).one()
+@app.route('/_refresh_entries')
+def refresh_entries():
+    feed_id = request.args.get('feedId', -1, type=int)
+    feeds = db.session.query(Feed)
+    feed = feeds.filter(Feed.id == feed_id).one()
+    entries = read_feed(feed)
     try:
-        read_feed(feed)
+        print len(entries)
+        for entry in entries:
+            db.session.add(entry)
+        db.session.commit()
+        return json.dumps([e.serialize() for e in entries])
     except:
         feed_id = -1
-    return show_entries(feed_id)
+        return json.dumps({})

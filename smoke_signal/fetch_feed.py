@@ -18,6 +18,7 @@ class FeedFormat():
     def read(self, feed_id, root):
         attributes = {'feed_id': feed_id}
         node = root
+        entries = []
         for tag in self.entries_path:
             node = node.findall(("{ns}"+tag).format(ns=self.ns))
             if len(node) == 1:
@@ -37,10 +38,9 @@ class FeedFormat():
                     content = ""
                 attributes[attr] = content
             if db.session.query(Entry).filter(Entry.guid == attributes['guid']).all() == []:
-                entry = Entry(**attributes)
-                with app.app_context():
-                    db.session.add(entry)
-                    db.session.commit()
+                e = Entry(**attributes)
+                entries.append(e)
+        return entries
 
 # An RSS entry is identified by the tag "item"
 rss10 = FeedFormat(["item"],
@@ -71,8 +71,8 @@ def read_feed(feed):
     # the case of RSS 2.0). probably not the smartest way to do this, but it
     # is working so far.
     if None in root.nsmap and root.nsmap[None] == NSMAP["rss10"]:
-        rss10.read(feed_id, root)
+        return rss10.read(feed_id, root)
     elif None in root.nsmap and root.nsmap[None] == NSMAP["atom"]:
-        atom.read(feed_id, root)
+        return atom.read(feed_id, root)
     else:
-        rss20.read(feed_id, root)
+        return rss20.read(feed_id, root)
