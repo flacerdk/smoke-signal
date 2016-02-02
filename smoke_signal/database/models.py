@@ -1,12 +1,21 @@
-from flask.ext.sqlalchemy import SQLAlchemy
+import sqlalchemy as sql
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-db = SQLAlchemy()
+Base = declarative_base()
 
-class Feed(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    url = db.Column(db.String, nullable=False)
-    entries = db.relationship('Entry', backref='feed', lazy='dynamic')
+
+def create_all(engine):
+    Base.metadata.create_all(engine)
+
+
+class Feed(Base):
+    __tablename__ = "feed"
+
+    id = sql.Column(sql.Integer, primary_key=True)
+    title = sql.Column(sql.String, nullable=False)
+    url = sql.Column(sql.String, nullable=False)
+    entries = relationship('Entry', backref='feed', lazy='dynamic')
 
     def __init__(self, title, url):
         self.title = title
@@ -15,14 +24,17 @@ class Feed(db.Model):
     def __unicode__(self):
         return u'<title {}>'.format(self.title)
 
-class Entry(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    guid = db.Column(db.String, nullable=False)
-    text = db.Column(db.String, nullable=False)
-    url = db.Column(db.String, nullable=False)
-    read = db.Column(db.Boolean, nullable=False)
-    feed_id = db.Column(db.Integer, db.ForeignKey('feed.id'))
+
+class Entry(Base):
+    __tablename__ = "entry"
+
+    id = sql.Column(sql.Integer, primary_key=True)
+    title = sql.Column(sql.String, nullable=False)
+    guid = sql.Column(sql.String, nullable=False)
+    text = sql.Column(sql.String, nullable=False)
+    url = sql.Column(sql.String, nullable=False)
+    read = sql.Column(sql.Boolean, nullable=False)
+    feed_id = sql.Column(sql.Integer, sql.ForeignKey('feed.id'))
 
     def __init__(self, title, guid, url, text, feed_id):
         self.title = title
@@ -38,3 +50,5 @@ class Entry(db.Model):
     def serialize(self):
         return {'title': self.title, 'text': self.text,
                 'url': self.url, 'entry_id': self.id}
+
+
