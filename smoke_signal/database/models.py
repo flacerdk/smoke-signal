@@ -22,7 +22,7 @@ class Feed(Base):
         self.url = url
 
     def __unicode__(self):
-        return u'<title {}>'.format(self.title)
+        return u'<title {}, url {}>'.format(self.title, self.url)
 
 
 class Entry(Base):
@@ -50,5 +50,3 @@ class Entry(Base):
     def serialize(self):
         return {'title': self.title, 'text': self.text,
                 'url': self.url, 'entry_id': self.id}
-
-
