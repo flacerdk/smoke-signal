@@ -22,7 +22,6 @@ class FeedFormat():
         attributes = {'feed_id': feed_id}
         node = root
         entries = []
-        session = Session()
         for tag in self.entries_path:
             node = node.findall(("{ns}"+tag).format(ns=self.ns))
             if len(node) == 1:
@@ -32,27 +31,19 @@ class FeedFormat():
                 tag = ("{ns}" + self.tag_map[attr]).format(ns=self.ns)
                 content = entry.find(tag)
                 if content is not None:
-                    if attr == "text":
-                        # strip all HTML tags.
-                        # Should do something smarter in the future
-                        html = BeautifulSoup.HTML_ENTITIES
-                        text = BeautifulSoup(content.text,
-                                             convertEntities=html).text
-                    elif attr == "url" and content.text is None:
+                    if attr == "url" and content.text is None:
                         text = content.attrib['href']
                     else:
                         text = content.text
                 else:
                     text = ""
                 attributes[attr] = text
-            try:
-                guid = attributes["guid"]
-            except KeyError:
-                print "No GUID!"
-            query = session.query(Entry).filter(Entry.guid == guid)
-            if query.all() == []:
-                e = Entry(**attributes)
-                entries.append(e)
+                enc = "{http://purl.org/rss/1.0/modules/content/}encoded"
+                enc_data = entry.find(enc)
+            if enc_data is not None:
+                attributes["text"] += enc_data.text
+            e = Entry(**attributes)
+            entries.append(e)
         return entries
 
 # An RSS 1.0 entry is identified by the tag "item"
@@ -82,14 +73,26 @@ def detect_format(nsmap):
         return rss20
 
 
-def parse_feed(feed):
-    feed_id = feed.id
-    url = feed.url
+def fetch_feed(url):
     try:
         rss = urllib2.urlopen(url)
     except urllib2.HTTPError:
         raise
     tree = etree.parse(rss)
     root = tree.getroot()
+    return root
+
+
+def parse_feed(feed):
+    root = fetch_feed(feed.url)
     f = detect_format(root.nsmap)
-    return f.parse(feed_id, root)
+    return f.parse(feed.id, root)
+
+
+def add_entries(entries):
+    session = Session()
+    for e in entries:
+        guid = e.guid
+        query = session.query(Entry).filter(Entry.guid == guid)
+        if query.all() == []:
+            session.add(e)
