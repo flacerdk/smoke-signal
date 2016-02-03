@@ -1,6 +1,5 @@
 import urllib2
 from lxml import etree
-from BeautifulSoup import BeautifulSoup
 from smoke_signal.db import db
 from smoke_signal.database.models import Entry
 from sqlalchemy.orm import sessionmaker
@@ -96,3 +95,4 @@ def add_entries(entries):
         query = session.query(Entry).filter(Entry.guid == guid)
         if query.all() == []:
             session.add(e)
+        session.commit()
