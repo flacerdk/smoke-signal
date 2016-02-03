@@ -1,13 +1,10 @@
 import urllib2
 from lxml import etree
-from smoke_signal.db import db
 from smoke_signal.database.models import Entry
-from sqlalchemy.orm import sessionmaker
 
 NSMAP = {"atom": "http://www.w3.org/2005/Atom",
          "rss10": "http://purl.org/rss/1.0/",
          "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"}
-Session = sessionmaker(bind=db)
 
 
 class FeedFormat():
@@ -86,13 +83,3 @@ def parse_feed(feed):
     root = fetch_feed(feed.url)
     f = detect_format(root.nsmap)
     return f.parse(feed.id, root)
-
-
-def add_entries(entries):
-    session = Session()
-    for e in entries:
-        guid = e.guid
-        query = session.query(Entry).filter(Entry.guid == guid)
-        if query.all() == []:
-            session.add(e)
-        session.commit()

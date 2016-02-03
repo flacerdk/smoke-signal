@@ -1,10 +1,22 @@
-from smoke_signal import db
-import os
+from flask import Flask, g
+from smoke_signal.db import init
+from smoke_signal.views import feed_view
+from sqlalchemy.orm import sessionmaker
+
+app = Flask(__name__)
+app.config.from_object("config")
+engine = init(app.config["DATABASE_PATH"])
+Session = sessionmaker(bind=engine)
+app.register_blueprint(feed_view)
 
 
-if __name__ == "__main__":
-    DATABASE = "smoke-signal.db"
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    DATABASE_PATH = "sqlite:///" + os.path.join(basedir, DATABASE)
-    engine = db.init(DATABASE_PATH)
-engine = db.init_memory()
+@app.before_request
+def before_request():
+    g.db = Session()
+
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        g.db.close()

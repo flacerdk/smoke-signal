@@ -19,7 +19,7 @@
     <div id="feeds">
       <ul class="feed_list">
         {% for feed in feeds %}
-        <li class="feed" id="{{ feed.id }}"> <a href="{{ url_for('show_entries', feed_id=feed.id) }}" id="{{ feed.id }}" class="feed" title="{{ feed.title }}">{{ feed.title }}</a></li>
+        <li class="feed" id="{{ feed.id }}"> <a href="{{ url_for('feed_view.show_entries', feed_id=feed.id) }}" id="{{ feed.id }}" class="feed" title="{{ feed.title }}">{{ feed.title }}</a></li>
         {% else %}
         <li><em>No feeds!</em></li>
         {% endfor %}

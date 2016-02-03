@@ -1,10 +1,12 @@
-from smoke_signal.database.models import Feed, create_all
-from smoke_signal.db import db
+from smoke_signal.database.models import Feed, Base
+from smoke_signal.db import init
+from config import DATABASE_PATH
 import xml.etree.ElementTree as etree
 import sys
 from sqlalchemy.orm import sessionmaker
 
-Session = sessionmaker(bind=db)
+engine = init(DATABASE_PATH)
+Session = sessionmaker(bind=engine)
 
 
 def opml_to_dict(filename):
@@ -28,7 +30,7 @@ def opml_import(filename):
 
 
 def create_db_from_opml(filename):
-    create_all(db)
+    Base.metadata.create_all(engine)
     opml_import(filename)
 
 if __name__ == "__main__":
