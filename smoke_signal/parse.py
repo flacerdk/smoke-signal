@@ -53,7 +53,7 @@ rss20_attr = {"title": "title", "guid": "guid",
               "url": "link", "text": "description"}
 rss20 = FeedFormat(["channel", "item"], rss20_attr, "")
 atom_attr = {"title": "title", "guid": "id", "url": "link[@rel='alternate']",
-             "text": "content"},
+             "text": "content"}
 atom = FeedFormat(["entry"], atom_attr, "{" + NSMAP["atom"] + "}")
 
 

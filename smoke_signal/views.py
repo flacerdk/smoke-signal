@@ -27,19 +27,20 @@ def show_entries(feed_id):
                            feed=feed, feeds=feeds, entries=entries)
 
 
-@feed_view.route('/_refresh_entries')
-def refresh_entries():
+@feed_view.route('/refresh/<feed_id>')
+def refresh(feed_id):
     feeds = g.db.query(Feed)
-    feed_id = request.args.get('feedId', -1, type=int)
     if feed_id == -1:
         return json.dumps({"error": "feed is invalid"})
     feed = feeds.filter(Feed.id == feed_id).one()
+    print feed.__unicode__()
     try:
         entries = parse_feed(feed)
     except:
         return json.dumps({"error": "couldn't fetch feed"})
     add_entries(entries)
-    return json.dumps([e.serialize() for e in entries])
+    return render_template('show_feeds.html',
+                           feed=feed, feeds=feeds, entries=entries)
 
 
 def add_entries(entries):

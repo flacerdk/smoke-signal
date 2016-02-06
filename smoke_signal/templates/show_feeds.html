@@ -4,15 +4,13 @@
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 {% block body %}
-<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
-
-<script type="text/javascript">
-    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-<script type="text/javascript" src="{{ url_for('static', filename='show_entries.js') }}"></script>
 <div id="wrapper">
   <div id="header">
-    <button id="refresh">Refresh!</button>
+    {% if feed %}
+    <a href="{{ url_for('feed_view.refresh', feed_id=feed.id) }}" id="refresh">Refresh!</a>
+    {% else %}
+    <em>Click a feed</em>
+    {% endif %}
   </div>
   <div id="container">
 
