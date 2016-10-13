@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from lxml import etree
 from smoke_signal.database.models import Entry
 
@@ -23,7 +23,7 @@ class FeedFormat():
             if len(node) == 1:
                 node = node[0]
         for entry in node:
-            for attr in self.tag_map.keys():
+            for attr in list(self.tag_map.keys()):
                 tag = ("{ns}" + self.tag_map[attr]).format(ns=self.ns)
                 content = entry.find(tag)
                 if content is not None:
@@ -71,8 +71,8 @@ def detect_format(nsmap):
 
 def fetch_feed(url):
     try:
-        rss = urllib2.urlopen(url)
-    except urllib2.HTTPError:
+        rss = urllib.request.urlopen(url)
+    except urllib.error.HTTPError:
         raise
     tree = etree.parse(rss)
     root = tree.getroot()

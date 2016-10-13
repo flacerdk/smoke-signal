@@ -33,7 +33,7 @@ def refresh(feed_id):
     if feed_id == -1:
         return json.dumps({"error": "feed is invalid"})
     feed = feeds.filter(Feed.id == feed_id).one()
-    print feed.__unicode__()
+    print(feed.__unicode__())
     try:
         entries = parse_feed(feed)
     except:
