@@ -1,4 +1,4 @@
-from flask import request, render_template, g, Blueprint, redirect, url_for
+from flask import render_template, g, Blueprint, request, Response
 from smoke_signal.database.models import Feed, Entry
 from smoke_signal.parse import parse_feed
 import json
@@ -14,6 +14,21 @@ def show_feeds():
     return render_template('show_feeds.html', feeds=feeds)
 
 
+@feed_view.route('/react')
+def show_feeds_with_react():
+    feeds = g.db.query(Feed)
+    return render_template('show_with_react.html', feeds=feeds)
+
+
+@feed_view.route('/get_feed_list')
+def get_feed_list():
+    feeds = g.db.query(Feed)
+    js = json.dumps([feed.serialize() for feed in feeds])
+    resp = Response(js, status=200, mimetype='application/json')
+    resp.headers['Link'] = request.url
+    return resp
+
+
 @feed_view.route('/feeds/<int:feed_id>')
 def show_entries(feed_id):
     try:
@@ -25,6 +40,7 @@ def show_entries(feed_id):
     # Not sure if this could be better handled elsewhere.
     except sqlalchemy.orm.exc.NoResultFound as e:
         return page_not_found(e)
+
 
 @feed_view.errorhandler(404)
 def page_not_found(error):

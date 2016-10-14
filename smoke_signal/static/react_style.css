@@ -1,0 +1,38 @@
+div {
+    margin: 0px;
+    padding: 0px;
+    border: 0px none;
+}
+
+#container {
+    width: 100%;
+    float: left;
+}
+
+#feeds {
+    float: left;
+    width: 200px;
+    background-color: #F0F0F0;
+}
+
+#feeds ul {
+    margin: 0;
+    padding: 0;
+}
+
+.feed {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: rgb(138, 150, 156);
+}
+
+.feed a:visited {
+    color: #A6A6CF;
+}
+
+.feed a:hover {
+    color: #CC3300;
+}
+
