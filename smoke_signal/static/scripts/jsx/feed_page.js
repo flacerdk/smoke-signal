@@ -61,7 +61,7 @@
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _add_feed_form = __webpack_require__(/*! ./add_feed_form.jsx */ 181);
+	var _add_feed_form = __webpack_require__(/*! ./add_feed_form.jsx */ 178);
 	
 	var _add_feed_form2 = _interopRequireDefault(_add_feed_form);
 	
@@ -32267,7 +32267,58 @@
 
 
 /***/ },
-/* 178 */,
+/* 178 */
+/*!***********************************************************!*\
+  !*** ./smoke_signal/static/scripts/jsx/add_feed_form.jsx ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var AddFeedForm = _react2.default.createClass({
+	    displayName: 'AddFeedForm',
+	
+	    getInitialState: function getInitialState() {
+	        return { url: '' };
+	    },
+	
+	    handleUrlChange: function handleUrlChange(event) {
+	        this.setState({ url: event.target.value });
+	    },
+	
+	    handleSubmit: function handleSubmit(event) {
+	        event.preventDefault();
+	        var url = this.state.url.trim();
+	        if (!url) {
+	            return;
+	        }
+	        this.props.onAddFeed({ url: url });
+	        this.setState({ url: '' });
+	    },
+	
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            { className: 'AddFeedForm', onSubmit: this.handleSubmit },
+	            _react2.default.createElement('input', { type: 'text',
+	                placeholder: 'URL...',
+	                value: this.state.url,
+	                onChange: this.handleUrlChange }),
+	            _react2.default.createElement('input', { type: 'submit', value: 'Add feed' })
+	        );
+	    }
+	
+	});
+	
+	module.exports = AddFeedForm;
+
+/***/ },
 /* 179 */
 /*!*******************************************************!*\
   !*** ./smoke_signal/static/scripts/jsx/feed_list.jsx ***!
@@ -32356,58 +32407,6 @@
 	});
 	
 	module.exports = EntryList;
-
-/***/ },
-/* 181 */
-/*!***********************************************************!*\
-  !*** ./smoke_signal/static/scripts/jsx/add_feed_form.jsx ***!
-  \***********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var AddFeedForm = _react2.default.createClass({
-	    displayName: 'AddFeedForm',
-	
-	    getInitialState: function getInitialState() {
-	        return { url: '' };
-	    },
-	
-	    handleUrlChange: function handleUrlChange(event) {
-	        this.setState({ url: event.target.value });
-	    },
-	
-	    handleSubmit: function handleSubmit(event) {
-	        event.preventDefault();
-	        var url = this.state.url.trim();
-	        if (!url) {
-	            return;
-	        }
-	        this.props.onAddFeed({ url: url });
-	        this.setState({ url: '' });
-	    },
-	
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'form',
-	            { className: 'AddFeedForm', onSubmit: this.handleSubmit },
-	            _react2.default.createElement('input', { type: 'text',
-	                placeholder: 'URL...',
-	                value: this.state.url,
-	                onChange: this.handleUrlChange }),
-	            _react2.default.createElement('input', { type: 'submit', value: 'Add feed' })
-	        );
-	    }
-	
-	});
-	
-	module.exports = AddFeedForm;
 
 /***/ }
 /******/ ]);
