@@ -1,8 +1,8 @@
-var FetchFeed = React.createClass({
+var EntryList = React.createClass({
     getInitialState: function() {
         return { entries: []};
     },
-    
+
     handleFeedRefresh: function() {
         $.ajax({
             url: this.props.url,
@@ -16,30 +16,25 @@ var FetchFeed = React.createClass({
             }.bind(this)
         });
     },
-    
-    render: function() {
-        return (
-            <div className="entries">
-                <h1>Entries</h1>
-                <EntryList entries={this.state.entries} />
-            </div>
-        );
-    }
-});
 
-var EntryList = React.createClass({
     render: function() {
         var entries = this.props.entries.map(function(entry) {
             return (
                 <div className="entry">
-                    <h1>{entry.title}</h1>
+                    <a href="{entry.url}">{entry.title}</a>
                     <p>{entry.text}</p>
                 </div>
             );
         });
         return (
-            <div className="entryList">{entries}</div>
+            <div className="entries">
+                {entries}
+            </div>
         );
-    },
+    }
 });
 
+ReactDOM.render(
+    <EntryList />,
+    document.getElementById('entries_container')
+);

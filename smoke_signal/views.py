@@ -42,6 +42,19 @@ def show_entries(feed_id):
         return page_not_found(e)
 
 
+@feed_view.route('/get_feed/<int:feed_id>')
+def get_feed(feed_id):
+    try:
+        refresh_feed(feed_id)
+        entries = g.db.query(Entry).filter(Entry.feed_id == feed_id).all()
+        js = json.dumps([entry.serialize() for entry in entries])
+        resp = Response(js, status=200, mimetype='application/json')
+        resp.headers['Link'] = request.url
+        return resp
+    except sqlalchemy.orm.exc.NoResultFound as e:
+        return json.dumps({})
+
+
 @feed_view.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
@@ -53,7 +66,6 @@ def refresh(feed_id):
     if feed_id == -1:
         return json.dumps({"error": "feed is invalid"})
     feed = feeds.filter(Feed.id == feed_id).one()
-    print(feed.__unicode__())
     try:
         entries = parse_feed(feed)
     except:
@@ -61,6 +73,18 @@ def refresh(feed_id):
     add_entries(entries)
     return render_template('show_feeds.html',
                            feed=feed, feeds=feeds, entries=entries)
+
+
+def refresh_feed(feed_id):
+    feeds = g.db.query(Feed)
+    if feed_id == -1:
+        return json.dumps({"error": "feed is invalid"})
+    feed = feeds.filter(Feed.id == feed_id).one()
+    try:
+        entries = parse_feed(feed)
+    except:
+        return json.dumps({"error": "couldn't fetch feed"})
+    add_entries(entries)
 
 
 def add_entries(entries):

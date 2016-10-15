@@ -21,7 +21,7 @@ class Feed(Base):
         return '<title {}, url {}>'.format(self.title, self.url)
 
     def serialize(self):
-        return {'title': self.title, 'url': self.url}
+        return {'id': self.id, 'title': self.title, 'url': self.url}
 
 
 class Entry(Base):
