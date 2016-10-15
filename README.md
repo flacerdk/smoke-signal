@@ -20,3 +20,6 @@ decent enough that I'll be willing to use it instead of The Old Reader.
 Later, I want to add some extensibility: the ability to add your own script to
 fetch a feed, à la Liferea. Surprisingly, there are still websites that don't
 have an RSS feed in 2016.
+
+Also, I should remove the dependency on jQuery. I'm only using it for $.ajax
+anyway, and that can be easily replaced by XMLHttpRequest().
