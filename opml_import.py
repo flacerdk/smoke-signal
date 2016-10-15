@@ -36,4 +36,4 @@ def create_db_from_opml(filename):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit("Usage: {name} opml_file".format(name=sys.argv[0]))
-    create_db_from_opml(sys.argv[1])
+    opml_import(sys.argv[1])

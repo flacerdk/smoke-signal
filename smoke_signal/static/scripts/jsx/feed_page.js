@@ -61,6 +61,10 @@
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
+	var _add_feed_form = __webpack_require__(/*! ./add_feed_form.jsx */ 181);
+	
+	var _add_feed_form2 = _interopRequireDefault(_add_feed_form);
+	
 	var _feed_list = __webpack_require__(/*! ./feed_list.jsx */ 179);
 	
 	var _feed_list2 = _interopRequireDefault(_feed_list);
@@ -107,6 +111,22 @@
 	        });
 	    },
 	
+	    handleAddFeed: function handleAddFeed(url) {
+	        _jquery2.default.ajax({
+	            url: '/add_feed',
+	            dataType: 'json',
+	            type: 'POST',
+	            data: url,
+	            success: function (feed) {
+	                var newFeeds = this.state.feeds.concat([feed]);
+	                this.setState({ feeds: newFeeds });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error('/add_feed', status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	
 	    componentDidMount: function componentDidMount() {
 	        this.handleFeedListRefresh();
 	    },
@@ -115,6 +135,7 @@
 	        return _react2.default.createElement(
 	            'div',
 	            { id: 'feed_page' },
+	            _react2.default.createElement(_add_feed_form2.default, { onAddFeed: this.handleAddFeed }),
 	            _react2.default.createElement(_feed_list2.default, { feeds: this.state.feeds, onClick: this.handleFeedRefresh }),
 	            _react2.default.createElement(_entry_list2.default, { entries: this.state.entries })
 	        );
@@ -32335,6 +32356,58 @@
 	});
 	
 	module.exports = EntryList;
+
+/***/ },
+/* 181 */
+/*!***********************************************************!*\
+  !*** ./smoke_signal/static/scripts/jsx/add_feed_form.jsx ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var AddFeedForm = _react2.default.createClass({
+	    displayName: 'AddFeedForm',
+	
+	    getInitialState: function getInitialState() {
+	        return { url: '' };
+	    },
+	
+	    handleUrlChange: function handleUrlChange(event) {
+	        this.setState({ url: event.target.value });
+	    },
+	
+	    handleSubmit: function handleSubmit(event) {
+	        event.preventDefault();
+	        var url = this.state.url.trim();
+	        if (!url) {
+	            return;
+	        }
+	        this.props.onAddFeed({ url: url });
+	        this.setState({ url: '' });
+	    },
+	
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            { className: 'AddFeedForm', onSubmit: this.handleSubmit },
+	            _react2.default.createElement('input', { type: 'text',
+	                placeholder: 'URL...',
+	                value: this.state.url,
+	                onChange: this.handleUrlChange }),
+	            _react2.default.createElement('input', { type: 'submit', value: 'Add feed' })
+	        );
+	    }
+	
+	});
+	
+	module.exports = AddFeedForm;
 
 /***/ }
 /******/ ]);

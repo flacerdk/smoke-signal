@@ -1,6 +1,6 @@
 from flask import render_template, g, Blueprint, request, Response
 from smoke_signal.database.models import Feed, Entry
-from smoke_signal.parse import parse_feed
+from smoke_signal.parse import parse_entries, parse_feed
 import json
 import sqlalchemy.orm.exc
 
@@ -81,7 +81,7 @@ def refresh_feed(feed_id):
         return json.dumps({"error": "feed is invalid"})
     feed = feeds.filter(Feed.id == feed_id).one()
     try:
-        entries = parse_feed(feed)
+        entries = parse_entries(feed)
     except:
         return json.dumps({"error": "couldn't fetch feed"})
     add_entries(entries)
@@ -94,3 +94,18 @@ def add_entries(entries):
         if query.all() == []:
             g.db.add(e)
     g.db.commit()
+
+
+@feed_view.route('/add_feed', methods=['POST'])
+def add_feed():
+    if 'url' in request.form:
+        try:
+            feed = parse_feed(request.form['url'])
+        except ValueError:
+            return "No such feed", 404
+        g.db.add(feed)
+        g.db.commit()
+        added_feed = g.db.query(Feed).filter(Feed.id == feed.id).one()
+        return json.dumps(added_feed.serialize())
+    else:
+        return "Bad request", 400
