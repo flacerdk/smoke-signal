@@ -32300,29 +32300,33 @@
 
 	"use strict";
 	
-	var React = __webpack_require__(/*! react */ 1);
+	var _react = __webpack_require__(/*! react */ 1);
 	
-	var EntryList = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var EntryList = _react2.default.createClass({
 	    displayName: "EntryList",
 	
 	    render: function render() {
 	        var entries = this.props.entries.map(function (entry) {
-	            return React.createElement(
+	            return _react2.default.createElement(
 	                "div",
 	                { className: "entry", key: entry.entry_id },
-	                React.createElement(
+	                _react2.default.createElement(
 	                    "a",
 	                    { href: "{entry.url}" },
 	                    entry.title
 	                ),
-	                React.createElement(
+	                _react2.default.createElement(
 	                    "p",
 	                    null,
 	                    entry.text
 	                )
 	            );
 	        });
-	        return React.createElement(
+	        return _react2.default.createElement(
 	            "div",
 	            { className: "entries" },
 	            entries
