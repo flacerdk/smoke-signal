@@ -32316,7 +32316,7 @@
 	                { className: "entry", key: entry.entry_id },
 	                _react2.default.createElement(
 	                    "a",
-	                    { href: "{entry.url}" },
+	                    { href: entry.url },
 	                    entry.title
 	                ),
 	                _react2.default.createElement(
