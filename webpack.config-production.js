@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'smoke_signal/react/static/scripts/jsx');
@@ -17,7 +18,19 @@ var config = {
         loader : 'babel'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
+  ]
 };
 
 module.exports = config;

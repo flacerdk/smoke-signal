@@ -1,9 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import AddFeedForm from './add_feed_form.jsx';
 import FeedList from './feed_list.jsx';
 import EntryList from './entry_list.jsx';
+
+function getRequest(url, callback) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            callback(data);
+        } else {
+            console.error(url, request.responseText);
+        }
+    }
+    request.onerror = function() {
+        console.error(url);
+    }
+    request.send();
+};
+
+function postRequest(url, data, callback) {
+    var request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader('Content-Type',
+                             'application/x-www-form-urlencoded; charset=UTF-8');
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            callback(data);
+        } else {
+            console.error(url, request.responseText);
+        }
+    }
+    request.onerror = function() {
+        console.error(url);
+    }
+    request.send(data);
+}
 
 var FeedPage = React.createClass({
     getInitialState: function() {
@@ -11,48 +46,22 @@ var FeedPage = React.createClass({
     },
 
     handleFeedListRefresh: function() {
-        $.ajax({
-            url: this.props.url,
-            dataType: 'json',
-            cache: false,
-            success: function(feeds) {
-                this.setState({feeds: feeds});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
+        getRequest(this.props.url, function(feeds) {
+            this.setState({feeds: feeds});
+        }.bind(this));
     },
 
     handleFeedRefresh: function(feed) {
-        var url = '/get_feed/' + feed.id;
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            cache: false,
-            success: function(entries) {
+        getRequest('/get_feed/' + feed.id, function(entries) {
                 this.setState({entries: entries});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(url, status, err.toString());
-            }.bind(this)
-        });
+            }.bind(this));
     },
 
     handleAddFeed: function(url) {
-        $.ajax({
-            url: '/add_feed',
-            dataType: 'json',
-            type: 'POST',
-            data: url,
-            success: function(feed) {
+        postRequest('/add_feed', url, function(feed) {
                 var newFeeds = this.state.feeds.concat([feed]);
                 this.setState({feeds: newFeeds});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error('/add_feed', status, err.toString());
-            }.bind(this)
-        })
+            }.bind(this));
     },
 
     componentDidMount: function() {
