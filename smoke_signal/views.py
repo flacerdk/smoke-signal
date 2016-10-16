@@ -1,7 +1,6 @@
 from flask import render_template, Blueprint, request
 from werkzeug.exceptions import BadRequest, NotFound
 from smoke_signal.database import helpers
-import json
 import sqlalchemy.orm.exc
 
 feed_view = Blueprint("feed_view", __name__,
@@ -32,7 +31,7 @@ def get_feed(feed_id):
 def add_feed():
     try:
         added_feed = helpers.add_feed(request.form['url'])
-        return json.dumps(added_feed.serialize())
+        return helpers.jsonify(added_feed, request.url)
     except KeyError:
         raise BadRequest
 

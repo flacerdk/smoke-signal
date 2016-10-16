@@ -61,8 +61,11 @@ def refresh_feed(feed_id):
     return updated_entries
 
 
-def jsonify(items, url):
-    js = json.dumps([item.serialize() for item in items])
+def jsonify(obj, url):
+    if hasattr(obj, '__iter__'):
+        js = json.dumps([item.serialize() for item in obj])
+    else:
+        js = json.dumps(obj.serialize())
     resp = Response(js, status=200, mimetype='application/json')
     resp.headers['Link'] = url
     return resp
