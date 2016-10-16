@@ -69,10 +69,16 @@ var FeedPage = React.createClass({
     },
 
     render: function() {
+        var feed_list;
+        if (this.state.feeds.length === 0) {
+            feed_list = <i>Add a feed!</i>
+        } else {
+            feed_list = <FeedList feeds={this.state.feeds} onClick={this.handleFeedRefresh} />
+        };
         return (
             <div id="feed_page">
                 <AddFeedForm onAddFeed={this.handleAddFeed} />
-                <FeedList feeds={this.state.feeds} onClick={this.handleFeedRefresh} />
+                {feed_list}
                 <EntryList entries={this.state.entries} />
             </div>
         );
