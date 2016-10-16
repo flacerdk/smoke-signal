@@ -1,20 +1,23 @@
 from flask import Flask, g
-from .db import init
 from .react.views import react
 from .nojs.views import nojs
+from sqlalchemy import create_engine
+from smoke_signal.database.models import Base
 from sqlalchemy.orm import sessionmaker
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
 app.config.from_pyfile("config.py")
-engine = init(app.config["DATABASE_PATH"])
-Session = sessionmaker(bind=engine)
 app.register_blueprint(react)
 app.register_blueprint(nojs)
 
 
 @app.before_request
-def before_request():
+def init_db():
+    engine = create_engine(app.config["DATABASE_PATH"])
+    if not engine.dialect.has_table(engine.connect(), "feed"):
+        Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
     g.db = Session()
 
 
