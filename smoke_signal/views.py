@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, request, Response
+from flask import render_template, Blueprint, request
 from werkzeug.exceptions import BadRequest, NotFound
 from smoke_signal.database import helpers
 import json
@@ -17,18 +17,14 @@ def show_feeds_with_react():
 @feed_view.route('/get_feed_list')
 def get_feed_list():
     feeds = helpers.feed_list()
-    js = json.dumps([feed.serialize() for feed in feeds])
-    resp = Response(js, status=200, mimetype='application/json')
-    resp.headers['Link'] = request.url
+    resp = helpers.jsonify(feeds, request.url)
     return resp
 
 
 @feed_view.route('/get_feed/<int:feed_id>')
 def get_feed(feed_id):
     entries = helpers.refresh_feed(feed_id)
-    js = json.dumps([entry.serialize() for entry in entries])
-    resp = Response(js, status=200, mimetype='application/json')
-    resp.headers['Link'] = request.url
+    resp = helpers.jsonify(entries, request.url)
     return resp
 
 
