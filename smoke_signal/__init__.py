@@ -3,8 +3,9 @@ from smoke_signal.db import init
 from smoke_signal.views import feed_view
 from sqlalchemy.orm import sessionmaker
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
+app.config.from_pyfile("config.py")
 engine = init(app.config["DATABASE_PATH"])
 Session = sessionmaker(bind=engine)
 app.register_blueprint(feed_view)

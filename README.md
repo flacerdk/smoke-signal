@@ -9,6 +9,10 @@ react and react-dom. Install the Python dependencies with `pip install -r
 requirements.txt`. If you have npm, you can install the JavaScript dependencies
 with `npm install`.
 
+Create a configuration file in `instance/config.py`. At the moment no special
+configuration is necessary, so you can just do `mkdir instance && cp config.py
+instance/`.
+
 You can run the `opml_import.py` script on an OPML file to import a list of
 feeds. There's a sample at `sample.opml`.
 
