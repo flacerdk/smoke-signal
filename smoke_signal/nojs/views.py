@@ -4,7 +4,9 @@ from smoke_signal.database import helpers
 from sqlalchemy.orm.exc import NoResultFound
 
 nojs = Blueprint("nojs", __name__,
-                 template_folder="templates")
+                 template_folder="templates",
+                 static_folder="static",
+                 static_url_path="/nojs/static")
 
 
 @nojs.route('/static_page')
@@ -29,6 +31,6 @@ def show_entries(feed_id):
 def refresh(feed_id):
     feeds = helpers.feed_list()
     feed = helpers.get_feed(feed_id)
-    entries = helpers.refresh_feed(feed)
+    entries = helpers.refresh_feed(feed_id)
     return render_template('show_feeds.html',
                            feed=feed, feeds=feeds, entries=entries)

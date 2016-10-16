@@ -1,13 +1,13 @@
 <!doctype html>
 <head>
   <title>Feeds</title>
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('.static', filename='style.css') }}">
 </head>
 {% block body %}
 <div id="wrapper">
   <div id="header">
     {% if feed %}
-    <a href="{{ url_for('feed_view.refresh', feed_id=feed.id) }}" id="refresh">Refresh!</a>
+    <a href="{{ url_for('.refresh', feed_id=feed.id) }}" id="refresh">Refresh!</a>
     {% else %}
     <em>Click a feed</em>
     {% endif %}
@@ -17,7 +17,7 @@
     <div id="feeds">
       <ul class="feed_list">
         {% for feed in feeds %}
-        <li class="feed" id="{{ feed.id }}"> <a href="{{ url_for('feed_view.show_entries', feed_id=feed.id) }}" id="{{ feed.id }}" class="feed" title="{{ feed.title }}">{{ feed.title }}</a></li>
+        <li class="feed" id="{{ feed.id }}"> <a href="{{ url_for('.show_entries', feed_id=feed.id) }}" id="{{ feed.id }}" class="feed" title="{{ feed.title }}">{{ feed.title }}</a></li>
         {% else %}
         <li><em>No feeds!</em></li>
         {% endfor %}
