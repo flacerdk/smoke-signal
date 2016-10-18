@@ -22169,6 +22169,10 @@
 	
 	    render: function render() {
 	        var entries = this.props.entries.map(function (entry) {
+	            // Trusting that feedparser does proper sanitization here
+	            function createMarkup() {
+	                return { __html: entry.text };
+	            };
 	            return _react2.default.createElement(
 	                "div",
 	                { className: "entry", key: entry.entry_id },
@@ -22177,11 +22181,7 @@
 	                    { href: entry.url },
 	                    entry.title
 	                ),
-	                _react2.default.createElement(
-	                    "p",
-	                    null,
-	                    entry.text
-	                )
+	                _react2.default.createElement("div", { dangerouslySetInnerHTML: createMarkup() })
 	            );
 	        });
 	        return _react2.default.createElement(
