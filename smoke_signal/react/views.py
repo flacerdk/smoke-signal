@@ -35,8 +35,3 @@ def add_feed():
         return helpers.jsonify(added_feed, request.url)
     except KeyError:
         raise BadRequest
-
-
-@react.errorhandler(404)
-def page_not_found(error):
-    return render_template('page_not_found.html'), 404
