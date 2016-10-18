@@ -7,13 +7,13 @@ var EntryList = React.createClass({
             function createMarkup() { return { __html: entry.text } };
             return (
                 <div className="entry" key={entry.entry_id}>
-                    <a href={entry.url}>{entry.title}</a>
+                    <a className="entry_title" href={entry.url}>{entry.title}</a>
                     <div dangerouslySetInnerHTML={createMarkup()} />
                 </div>
             );
         });
         return (
-            <div className="entries">
+            <div id="entries">
                 {entries}
             </div>
         );

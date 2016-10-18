@@ -4,14 +4,9 @@ div {
     border: 0px none;
 }
 
-#container {
-    width: 100%;
-    float: left;
-}
-
 #feeds {
     float: left;
-    width: 200px;
+    max-width: 200px;
     background-color: #F0F0F0;
 }
 
@@ -36,3 +31,32 @@ div {
     color: #CC3300;
 }
 
+#entries {
+    float: left;
+    max-width: 800px;
+    margin-left: 20px;
+}
+
+.entry {
+    margin-bottom: 10px;
+    background-color: #F0F0F0;
+}
+
+.entry_title {
+    display: block;
+    margin-bottom: 5px;
+    color: brown;
+    text-decoration: none;
+}
+
+.entry_title:hover {
+    color: red;
+}
+
+.add_feed_form {
+    margin-bottom: 10px;
+}
+
+.add_feed_form input {
+    margin: 5px;
+}

@@ -21,7 +21,7 @@ var AddFeedForm = React.createClass({
 
     render: function() {
         return (
-            <form className="AddFeedForm" onSubmit={this.handleSubmit}>
+            <form className="add_feed_form" onSubmit={this.handleSubmit}>
                 <input type="text"
                        placeholder="URL..."
                        value={this.state.url}

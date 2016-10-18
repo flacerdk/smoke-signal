@@ -22091,7 +22091,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'form',
-	            { className: 'AddFeedForm', onSubmit: this.handleSubmit },
+	            { className: 'add_feed_form', onSubmit: this.handleSubmit },
 	            _react2.default.createElement('input', { type: 'text',
 	                placeholder: 'URL...',
 	                value: this.state.url,
@@ -22178,7 +22178,7 @@
 	                { className: "entry", key: entry.entry_id },
 	                _react2.default.createElement(
 	                    "a",
-	                    { href: entry.url },
+	                    { className: "entry_title", href: entry.url },
 	                    entry.title
 	                ),
 	                _react2.default.createElement("div", { dangerouslySetInnerHTML: createMarkup() })
@@ -22186,7 +22186,7 @@
 	        });
 	        return _react2.default.createElement(
 	            "div",
-	            { className: "entries" },
+	            { id: "entries" },
 	            entries
 	        );
 	    }
