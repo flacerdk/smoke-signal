@@ -25,9 +25,9 @@ class SmokeSignalTestCase(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(self.db_path)
 
-    def test_main_page(self):
+    def test_alive(self):
         resp = self.app.get('/')
-        assert b'Feeds' in resp.data
+        assert resp.status_code == 200
 
     def test_empty_feedlist(self):
         resp = self.app.get('/get_feed/0')
