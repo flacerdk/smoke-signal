@@ -39,7 +39,7 @@ class SmokeSignalTestCase(unittest.TestCase):
     def test_add_valid_feed(self):
         resp = self.add_feed(SAMPLE_RSS)
         assert resp.status_code == 200
-        data = json.loads(codecs.decode(resp.data, 'utf-8'))
+        data = json.loads(codecs.decode(resp.get_data(), 'utf-8'))
         assert data["url"] == SAMPLE_RSS
         return data
 
@@ -47,7 +47,7 @@ class SmokeSignalTestCase(unittest.TestCase):
         feed = self.test_add_valid_feed()
         resp = self.app.get("/get_feed_list")
         assert resp.status_code == 200
-        feed_list = json.loads(codecs.decode(resp.data, 'utf-8'))
+        feed_list = json.loads(codecs.decode(resp.get_data(), 'utf-8'))
         assert feed in feed_list
 
     def test_add_and_get_feed(self):
