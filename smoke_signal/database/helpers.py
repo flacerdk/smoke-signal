@@ -6,7 +6,14 @@ import json
 
 
 def feed_list():
-    return g.db.query(Feed).all()
+    feeds = g.db.query(Feed).all()
+    if feeds == []:
+        resp = []
+        status_code = 204
+    else:
+        resp = jsonify(feeds)
+        status_code = 200
+    return Response(resp, status=status_code, mimetype='application/json')
 
 
 def get_feed(feed_id):
@@ -46,7 +53,11 @@ def add_feed(url):
     feed = Feed(title, url)
     g.db.add(feed)
     g.db.commit()
-    return feed
+    js = jsonify(feed)
+    location = {'Location': '/feeds/{}'.format(feed.serialize()['id'])}
+    resp = Response(js, status=200, mimetype='application/json',
+                    headers=location)
+    return resp
 
 
 def refresh_feed(feed_id):
@@ -58,16 +69,12 @@ def refresh_feed(feed_id):
             g.db.add(e)
     g.db.commit()
     updated_entries = get_feed_entries(feed.id)
-    return updated_entries
+    return jsonify(updated_entries)
 
 
 def jsonify(obj):
-    status_code = 200
     if hasattr(obj, '__iter__'):
-        if obj == []:
-            status_code = 204
         js = json.dumps([item.serialize() for item in obj])
     else:
         js = json.dumps(obj.serialize())
-    resp = Response(js, status=status_code, mimetype='application/json')
-    return resp
+    return js

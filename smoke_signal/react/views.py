@@ -19,24 +19,18 @@ def get_feed_list():
     if request.method == 'POST':
         return add_feed()
     else:
-        feeds = helpers.feed_list()
-        resp = helpers.jsonify(feeds)
+        resp = helpers.feed_list()
         return resp
 
 
 @react.route('/feeds/<int:feed_id>', methods=['GET'])
 def get_feed(feed_id):
-    entries = helpers.refresh_feed(feed_id)
-    resp = helpers.jsonify(entries)
-    return resp
+    return helpers.refresh_feed(feed_id)
 
 
 def add_feed():
     try:
-        added_feed = helpers.add_feed(request.form['url'])
-        resp = helpers.jsonify(added_feed)
-        resp.headers['Location'] = '/feeds/{}'.format(
-            added_feed.serialize()['id'])
+        resp = helpers.add_feed(request.form['url'])
         return resp
     except KeyError:
         raise BadRequest
