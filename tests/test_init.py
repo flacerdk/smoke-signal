@@ -5,11 +5,7 @@ from smoke_signal import app, init_db
 import unittest
 import tempfile
 
-# Sample RSS for testing. This will fail whenever the NYT changes the URL
-# for the RSS feed.
-#
-# TODO: change this to a URL that doesn't depend on an external service
-SAMPLE_RSS = "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+SAMPLE_RSS = "file://" + app.root_path + "/test_resources/sample_rss.xml"
 
 
 class SmokeSignalTestCase(unittest.TestCase):
