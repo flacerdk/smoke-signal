@@ -6,7 +6,7 @@ import json
 
 
 def feed_list():
-    return g.db.query(Feed)
+    return g.db.query(Feed).all()
 
 
 def get_feed(feed_id):
@@ -61,11 +61,13 @@ def refresh_feed(feed_id):
     return updated_entries
 
 
-def jsonify(obj, url):
+def jsonify(obj):
+    status_code = 200
     if hasattr(obj, '__iter__'):
+        if obj == []:
+            status_code = 204
         js = json.dumps([item.serialize() for item in obj])
     else:
         js = json.dumps(obj.serialize())
-    resp = Response(js, status=200, mimetype='application/json')
-    resp.headers['Link'] = url
+    resp = Response(js, status=status_code, mimetype='application/json')
     return resp

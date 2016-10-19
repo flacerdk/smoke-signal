@@ -14,24 +14,29 @@ def show_feeds_with_react():
     return render_template('show_with_react.html', feeds=feeds)
 
 
-@react.route('/get_feed_list')
+@react.route('/feeds/', methods=['GET', 'POST'])
 def get_feed_list():
-    feeds = helpers.feed_list()
-    resp = helpers.jsonify(feeds, request.url)
-    return resp
+    if request.method == 'POST':
+        return add_feed()
+    else:
+        feeds = helpers.feed_list()
+        resp = helpers.jsonify(feeds)
+        return resp
 
 
-@react.route('/get_feed/<int:feed_id>')
+@react.route('/feeds/<int:feed_id>', methods=['GET'])
 def get_feed(feed_id):
     entries = helpers.refresh_feed(feed_id)
-    resp = helpers.jsonify(entries, request.url)
+    resp = helpers.jsonify(entries)
     return resp
 
 
-@react.route('/add_feed', methods=['POST'])
 def add_feed():
     try:
         added_feed = helpers.add_feed(request.form['url'])
-        return helpers.jsonify(added_feed, request.url)
+        resp = helpers.jsonify(added_feed)
+        resp.headers['Location'] = '/feeds/{}'.format(
+            added_feed.serialize()['id'])
+        return resp
     except KeyError:
         raise BadRequest

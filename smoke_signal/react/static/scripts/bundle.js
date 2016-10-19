@@ -120,13 +120,13 @@
 	    },
 	
 	    handleFeedRefresh: function handleFeedRefresh(feed) {
-	        getRequest('/get_feed/' + feed.id, function (entries) {
+	        getRequest('/feeds/' + feed.id, function (entries) {
 	            this.setState({ entries: entries });
 	        }.bind(this));
 	    },
 	
 	    handleAddFeed: function handleAddFeed(url) {
-	        postRequest('/add_feed', url, function (feed) {
+	        postRequest('/feeds', url, function (feed) {
 	            var newFeeds = this.state.feeds.concat([feed]);
 	            this.setState({ feeds: newFeeds });
 	        }.bind(this));
@@ -158,7 +158,7 @@
 	
 	});
 	
-	_reactDom2.default.render(_react2.default.createElement(FeedPage, { url: '/get_feed_list' }), document.getElementById('container'));
+	_reactDom2.default.render(_react2.default.createElement(FeedPage, { url: '/feeds' }), document.getElementById('container'));
 
 /***/ },
 /* 1 */

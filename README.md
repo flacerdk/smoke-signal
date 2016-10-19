@@ -16,6 +16,10 @@ instance/`.
 You can run the `opml_import.py` script on an OPML file to import a list of
 feeds. There's a sample at `sample.opml`.
 
+## Tests
+
+Tests can be run with `python -m unittest.test_init`.
+
 ## TODO
 
 The reader is very simple as of now; at the moment, my priority is to get it
@@ -29,3 +33,4 @@ In the long run, my plan is to decouple client and server, so that Flask will
 just store and serve the feeds, while React will do the heavy lifting. I believe
 this won't be too challenging, as React already does most of the presentation
 work.
+

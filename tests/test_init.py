@@ -26,11 +26,13 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert resp.status_code == 200
 
     def test_empty_feedlist(self):
-        resp = self.app.get('/get_feed/0')
+        resp = self.app.get('/feeds/')
+        assert resp.status_code == 204
+        resp = self.app.get('/feeds/1')
         assert resp.status_code == 404
 
     def add_feed(self, url):
-        return self.app.post('/add_feed', data=dict(url=url))
+        return self.app.post('/feeds/', data=dict(url=url))
 
     def test_add_invalid_feed(self):
         resp = self.add_feed("http://example.com")
@@ -45,14 +47,14 @@ class SmokeSignalTestCase(unittest.TestCase):
 
     def test_add_and_get_feed_list(self):
         feed = self.test_add_valid_feed()
-        resp = self.app.get("/get_feed_list")
+        resp = self.app.get("/feeds/")
         assert resp.status_code == 200
         feed_list = json.loads(codecs.decode(resp.get_data(), 'utf-8'))
         assert feed in feed_list
 
     def test_add_and_get_feed(self):
         feed = self.test_add_valid_feed()
-        resp = self.app.get("/get_feed/{}".format(feed["id"]))
+        resp = self.app.get("/feeds/{}".format(feed["id"]))
         assert resp.status_code == 200
 
 if __name__ == "__main__":
