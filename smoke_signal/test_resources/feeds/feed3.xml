@@ -1,0 +1,800 @@
+<!doctype html>
+<meta charset="UTF-8">
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50290067-1', 'chromotopy.org');
+  ga('send', 'pageview');
+
+</script>
+
+<link type="application/atom+xml" 
+                 href="/feed.xml"
+		 rel="alternate"
+		 title="Chromotopy" />
+
+<link rel="stylesheet" type="text/css" href="/chromotopy.css" />
+<title>Chromotopy</title>
+
+<!-- mathjax -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<div id="major">
+<div id="header"><a href="/">Chromotopy</a>
+<div id="tagline">Watercooler research</div>
+</div>
+
+
+<div id="recent-bullets">
+<div id="section-header">Recent Posts <div style="font-size:9pt; display:inline">(<a href="archive.html">Archives</a>, <a href="feed.xml">Feed</a>)</div></div> 
+<ul>
+
+    <li><a href="#1">On L-functions and algebraic K-theory</a></li>
+
+    <li><a href="#2">The K-Theory of Endomorphisms</a></li>
+
+    <li><a href="#3">Hypothetical abelian varieties from K-theory</a></li>
+
+</ul>
+</div>
+
+
+<a name="1"></a>
+<div id="post">
+    <a href="/l-functions-and-kthy"><div class="post-title">On L-functions and algebraic K-theory</div></a>
+    <div class="post-date">May 01, 2014, by Saul Glasman</div>
+    <div class="post-content">
+        <p>Hi all! In this post, I’ll attempt to make some progress towards demystifying the relationship between L-functions and algebraic K-theory, with reference to a very simple example. I’ll say something about L-functions a little lower down, but the only thing I’ll say about K-theory in general is that it’s a way to get a spectrum from, say, a scheme.</p>
+
+<p>The deep connection between these two objects is supposed to be exemplified by the following very approximate and possibly incorrect statement.</p>
+
+<p><strong>Ur-conjecture.</strong> [Lichtenbaum, Bloch-Kato, Beilinson, Scholbach…] Let <script type="math/tex">X</script> be a geometric object, probably a scheme of a particular kind, and let <script type="math/tex">\zeta_X</script> be the zeta function associated to <script type="math/tex">X</script>. Then for <script type="math/tex">n</script> a sufficiently large positive integer,</p>
+
+<script type="math/tex; mode=display">
+\zeta_X(n) = \frac {|K_{2n}(X)|_\text{tors}} {|K_{2n - 1}(X)|_\text{tors}} R(n)
+</script>
+
+<p>where <script type="math/tex">R(n)</script> is some factor. Obviously this is completely meaningless until you know what <script type="math/tex">R(n)</script> is, but people do have expressions for it (a relevant buzzword here is “Borel regulator”), about which I’ll say no more. The point is that there are formulae for values of L-functions at integers (and I’m sorry, but I’ll use “L-function” and “zeta function” interchangeably) involving torsion orders of K-groups.</p>
+
+<p>A conjecture of this form has been proven for <script type="math/tex">X</script> the ring of integers of a totally real abelian field by piling Iwasawa theory and other manoeuverings onto the cases of the Quillen-Lichtenbaum conjecture proven by Voevodsky. It’s a humongous proof. In general, these conjectures are wide open and should be regarded with reverence.</p>
+
+<h2 id="l-functions">L-functions</h2>
+
+<p>Before I really get going, though, I’m going to say a word about L-functions, which by convention are meromorphic functions on <script type="math/tex">\mathbb{C}</script> with certain properties. I’m going to list these salient properties in bold, and illustrate them using the historically first L-function, which is of course the Riemann zeta <script type="math/tex">\zeta(s)</script>. We’ll later find that each of these properties has a purely homotopy-theoretic analogue on the K-theory spectrum.</p>
+
+<p><strong>Dirichlet series.</strong> To an L-function <script type="math/tex">L</script> is associated a Dirichlet series expansion</p>
+
+<script type="math/tex; mode=display">
+\sum_{n \geq 0} a_n n^{-s}.
+</script>
+
+<p>with <script type="math/tex">a_n \in \mathbb{C}</script>. <script type="math/tex">\zeta(s)</script> has <script type="math/tex">a_n = 1</script> for all <script type="math/tex">n</script>.</p>
+
+<p><strong>Abscissa of convergence.</strong> There is some <script type="math/tex">\sigma \in \mathbb{R}</script>, called the abscissa of convergence, such that the Dirichlet series converges to <script type="math/tex">L(s)</script> for <script type="math/tex">\mathbf{Re}(s) > \sigma</script>. The abscissa of convergence of <script type="math/tex">\zeta</script> is 1.</p>
+
+<p><strong>Euler product expansion.</strong> There is an infinite product, typically over closed points of a scheme, of nice simple functions that also converges to <script type="math/tex">L(s)</script> on some respectable proportion of <script type="math/tex">\mathbb{C}</script>. The Euler product expansion of <script type="math/tex">\zeta</script> is</p>
+
+<script type="math/tex; mode=display">
+\prod_{p \text{ prime}} \frac 1 {1 - p^s}.
+</script>
+
+<p><strong>Analytic continuation.</strong> This is implicit in the fact that I said an L-function was a meromorphic function on <script type="math/tex">\mathbb{C}</script> in the first place, but if you take the more practical view that an L-function is defined by its Dirichlet series or Euler product, there’s some content here, and analytic continuation statements are usually hard to prove.</p>
+
+<p><strong>Functional equation.</strong> An L-function has a (possibly twisted) reflective symmetry: there is some real number <script type="math/tex">\tau</script>, frequently equal to the abscissa of convergence, such that</p>
+
+<script type="math/tex; mode=display">
+L(s) = A(s) L(\tau - s).
+</script>
+
+<p>For the Riemann zeta, we have (lifted from Wikipedia) <script type="math/tex">\tau = 1</script> and </p>
+
+<script type="math/tex; mode=display">
+A(s) = 2^s \pi^{s-1} \sin \left (\frac {\pi s} 2 \right) \Gamma(1 - s)
+</script>
+
+<p>This just comes from the Archimedean L-factor (we’ll say nothing about that here) but there can be other things too. Analytic continuation and functional equation are usually proved together.</p>
+
+<p>You probably expect to be able to formulate a Riemann hypothesis for a general L-function, too, but we won’t get into that here.</p>
+
+<h2 id="the-simplest-l-function">The simplest L-function</h2>
+
+<p>I said the Riemann zeta was the historically first L-function, but it’s not the simplest. The simplest is the zeta function of a finite field <script type="math/tex">\mathbb{F}_q</script>, which is a single Euler factor:</p>
+
+<script type="math/tex; mode=display">
+\Xi_q(s) = \frac 1 {1 - q^s}.
+</script>
+
+<p>The number theorists probably use different notation for this, but I am a carefree rogue who does as he wills.</p>
+
+<p><script type="math/tex">\Xi_q</script> is manifestly meromorphic; it is its own Euler product; its Dirichlet series is given by expanding the above expression as a geometric series, with abscissa of convergence <script type="math/tex">0</script>; and its functional equation is</p>
+
+<script type="math/tex; mode=display">
+\Xi_q(-s) = -q^s \Xi_q(s).
+</script>
+
+<p>This is the only example of an L-function which one can comfortably manipulate with one’s hands without substantial analytic ingenuity. It’s this basic example that we’ll spend much of the rest of this blog post studying.</p>
+
+<h2 id="the-k-theory-of-a-finite-field">The K-theory of a finite field</h2>
+
+<p>In a 1972 paper, Quillen proved one of my all-time favourite theorems by describing the homotopy type of the K-theory spectrum of a finite field.</p>
+
+<p><strong>Theorem.</strong> [Quillen] The connected component <script type="math/tex">K(\mathbb{F}_q)_0</script> of the <script type="math/tex">0</script>-space of the K-theory spectrum of <script type="math/tex">\mathbb{F}_q</script> fits into a fibre sequence</p>
+
+<script type="math/tex; mode=display">
+K(\mathbb{F}_q)_0 \to BU \overset{\psi^q - 1} \to BU.
+</script>
+
+<p>where <script type="math/tex">\psi^q</script> is the <script type="math/tex">q</script>th Adams operation.</p>
+
+<p>This is the only example of a (global) K-theory spectrum which one can comfortably manipulate with one’s hands without substantial topological ingenuity. By Bott periodicity, we know the homotopy groups of BU:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\pi_n BU = \begin{cases} \mathbb{Z} & n = 2m > 0 \text{ is even;} \\
+0 & \text{otherwise.} \end{cases}
+ %]]></script>
+
+<p>We also know that <script type="math/tex">\psi^q</script> acts by multiplication by <script type="math/tex">q^m</script> on <script type="math/tex">\pi_{2m} BU</script>. That means we can read off the positive-degree homotopy groups of <script type="math/tex">K(\mathbb{F}_q)</script>:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+K_n (\mathbb{F}_q) = \begin{cases} \mathbb{Z}/(q^m - 1) & n = 2m - 1 \text{ is odd;} \\
+0 & \text{otherwise.} \end{cases}
+ %]]></script>
+
+<p>Motivated by the ur-conjecture stated above, let’s define a function <script type="math/tex">f_q : \mathbb{N} \to \mathbb{C}</script> by</p>
+
+<script type="math/tex; mode=display">
+f_q(n) = \frac {|K_{2n}(\mathbb{F}_q)|} {|K_{2n - 1}(\mathbb{F}_q)|}.
+</script>
+
+<p>Suppose, as if possessed by a ghost, you wrote this function down without ever having heard of an L-function. You would still notice that</p>
+
+<script type="math/tex; mode=display">
+f_q(n) = \frac 1 {q^n - 1}
+</script>
+
+<p>is the restriction to <script type="math/tex">\mathbb{N}</script> of an obvious complex-analytic function: <script type="math/tex">-\Xi_q</script>. This is the easiest case of the conjecture.</p>
+
+<p>Now what of the values of <script type="math/tex">\Xi_q</script> at negative integers? We might hope that they have something to do with the negative homotopy groups of <script type="math/tex">K(\mathbb{F}_q)</script>, which is, after all, a spectrum. But as things stand, these negative homotopy groups are zero. This rift is signaling that the arithmetic incarnation of the bare K-theory spectrum is not the L-function; rather, it’s the Dirichlet series of the L-function, or the part of the L-function to the right of the abscissa of convergence. The topological object that we should really associate to the full L-function is the K(1)-localisation of the K-theory spectrum. To do this, we need to fix an ambient prime <script type="math/tex">p</script>, and let’s make sure it’s different from the characteristic of <script type="math/tex">\mathbb{F}_q</script>.</p>
+
+<h2 id="the-k1-localisation-of-the-k-theory-of-a-finite-field">The K(1)-localisation of the K-theory of a finite field</h2>
+
+<p>I’m going to self-consciously write out all <script type="math/tex">L_{K(1)}</script>s in full. It’ll take up space, but hopefully it’ll aid clarity of notation.</p>
+
+<p>Here’s a slight variant of Quillen’s calculation; if you like, it arises by applying the Bousfield-Kuhn functor to the statement of Quillen’s theorem above.</p>
+
+<p><strong>Proposition.</strong> The K(1)-localised K-theory spectrum <script type="math/tex">L_{K(1)} K(\mathbb{F}_q)</script> fits into a fibre sequence</p>
+
+<script type="math/tex; mode=display">
+L_{K(1)} K(\mathbb{F}_q) \to KU^\wedge_p \overset{\psi^q -1} \to KU^\wedge_p.
+</script>
+
+<p>Thus the homotopy groups of <script type="math/tex">L_{K(1)} K(\mathbb{F}_q)</script>, positive and negative, are given by</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\pi_n L_{K(1)} K(\mathbb{F}_q) = \begin{cases} \mathbb{Z}_p / (q^m - 1) & n = 2m -1 \text{ odd}\\
+\mathbb{Z}_p  & n = 0 \\
+0 & \text{otherwise.}
+\end{cases}
+ %]]></script>
+
+<p>Until further notice, when we talk about the “value” of an L-function at a point, we’ll mean up to multiplication by a rational number which is a p-adic unit. With this caveat, we now have the identity</p>
+
+<script type="math/tex; mode=display">
+\Xi_q(n) = \frac {|\pi_{2n} L_{K(1)} K(\mathbb{F}_q)|} {|\pi_{2n - 1} L_{K(1)} K(\mathbb{F}_q)|}
+</script>
+
+<p>for all <script type="math/tex">n \in \mathbb{Z}</script>, except at <script type="math/tex">n = 0</script>, where things are untidy because <script type="math/tex">\Xi_q</script> has a pole and both homotopy groups in the formula are infinite, and a regulator gets involved. That’s nice.</p>
+
+<p>We need to make a couple more observations about the homotopy groups of the localised K-theory spectrum.</p>
+
+<p>First, the natural map</p>
+
+<script type="math/tex; mode=display">
+K(\mathbb{F}_q)^\wedge_p \to L_{K(1)} K(\mathbb{F}_q)
+</script>
+
+<p>is an equivalence in degrees greater than <script type="math/tex">0</script>. (It’s also an equivalence in degree <script type="math/tex">0</script>, but I’d like to propose that we regard that as an accident.) This <script type="math/tex">0</script> is the very same <script type="math/tex">0</script> that occurs as the abscissa of convergence of <script type="math/tex">\Xi_q</script>, and it also shows up as the étale cohomological dimension of <script type="math/tex">\mathbb{F}_q</script> minus 1 - a number I’d like to refer to as the Quillen-Lichtenbaum constant of <script type="math/tex">\mathbb{F}_q</script>.</p>
+
+<p>Second, the functional equation for <script type="math/tex">\Xi_q(n)</script> is reflected in the homotopy groups of <script type="math/tex">L_{K(1)} K(\mathbb{F}_q)</script> as follows. For any integer <script type="math/tex">m</script>, the <script type="math/tex">p</script>-adic valuation of <script type="math/tex">q^m - 1</script> is the same as that of <script type="math/tex">q^{-m} - 1</script>. Thus for any odd integer <script type="math/tex">n</script>, we have an isomorphism</p>
+
+<script type="math/tex; mode=display">
+\pi_n L_{K(1)} K(\mathbb{F}_q) \cong \pi_{-2 - n} L_{K(1)} K(\mathbb{F}_q).
+</script>
+
+<p>Can this apparent duality be given a topological explanation?</p>
+
+<h2 id="gross-hopkins-and-spanier-whitehead-duality">Gross-Hopkins and Spanier-Whitehead duality</h2>
+
+<p>We’re going to do this by invoking a total of four or five different dualities, one of which is deep and will be totally blackboxed, so get ready.</p>
+
+<p>Let’s start tackling this by rearranging the above isomorphism slightly. Both of the groups there arise as quotients of <script type="math/tex">\mathbb{Z}_p</script>, so they come with a choice of generator: the image of <script type="math/tex">1</script>. That means that either group can be identified with its Pontryagin dual, so let’s do it on the left:</p>
+
+<script type="math/tex; mode=display">
+(\pi_n L_{K(1)} K(\mathbb{F}_q))^\vee \cong \pi_{-2 - n} L_{K(1)} K(\mathbb{F}_q).
+</script>
+
+<p>There, now it looks more like a sensible duality. And the Pontryagin dual in there is a strong hint that Brown-Comenetz duality is involved. Briefly, the Brown-Comenetz dualising spectrum is a spectrum <script type="math/tex">I</script> defined by the natural isomorphism</p>
+
+<script type="math/tex; mode=display">
+\pi_n \mathbf{Map}(E, I) \cong (\pi_{-n} E)^\vee
+</script>
+
+<p>for spectra <script type="math/tex">E</script>. To save pixels, we’ll write <script type="math/tex">IE</script> for <script type="math/tex">\mathbf{Map}(E, I)</script>. Now our isomorphism reads</p>
+
+<script type="math/tex; mode=display">
+\pi_{-n} I(L_{K(1)} K(\mathbb{F}_q)) \cong \pi_{-2-n} L_{K(1)} K(\mathbb{F}_q).
+</script>
+
+<p>But height 1 Gross-Hopkins duality states that for a K(1)-local spectrum E,</p>
+
+<script type="math/tex; mode=display">
+IME \cong \mathbf{Map}(E, L_{K(1)} \mathbb{S}^{-2}).
+</script>
+
+<p>Here <script type="math/tex">M</script> is the first monochromatic slice functor, which for a K(1)-local spectrum is just the fibre of the map to its rationalisation. <script type="math/tex">M</script> isn’t doing anything too destructive here, so let’s omit it for now and figure out its role in a moment. We’ve arrived at</p>
+
+<script type="math/tex; mode=display">
+\pi_{-2-n} \mathbf{Map}(L_{K(1)} K(\mathbb{F}_q), L_{K(1)} \mathbb{S}) \cong \pi_{-2-n} L_{K(1)} K(\mathbb{F}_q).
+</script>
+
+<p>at least for odd <script type="math/tex">n \neq -1</script>. So we’d be home if <script type="math/tex">K(\mathbb{F}_q)</script> were to be K(1)-locally Spanier-Whitehead self-dual. And it is! I learned this in Dustin Clausen’s thesis defence, but one can prove it by showing that</p>
+
+<script type="math/tex; mode=display">
+KU^\wedge_p \wedge KU^\wedge_p \overset{\mu} \to KU^\wedge_p \overset{J} \to L_{K(1)} \mathbb{S}^{-1}
+</script>
+
+<p>exhibits <script type="math/tex">KU^\wedge_p</script> as K(1)-locally self-dual up to a shift of 1, compatibly with Adams operations, and plugging this into the fiber sequence for <script type="math/tex">L_{K(1)}K(\mathbb{F}_q)</script>. And thus the duality is explained.</p>
+
+<p>Let’s circle back for a moment and say a quick word about the role of the monochromatic slice functor <script type="math/tex">M</script>. Since <script type="math/tex">L_{K(1)} K(\mathbb{F}_q)</script> doesn’t have many torsion-free homotopy groups, the only effect of <script type="math/tex">M</script> is to convert the <script type="math/tex">\mathbb{Z}_p</script>s in degrees <script type="math/tex">0</script> and <script type="math/tex">-1</script> into <script type="math/tex">\mathbb{Q}_p/ \mathbb{Z}_p</script>s in degrees <script type="math/tex">-1</script> and <script type="math/tex">-2</script>. But that was exactly what was needed to get the original duality statement to work in those degrees, once we put in the Pontryagin dual. Thus the duality is not merely explained but embellished with a pristine little bow.</p>
+
+<h2 id="the-dictionary-and-some-questions">The dictionary, and some questions</h2>
+
+<p>As promised, we’ve given homotopy-theoretic interpretations of (almost) all the fundamental analytic properties of L-functions. Here’s a table to summarise:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Analysis</th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">Topology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">L-function</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">K(1)-localised K-theory spectrum</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Dirichlet series</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Bare K-theory spectrum</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Abscissa of convergence</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Quillen-Lichtenbaum constant</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Euler product</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">?? (But see below)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Analytic continuation</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">K(1)-localisation</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Functional equation</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Gross-Hopkins + Spanier-Whitehead duality</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(I apologise for the poor formatting - I’m not used to Markdown, and the latex support doesn’t seem to run to table environments).</p>
+
+<p>Some questions I don’t know how to answer at this point:</p>
+
+<ul>
+  <li>Let X be a Dedekind domain, L its field of fractions, and <script type="math/tex">k(x)</script> the residue field at a closed point <script type="math/tex">x \in X</script>. Then there’s a cofiber sequence</li>
+</ul>
+
+<script type="math/tex; mode=display">
+\bigvee_{x \in X} K(k(x)) \to K(X) \to K(L)
+</script>
+
+<p>The left-hand arrow looks an awful lot like it’s trying to express K(X) as an Euler product over x of K(k(x)), but I don’t know how to make that precise. K(L) is a nuisance.</p>
+
+<ul>
+  <li>
+    <p>Now let X be a smooth proper variety over <script type="math/tex">\mathbb{F}_q</script>. There’s a spectral sequence with <script type="math/tex">E_2</script> term given by étale cohomology of X with suitably Tate-twisted <script type="math/tex">\mathbb{Z}_p</script> coefficients which abuts to the K(1)-local K-theory of X. Can we use this to relate the formula for the zeta function of X in terms of the characteristic polynomial of Frobenius on étale cohomology to a K-theoretic description of the special values?</p>
+  </li>
+  <li>
+    <p>What’s the analogue of <script type="math/tex">K(\mathbb{F}_q)</script> for an archimedean L-factor? This might be related to work of Connes and Consani on cyclic homology with adelic coefficients.</p>
+  </li>
+</ul>
+
+<h2 id="p-adic-l-functions">p-adic L-functions</h2>
+
+<p>This section is tangential to the rest of the post, but I think it suggests some interesting avenues of investigation. Up until now we’ve been discussing L-functions defined on <script type="math/tex">\mathbb{C}</script>, but L-functions defined on <script type="math/tex">\mathbb{Z}_p</script> are also of interest to number theorists. We’ll construct the p-adic analogue of an Euler factor, and see that it throws up some unexpected topology.</p>
+
+<p>In this section, we’ll assume that <script type="math/tex">p</script> is odd. Things are probably substantially more awkward when <script type="math/tex">p = 2</script>.</p>
+
+<p>Let’s return (up to sign) to our function <script type="math/tex">f_q</script>, this time regarded as a function <script type="math/tex"> \mathbb{N} \to \mathbb{Q}_p</script>:</p>
+
+<script type="math/tex; mode=display">
+f_q(n) = \frac 1 {1 - q^n}.
+</script>
+
+<p>We’d like to extend <script type="math/tex">f_q</script> to a continuous function <script type="math/tex">E_q: \mathbb{Z}_p \to \mathbb{Q}_p</script>. p-adic continuity sounds weak compared to complex analyticity, but it’s actually kind of hard to be p-adically continuous, and since <script type="math/tex">\mathbb{N}</script> is dense in <script type="math/tex">\mathbb{Z}_p</script>, we’re going to have at most one choice of extension.</p>
+
+<p>In fact, we don’t have any choices, a fact which won’t surprise anyone who’s studied p-adic L-functions before. The proof of this is a byproduct of the construction of the real p-adic L-function. Let</p>
+
+<script type="math/tex; mode=display">
+S = \{n \in \mathbb{N} \, | \, q^n \equiv 1 \mod p.\}
+</script>
+
+<p>Observe that <script type="math/tex">S</script> is already dense in <script type="math/tex">\mathbb{Z}_p</script>, so if we can find a continuous function <script type="math/tex">\mathbb{Z}_p \to \mathbb{Q}_p</script> that agrees with <script type="math/tex">f_q</script> on <script type="math/tex">S</script>, that’s the best we can do, whether the two functions agree on the whole of <script type="math/tex">\mathbb{N}</script> or not.</p>
+
+<p>Here’s the crux: There’s a continuous function </p>
+
+<script type="math/tex; mode=display">
+\log : \mathbb{Z}_p \to p\mathbb{Z}_p
+</script>
+
+<p>known as the Iwasawa logarithm, and a continuous function </p>
+
+<script type="math/tex; mode=display">
+\exp: p\mathbb{Z}_p \to \mathbb{Z}_p
+</script>
+
+<p>known as the p-adic exponential. They have most of the properties you’d expect of a pair of functions called <script type="math/tex">\exp</script> and <script type="math/tex">\log</script>, except that the identity</p>
+
+<script type="math/tex; mode=display">
+\exp (\log (x)) = x
+</script>
+
+<p>only holds when <script type="math/tex">x</script> is congruent to <script type="math/tex">1</script> mod <script type="math/tex">p</script>. In general,</p>
+
+<script type="math/tex; mode=display">
+\exp (\log(x)) = p^r \omega x
+</script>
+
+<p>where the integer <script type="math/tex">r</script> and the <script type="math/tex">(p-1)</script>st root of unity <script type="math/tex">\omega</script> are uniquely determined by the requirement that <script type="math/tex">p^r \omega x \equiv 1 \mod p</script>.</p>
+
+<p>So we can follow our hearts and define</p>
+
+<script type="math/tex; mode=display">
+E_q(s) = \frac 1 {1 - \exp(s \log q)}
+</script>
+
+<p>but we have to live with the fact that <script type="math/tex">E_q(n) = f_q(n)</script> only when <script type="math/tex">n \in S</script>. For general <script type="math/tex">n \in \mathbb{N}</script>,</p>
+
+<script type="math/tex; mode=display">
+E_q(n) = \frac 1 {1 - (\omega q)^n}
+</script>
+
+<p>for a suitable <script type="math/tex">(p-1)</script>st root of unity <script type="math/tex">\omega</script>.</p>
+
+<p>Fine. Where’s the topology? What spectrum is <script type="math/tex">E_q</script> telling us about? At integers outside <script type="math/tex">S</script>, the values of <script type="math/tex">E_q</script> don’t match up with the homotopy groups of <script type="math/tex">L_{K(1)} K(\mathbb{F}_q)</script> anymore. Instead,</p>
+
+<script type="math/tex; mode=display">
+E_q(n) = \frac {|\pi_{2n} M|}{|\pi_{2n - 1} M|}
+</script>
+
+<p>for all integers <script type="math/tex">n \neq 0</script>, where M is a K(1)-local spectrum defined as the fiber of</p>
+
+<p><script type="math/tex">\psi^{\omega q} - 1 : KU^\wedge_p \to KU^\wedge_p</script>.</p>
+
+<p>So, a couple more questions:</p>
+
+<ul>
+  <li>
+    <p>What’s special about M? Why is it any better than <script type="math/tex">L_{K(1)}K(\mathbb{F}_q)</script>? What other spectra are “p-adically continuous” in this sense?</p>
+  </li>
+  <li>
+    <p>Constructing p-adic L-functions more serious than <script type="math/tex">E_q</script> usually requires some fairly heavy p-adic analysis. Can we partly bypass this by proving p-adic continuity results for the Picard-graded homotopy groups of certain K(1)-local spectra and using the orders of these homotopy groups? I believe some such continuity results already exist, in the folklore if not in the literature.</p>
+  </li>
+</ul>
+
+<p>Thanks for reading this many words! Let me finish up by remarking that some of the stuff in this post carries through to K-theory spectra of rings of integers, and using work of Dwyer and Mitchell as a bridge, one can obtain results on the special values of Kubota-Leopoldt-type p-adic zeta functions. If I can think of enough interesting stuff to say about that, it might be the subject of a future post.</p>
+
+<p>I think the Chromotopy platform doesn’t currently support blog comments, but if you have any comments or questons, please email me at sglasman at math dot mit dot edu.</p>
+
+<hr />
+
+<p>Update: Dustin Clausen emailed me with some helpful comments about the Spanier-Whitehead self-duality of <script type="math/tex">L_{K(1)} K(\mathbb{F}_q)</script>, resulting in some alterations in the text.</p>
+
+    </div>
+</div>
+
+<a name="2"></a>
+<div id="post">
+    <a href="/k-thy-of-endomorphisms"><div class="post-title">The K-Theory of Endomorphisms</div></a>
+    <div class="post-date">March 13, 2014, by Matthew Pancia</div>
+    <div class="post-content">
+        <p>For the purposes of this post, I am going to assume that you are all familiar with the basics of Algebraic <script type="math/tex">K</script>-theory. If you’re not, just treat it as a black box, a gadget which takes in one of :</p>
+
+<ul>
+  <li>a (simplicial) ring (spectrum)</li>
+  <li>an augmented (simplicial) bimodule over a ring</li>
+  <li>an exact category</li>
+  <li>a Waldhausen category</li>
+  <li>a small, stable <script type="math/tex">\infty</script>-category</li>
+</ul>
+
+<p>and spits out a spectrum <script type="math/tex">K(\mathcal{C})</script>, such that <script type="math/tex">K(\mathcal{C})</script> does the job of  ”storing all Euler characteristics” or “additive invariants”.</p>
+
+<p>An important example is when <script type="math/tex">\mathcal{C}</script> is the category of finitely generated projective modules over a ring <script type="math/tex">R</script>, and then we call this <script type="math/tex">K(R)</script>. It is a generally-accepted fact that the <script type="math/tex">K</script>-theory of rings is generically a very difficult and often useful thing to compute (knowledge of the <script type="math/tex">K</script>-groups of <script type="math/tex">\mathbb{Z}</script>, for example, would be quite valuable to many). In an ideal world, we would be able to understand the functor</p>
+
+<script type="math/tex; mode=display">
+A \mapsto \tilde{K}(A) = hofib(K(A) \rightarrow K(R))
+</script>
+
+<p>on the category of algebras augmented over a given ring <script type="math/tex">R</script>, but this ends up being fairly intractable. One might hope that it would be easier to look at what happens when restricted to free augmented algebras, that is looking at the functor on (flat) <script type="math/tex">R</script>-bimodules</p>
+
+<script type="math/tex; mode=display">
+M \mapsto \tilde{K}(T_R (M)),
+</script>
+
+<p>where <script type="math/tex">T_R (M)</script> is the tensor algebra on <script type="math/tex">M</script>. This is pretty tough, but it turns out that we can do it. Let’s take a baby step first, and try to understand the K-theory of the “linearized” tensor algebra. The 1st Goodwillie derivative of the identity functor on augmented <script type="math/tex">R</script>-algebras is given by</p>
+
+<script type="math/tex; mode=display">
+P_1 (id) (A) = A / I^2 ,
+</script>
+
+<p>where <script type="math/tex">I</script> is the augmentation ideal of <script type="math/tex">A</script>. In the case where <script type="math/tex">A = T_R (M)</script> for some <script type="math/tex">R</script>-bimodule <script type="math/tex">M</script>, then the Goodwillie derivative <script type="math/tex">P_1 (id)(T_R (M)) = R \oplus M</script>, where <script type="math/tex">R \oplus M</script> is the the square-zero extension of <script type="math/tex">R</script> by <script type="math/tex">M</script>, the ring given by demanding that <script type="math/tex">M^2 = 0</script>. In studying the <script type="math/tex">K</script>-theory of square-zero extensions, then, we are also studying the <script type="math/tex">K</script>-theory of the linearization of the tensor algebra functor (note how many simplifications we have already done!).</p>
+
+<p>A different strategy for dealing with this computational difficulty is to try and understand how the <script type="math/tex">K</script>-theory of a ring changes as we “perturb” the ring. To do this, we look at “parametrized <script type="math/tex">K</script>-theory” (or the “<script type="math/tex">K</script>-theory of parametrized endomorphisms”):</p>
+
+<p><strong>Definition.</strong> Let <script type="math/tex">R</script> be a ring, and let <script type="math/tex">M</script> be an <script type="math/tex">R</script>-bimodule. We define the <em>parametrized</em> <script type="math/tex">K</script>-<em>theory of</em> <script type="math/tex">R</script> with coefficients in <script type="math/tex">M</script>, <script type="math/tex">K(R;M)</script>, to be the <script type="math/tex">K</script>-theory of the exact category of pairs <script type="math/tex">(P,f)</script> where <script type="math/tex">P</script> is a finitely-generated projective <script type="math/tex">R</script>-module and <script type="math/tex">f: P \rightarrow P \otimes_{R} M</script> is a map of <script type="math/tex">R</script>-modules.</p>
+
+<p>We think about <script type="math/tex">K(R;M)</script> as being the <script type="math/tex">K</script>-theory of endomorphisms with coefficients that are allowed to be in <script type="math/tex">M</script>. If our picture of a finitely-generated projective <script type="math/tex">R</script>-module <script type="math/tex">P</script> is as living as a summand of a rank <script type="math/tex">n</script> free <script type="math/tex">R</script>-module, then an element of the above exact category is an <script type="math/tex">n \times n</script> matrix with entries in <script type="math/tex">M</script> that commutes with the projection map <script type="math/tex">R^n \rightarrow R^n</script> defining <script type="math/tex">P</script>.</p>
+
+<p>Why should we look towards endomorphisms as perturbations? Well, the picture is supposed to be the following: Let <script type="math/tex">R</script> be a ring and <script type="math/tex">M</script> an <script type="math/tex">R</script>-bimodule. This is the same data as a sheaf <script type="math/tex">\mathcal{F}_M</script> over <script type="math/tex">\operatorname{Spec}(R)</script>, and we would like to think of a deformation of this over, say, <script type="math/tex">R[t]/t^2</script> as a flat sheaf <script type="math/tex">\mathcal{F}_{M'}</script> over <script type="math/tex">R[t]/t^2</script> (a module) that restricts to <script type="math/tex">\mathcal{F}_M</script> over <script type="math/tex">\operatorname{Spec}(R)</script>.</p>
+
+<p align="center"><a href="images/Screen-Shot-2014-03-13-at-2.21.02-PM.png"><img class="alignnone size-medium wp-image-1475 aligncenter" alt="Screen Shot 2014-03-13 at 2.21.02 PM" src="images/Screen-Shot-2014-03-13-at-2.21.02-PM-300x86.png" width="300" height="86" /></a></p>
+
+<p>which corresponds to an element of <script type="math/tex">\operatorname{Ext}^1_R (M,M)</script>, or a derived endomorphism. The idea is that an extension of <script type="math/tex">M</script> corresponds to a deformation of <script type="math/tex">M</script>, which is a reasonable perspective.</p>
+
+<p>The above definition is not immediately seen to be relevant to our original stated desire to study perturbations, but in the investigations of Dundas and McCarthy of stable <script type="math/tex">K</script>-theory, the <script type="math/tex">K</script>-theory of endomorphisms naturally comes up. In this paper they prove the following theorem:</p>
+
+<p><strong>Theorem.</strong> For <script type="math/tex">R</script> a ring and <script type="math/tex">M</script> a discrete <script type="math/tex">R</script>-bimodule)</p>
+
+<script type="math/tex; mode=display">
+\tilde{K}(R;B_\bullet M) \simeq \text{hofib} \left\{ K(R \oplus M) \rightarrow K(R) \right\} = \tilde{K}(R \oplus M),
+</script>
+
+<p>where <script type="math/tex">R \oplus M</script> is again the the square-zero extension of <script type="math/tex">R</script> by <script type="math/tex">M</script>.</p>
+
+<p>We think of <script type="math/tex">R \oplus M</script> as a perturbation of <script type="math/tex">R</script> by <script type="math/tex">M</script>, as the elements that we are adding on (those coming from the direct summand <script type="math/tex">M</script>) are “so small’’ that they multiply to zero. This result relates the “perturbation’’ approach to understanding <script type="math/tex">K</script>-theory to our earlier potential approach of understanding the free objects in the category of augmented <script type="math/tex">R</script>-algebras.</p>
+
+<p>That’s great, but we’d like to actually have some idea of what these things are. To get a hint at what we should be looking for, we go back to what was classically studied by Almkvist et al.</p>
+
+<h3 id="theory-of-endomorphisms-the-classical-story"><script type="math/tex">K</script>-Theory of Endomorphisms: The Classical Story</h3>
+
+<p><strong>Definition.</strong> Let <script type="math/tex">R</script> be a ring and consider the category <script type="math/tex">End(R)</script>, whose objects are pairs <script type="math/tex">(P,f)</script> with <script type="math/tex">P</script> a finitely-generated projective <script type="math/tex">R</script>-module and <script type="math/tex">f:P \rightarrow P</script> an endomorphism. The morphisms in this category are commutative diagrams of the appropriate type.</p>
+
+<p>Now, we might ask what possible “additive invariants’’ there are on this category, having in mind a few examples. The key (and, as it turns out, universal) one is the following:</p>
+
+<p><strong>Example.</strong> [The Characteristic Polynomial]
+Let <script type="math/tex">(P,f) \in End(R)</script>, then the <em>characteristic polynomial</em> of <script type="math/tex">f</script> is given by</p>
+
+<script type="math/tex; mode=display">
+\lambda_t (f) = \sum_{i \geq 0} Tr(\Lambda^i f)t^i.
+</script>
+
+<p>This can also be obtained in the usual way as a determinant.</p>
+
+<p>The important property of the characteristic polynomial is that if we have a commutative diagram in <script type="math/tex">End(R)</script></p>
+
+<p style="text-align: center"><a href="images/Screen-Shot-2014-03-13-at-2.20.50-PM.png"><img class="alignnone size-medium wp-image-1474" alt="Screen Shot 2014-03-13 at 2.20.50 PM" src="images/Screen-Shot-2014-03-13-at-2.20.50-PM-300x85.png" width="300" height="85" /></a></p>
+
+<p>with exact rows, then</p>
+
+<script type="math/tex; mode=display">
+\lambda_t (f) = \lambda_t (f') \cdot \lambda_t (f''),
+</script>
+
+<p>meaning that the characteristic polynomial takes short exact sequences of endomorphisms to products (which are sums in the abelian group where the characteristic polynomials lie).</p>
+
+<p>We now know that a search for additive invariants is a desire to compute <script type="math/tex">K</script>-theory, and so we define:</p>
+
+<p><strong>Definition.</strong> <script type="math/tex">K_0 (End(R))</script> is defined to be the free abelian group on isomorphism classes of objects in <script type="math/tex">End(R)</script> modulo the subgroup generated by the relations <script type="math/tex">[(P,f)] = [(P',f')] + [(P'',f'')]</script> if there is a commutative diagram</p>
+
+<p align="center"><a href="images/Screen-Shot-2014-03-13-at-2.20.46-PM.png"><img class="alignnone size-medium wp-image-1473 aligncenter" alt="Screen Shot 2014-03-13 at 2.20.46 PM" src="images/Screen-Shot-2014-03-13-at-2.20.46-PM-300x85.png" width="300" height="85" /></a></p>
+
+<p>with the rows exact. There is a natural splitting</p>
+
+<script type="math/tex; mode=display">
+K_0 (End(R)) \simeq K_0 (R) \times \tilde{K}_0 (End(R))
+</script>
+
+<p>coming from thinking of the category of finitely generated projective <script type="math/tex">R</script>-modules as living in <script type="math/tex">End(R)</script> as the guys with <script type="math/tex">0</script> endomorphisms.</p>
+
+<p>Of course, <script type="math/tex">End(R)</script> is an exact category, and we could define higher <script type="math/tex">K</script>-groups for this as well.</p>
+
+<p><script type="math/tex">K_0 (End(R))</script> is the repository for additive invariants, in that it has the following universal property:</p>
+
+<p><strong>Proposition.</strong> Let <script type="math/tex">F</script> be a map from the commutative monoid of isomorphism classes of objects in <script type="math/tex">End(R)</script> to an abelian group <script type="math/tex">A</script>, such that <script type="math/tex">F</script> splits short exact sequences as above. Then <script type="math/tex">F</script> factors through <script type="math/tex">K_0 (End(R))</script>, or <script type="math/tex">K_0(End(R))</script> is the initial abelian group for which short exact sequences of endomorphisms split.</p>
+
+<p>What does this look like, though? Well, let’s go back to the characteristc polynomial:</p>
+
+<p><strong>Theorem.</strong> The map</p>
+
+<script type="math/tex; mode=display">
+c: [(P,f)] \mapsto ([P], \lambda_t (f))
+</script>
+
+<p>is an isomorphism</p>
+
+<script type="math/tex; mode=display">
+K_0 (End(R)) \simeq K_0 (A) \times \tilde{W}(R),
+</script>
+
+<p>where</p>
+
+<script type="math/tex; mode=display">
+\tilde{W} (R) = \left \{ \dfrac{1 + a_1 t + \dots + a_n t^n}{1+ b_1t + \dots + b_m t^m} ; \; a_i, b_j \in R \right \}
+</script>
+
+<p>is the multiplicative group of fractions with constant term 1.</p>
+
+<p>The moral of this is that the characteristic polynomial encodes all of the additive information about an endomorphism (the trace is a special case of this, of course, being read off by the constant term of the characteristic polynomial). Something interesting is the following:</p>
+
+<p><strong>Proposition.</strong> The inclusion <script type="math/tex">\tilde{W}(R) \rightarrow W(R)</script> exhibits <script type="math/tex">\tilde{K}_0 (R)</script> as a dense <script type="math/tex">\lambda</script>-subring of <script type="math/tex">W(R)</script>, where <script type="math/tex">W(R)</script> are the big Witt vectors of <script type="math/tex">R</script>, modelled as power series with constant term <script type="math/tex">1</script>.</p>
+
+<p>This means that we might as well think of the big Witt vectors as being limits of characteristic polynomials of endomorphisms, which is the starting point for the line of thought that led to the Lindenstrauss and McCarthy results.</p>
+
+<p>It is also important to mention what some of the uses of this equivalence are:</p>
+
+<ul>
+  <li>Calculations that may be difficult to perform on Witt vectors might be easy if we think of them as coming from characteristic polynomials of endomorphisms;</li>
+  <li>Operations that exist on Witt vectors get turned into operations on K-theory, and vice-versa:</li>
+  <li>The <script type="math/tex">n</script>-th ghost map is given by <script type="math/tex">gh_n ([P,f] = tr(f^n))</script>;</li>
+  <li>The Frobenius map is given by <script type="math/tex">F_n ([P,f]) = [P, f^n]</script>;</li>
+  <li>The Verschiebung map is given by <script type="math/tex">[V_n ([P,f]) = [P^{\oplus n}, v_n f]</script>, where <script type="math/tex">v_n f</script> is represented by a shift in the first <script type="math/tex">n-1</script> factors and action by <script type="math/tex">f</script> in the last factor. This represents an <script type="math/tex">n</script>-th root of <script type="math/tex">f</script>, in that <script type="math/tex">V_n^n</script> looks like applying <script type="math/tex">f</script> to all of the blocks of <script type="math/tex">P^{\oplus n}</script>.</li>
+</ul>
+
+<h3 id="lindenstrauss-mccarthy-and-topological-witt-vectors">Lindenstrauss-McCarthy and Topological Witt Vectors</h3>
+
+<p>The first thing to do to start generalizing the previous construction is to allow for a “parametrization’’, like we said before.</p>
+
+<p><strong>Definition.</strong> Let <script type="math/tex">R</script> be a ring and <script type="math/tex">M</script> an <script type="math/tex">R</script>-bimodule. <script type="math/tex">End(R;M)</script> is the category whose objects are pairs <script type="math/tex">(P,f)</script> with <script type="math/tex">P</script> a finitely generated projective <script type="math/tex">R</script>-module and <script type="math/tex">f: P \rightarrow P \otimes_R M</script> a map of <script type="math/tex">R</script>-modules. As in <script type="math/tex">End(R)</script>, morphisms are commutative diagrams.</p>
+
+<p><script type="math/tex">End(R;M)</script> inherits an exact/Waldhausen structure from considering what’s happening in the “base’’, and so it makes sense to define <em>parametrized</em> <script type="math/tex">K</script><em>-theory</em> as</p>
+
+<script type="math/tex; mode=display">
+K(R;M) := K(End(R;M)).
+</script>
+
+<p>There is a natural map from <script type="math/tex">End(R;M)</script> to the category of finitely generated projective <script type="math/tex">R</script>-modules that forgets the endomorphism, and so we can reduce and consider</p>
+
+<script type="math/tex; mode=display">
+\tilde{K}(R;M) := hofib(K(R;M) \rightarrow K(R)).
+</script>
+
+<p>We can also consider <script type="math/tex">M</script> to be simplicial by geometrically realizing, and this assembles to a functor</p>
+
+<script type="math/tex; mode=display">
+\tilde{K}(R;-): \left\{\text{simplicial } R\text{-bimodules} \right \}\; \rightarrow \text{Spectra},
+</script>
+
+<p>which is a good setting to do Goodwillie calculus.</p>
+
+<p>The remarkable result of Lindenstrauss-McCarthy is the following:</p>
+
+<p><strong>Theorem.</strong> The functors <script type="math/tex">\tilde{K} (R; -), W(R;-)</script> from simplicial <script type="math/tex">R</script>-bimodules to spectra have the same Taylor tower, where <script type="math/tex">W(R;-)</script> is a “topological Witt vectors’’ construction.</p>
+
+<p>Now, this is only remarkable if I tell you what this <script type="math/tex">W(R;-)</script> functor is, so let’s do that. Lindenstrauss and McCarthy describe this using the (notationally cumbersome) language of FSPs instead of spectra or spectral categories, which makes everything a bit hard to read. The idea is a bit simpler, however.</p>
+
+<p><strong>Construction.</strong> Let <script type="math/tex">R</script> be a ring, <script type="math/tex">M</script> a bimodule. We define a bunch of spectra <script type="math/tex">U^n (R;M)</script> with <script type="math/tex">C_n</script> action by letting <script type="math/tex">U^n (R;M)</script> be the derived cyclic tensor product (over <script type="math/tex">R</script>) of <script type="math/tex">n</script> copies of <script type="math/tex">M</script>.</p>
+
+<p>There is an evident <script type="math/tex">C_n</script> action on <script type="math/tex">U^n (R;M)</script> given by permuting the factors, and moreover when <script type="math/tex">n \mid N</script>, we have natural restriction maps between the fixed points</p>
+
+<script type="math/tex; mode=display">
+res : U^N (R;M)^{C_N} \rightarrow U^n (R;M)^{C_n}.
+</script>
+
+<p>We then define</p>
+
+<script type="math/tex; mode=display">
+W(R;M) := holim_{res} U^n (R;M)^{C_n}.
+</script>
+
+<p><strong>Example.</strong> <script type="math/tex">U^1 (R;M) \simeq THH(R;M)</script> as normally defined, and if <script type="math/tex">R = M</script> then we have that <script type="math/tex">W(R;M) \simeq TR(R;M)</script>.</p>
+
+<p>This functor <script type="math/tex">W(R;M)</script> is meant to be an attempt to define <script type="math/tex">TR</script> in the absence of the cyclic symmetry that is present when <script type="math/tex">M = R</script>. The remarkable thing is that this actually works! The nomenclature is justified by the following <script type="math/tex">p</script>-typical statement:</p>
+
+<p><strong>Theorem.</strong> (Hesselholt-Madsen) <script type="math/tex">\pi_0 (TR(R;p)) \simeq W_{(p)}(R),</script></p>
+
+<p>where the latter is a suitable version of <script type="math/tex">W(R;M)</script> that takes a homotopy limit over only <script type="math/tex">U^{p^n}(R;M)^{C_{p^n}}</script>.</p>
+
+<p>The virtue of this setup is that we have explicit understanding of what the layers of the Taylor tower of <script type="math/tex">W(R;-)</script> look like, as well as various splitting theorems, e.g. we have the following ``fundamental cofibration sequence’’:</p>
+
+<p><strong>Theorem.</strong> There is a homotopy fiber sequence</p>
+
+<script type="math/tex; mode=display">
+U^n (R; M)_{hC_n} \rightarrow W^{n}(R; M) \rightarrow W^{(n-1)}(R; M),
+</script>
+
+<p>where <script type="math/tex">W^{n}(R;M)</script> are the functors obtained by truncating the homotopy limit defining <script type="math/tex">W(R;M)</script>.</p>
+
+<p>Moreover, we have that <script type="math/tex">W^{n}(R;M)</script> is the <script type="math/tex">n</script>th polynomial approximation of <script type="math/tex">W (R;M)</script>, so this is the fiber sequence that computes the layers of the Taylor tower.</p>
+
+<h3 id="generalizations">Generalizations</h3>
+
+<p>The problem with the Lindenstrauss-McCarthy story is that it is only proven for discrete rings, but all of the constructions floating around can just as well be made when <script type="math/tex">R</script> is a connective ring spectrum and <script type="math/tex">M</script> is a (simplicial) <script type="math/tex">R</script>-bimodule.</p>
+
+<p>One of the great tricks that one can do is to use the resolution of connective ring spectra by simplicial rings. That is, given a connective ring spectrum <script type="math/tex">R</script>, there is a <script type="math/tex">id</script>-Cartesian cube with initial vertex <script type="math/tex">R</script>, and such that all other vertices are canonically stably equivalent to the Eilenberg-MacLane spectrum of a simplicial ring.</p>
+
+<p>The following fact lets us promote results about simplicial rings to those about connective ring spectra:</p>
+
+<p><strong>Theorem.</strong> If <script type="math/tex">\chi</script> is an <script type="math/tex">(id)</script>-Cartesian <script type="math/tex">k</script>-cube of connective ring spectra, then the cube <script type="math/tex">K(\chi)</script> is <script type="math/tex">(k+1)</script>-Cartesian.&lt;/span&gt;</p>
+
+<p><strong>Idea for proving generalization:</strong> Show that the functors <script type="math/tex">W(-;-), \tilde{K}(-;-)</script> have a similar property, so that the equivalence given by Lindenstrauss and McCarthy can be promoted to one for connective ring spectra.</p>
+
+<p>This works just fine, and we arrive at:</p>
+
+<p><strong>Theorem.</strong> (P.)<strong> </strong>The Lindenstrauss-McCarthy result holds for connective ring spectra.</p>
+
+<p>Unfortunately, this is mostly just a one-off trick, and we are still looking for a good conceptual understanding of what the Lindenstrauss-McCarthy equivalence really <em>means</em>. It largely goes back to the Dundas-McCarthy theorem mentioned earlier, which can also be proven for connective ring spectra, but fails to admit a generalizable proof. The issue that arises there is that their proof relies heavily on the linear models of <script type="math/tex">K</script>-theory when working over discrete rings, and these simply faily to work when we move to other contexts (their proof involves the addition of maps, a simplicial model of <script type="math/tex">K</script>-theory, etc.).</p>
+
+<p>If we had a good way of dealing with the coherence issues in defining the Dundas-McCarthy maps, then we might be able to generalize the proof and understand what’s going on, but that’s something that has yet to be done.</p>
+
+    </div>
+</div>
+
+<a name="3"></a>
+<div id="post">
+    <a href="/hypothetical-abelian-varieties"><div class="post-title">Hypothetical abelian varieties from K-theory</div></a>
+    <div class="post-date">February 26, 2014, by Eric Peterson</div>
+    <div class="post-content">
+        <p>I heard an idea tossed around recently that I’d like to share with you all.  I worry that it might be a little half-baked, as I’ve only heard about it recently and so maybe haven’t spent enough time sketching out the edges of it.  Maybe writing this will help.  Throughout, <script type="math/tex">k</script> is a perfect field of positive characteristic <script type="math/tex">p</script>.</p>
+
+<p>Where Lie theorists study Lie algebras, formal algebraic geometers study (covariant) Dieudonné modules.  The essential observation is that the sorts of formal Lie groups appearing in algebraic topology are commutative and one-dimensional, meaning that their associated Lie algebras are one-dimensional vector spaces with vanishing brackets, and so it is unreasonable to think that it would carry much interesting information about its parent formal Lie group.  To correct for this, one takes the collection of <em>all</em> curves on the formal group (i.e., without reducing to their linear equivalence classes, as one does when building the Lie algebra) and remembers enough structure stemming from the group multiplication that this assignment</p>
+
+<script type="math/tex; mode=display">
+D: \left\{\text{formal groups}\right\} \longrightarrow \left\{\begin{array}{c}\text{collections of}\;p\text{-typical curves} \\ + \\ \text{structure} \end{array}\right\}
+</script>
+
+<p>becomes an equivalence.  Such collections of curves form modules, called “Dieudonné modules”, over a certain ground ring, called the Cartier ring, which is built upon the ambient field <script type="math/tex">k</script>.  The three relevant pieces of structure are the actions of homotheties, of the Frobenius, and of the Verschiebung, which were all described <a href="what-are-witt-vectors">way back in this post on Witt vectors</a>.  (In the notation of that post, we’re interested just in <script type="math/tex">F_p</script> and <script type="math/tex">V_p</script>.)  Altogether, this gives a formula for the Cartier ring:</p>
+
+<script type="math/tex; mode=display">
+\mathrm{Cart}(k) = \mathbb{W}(k)\langle F,V \rangle / \left(\begin{array}{c}VF = FV = p, \\ Fa = a^\sigma F, \\ aV = Va^\sigma\end{array}\right).
+</script>
+
+<p>Say that a Dieudonné module is <em>formal</em> when it is: finite rank; free as a <script type="math/tex">\mathbb{W}(k)</script>-module; reduced, meaning that it’s <script type="math/tex">V</script>-adically complete; and uniform, meaning that the natural map <script type="math/tex">M / VM \to V^k M / V^{k+1} M</script> is an isomorphism.  Then, the Dieudonné functor on finite height formal groups lands in the subcategory of formal Dieudonné modules, and there it restricts to an equivalence.  Actually, more is true: the Dieudonné module of a <script type="math/tex">p</script>-divisible group can be made sense of, and Dieudonné modules which are free of finite rank (but without reducedness or uniformity) are equivalent to <script type="math/tex">p</script>-divisible groups.</p>
+
+<p>Dieudonné modules are thrilling because <em>they are just modules</em>, whereas <script type="math/tex">p</script>-divisible groups are these unwieldy ind-systems of finite group schemes.  The relative simplicity of the data of a Dieudonné module allows one to compute basic invariants very quickly:</p>
+
+<blockquote>
+  <p><strong>Theorem:</strong> Take <script type="math/tex">\mathbb{G}</script> to be a <script type="math/tex">p</script>-divisible group and <script type="math/tex">M</script> its Dieudonné module.  There is a natural isomorphism of <script type="math/tex">k</script>-vector spaces <script type="math/tex">T_0 \mathbb{G} \cong M / VM</script>.  In the case that <script type="math/tex">\mathbb{G}</script> is one-dimensional, then the rank of <script type="math/tex">M</script> as a <script type="math/tex">\mathbb{W}(k)</script>-module agrees with the height <script type="math/tex">d</script> of <script type="math/tex">\mathbb{G}</script>.  Moreover, if <script type="math/tex">\gamma</script> is a coordinate on <script type="math/tex">\mathbb{G}</script> (considered as a curve), then <script type="math/tex">\{\gamma, V\gamma, \ldots, V^{d-1} \gamma\}</script> forms a basis for <script type="math/tex">M</script>.</p>
+</blockquote>
+
+<p>There is also something like a classification of the simple Dieudonné modules over <script type="math/tex">\bar{\mathbb{F}}_p</script> (where, among other things, the étale component of a p-divisible group carries little data):</p>
+
+<blockquote>
+  <p><strong>Theorem</strong> (Dieudonné): For <script type="math/tex">m</script> and <script type="math/tex">n</script> coprime and positive, set</p>
+</blockquote>
+
+<script type="math/tex; mode=display">
+G_{m,n} = \mathrm{Cart}(\bar{\mathbb{F}}_p) / (V^m = F^n).
+</script>
+
+<blockquote>
+  <p>Additionally, allow the pairs <script type="math/tex">(m, n) = (0, 1)</script> to get</p>
+</blockquote>
+
+<script type="math/tex; mode=display">
+G_{0,1} = D(\mathbb{G}_m[p^\infty])
+</script>
+
+<blockquote>
+  <p>and <script type="math/tex">(m, n) = (1, 0)</script> to get</p>
+</blockquote>
+
+<script type="math/tex; mode=display">
+G_{1,0} = D(\mathbb{Q} / \mathbb{Z}).
+</script>
+
+<blockquote>
+  <p>(All these modules <script type="math/tex">G_{m,n}</script> have formal dimension <script type="math/tex">n</script> and height <script type="math/tex">(m+n)</script>.)  For any simple Dieudonné module <script type="math/tex">M</script>, there is an <em>isogeny</em> <script type="math/tex">M \to G_{m,n}</script>, i.e., a map with finite kernel and cokernel.  Moreover, up to isogeny every Dieudonné module is the direct sum of simple objects.</p>
+</blockquote>
+
+<p>Every abelian variety <script type="math/tex">A</script> comes with a p-divisible group <script type="math/tex">A[p^\infty]</script> arising from its system of <script type="math/tex">p</script>-power order torsion points.  This connection is remarkably strong; for instance, there is the following theorem:</p>
+
+<blockquote>
+  <p><strong>Theorem</strong> (Serre–Tate): Over a <script type="math/tex">p</script>-adic base, the infinitesimal deformation theories of an abelian variety <script type="math/tex">A</script> and its <script type="math/tex">p</script>-divisible group <script type="math/tex">A[p^\infty]</script> agree naturally.[1]</p>
+</blockquote>
+
+<p>For this reason and others, the <script type="math/tex">p</script>-divisible group of an abelian variety carries fairly strong content about the parent variety.  On the other hand, it is not immediately clear which <script type="math/tex">p</script>-divisible groups arise in this way.  Toward this end, there is a symmetry condition:</p>
+
+<blockquote>
+  <p><strong>Lemma</strong> (“Riemann–Manin symmetry condition”): As every abelian variety is isogenous to its Poincaré dual and the corresponding (Cartier) duality on <script type="math/tex">p</script>-divisible groups sends (<script type="math/tex">V</script> to <script type="math/tex">F</script> and hence) <script type="math/tex">G_{m,n}</script> to <script type="math/tex">G_{n,m}</script>, these summands must appear in pairs in the isogeny type of the Dieudonné module of <script type="math/tex">A[p^\infty]</script>.</p>
+</blockquote>
+
+<p>As a simple example, this gives the usual categorization of elliptic curves: an elliptic curve is <script type="math/tex">1</script>-dimensional, hence has <script type="math/tex">p</script>-divisible group of height <script type="math/tex">2</script>.  One possibility, called a supersingular curve, is for the Dieudonné module to be isogenous to <script type="math/tex">G_{1,1}</script>; this is a <script type="math/tex">1</script>-dimensional formal group of height <script type="math/tex">2</script> and it satisfies the symmetry condition.  The only other possibility, called an ordinary curve, is for the Dieudonné module to be isogenous to <script type="math/tex">G_{1,0} \oplus G_{0,1}</script>; this is the sum of a <script type="math/tex">1</script>-dimensional formal group of height <script type="math/tex">1</script> with an étale component of height <script type="math/tex">1</script>, and it too satisfies the symmetry condition.</p>
+
+<p>A remarkable theorem is that the converse of the symmetry lemma holds as well:</p>
+
+<blockquote>
+  <p><strong>Theorem</strong> (Serre, Oort; conjectured by Manin): If a Dieudonné module <script type="math/tex">M</script> satisfies the above symmetry condition, then there exists an abelian variety whose <script type="math/tex">p</script>-divisible group is isogenous to <script type="math/tex">M</script>.</p>
+</blockquote>
+
+<p>Both proofs of this theorem are very constructive.  Serre’s proof explicitly names abelian hypersurfaces whose <script type="math/tex">p</script>-divisible groups are of the form <script type="math/tex">G_{m,n} \oplus G_{n,m}</script>, for instance.</p>
+
+<p>Now, finally, some input from algebraic topology.  The Morava <script type="math/tex">K</script>-theories of Eilenberg–Mac Lane spaces give a collection of formal groups which can be interpreted in the following way:</p>
+
+<blockquote>
+  <p><strong>Theorem</strong> (Ravenel–Wilson): For <script type="math/tex">% <![CDATA[
+1 < m \le n %]]></script>, the <script type="math/tex">p</script>-divisible group associated to <script type="math/tex">K(n)^* K(\mathbb{Q}/\mathbb{Z}, m)</script> is (in a suitable sense) the <script type="math/tex">m</script>th exterior power of the <script type="math/tex">p</script>-divisible group <script type="math/tex">K(n)^* K(\mathbb{Q}/\mathbb{Z}, 1)</script>.  It is smooth, has formal dimension <script type="math/tex">\binom{n-1}{m-1}</script>, and has height <script type="math/tex">\binom{n}{m}</script>.  (Additionally, it is zero for <script type="math/tex">m > n</script>.)</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem</strong> (Buchstaber–Lazarev): For <script type="math/tex">% <![CDATA[
+1 < m \le n %]]></script>, the same <script type="math/tex">p</script>-divisible group has Dieudonné module isogenous to the product of <script type="math/tex">\frac{1}{n_0} \cdot \binom{n}{m}</script> copies of <script type="math/tex">G_{n_0-m_0,m_0}</script>, where <script type="math/tex">m_0/n_0</script> is the reduced fraction of <script type="math/tex">m/n</script>.</p>
+</blockquote>
+
+<p>The conclusion of Buchstaber and Lazarev is that this means that these <script type="math/tex">p</script>-divisible groups almost never have realizations as abelian varieties, since they mostly don’t satisfy the symmetry condition.  The only time that they do is something of an accident: when <script type="math/tex">n</script> is even and <script type="math/tex">m = n/2</script>, then the corresponding Dieudonné module is isogenous to that of a large product of copies of a supersingular elliptic curve.  However, Ravenel observed that Pascal’s triangle is symmetric:</p>
+
+<blockquote>
+  <p><strong>Observation</strong> (I heard this from Ravenel, but surely Buchstaber and Lazarev knew of it): The sum of all of the Dieudonné modules</p>
+</blockquote>
+
+<script type="math/tex; mode=display">
+\bigoplus_{m=0}^{\text{$n$ (or $\infty$)}} D(\operatorname{Spf} K(n)^* K(\mathbb{Q}/\mathbb{Z}, m))
+</script>
+
+<blockquote>
+  <p>satisfies the Riemann-Manin symmetry condition.</p>
+</blockquote>
+
+<p>This is an interesting observation.  In light of the comments at the end of the Buchstaber–Lazarev paper, one wonders: why privilege <script type="math/tex">m = n/2</script>?  But, even more honestly, why privilege <script type="math/tex">m = 1</script> in our study of chromatic homotopy theory?  A recurring obstacle to our understanding of higher-height cohomology theories has been the disconnection from the picture of globally defined abelian varieties.  Could there be a naturally occurring abelian variety whose <script type="math/tex">p</script>-divisible group realizes the large (<script type="math/tex">2^{n-1}</script>-dimensional!) formal group associated to the <script type="math/tex">K</script>-theoretic Hopf ring of Eilenberg–Mac Lane spaces?</p>
+
+<p>The explicit nature of the solutions to Manin’s conjecture show us that, yes, it is certainly possible to write down large products of hypersurfaces to give a positive answer to this question with the words “naturally occurring” deleted.  This alone isn’t very helpful, however, and so to pin down what we might be even talking about there are a number of smaller observations that might help:</p>
+
+<ul>
+  <li>If such an abelian variety existed, there would be a strange filtration imposed on its <script type="math/tex">p</script>-divisible group arising from the degrees of the Eilenberg–Mac Lane spaces.  The Riemann–Manin symmetry condition tells us that these <script type="math/tex">G_{m,n}</script> and <script type="math/tex">G_{n,m}</script> factors must come in pairs, but in almost all situations, one pair appears on one side of the middle-dimension <script type="math/tex">n/2</script> and the other appears on the other side.  What could this mean in terms of the hypothetical abelian variety?</li>
+  <li>Relatedly, this pairing arises from the “<script type="math/tex">\circ</script>-product” structure on the level of Hopf algebras, or as a sort of Hodge-star operation on the level of Dieudonné modules.  What sort of structure on the abelian variety would induce such an operation, and in such an orderly fashion?</li>
+  <li>There should be accessible examples of these hypothetical varieties at low heights.  For instance, the one associated to height <script type="math/tex">1</script> via mod-<script type="math/tex">p</script> complex <script type="math/tex">K</script>-theory is (canonically, not merely isogenous to) a sum <script type="math/tex">G_{1,0} \oplus G_{0,1}</script> — i.e., it comes from an ordinary elliptic curve.  Can we identify <em>which</em> elliptic curve — and in what sense we can even ask this question?  Is there a naturally occurring map from the forms of <script type="math/tex">\mathbb{G}_m</script> to the ordinary locus on the (noncompactified?) moduli of elliptic curves?  What about forms of <script type="math/tex">\hat{\mathbb{G}}_m</script>?  What if we select a supersingular elliptic curve instead — is there an instructive assignment to abelian varieties whose Dieudonné module has isogeny type <script type="math/tex">G_{1,0} \oplus G_{1,1} \oplus G_{0,1}</script>?  (On the face of it, this last bit doesn’t look so helpful, but maybe it is.)</li>
+</ul>
+
+<p>[1] - Presumably this can be expressed by saying that the map from a moduli of abelian varieties to a moduli of <script type="math/tex">p</script>-divisible groups is formally étale, but no one seems to say this, so maybe I’m missing something.</p>
+
+<hr />
+
+<p>I’ve been making an effort to learn some arithmetic geometry recently.  I started with local class field theory, which was mind-blowing.  When I was a first year, someone sat me down and instructed me that I must take a course in complex geometry to become competent — and they were right, and it was a wonderful course, and I’m really glad I got that advice.  I have no idea how (especially as I’ve been bumbling about with formal groups for so long!) it slipped past me that local class field theory is another one of these core competencies, and really one of the great achievements of twentieth century mathematics.</p>
+
+<p>I gave a kind of measly talk about this a month ago, when I was trying to stir up interest in a reading group.  The notes are a little batty, but they’re fun enough, and you can find them <a href="http://math.berkeley.edu/~ericp/latex/misc/rg-fargues.pdf">here</a>.</p>
+
+<hr />
+
+<p>Speaking of mind-blowing things, last week there was a week-long workshop on perfectoid spaces at MSRI, which I attended between one-third and one-half of.  There are video lectures available <a href="http://www.msri.org/workshops/731">on the MSRI website</a>; at the very least everyone should watch Scholze’s introduction, just to get a sense of what all the fuss is about, and then ideally both of Weinstein’s lectures, which were excellent and very much adjacent to the subject of this post — this blog, really.</p>
+
+<p>And, as an uninspired parting remark, we topologists do have access to the pro-system</p>
+
+<script type="math/tex; mode=display">\left( \cdots \xrightarrow{p} \mathbb{C}\mathrm{P}^\infty \xrightarrow{p} \mathbb{C}\mathrm{P}^\infty \xrightarrow{p} \mathbb{C}\mathrm{P}^\infty\right) \ldots</script>
+
+    </div>
+</div>
+
+
+
+<div id="footer">A <a href="https://github.com/aprescott/serif">Serif</a> blog | <a href="/archive.html">View archive</a> of 36 posts </div>
+</div>

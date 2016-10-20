@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:georss="http://www.georss.org/georss" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+  <title>Top-Thema mit Vokabeln | Deutsch lernen | Deutsche Welle</title>
+  <link>http://www.dw.de/deutsch-lernen/top-thema/s-8031?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+  <description>Deutsch lernen mit Realitätsbezug: aktuelle Berichte der Deutschen Welle – leicht verständlich und mit Vokabelglossar.</description>
+  <language>de</language>
+  <copyright>2016 DW.COM, Deutsche Welle</copyright>
+  <pubDate>Wed, 19 Oct 2016 09:40:40 GMT</pubDate>
+  <lastBuildDate>Wed, 19 Oct 2016 09:40:40 GMT</lastBuildDate>
+  <atom:link href="http://partner.dw.com/xml/DKpodcast_topthemamitvokabeln_de" rel="self"/>
+  <image>
+   <url>http://www.dw.com/image/18800104_7.jpg</url>
+   <title>Top-Thema mit Vokabeln | Deutsch lernen | Deutsche Welle</title>
+   <link>http://www.dw.de/deutsch-lernen/top-thema/s-8031?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+  </image>
+  <itunes:image href="http://www.dw.com/image/18800104_7.jpg"/>
+  <itunes:block>no</itunes:block>
+  <itunes:explicit>clean</itunes:explicit>
+  <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+  <itunes:owner>
+   <itunes:name>DW.COM | Deutsche Welle</itunes:name>
+   <itunes:email>podcasts@dw.com</itunes:email>
+  </itunes:owner>
+  <itunes:subtitle>Deutsch lernen mit Realitätsbezug: aktuelle Berichte der Deutschen Welle – leicht verständlich und mit Vokabelglossar.</itunes:subtitle>
+  <itunes:summary>Deutsch lernen mit Realitätsbezug: aktuelle Berichte der Deutschen Welle – leicht verständlich und mit Vokabelglossar.</itunes:summary>
+  <itunes:category text="Education">
+   <itunes:category text="Language Courses"/>
+   <itunes:category text="Higher Education"/>
+   <itunes:category text="Training"/>
+  </itunes:category>
+  <ttl>30</ttl>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/poesie-für-die-ohren/a-36077255?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Tue, 18 Oct 2016 11:58:00 GMT</pubDate>
+   <title>Poesie für die Ohren</title>
+   <link>http://www.dw.com/de/poesie-für-die-ohren/a-36077255?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Der Literaturnobelpreis 2016 ging an den Musiker Bob Dylan. Mit dieser Entscheidung erkannte die Jury zum ersten Mal die literarische Qualität von Songtexten an. Nicht jeder fand das gut.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Deutsch lernen</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/092FABDD_2.mp3" type="audio/mpeg" length="2603331"/>
+   <itunes:duration>02:42</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/sie-leugnen-den-holocaust/a-36033179?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Fri, 14 Oct 2016 08:29:00 GMT</pubDate>
+   <title>Sie leugnen den Holocaust</title>
+   <link>http://www.dw.com/de/sie-leugnen-den-holocaust/a-36033179?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Auch 70 Jahre nach dem nationalsozialistischen Völkermord an den Juden 
+gibt es noch Menschen, die den Holocaust für eine Lüge halten. In 
+Deutschland und manchen anderen Ländern Europas kann man dafür bestraft 
+werden.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Top-Thema</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/F55223F0_2.mp3" type="audio/mpeg" length="2761374"/>
+   <itunes:duration>02:52</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/mit-herz-gegen-hass/a-36015178?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Tue, 11 Oct 2016 14:16:00 GMT</pubDate>
+   <title>Mit Herz gegen Hass</title>
+   <link>http://www.dw.com/de/mit-herz-gegen-hass/a-36015178?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Die 70-jährige Irmela Mensah-Schramm entfernt fremdenfeindliche Parolen aus der Öffentlichkeit. Sie putzt die Schmierereien weg oder übermalt sie. Jetzt hat sie eine Anzeige wegen Sachbeschädigung bekommen.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Top-Thema</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/C2DA9318_2.mp3" type="audio/mpeg" length="2815167"/>
+   <itunes:duration>02:56</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/wo-deutschlands-mächtigste-richter-sitzen/a-35974742?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Fri, 7 Oct 2016 08:15:00 GMT</pubDate>
+   <title>Wo Deutschlands mächtigste Richter sitzen</title>
+   <link>http://www.dw.com/de/wo-deutschlands-mächtigste-richter-sitzen/a-35974742?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Das Bundesverfassungsgericht schützt das deutsche Grundgesetz. Bei den Bürgern ist es beliebt, aber Politikern gefallen die Urteile manchmal gar nicht. Denn das Verfassungsgericht setzt der Politik oft Grenzen.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Top-Thema</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/9713D19A_2.mp3" type="audio/mpeg" length="2904822"/>
+   <itunes:duration>03:01</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/kein-frieden-für-kolumbien/a-35952917?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Tue, 4 Oct 2016 12:33:00 GMT</pubDate>
+   <title>Kein Frieden für Kolumbien?</title>
+   <link>http://www.dw.com/de/kein-frieden-für-kolumbien/a-35952917?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>In Kolumbien herrscht seit über 50 Jahren Krieg zwischen der FARC-Guerilla und der Regierung. Das Volk konnte nun über einen Friedensvertrag abstimmen – und lehnte ihn mit knappem Ergebnis ab.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Top-Thema</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/3CA7695A_2.mp3" type="audio/mpeg" length="2879385"/>
+   <itunes:duration>03:00</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/10-jahre-islamkonferenz-erfolge-und-probleme/a-35923610?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Fri, 30 Sep 2016 10:33:00 GMT</pubDate>
+   <title>10 Jahre Islamkonferenz: Erfolge und Probleme</title>
+   <link>http://www.dw.com/de/10-jahre-islamkonferenz-erfolge-und-probleme/a-35923610?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Die Deutsche Islamkonferenz soll die Verständigung zwischen Muslimen und der Regierung verbessern. Beim zehnjährigen Jubiläum lobte der Innenminister die bisherigen Erfolge. Doch gerade jetzt gibt es viel zu tun.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Top Thema</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/48310A73_2.mp3" type="audio/mpeg" length="2696322"/>
+   <itunes:duration>02:48</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/die-tragödie-von-aleppo/a-35902470?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Tue, 27 Sep 2016 13:55:00 GMT</pubDate>
+   <title>Die Tragödie von Aleppo</title>
+   <link>http://www.dw.com/de/die-tragödie-von-aleppo/a-35902470?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Die syrische Stadt Aleppo ist seit Jahren umkämpft. Jetzt wurde sie besonders stark bombardiert. Die Menschen dort leben unter schlimmen Bedingungen. Es gibt kaum Strom, Wasser oder Medizin. Und die Bomben fallen weiter.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords>Aleppo, Syrien, UN, Ban Ki Moon, Krieg, USA, Russland, Kriegsverbrechen, Top-Thema, B1</itunes:keywords>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/dwelle/dira/mp3/deutschkurse/topthema/0C2D9637_2.mp3" type="audio/mpeg" length="2736771"/>
+   <itunes:duration>02:51</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/kein-bier-ohne-kontrolle/a-19563556?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Tue, 20 Sep 2016 12:43:00 GMT</pubDate>
+   <title>Kein Bier ohne Kontrolle</title>
+   <link>http://www.dw.com/de/kein-bier-ohne-kontrolle/a-19563556?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Zäune, Kontrollen und jede Menge Polizisten – auf dem Münchner Oktoberfest gibt es im September und Oktober 2016 besondere Sicherheitsvorkehrungen. Die Besucher bleiben trotzdem gelassen.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords/>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/podcasts/de/2296_DKpodcast_topthemamitvokabeln_de/71B250F1_2-podcast-2296-19563556.mp3" type="audio/mpeg" length="2658301"/>
+   <itunes:duration>02:46</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/olympische-spiele-für-behinderte-und-nicht-behinderte/a-19554693?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Fri, 16 Sep 2016 11:43:00 GMT</pubDate>
+   <title>Olympische Spiele für Behinderte und Nicht-Behinderte?</title>
+   <link>http://www.dw.com/de/olympische-spiele-für-behinderte-und-nicht-behinderte/a-19554693?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Immer wieder wird darüber diskutiert, Olympische und Paralympische Spiele zusammenzulegen. Kanada und Großbritannien zeigen, wie es gehen könnte, aber international ist das Interesse daran bisher gering.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords/>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/podcasts/de/2296_DKpodcast_topthemamitvokabeln_de/923C7CA8_2-podcast-2296-19554693.mp3" type="audio/mpeg" length="3020257"/>
+   <itunes:duration>03:09</itunes:duration>
+  </item>
+  <item>
+   <guid isPermaLink="true">http://www.dw.com/de/wie-afrikas-elefanten-verschwinden/a-19547466?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</guid>
+   <pubDate>Tue, 13 Sep 2016 13:12:00 GMT</pubDate>
+   <title>Wie Afrikas Elefanten verschwinden</title>
+   <link>http://www.dw.com/de/wie-afrikas-elefanten-verschwinden/a-19547466?maca=de-DKpodcast_topthemamitvokabeln_de-2296-xml-mrss</link>
+   <description>Die Lage der Elefanten in Afrika ist ernst. Das Ergebnis einer neuen Studie zeigt: Ihr Bestand nimmt ab. Tierschützer fordern schon lange den Schutz der Tiere. Doch der Handel mit Elfenbein ist nur schwer zu stoppen.</description>
+   <category>Deutsch XXL</category>
+   <itunes:author>DW.COM | Deutsche Welle</itunes:author>
+   <itunes:keywords/>
+   <itunes:explicit>clean</itunes:explicit>
+   <enclosure url="http://radio-download.dw.com/Events/podcasts/de/2296_DKpodcast_topthemamitvokabeln_de/08AE6202_2-podcast-2296-19547466.mp3" type="audio/mpeg" length="2896408"/>
+   <itunes:duration>03:01</itunes:duration>
+  </item>
+ </channel>
+</rss>

@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>DaF-Blog</title>
+	<atom:link href="http://cornelia.siteware.ch/blog/wordpress/feed" rel="self" type="application/rss+xml" />
+	<link>http://cornelia.siteware.ch/blog/wordpress</link>
+	<description>Über das Deutschlernen und -lehren mit und ohne Internet.</description>
+	<lastBuildDate>Wed, 28 Sep 2016 02:13:12 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.3.1</generator>
+		<item>
+		<title>Quizlet-Live</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/09/27/quizlet-live</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/09/27/quizlet-live#comments</comments>
+		<pubDate>Tue, 27 Sep 2016 20:07:14 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[E-Learning / neue Medien]]></category>
+		<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Unterrichtsidee]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[Ressourcen für E-Learning]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3470</guid>
+		<description><![CDATA[Die Wortschatzlernseite Quizlet bietet seit einigen Wochen ein neues Spiel an: Quizlet-Live. Es verbindet das Multiple-Choice-Format mit einem kooperativen Element. Im Beitrag findet ihr nähere Informationen und meine bisherigen Erfahrungen damit. ]]></description>
+			<content:encoded><![CDATA[<p><strong>Spielprinzip</strong></p>
+<p>Die Wortschatzlernseite <strong><a href="https://quizlet.com/">Quizlet</a></strong> bietet seit einigen Wochen ein neues Spiel an: <strong><a href="https://quizlet.com/features/live">Quizlet live</a></strong>. Es verbindet das Multiple-Choice-Format mit einem kooperativen Element. Die Antworten (alle 12 Kartenvorderseiten im Spiel) auf eine Frage (eine Kartenrückseite) werden auf die Mitglieder einer Gruppe (3-4 Personen) verteilt. Das heisst, alle haben 3-4 Antwortmöglichkeiten, aber nur eine Person hat tatsächlich die richtige Antwort. Als ich zum ersten Mal die <a href="https://quizlet.com/livedemo">Demo</a> gespielt hatte, fand ich das ziemlich lasch. Man sitzt vor dem Bildschirm und muss in zwei Drittel der Fälle darauf warten, dass die Mitspieler, deren Antworten nicht sieht, die richtige Lösung finden.</p>
+<p>Interessant wird das Spiel erst durch die mobilen Geräte, die ermöglichen, dass die zufällig zusammengewürfelten Gruppenmitglieder zueinander sitzen und über die korrekte Lösung sprechen. Man sieht also alle Lösungen und muss entscheiden (möglichst indem man in der Zielsprache darüber spricht), wer die richtige hat.</p>
+<p>Das Team, das als erstes alle Fragen richtig beantwortet hat, gewinnt. Bei einer falschen Antwort muss das Team allerdings ganz von vorn beginnen. Das unterstützt das kooperative Element, da Geschwindigkeit allein nicht reicht.</p>
+<p>Einge gute, bebilderte Beschreibung des Spiels findet ihr hier: <a href="https://quizlet.com/blog/introducing-our-first-collaborative-learning-game-for-the-classroom-quizlet-live">https://quizlet.com/blog/introducing-our-first-collaborative-learning-game-for-the-classroom-quizlet-live</a>.</p>
+<p><strong>Voraussetzungen</strong></p>
+<p>Um Quizlet-Live spielen zu können, braucht nur die Lehrperson einen Account. In den Einstellungen muss der Status Lehrer (&#8220;teacher&#8221; statt &#8220;studen&#8221; gesetzt werden). Die Standardversion genügt, mit dem Lehrerupgrade hat man mehr Kontrolle über die Gruppenbildung.</p>
+<p>Neben den mobilen Geräten (die wichtig sind, damit die Lernenden wirklich zusammenarbeiten können) braucht man noch einen Beamer, über den man den Spielfortschritt projizieren kann.</p>
+<p>Die Lehrperson wählt das Kartenset, mit dem man spielen möchte und klickt auf den „Live“-Knopf. Nachdem man das Spiel gestartet hat, wird der Link für die Studenten (<a href="https://quizlet.com/live">quizlet.live</a>) und der Aktivierungscode angezeigt. Sie rufen die Seite in ihrem mobilen Gerät auf und geben ihren Vornamen ein (das ist wichtig, damit sich die Gruppen nachher finden können).</p>
+<p>Wenn sich mindestens 6 Teilnehmer eingeschrieben haben, kann man die Gruppen generieren lassen. Man sollte aber warten, bis alle da sind, da keine neuen Spieler dazukommen können, solange das Spiel läuft.</p>
+<p>Wenn sich die Gruppen gefunden haben, startet das eigentliche Spiel, das endet, sobald die erste Gruppe alle Fragen korrekt beantwortet hat.</p>
+<p><strong>Eigene Erfahrung mit Quizlet-Live</strong></p>
+<p>Ich habe Quizlet-Live heute morgen zum ersten Mal in einem B1-Kurs eingesetzt und zwar ohne das vorher anzukündigen. Ich habe einfach gefragt, wer ein Mobiltelefon mit Internetzugang dabei hat und da das bei allen bis auf zwei Personen (von 18) der Fall war, habe ich mich für diese Version entschieden &#8211; ich hatte noch eine Papierversion als Plan B dabei.</p>
+<p>Gespielt haben wir mit <a href="https://quizlet.com/152892308/redemittel-luckensatze-flash-cards/">diesem Set</a>, das auf einem Blatt mit Redemitteln beruht, die für die Aktivitäten in dieser Stunde relevant sind und das sie als Vorbereitung bekommen haben. Das Spiel war also einerseits eine Vorbereitung auf die Stunde selbst und andererseits eine Nachbereitung der Hausaufgaben. Zudem war mir wichtig, den Lernenden bewusst zu machen, das Redemittel nichts nützen, wenn man sie nicht auswendig kann.</p>
+<p>Obwohl das Prozedere zum Einloggen eigentlich sehr einfach ist, haben zwei Leute es nicht in nützlicher Frist geschafft (denen ich dann, da ich sie eh schon hatte, die Papierversion in die Hand gedrückt habe). Einer weiteren Person ist das Handy während dem Spiel ausgestiegen, worauf die ganze Gruppe nicht mehr weiterspielen konnte, da sie natürlich nicht alle Antworten hatten. Auch dieser Gruppe habe ich die Papierversion gegeben.</p>
+<p>Ich habe nur einen Durchgang spielen lassen, in einem zweiten hätten sich die Probleme &#8211; vor allem die mit dem Einloggen höchstwahrscheinlich beheben lassen. Obwohl nicht alles geklappt hat, fand die Mehrheit der Klasse die Übung sinnvoll und würde sie gerne wieder einmal machen.</p>
+<p><strong>Fazit</strong></p>
+<p>Mir gefällt das kollaborative Element an Quizlet-Live. Wenn man Material, das man wiederholen möchte, sowieso auf Quizlet hat, und die Lernenden sowieso digitale Geräte dabeihaben, ist es meiner Meinung nach eine sinnvolle Übungsform, die man ab und zu einsetzen kann. Wichtiger als der Einsatz im Unterricht selbst wird für mich aber die Verwendung als individuelles Lerntool bleiben.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/09/27/quizlet-live/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>IDT 2017 in Fribourg</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/09/16/idt-2017-in-fribourg</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/09/16/idt-2017-in-fribourg#comments</comments>
+		<pubDate>Fri, 16 Sep 2016 14:00:26 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Forschung / Theorie / Didaktik]]></category>
+		<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Veranstaltungen]]></category>
+		<category><![CDATA[IDT]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3466</guid>
+		<description><![CDATA[Ich habe in diesem Blog schon ein paar Mal über IDTs berichtet. Heute in einem Jahr wird die nächste IDT, die diesmal in Fribourg/Freiburg in der Schweiz stattfinden wird, bereits vorbei sein. Höchste Zeit also, sich anzumelden! An der IDT in Fribourg gibt es viel Altbewährtes wie die Sektionen, (Ko)-Vorträge,  Verbandsfenster, Verlagsstände und -präsentationen, aber [...]]]></description>
+			<content:encoded><![CDATA[<p>Ich habe in diesem Blog schon ein paar Mal über <a href="http://cornelia.siteware.ch/blog/wordpress/tag/idt">IDTs</a> berichtet. Heute in einem Jahr wird die nächste <a href="http://idt-2017.ch/">IDT</a>, die diesmal in <strong><a href="http://fribourg.ch/">Fribourg</a><a href="http://fribourg.ch/">/Freiburg</a></strong> in der Schweiz stattfinden wird, bereits vorbei sein. Höchste Zeit also, sich anzumelden!</p>
+<p>An der IDT in Fribourg gibt es <strong>viel Altbewährtes</strong> wie die <strong><a href="http://idt-2017.ch/index.php/fachprogramm/sektionen">Sektionen</a></strong>, <a href="http://idt-2017.ch/index.php/fachprogramm/vortraege-und-ko-vortraege">(Ko)-<strong>Vorträge</strong></a>,  <strong><a href="http://idt-2017.ch/index.php/rahmenprogramm/dachl-cafe-verbandsfenster">Verbandsfenster</a></strong>, <a href="http://idt-2017.ch/index.php/rahmenprogramm/verlags-und-institutspraesentationen">V<strong>erlagsstände und -präsentationen</strong></a>, aber auch <strong><a href="http://idt-2017.ch/index.php/uebersicht/neuerungen">verschiedene Neuerungen</a></strong>. Hervorheben möchte ich die <strong><a href="http://idt-2017.ch/index.php/fachprogramm/podien/sprach-und-bildungspolitische-podien">Montags-Podien</a></strong> zu Sprach- und Bildungspolitischen Fragen, die von Interessegruppen (SIGs) vorbereitet werden und die <strong><a href="http://idt-2017.ch/index.php/fachprogramm/didaktische-werkschauen">didaktischen Werkschauen</a></strong> , für die man Videos als als Beitrage einreichen kann (<a href="http://idt-2017.ch/index.php/fachprogramm/didaktische-werkschauen/bewerbung">Infos zum Einreichen eines Videos</a>, zu den <a href="http://idt-2017.ch/index.php/fachprogramm/didaktische-werkschauen/form">formalen Kriterien</a> und <a href="http://idt-2017.ch/index.php/fachprogramm/didaktische-werkschauen/praktische-informationen">zum Ablauf der Werkschau</a>). Einen guten Überblick über die IDT erhaltet ihr im <strong><a href="http://www.idt-2017.ch/docs/tagungstruktur/idt2017_tagungsstruktur.pdf">Wochenprogramm</a></strong>.</p>
+<p><strong>Bis Ende September</strong> kann man noch <a href="http://www.idt-2017.ch/docs/idt2017_call_for_papers.pdf"><strong>Beiträge</strong></a> einreichen. Auf der IDT-Webseite findet man neben den <a href="http://idt-2017.ch/index.php/beitraege/form-der-abstracts">rein formalen Anforderungen</a> auch <a href="http://idt-2017.ch/index.php/beitraege/tipps-fuer-erfolgreiche-abstracts">Tipps für erfolgreiche Abstracts</a>. Man kann das Abstract übrigens auch schon einreichen, auch wenn man sich noch nicht definitiv für die Tagung anmelden will, falls das aus irgendwelchen organisatorischen Gründen nicht geht, aber da der <strong>Early-Bird-Tarif</strong> auch nur bis Ende September gültig ist, lohnt sich es sich natürlich, sich auch gleich anzumelden.</p>
+<p>Falls ihr selber nicht kommen könnt, sagt es doch weiter! Eine IDT ist eine tolle Sache und mich würde es besonders freuen, wenn sich einige virtuelle Bekanntschaften dort konkretisieren liessen.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/09/16/idt-2017-in-fribourg/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Sommerlektüre 2016: Scenario</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/07/05/sommerlekture-2016-scenario</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/07/05/sommerlekture-2016-scenario#comments</comments>
+		<pubDate>Tue, 05 Jul 2016 19:59:08 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Aussprache]]></category>
+		<category><![CDATA[Fachliteratur]]></category>
+		<category><![CDATA[Forschung]]></category>
+		<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Sprechen]]></category>
+		<category><![CDATA[Creative Commons]]></category>
+		<category><![CDATA[Theater]]></category>
+		<category><![CDATA[Zeitschrift]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3454</guid>
+		<description><![CDATA[Scenario ist eine Zeitschrift für &#8221; Drama and Theatre in Foreign and Second Language Education&#8221;. Seit 2007 erscheine zweimal jährlich Artikel zum Thema auf Deutsch oder Englisch. Die Artikel stehen in Html und PDF zur Verfügung und unter einer Creative Commons Lizenz. Adresse: http://www.ucc.ie/en/scenario/scenariojournal/]]></description>
+			<content:encoded><![CDATA[<p>Scenario ist eine Zeitschrift für &#8221; Drama and Theatre in Foreign and Second Language Education&#8221;. Seit 2007 erscheine zweimal jährlich Artikel zum Thema auf Deutsch oder Englisch. Die Artikel stehen in Html und PDF zur Verfügung und unter einer Creative Commons Lizenz.</p>
+<p>Adresse: <a href="http://www.ucc.ie/en/scenario/scenariojournal/">http://www.ucc.ie/en/scenario/scenariojournal/</a></p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/07/05/sommerlekture-2016-scenario/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Fragen-Listen</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/05/05/fragen-listen</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/05/05/fragen-listen#comments</comments>
+		<pubDate>Thu, 05 May 2016 20:06:53 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Material für Unterricht]]></category>
+		<category><![CDATA[Sprechen]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3430</guid>
+		<description><![CDATA[Für Kennen-Lernaktivitäten, oder wenn ich Wortschatz zu einem Thema wiederholen will, benütze ich auf Listen oder Karten mit Fragen. Die ersten paar Fragen fallen mir in der Regel sehr schnell ein, aber irgendwann wird es meistens mühsam. Aus diesem Grund blogge ich jetzt die Conversation-Question-Liste von iteslj.org, auf der man zu ziemlich jedem Thema Fragen [...]]]></description>
+			<content:encoded><![CDATA[<p>Für Kennen-Lernaktivitäten, oder wenn ich Wortschatz zu einem Thema wiederholen will, benütze ich auf Listen oder Karten mit Fragen. Die ersten paar Fragen fallen mir in der Regel sehr schnell ein, aber irgendwann wird es meistens mühsam. Aus diesem Grund blogge ich jetzt die <a href="http://iteslj.org/questions/">Conversation-Question-Liste</a> von iteslj.org, auf der man zu ziemlich jedem Thema Fragen findet, die der eigenen Kreativität auf die Sprünge helfen sollten.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/05/05/fragen-listen/feed</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Karten tauschen</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/05/04/karten-tauschen</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/05/04/karten-tauschen#comments</comments>
+		<pubDate>Wed, 04 May 2016 11:04:51 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Hören]]></category>
+		<category><![CDATA[Sprechen]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[A1]]></category>
+		<category><![CDATA[A2]]></category>
+		<category><![CDATA[Arbeitsblatt]]></category>
+		<category><![CDATA[B1]]></category>
+		<category><![CDATA[B2]]></category>
+		<category><![CDATA[Bewegung]]></category>
+		<category><![CDATA[Creative Commons]]></category>
+		<category><![CDATA[Flüssigkeit]]></category>
+		<category><![CDATA[spielform]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3331</guid>
+		<description><![CDATA[Bei der Aktivität Kartentauschen erhält jeder Lernende eine Karte mit einem Stichwort oder einer Frage. Wenn sich zwei Lernende treffen, stellen und beantworten sie sich gegenseitig ihre Fragen oder sprechen - je nach Aufgabenstellung - über ihre Stichwörter. Anschliessend tauschen sie die Karten und suchen sich einen neuen Partner / eine neue Partnerin.]]></description>
+			<content:encoded><![CDATA[<p>Bei der Aktivität Kartentauschen erhält jeder Lernende eine Karte mit einem Stichwort oder einer Frage. Wenn sich zwei Lernende treffen, stellen und beantworten sie sich gegenseitig ihre Fragen oder sprechen &#8211; je nach Aufgabenstellung &#8211; über ihre Stichwörter. Anschliessend tauschen sie die Karten und suchen sich einen neuen Partner / eine neue Partnerin.</p>
+<p>Wichtig ist, dass sie sich die Karten nicht einfach zeigen, sondern sich die Fragen stellen (je nach Aufgabenstellung auch frei formulieren) und rückfragen, falls sie einander nicht verstehen.<br />
+Damit die Aktivität möglichst ohne Intervention der Lehrperson durchgeführt werden kann, kann man die Rückseite der Karten für Worschatzerklärungen nutzen. Ich ermutige meine Lernenden aber immer, die Rückseite nur wenn unbedingt nötig oder zur Überprüfung zu verwenden und zuerst zu versuchen, die Bedeutung zu zweit zu klären. Zudem gestalte ich die Karten möglichst so, dass die Wörter aus dem Unterricht bekannt sind. Da aber das, was man unterrichtet hat und das, was die Schüler wissen, nie deckungsgleich ist, ist das aber natürlich kein sicherer Indikator dafür, ob jemand ein bestimmtes Wort kennt oder nicht.</p>
+<p>Die Aktivität Kartentauschen</p>
+<ul>
+<li>eignet sich zur Festigung von im Prinzip bekanntem Wortschatz</li>
+<li>eignet sich dazu, alle Lernenden gleichzeitig zum Sprechen zu bringen</li>
+<li>funktioniert auch mit sehr grossen Gruppen (vorausgesetzt, Platz zum Bewegen ist vorhanden)</li>
+<li>bringt buchstäblich Bewegung in die Klasse</li>
+<li>funktioniert auch, wenn nicht alle Lernenden auf demselben Sprechniveau sind, weil die Partner oft wechseln</li>
+</ul>
+<p>Als Beispiel habe ich euch ein <a href="http://cornelia.siteware.ch/blog/wordpress/wp-content/uploads/kartentauschen_familie_blog1.docx">Kartenset zum Thema Familie </a> hochgeladen. Wie gesagt, sind die Fragen auf den Wortschatz zugeschnitten, der in den vorhergehenden Aktivitäten eine Rolle gespielt hat. Eingesetzt wurden die Karten in einem A2-B1-Kurs. Die Karten stehen unter einer Creative Commons Lizenz.</p>
+<p><a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by/4.0/80x15.png" alt="Creative Commons Lizenzvertrag" /></a><br />
+<span>Karten tauschen: Familie</span> von <span>Cornelia Steinmann</span> ist lizenziert unter einer <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+<p>Die Übungsform habe ich bei <a href="http://waze.net/oea/activities/15">http://waze.net/oea/activities/15</a> entdeckt, wo sie auch genauer beschrieben ist (auf Englisch).</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/05/04/karten-tauschen/feed</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Handys im DaF- und DaZ-Unterricht</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/04/28/handys-im-daf-unterricht-literatur</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/04/28/handys-im-daf-unterricht-literatur#comments</comments>
+		<pubDate>Thu, 28 Apr 2016 09:00:45 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[E-Learning / neue Medien]]></category>
+		<category><![CDATA[Fachliteratur]]></category>
+		<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[App]]></category>
+		<category><![CDATA[Handy]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3370</guid>
+		<description><![CDATA[In diesem Beitrag geht es um die Einsatzmöglichkeiten und -beschränkungen von Smartphones im Unterricht. ]]></description>
+			<content:encoded><![CDATA[<p>In einem ältern Beitrag habe ich schon einmal über das <a title="Sprachen lernen mit dem Handy" href="http://cornelia.siteware.ch/blog/wordpress/2011/06/09/sprachen-lernen-mit-dem-handy-2">Sprachenlernen mit dem Handy</a> geschrieben. Das war 2011 und inzwischen hat sich einiges getan. Inzwischen ist es so, dass Handys im Unterricht eine Rolle spielen, ohne das die Lehrperson das unbedingt anregt (oder auch nur will <img src='http://cornelia.siteware.ch/blog/wordpress/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> ). Einige Beispiele:</p>
+<ul>
+<li><strong>Statt</strong> Bilder, Grafiken oder Texte <strong>ausgedruckt</strong> in den Unterricht mitzubringen, bringen einige Lernende sie nur noch <strong>auf dem Handy</strong>, was vor allem dann auffällt, wenn die entsprechenden Mitbringsel als Gesprächsanlass für eine Gruppe (= mehr als zwei Personen gleichzeitig) hätten dienen sollen. Tablets sind in dieser Beziehung besser, aber auch ihre Bildschirme sind für Gruppen eher klein. Dafür werden Schnappschüsse (von sprachlichen Fundstücken, Ereignissen etc.), die sich als Sprechanlässe mit persönlicher Note eigenen, besser verfügbar.<br />
+Auch Zeitungsartikel etc, die sie zum Beispiel für ein Zusammenfassungsprojekt abgeben sollen, kommen nicht als Ausdruck oder Scan, sondern als Handybild. Auch handschriftliche Hausaufgaben habe ich so bekommen, was ich eher mühsam fand. In diesem Bereich muss man einfach klar sagen, welche Formate man akzeptiert.</li>
+<li><strong>Dokumentationsfunktion:</strong> Wenn ich Hausaufgaben auf dem Overheadprojektor notiere, werden sie immer öfter fotografiert statt abgeschrieben. Auch wenn ich Bücher zeige, schreibt sich kaum noch jemand den Titel auf. Die Bücher werden fotografiert, meist samt ISBN-Nummer.</li>
+<li><strong>Wörterbücher:</strong> Papierwörterbücher sind praktisch verschwunden. Die meisten schlagen elektronisch nach, immer mehr auch in Online-Wörterbüchern wie z.B. Leo oder Pons. Dadurch hat sich die Verfügbarkeit von Wörterbüchern erhöht und die Tendenz, viele Wörter nachschlagen zu wollen, auch. In diesem Bereich ist es meiner Ansicht nach wichtig, Wörterbucharbeit zu machen, was sowohl die Stärken und Schwächen von verschiedenen Wörterbüchern als auch die sinnvolle Nutzung beinhalten sollte.</li>
+<li><strong>Audio- und Video-Dateien</strong> werden immer öfter auf dem Handy angeschaut. (Zur Sprache kommt das vor allem dann, wenn die verwendete Plattform bzw. das verwendete Format nicht handytauglich war).<br />
+Falls es zugängliches WLAN im Klassenzimmer gibt, liessen sich dank der Smartphones auch Hörverstehensaufträge individualisieren. So könnte man auch Modell für selbständiges Arbeiten ausserhalb des Unterrichts bieten. Allerdings muss man Ausweichlösungen für Lernende vorsehen, deren Geräte nicht den Anforderungen entsprechen oder gar kein eigenes Gerät haben (zwei Leute pro Kopfhörer, zusätzliche Lapptops etc.).</li>
+<li><strong>Audio-Aufnahmen oder Video-Aufnahmen</strong> (z.B. als Aussprachetraining, als Endprodukt eines selbstgeschriebenen Dialogs, zum Üben einer Präsentation) werden immer häufiger mit dem Handy erstellt. Die Potentiale von Sprachaufnahmen (mehr Übungsmöglichkeiten, Reflexion der eigenen Leistung) sind so besser nutzbar.</li>
+<li>In Projekten, in denen <strong>Bilder</strong> wichtig sind, machen die Lernenden sie häufiger selbst. Je nach Projekt werden so viel spezifischere (und persönlichere) Bilder möglich (z.B. als Illustrationen für eine Geschichte, für ein Bildwörterbuch etc).</li>
+<li><strong>Werkzeug für eigenständiges Sprachenlernen:</strong> Einige Lernende nutzen das Smartphone aktiv zum Sprachenlernen, sei es als mobiler MP3-Player, als Vokabeltrainer, zum Naschlagen von Wörtern oder einfach zum Lesen von Texten. Als Lehrperson kann man entweder selber aktiv Vorschläge machen oder die Lernenden darüber sprechen lassen, was sie wofür nutzen.</li>
+</ul>
+<p>Das Handy spielt also eine Rolle im Unterricht, ob wir das einplanen oder nicht. Also höchste Zeit, sich Gedanken zu machen, wie diese Rolle aus Sicht der Lehrperson aussehen soll. Glücklicherweise gibt es auch einige neuere Publikationen bzw. Tests zum Thema, mit deren Hilfe man sich vertieft mit dem Thema auseinandersetzen kann. Erwähnen möchte ich:</p>
+<ul>
+<li><strong>Wilhelm Grießhaber</strong>: „<strong>Sprachlabor to Go</strong>“ – Lehr- und Lernbedingungen mit Smartphone und Tablet. In: Drumbl, Hans; Hornung, Antonie (Hrsg.): IDT 2013. Band 1. Hauptvorträge. Bozen, 2015. S. 405-421. Pdf-Download des ganzen Bandes unter <a href="http://bupress.unibz.it/de/idt-2013-1-hauptvortrage.html">http://bupress.unibz.it/de/idt-2013-1-hauptvortrage.html</a></li>
+<li><strong>Feik, Diana: Mehr als nur Apps &#8211; Mobiles Lernen im DaF-Unterricht</strong>. In: Fremdsprache Deutsch: Unterrichten mit digitalen Medien (Nr. 53, 2015), S. 14-18. (nicht frei online zugänglich).</li>
+<li><strong>GFL 2/2015: Sondernummer zu Apps im DaF-Unterricht</strong>. Beiträge von verschiedenen Autoren:<a href=" http://www.gfl-journal.de"> http://www.gfl-journal.de</a>/ (Falls die Nummer unter dem Direktlink nicht mehr erreichbar ist, findet man sie im Archiv: <a href="http://www.gfl-journal.de/previous.php">http://www.gfl-journal.de/previous.php</a>). Darin enthalten ist auch ein Beitrag zu Sprachlernapps: &#8220;<a href="http://www.gfl-journal.de/2-2015/krauss.pdf">Apps for learning German vocabulary &#8211; What does the digital landscape look like?</a>&#8221; (GFL 2/2015, S. 31-57)  von Susanne Krauß. Sie gibt darin einen Überblick über im Moment verfügbare Apps im Bereich Wortschatzlernen. Erwähnenswert ist insbesondere der Anhang B (ab S. 55), in dem sie die Eigenschaften der Apps in einer Tabelle übersichtlich darstellt.</li>
+<li>Die <strong>Stiftung Warentest</strong> hat <a href="https://www.test.de/Apps-zum-Deutschlernen-Nur-zwei-von-zwoelf-empfehlenswert-4989440-0/">12 Apps getestet</a>, die sich an Anfänger richten und für arabische Muttersprachler geeignet sind. Auf <a href="https://www.test.de/Apps-zum-Deutschlernen-Nur-zwei-von-zwoelf-empfehlenswert-4989440-5000078/">dieser Seite</a> kann man die Apps miteinander vergleichen.<br />
+Die <a href="https://www.goethe.de/de/spr/ueb/led.html?wt_sc=lerndeutsch">Stadt der Wörter</a>, eine der empfohlenen Apps, kann man übrigens auch auf dem Desktop spielen.</li>
+</ul>
+<p>&nbsp;</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/04/28/handys-im-daf-unterricht-literatur/feed</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Vorlesungsaufzeichnungen der Uni Jena</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/04/25/vorlesungsaufzeichnungen-der-uni-jena</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/04/25/vorlesungsaufzeichnungen-der-uni-jena#comments</comments>
+		<pubDate>Mon, 25 Apr 2016 11:56:35 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Sprechen]]></category>
+		<category><![CDATA[Theorie]]></category>
+		<category><![CDATA[automatisierung]]></category>
+		<category><![CDATA[Flüssigkeit]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3416</guid>
+		<description><![CDATA[In diesem Beitrag stelle ich die DaF-Vorlesungs-Aufzeichnungen der Uni-Jena vor und gehe nächer auf eine Vorlesung zum Thema Fertigkeitentraining am Beispiel sprechen ein. ]]></description>
+			<content:encoded><![CDATA[<p>Da inzwischen viele Universitäten Vorlesungen aufzeichnen, habe ich mich mal umgesehen, wie es im Bereich DaF-Studiengänge aussieht. Gefunden habe ich bisher nur die Vorlesungsaufzeichnungen in der DBT (<a href="https://www2.db-thueringen.de/">https://www2.db-thueringen.de/</a>, T steht für Thüringen). Die Vorlesungsmitschnitte kann man <a href="http://www.db-thueringen.de/servlets/NavigationServlet?classification=VREIHE">hier</a> nach Fachgebiet geordnet abrufen. Die aufgezeichneten DaF-Vorlesungen werden von <a href="https://www.uni-jena.de/Leben_page_5411.html">Herman Funk</a> gehalten, einem bekannten Namen in der DaF-Szene.</p>
+<p>Ich habe mir bisher nur eine Vorlesung zum <a href="http://www.db-thueringen.de/servlets/DocumentServlet?id=27128">Thema Fertigkeiten trainieren und zwar am Beispiel Sprechen</a> angeschaut, zu der ihr im Folgenden – gewissermassen als Teaser – ein kurzes, durchaus subjektiv geprägtes (und schnell erstelltes) Inhaltsverzeichnis findet gemacht.</p>
+<ul>
+<li>ca. 8.30: Kriterien für eine gelungene Sprechaktivität</li>
+<li>ca. 9.15: Probleme, die bei Sprechaktivitäten auftreten können</li>
+<li>ca. 11.15 Die Fertigkeit Sprechen im Gemeinsamen europäischen Referenzrahmen</li>
+<li>ca. 14:35 Rolle des Sprechens innerhalb verschiedener Sprachlehrmethoden</li>
+<li>18:10: Wie lernt man sprechen?</li>
+<li>19:15: Automatisierung / Flüssikgkeit</li>
+<li>22.00 neurowissenschaftliche Befunde zur Automatisierung</li>
+<li>24.25 Routineformeln / Chunks</li>
+<li>25:25 Wann ist eine Äusserung automatisiert</li>
+<li>26:45 Rolle des phonologischen Speichers für das Sprechen</li>
+<li>27:40 Stand der Forschung (Sprechen hilft beim Memorieren und bei der kognitiven Verarbeitung)</li>
+<li>29:45: Konsequenzen für das Lernen</li>
+<li>30:30 Literaturhinweise</li>
+<li>31:07: Flüssigkeit versus Korrektheit bzw. Kognitivierung versus Automatisierung</li>
+<li>32.25: Abläufe beim Sprechen (planen, innerliches Formulieren, motorische Ausführung und Überprüfung während der Ausführung)</li>
+<li>35:20: Zusammenfassung zu den genannten 4 Phasen des Sprechens</li>
+<li>37:40 Wie misst man Flüssigkeit</li>
+<li>41: andere Typen von Flüssigkeit</li>
+<li>ca 42:00 Beispiele zum Trainieren von Flüssigkeit</li>
+</ul>
+<p><strong>Mein Kommentar:</strong></p>
+<p>Die für mich wichtigsten Aussagen sind,</p>
+<ol>
+<li>dass dem Sprechen ein angemessener Zeitanteil eingeräumt werden muss (ca. 13.50)</li>
+<li>dass man Wörter nicht alleine, sondern in sinnvollen Verbindungen lernen soll (ca. 25.05)</li>
+<li>dass man Flüssigkeit und Korrektheit (accuracy) nicht gleichzeitig trainieren kann (31:07).</li>
+</ol>
+<p>Die 2. Aussage verstehe ich persönlich so, dass das Wortschaztlernen auf jeden Fall nicht bei der Form und der Form-Funktions-Beziehung stehenbleiben darf und das formelhafte Wendungen noch mehr als jetzt berücksichtigt werden sollten. Das heisst nicht grundsätzlich, dass es nicht sinnvoll sein kann, von einem Wort nur die Bedeutung zu kennen, aber über dieses Wort verfügt man dann halt nur zu einem sehr kleinen Teil und ich kann beim Sprechen dann nur sehr eingeschränkt (oder überhaupt nicht) darüber verfügen.</p>
+<p>Die 3. Aussage finde ich sehr wichtig, vor allem weil die gezeigten Beispiele (ab 42:00) alle so angelegt sind, dass eine hohe Korrektheit gewährleistet ist. Das wird durch Schriftunterstützung erreicht und durchaus sinnvoll, aber es braucht meiner Meinung nach auch Flüssigkeitsübungen ohne Schriftunterstützung und mit höherem Freiheitsgrad (wie zum Beispiel die 4-3-2-Methode, die im unteren Teil dieses <a href="http://cornelia.siteware.ch/blog/wordpress/2014/06/08/paul-nation-uber-wortschatzmessungen-und-unterrichtsplanung">Artikels </a>erwähnt wird) .</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/04/25/vorlesungsaufzeichnungen-der-uni-jena/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Schriftsteller und Schriftstellerinnen mit Schweizbezug</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/04/19/schriftsteller-und-schriftstellerinnen-mit-schweizbezug</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/04/19/schriftsteller-und-schriftstellerinnen-mit-schweizbezug#comments</comments>
+		<pubDate>Tue, 19 Apr 2016 19:12:27 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Landeskunde]]></category>
+		<category><![CDATA[Lesen]]></category>
+		<category><![CDATA[Ohne Kategorie]]></category>
+		<category><![CDATA[Literatur]]></category>
+		<category><![CDATA[Schweizerisches]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3411</guid>
+		<description><![CDATA[In diesem Beitrag sind Ressourcen zu Autorinnen und Autoren zusammengestellt, die einen Bezug zur Schweiz haben. ]]></description>
+			<content:encoded><![CDATA[<p>Im Portal <strong>Ansichten</strong> (<a href="http://ansichten.srf.ch/">http://ansichten.srf.ch/</a>) von SRF (= Schweizer Radio und Fernseher) findet man die Porträts von zeitgenössischen Schweizer Schriftstellern und Schriftstellerinnen. Sie sind entweder über die Portraitbilder zugänglich, deren Zusammenstellung bei jedem Besuch wechselt oder über die Autorenübersicht (oben rechts).<br />
+Die Portraits bestehen aus einem kurzen Text zur Biographie, der Nennung einiger Werke, Ausschnitten aus Interviews und Lesungen (z.T. auf Schweizerdeutsch oder Französisch) und der Rubrik &#8220;Das müssen Sie gelesen haben&#8221;, in der ein Buch kurz vorgestellt wird. Bei den meisten Portraits findet man auch einen Link zur Homepage des Schriftstellers/der Schriftstellerin und zu mehr relevanten Medien aus dem SRF-Angebot (&#8230; auf SRF.ch), bei Michael Theurillat z.B. unter anderem einen Ausschnitt aus dem Hörspiel Sechseläuten: <a href="http://www.srf.ch/sendungen/hoerspiel/sechselaeuten-von-michael-theurillat">http://www.srf.ch/sendungen/hoerspiel/sechselaeuten-von-michael-theurillat.</a><br />
+Ansichten gehört zu gehört zum <strong>Portal Literatur</strong> von SRF (<a href="http://www.srf.ch/kultur/literatur">http://www.srf.ch/kultur/literatur</a>), das sich nicht nur auf die Schweiz beschränkt.</p>
+<p>Das Projekt <strong>Literaturkarten</strong> (<a href="http://www.literatur-karten.ch/de">http://www.literatur-karten.ch/de</a>), das anlässlich der Buchmesse in Leipzig (2014) entstanden ist, weitet den Blick. Auf verschiedenen Karten kann man sehen, wo Schriftsteller (die nicht unbedingt Schweizer sein müssen) in der Schweiz gelebt haben bzw. gestorben sind oder an welchen Schauplätzen in der Schweiz literarisch geliebt wird. In der Autorenliste (<a href="http://www.literatur-karten.ch/de/autoren">http://www.literatur-karten.ch/de/autoren</a>) findet man so bekannte Namen wie Frisch und Dürrenmatt, aber auch Fontane, Grass, Mann und Schiller.</p>
+<p>Bibliomedia &#8211; eine öffentliche Stiftung, die sich für die Entwicklung von Bibliotheken und die Förderung des Lesens einsetzt &#8211; bietet ein <strong>Autoren-Lexikon</strong> mit Einträgen zu <a href="http://www.bibliomedia.ch/de/autoren/index.asp?navid=4&amp;buchstabe=Alle&amp;sprache=-&amp;navid=35">Schweizer Autorinnen und Autoren</a>, das man nach den Landessprachen ordnen kann. Im Lexikon sind sowohl Einträge zu noch lebenden als auch zu bereits verstorbenen Autoren enthalten.  Zu einem Eintrag gehören Biographische Angaben, eine Werksliste, weiterführende Links und eine Leseprobe.</p>
+<p>Bei der <strong>Schweizer Nationalbibliothek</strong> findet man eine <a href="http://www.nb.admin.ch/dienstleistungen/swissinfodesk/01860/index.html?lang=de">Linkliste</a> zur Schweiz, die man nach verschiedenen Themen und Subthemen filtern kann. Eines der Themen ist Literatur und Sprache. Man kann die Suche mit weiteren Subthemen &#8211; wie zum Beispiel Informationen zu Autorinnen &#8211; weiter einschränken. In der Rubrik Fragen zur Schweiz wurde die <a href="https://www.nb.admin.ch/dienstleistungen/swissinfodesk/03034/03232/04549/index.html?lang=de">Frage nach Schweizer Literatur</a> ebenfalls schon gestellt.</p>
+<p>&nbsp;</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/04/19/schriftsteller-und-schriftstellerinnen-mit-schweizbezug/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Deutschlernen mit Musik</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/04/18/deutschlernen-mit-musik</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/04/18/deutschlernen-mit-musik#comments</comments>
+		<pubDate>Mon, 18 Apr 2016 11:01:26 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Aussprache]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Grammatik]]></category>
+		<category><![CDATA[Hören]]></category>
+		<category><![CDATA[Landeskunde]]></category>
+		<category><![CDATA[Lesen]]></category>
+		<category><![CDATA[Material für Unterricht]]></category>
+		<category><![CDATA[Schreiben]]></category>
+		<category><![CDATA[Sprechen]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[authentisch]]></category>
+		<category><![CDATA[Musik]]></category>
+		<category><![CDATA[Musikvideo]]></category>
+		<category><![CDATA[Unterrichtsidee]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3395</guid>
+		<description><![CDATA[In diesem Beitrag geht es um einige Ressourcen, die das Deutschlernen mit Musik verbinden.]]></description>
+			<content:encoded><![CDATA[<p>In diesem Beitrag geht es um einige Ressourcen, die das Deutschlernen mit Musik verbinden.</p>
+<p><strong>Step into German</strong> (<a href="http://www.goethe.de/ins/us/saf/prj/stg/mus/vid/enindex.htm">http://www.goethe.de/ins/us/saf/prj/stg/mus/vid/enindex.htm</a>) habe ich schon mehrmals im Blog erwähnt. Neben Musikvideos findet man zu jedem Künstler / jeder Band eine Beschreibung (in Deutsch, Englisch, Französisch oder Spanisch, je nachdem, welche Sprache man oben gewählt hat), die Texte im deutschen Original und in einer Übersetzung in den genannten Sprachen und Arbeitsblätter für den Unterricht. Dank den vier angebotenen Sprachen bietet die Seite vielen Lernenden einen selbständigen Einsteig in die deutschsprachige Musik.</p>
+<p>Im <strong>Deutschmusikblog</strong> (<a href="http://deutschmusikblog.de">http://deutschmusikblog.de</a>) von Freya Conesa findet man viele Didaktisierungstipps zu aktuellen Musikvideos. Mir gefällt vor allem die Bandbreite der Vorschläge. Man kann sie nach trainierten Fertigkeiten, Niveaus und mit Hilfe verschiedener Vorschläge durchsuchen. (via <a href="http://blog.goethe.de/majstersztyk/archives/246-Deutsche-Musik-im-DaF-und-DaZ-Unterricht.html">Majstersztyk</a>)</p>
+<p>Wer sich noch weiter mit dem Thema auseinandersetzen möchte, wird vielleicht im <strong>Sammelband 2.2 der IDT</strong> 2013 in Bozen fündig: <a href="http://bupress.unibz.it/en/idt-2013-2-2-kognition-sprache-musik.html.">http://bupress.unibz.it/en/idt-2013-2-2-kognition-sprache-musik.html.</a> Die Aufsätze beschäftigen sich unter anderem mit den positiven Auswirkungen von Musik auf das Deutschlernen, dem Einsatz von Filmmusik, oder dem Einsatz von Musik in der A-Stufe. Im Artikel zu diesem letzten Thema findet man auch die Webseite einer <strong>Arbeitsgruppe zum Thema Musik im Unterricht</strong> (<a href="https://sites.google.com/site/dafmusik/home">https://sites.google.com/site/dafmusik/home</a>), auf der man didaktische Tipps, Didaktiserungen und Hinweise auf weiterführende Literatur und Links findet.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/04/18/deutschlernen-mit-musik/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Quizlet im Unterricht</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/04/17/quizlet-im-unterricht</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/04/17/quizlet-im-unterricht#comments</comments>
+		<pubDate>Sun, 17 Apr 2016 10:22:52 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Aussprache]]></category>
+		<category><![CDATA[E-Learning / neue Medien]]></category>
+		<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Grammatik]]></category>
+		<category><![CDATA[in eigener Sache]]></category>
+		<category><![CDATA[Unterrichtsidee]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[A1]]></category>
+		<category><![CDATA[A2]]></category>
+		<category><![CDATA[App]]></category>
+		<category><![CDATA[autonomes Lernen]]></category>
+		<category><![CDATA[B1]]></category>
+		<category><![CDATA[B2]]></category>
+		<category><![CDATA[Einsatz von E-Learning]]></category>
+		<category><![CDATA[mehrsprachig]]></category>
+		<category><![CDATA[Niveau C]]></category>
+		<category><![CDATA[Partnerarbeit]]></category>
+		<category><![CDATA[Programme für E-Learning]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3392</guid>
+		<description><![CDATA[Seit einiger Zeit habe ich Quizlet (http://www.quizlet.com) in meinen Unterricht integriert. In diesem Beitrag geht es einerseits darum, was für bzw. gegen den Einsatz dieses spezifischen Programmes spricht und andererseits darum, wie ich Quizlet einbette und benutze.]]></description>
+			<content:encoded><![CDATA[<p>Seit einiger Zeit habe ich Quizlet (<a href="http://www.quizlet.com">http://www.quizlet.com</a>) in meinen Unterricht integriert. In diesem Beitrag geht es einerseits darum, was für bzw. gegen den Einsatz dieses spezifischen Programmes spricht und andererseits darum, wie ich Quizlet einbette und benutze.</p>
+<p>&nbsp;</p>
+<p><strong>Was ich an Quizlet mag</strong></p>
+<ul>
+<li>Quizlet ist <strong>einfach zu bedienen</strong>. Das Eingeben der Listen und das Nutzen der verschiedenen Übungsformen sind sehr einfach. Eine Anleitung ist nicht unbedingt nötig, aber
+<ul>
+<li>sie kann das (englischsprachige) Programm in einen deutschsprachigen Kontext einbetten.</li>
+<li>Eine Anleitungen zu verstehen, kann an sich ein Übungsziel sein.</li>
+<li>Eine Anleitung kann helfen, seltener genutzte, aber für die gestellte Lernaufgabe nützliche Funktionen zu finden, die zum Beispiel in einem Ausklappmenu stecken.</li>
+</ul>
+</li>
+<li><strong>Ein Teil</strong> der Funktionen sind <strong>ohne Account</strong> nutzbar. Das erleichtert das Ausprobieren. Wenn man allerdings seinen Lernfortschritt speichern, Listen ausdrucken oder eigene Listen erstellen oder ändern möchte, muss man sich anmelden. Das funktioniert aber alles mit einem Gratisaccount.</li>
+<li>Die <strong>Grundfunktionen</strong> von Quizlet sind <strong>gratis.</strong> Damit kommt man schon ziemlich weit. Wenn man <strong>Bilder hochladen</strong> und <strong>selber Audio aufnehmen</strong> will braucht man allerdings <strong>ein kostenpflichtiges Upgrade</strong> (Plus- oder Lehreraccount: Mit dem Lehreraccount sieht man auch genauer, wer mit den eigenen Listen gearbeitet hat, bzw. für Leute die zur eigenen Quizletklasse gehören, welche Übungen sie mit welchem Erfolg gemacht haben.)</li>
+<li>Man kann <strong>Listen</strong> von anderen nicht nur <strong>suchen</strong>, sondern sie auch <strong>übernehmen, kombinieren, ändern</strong> und sich dadurch <strong>zu eigenmachen</strong>. Das ist zum Beispiel nützlich, wenn die Lernenden verschiedene Ausgangssprachen haben. Sie können die vorgegebenen Definitionen (z.B. auf Englisch) durch eigene Definitionen ersetzen.</li>
+<li>Man kann <strong>Listen teilen</strong>, <strong>einbetten</strong> und die <strong>Zugänglichkeit kontrollieren</strong> (für alle sichtbar/editierbar, nur für Leute mit Passwort, ganz privat).</li>
+<li>Quizlet bietet verschiedene <strong>Übungsformen</strong> an, die alle aus ein- und derselben Liste generiert werden können.</li>
+<li>Man kann Daten einfach <strong>importieren </strong>und <strong>exportieren</strong>. Das hat den Vorteil, dass Listen in Word oder Excel vorbereiten kann und man – sollte man aus irgend einem Grund von Quizlet wegwechseln wollen – die Rohdaten woandershin mitnehmen kann. Man ist also nicht komplett an das Programm gebunden.</li>
+<li>Quizlet ist <strong>multimodal</strong>. Man kann auf dem Computer, mit dem Smartphone (auch offline) oder auf Papier lernen. Auf Knopfdruck kann man den Inhalt einer Liste in unterschiedlich formatierte pdf umwandeln (z.B. Glossar, Liste, Karteikarten verschiedener Grösse).</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Was ich an Quizlet weniger mag:</strong></p>
+<ul>
+<li><strong>Umgang mit Synonymen</strong> und <strong>Zusatzinformationen</strong>:
+<ul>
+<li><strong>Was man</strong> in Quizlet <strong>in die Listen schreibt</strong>, muss man beim Üben auch <strong>genauso </strong>als Antwort <strong>eingeben</strong>. Wenn man zusätzlich zum Verb die Stammformen notiert hat, muss man also beim Antworten wissen, wie man das gemacht hat (mit Klammern, mit Komma etc.). Im <strong>Lernmodus</strong> kann man die automatische Korrektur zwar überschreiben und zum Beispiel eine Antwort richtig zählen, in der man die Reihenfolge verwechselt hat, das ist aber in vielen Modi nicht so.  Das heisst, dass man zwar <strong>komplexe Karten</strong> machen kann (wie z.B. diese hier: <a href="https://quizlet.com/_224i1z">https://quizlet.com/_224i1z</a>), sie dann aber nur im Flashcardmodus und als Ausdruck sinnvoll nutzen. Alternativ kann man die <strong>Liste kopieren</strong> (und evlt. einzelne Begriffe löschen) und in der Definitionsspalten jeweils andere Informationen abfragen lassen, z.B. eben die Bedeutung, die Verbformen, den Plural etc. Auch Beispielsätze lassen sich so integrieren (z.B. Satz mit einer Lücke und der Lösung in der korrekten Form als Antwort).</li>
+<li>Quizlet funktioniert in allen Modi am besten, wenn ein Wort oder Ausdruck einem andern Wort oder Ausdruck entspricht. Keine <strong>Synonyme</strong> einzugeben ist bei kontextlosen Wörtern aber sehr oft schwierig. In der Regel sind weniger Synonyme nötig, wenn man die Übersetzungen auf konkrete Texte, Themen oder Situationen bezieht und so kontextualisiert (was auch an sich sinnvoll ist) oder indem man nicht einzelne Wörter sondern Ausdrücke notiert, die eine engere Bedeutung haben als die Wörter an sich.</li>
+</ul>
+</li>
+<li>Die <strong>Qualität des automatisch generierten Audios</strong> empfinde ich für Deutsch als schlecht, vor allem bei längeren Ausdrücken und beim Wortakzent. Z.B. beim Wort salopp las das Programm s<strong><span style="text-decoration: underline;">a</span></strong>lopp statt sal<strong>o</strong>pp. In einigen Übungsformen können die Lernenden das Vorlesen ausschalten und man könnte es durch eigene Aufnahmen ersetzen, was aber wie gesagt ein kostenpflichtiges Upgrade erfordert.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Einbettung</strong></p>
+<p>Die Lernenden erhalten eine deutschsprachige Anleitung und arbeiten einmal im Unterricht eine zum Kurs passende Quizletliste durch. Sie gehen die Liste gemeinsam im Flashcardmodus mit Deutsch als zuerst angezeigter Sprache durch und diskutieren auf Deutsch, was das Wort heissen könnte bzw. ob Sie es sicher kennen. Ihre Hypothesen können sie dann Mithilfe der virtuellen Kartenrückseite prüfen. Gemeinsam entscheiden sie, ob sie das Wort in der nächsten Phase üben möchten und markieren es mit einem Stern, falls sie sich dafür entscheiden.</p>
+<p>In der nächsten Phase probieren sie die verschiedenen Lernmodi anhand der mit Stern markierten Wörter aus.</p>
+<p>Im Laufe des Kurses stelle ich einige Wortschatzlisten – aber nicht alle – auf Quizlet zur Verfügung. Zudem baue ich vereinzelt auch Ausdrucke von Quizlet-Listen in den Kurs ein, indem ich zum Beispiel ausgedruckte Karteikarten verteile und die Lernenden sich gegenseitig die Begriffe erklären lasse.</p>
+<p>Quizlet ist aber nicht so stark integriert, dass die Lernenden es benutzen müssen. Es bleibt ein optionales Angebot. Mein Ziel ist es, dass die Lernenden es kennenlernen, für sich herausfinden, ob es für sie taugt und allenfalls für ihre Zwecke anpassen.</p>
+<p>&nbsp;</p>
+<p>Das übergeordnete Ziel ist, die Lernenden beim Wortschatzerwerb zu unterstützen und dazu gehört auch, geeignete Hilfsmittel zu thematisieren. Nie vergessen werden sollte aber, dass das Lernen mit Karteikarten – sei es virtuell oder auf Papier – vor allem für die Form-Aspekte (wie schreibt und evt. wie spricht man das Wort) und die Verbindung zwischen (Grund-)Bedeutung und Form nützlich ist. Damit ist das Wortschatzlernen zwar auf einem guten Weg, aber noch nicht erledigt, da Wörter im Gebrauch nicht in Listen, sondern immer im Zusammenspiel mit anderen Wörtern vorkommen und erst in der Kommunikation ihre Bedeutung richtig entfalten.</p>
+<p>&nbsp;</p>
+<p><strong>Noch etwas in eigener Sache: </strong></p>
+<p>Falls ihr euch für einen Lehreraccount interessiert (mit dem ihr Audio aufnehmen, Bilder hochladen und genauer sehen könnt, wer was gelernt hat), könnt ihr diesen Link benutzen: <a href="https://quizlet.com/upgrade?referrer=cost">https://quizlet.com/upgrade?referrer=cost</a> . Dann wird mein Lehreraccount gratis ein halbes Jahr verlängert und ihr erhaltet 20% Rabatt.</p>
+<p>Ich will aber niemandem was verkaufen, für viele Anwendungen reichen die Grundfunktionen völlig aus.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/04/17/quizlet-im-unterricht/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Dialang: Online-Version</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2016/03/19/dialang-online-version</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2016/03/19/dialang-online-version#comments</comments>
+		<pubDate>Sat, 19 Mar 2016 06:27:30 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Grammatik]]></category>
+		<category><![CDATA[Hören]]></category>
+		<category><![CDATA[Lesen]]></category>
+		<category><![CDATA[Schreiben]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[autonomes Lernen]]></category>
+		<category><![CDATA[GER]]></category>
+		<category><![CDATA[mehrsprachig]]></category>
+		<category><![CDATA[Test]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3387</guid>
+		<description><![CDATA[Dialang ist ein Computer-Einstufungstest für die Sprachen der EU-15, darunter auch Deutsch. Angeboten werden Teil-Tests in Hören, Lesen, Schreiben, Grammatik und Wortschatz. Eine der Stärken von Dialang ist, dass es eine Selbsteinschätzung mit Hilfe der Deskriptoren aus den Checklisten des Referenzrahmens mit einer Fremdeinschätzung kombiniert. Leider ist die Anzahl an zur Verfügung stehnden Test-Items nicht so gross, wie wohl ursprünglich geplant, aber Dialang ist definitiv und mit Abstand der beste kostenlos erhältliche Einstufungstest und dient im Gegensatz zu vielen anderen Tests nicht dazu, Lernende in ein Curriculum einer Schule oder eines Buches einzureihen, sondern gibt eine nach Fertigkeiten gegliederte Niveaueinschaetzung ab. ]]></description>
+			<content:encoded><![CDATA[<p>Dialang ist ein Computer-Einstufungstest für die Sprachen der EU-15, darunter auch Deutsch. Angeboten werden Teil-Tests in Hören, Lesen, Schreiben, Grammatik und Wortschatz. Eine der Stärken von Dialang ist, dass es eine Selbsteinschätzung mit Hilfe der Deskriptoren aus den Checklisten des Referenzrahmens mit einer Fremdeinschätzung kombiniert. Leider ist die Anzahl an zur Verfügung stehnden Test-Items nicht so gross, wie wohl ursprünglich geplant, aber Dialang ist definitiv und mit Abstand der beste kostenlos erhältliche Einstufungstest und dient im Gegensatz zu vielen anderen Tests nicht dazu, Lernende in ein Curriculum einer Schule oder eines Buches einzureihen, sondern gibt eine nach Fertigkeiten gegliederte Niveaueinschaetzung ab.</p>
+<p>Das Programm ist bereits vor einigen Jahren aus einem SOKRATES-Projekt entstanden und konnte gratis heruntergeladen werden. Leider lief es nie auf Mac. Für dieses Problem gibt es jetzt Abhilfe, denn Dialang hat eine Webversion: <a href="https://dialangweb.lancaster.ac.uk/">https://dialangweb.lancaster.ac.uk/</a></p>
+<p>Inhaltlich wurde der Test für die neue Webversion meines Wissens nicht verändert, es gab auch keine neuen Sprachversionen, aber die Navigationssprachen wurden erweitert. Neu kann man die Hinweise (wozu auch die umfangreichen Deskriptoren gehören) auch in Koreanisch, Chinesisch und Japanisch lesen. Damit wird Dialang für Sprachanfänger mit diesen Ausgangssprachen besser nutzbar: Sie mussten bisher mindestens eine andere Sprache der EU-15 auf hohem Niveau beherrschen, um die Deskriptorenliste sinnvoll ausfüllen zu können.</p>
+<p>Die Webversion verbessert also allgemein die Zugänglichkeit, was ich wirklich toll finde.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2016/03/19/dialang-online-version/feed</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Foreign language library online</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/12/12/foreign-language-library-online</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/12/12/foreign-language-library-online#comments</comments>
+		<pubDate>Sat, 12 Dec 2015 09:51:15 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Lesen]]></category>
+		<category><![CDATA[Material für Unterricht]]></category>
+		<category><![CDATA[A2]]></category>
+		<category><![CDATA[autonomes Lernen]]></category>
+		<category><![CDATA[B1]]></category>
+		<category><![CDATA[B2]]></category>
+		<category><![CDATA[mehrsprachig]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3375</guid>
+		<description><![CDATA[Die Foreign language library ist eine Sammlung von Paralleltexten, die unter der Creative Commons-Lizenz BY &#8211; NC stehen. Man findet dort in verschiedenen Kategorien mehr als 600 Texte, die aus dem Englischen ins Französische, Deutsche und Spanische übersetzt wurden. Die Texte sind 100-200 (Level 1), bzw. 200 bis 300 Wörter (Level 2) lang. Nachdem man [...]]]></description>
+			<content:encoded><![CDATA[<p>Die <a href="http://www.thefllo.com/">Foreign language library</a> ist eine Sammlung von <a title="Paralleltexte" href="http://cornelia.siteware.ch/blog/wordpress/2007/02/07/paralleltexte">Paralleltexten</a>, die unter der Creative Commons-Lizenz BY &#8211; NC stehen. Man findet dort in <a href="http://www.thefllo.com/articles.cfm">verschiedenen Kategorien</a> mehr als 600 Texte, die aus dem Englischen ins Französische, Deutsche und Spanische übersetzt wurden. Die Texte sind 100-200 (<a href="http://www.thefllo.com/articles.cfm?view=floor&amp;level=1">Level 1</a>), bzw. 200 bis 300 Wörter (<a href="http://www.thefllo.com/articles.cfm?view=floor&amp;level=2">Level 2</a>) lang. Nachdem man einen Text gewählt hat, kann man auf der entsprechenden Seite beliebige Übersetzungen in den jeweiligen Sprachen dazuklappen. Zu einigen Texten gibt es auch Audio, aber <a href="http://www.thefllo.com/articles.cfm?view=language&amp;language=German">deutsche </a>Übersetzungen mit Audio habe ich keine gefunden.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/12/12/foreign-language-library-online/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>IDT-Update: Tagungsbände von Bozen</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/12/09/idt-update-tagungsbande-von-bozen</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/12/09/idt-update-tagungsbande-von-bozen#comments</comments>
+		<pubDate>Wed, 09 Dec 2015 05:48:45 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Fachliteratur]]></category>
+		<category><![CDATA[Forschung]]></category>
+		<category><![CDATA[Veranstaltungen]]></category>
+		<category><![CDATA[Handy]]></category>
+		<category><![CDATA[IDT]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3372</guid>
+		<description><![CDATA[Der erste Tagungsband der IDT 2013 kann seit ein paar Wochen bestellt oder gratis als pdf heruntergeladen werden. Erschienen sind die Hauptvorträge, die Bände zu den Sektionen sollten gemäss IDT-Webseite in Kürze erscheinen. Gelesen habe ich bisher nur einen Artikel vonWilhelm Grießhaber mit dem Titel &#8220;Sprachlabor to go: Lehr und Lernbedingungen mit Smartphone und Tablet [...]]]></description>
+			<content:encoded><![CDATA[<p>Der erste Tagungsband der IDT 2013 kann seit ein paar Wochen<a href="http://bupress.unibz.it/de/idt-2013-1-hauptvortrage.html"> bestellt oder gratis als pdf heruntergeladen</a> werden. Erschienen sind die Hauptvorträge, die Bände zu den Sektionen sollten <a href="http://www.idt-2013.it/de/Tagungsband.html">gemäss IDT-Webseite</a> in Kürze erscheinen.</p>
+<p>Gelesen habe ich bisher nur einen Artikel vonWilhelm Grießhaber mit dem Titel &#8220;Sprachlabor to go: Lehr und Lernbedingungen mit Smartphone und Tablet (ganz am Ende des Bandes), den ich gerne weiterempfehlen möchte.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/12/09/idt-update-tagungsbande-von-bozen/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Akdaf-Porträt bei der deutschen Welle</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/10/10/akdaf-portrait-bei-der-deutschen-welle</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/10/10/akdaf-portrait-bei-der-deutschen-welle#comments</comments>
+		<pubDate>Sat, 10 Oct 2015 14:50:00 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[in eigener Sache]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3363</guid>
+		<description><![CDATA[Die deutsche Welle porträtiert nicht nur Deutschlerner, sondern auch Lehrerverbände. Kürzlich war einer der beiden Deutschschweizer Verbände an der Reihe: Der Arbeitskreis Deutsch als Fremdsprache (AkDaF). Nachlesen könnt ihr das Porträt hier: http://www.dw.com/de/arbeitskreis-deutsch-als-fremdsprache-zweitsprache-in-der-schweiz-akdaf/a-18598598 Weil Deutsch in der Schweiz eine von vier Landessprachen ist und die Schweiz deshalb auch keine Institution wie das GI oder das [...]]]></description>
+			<content:encoded><![CDATA[<p>Die deutsche Welle porträtiert nicht nur Deutschlerner, sondern auch Lehrerverbände. Kürzlich war einer der beiden Deutschschweizer Verbände an der Reihe: Der <a href="http://www.akdaf.ch/">Arbeitskreis Deutsch als Fremdsprache</a> (AkDaF). Nachlesen könnt ihr das Porträt hier: <a href="http://www.dw.com/de/arbeitskreis-deutsch-als-fremdsprache-zweitsprache-in-der-schweiz-akdaf/a-18598598">http://www.dw.com/de/arbeitskreis-deutsch-als-fremdsprache-zweitsprache-in-der-schweiz-akdaf/a-18598598</a></p>
+<p>Weil Deutsch in der Schweiz eine von vier Landessprachen ist und die Schweiz deshalb auch keine Institution wie das GI oder das ÖI hat, dessen Aufgabe die Förderung der deutschen Sprache wäre, kommt den Verbänden in der Schweiz eine wichtige Rolle zu. Der Akdaf und der<a href="http://www.ledafids.ch/"> Ledafids</a> bzw. ihre Mitglieder sind zum Beispiel in die Organisation der nächsten  <a href="http://www.idt-2017.ch/">IDT</a> involviert, die 2017 in Fribourg stattfinden wird.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/10/10/akdaf-portrait-bei-der-deutschen-welle/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Sonntagnachmittag in der Schweiz</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/08/21/sonntagnachmittag-in-der-schweiz</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/08/21/sonntagnachmittag-in-der-schweiz#comments</comments>
+		<pubDate>Fri, 21 Aug 2015 11:06:51 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Landeskunde]]></category>
+		<category><![CDATA[Material für Unterricht]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3359</guid>
+		<description><![CDATA[Die NZZ am Sonntag publiziert seit Jahren in jeder Aussgabe je ein Schwarzweissfoto, irgendwo aus der Schweiz. Bis im Oktober läuft eine Freiluftausstellung am Lauerzersee. Wem das zu weit ist, kann sich die Bilder hier online ansehen. Die Bilder zeigen sowohl Alltag wie auch Kurioses und sprengen in ihrer Vielfalt die üblichen, einseitigen Klischees zur [...]]]></description>
+			<content:encoded><![CDATA[<p>Die NZZ am Sonntag publiziert seit Jahren in jeder Aussgabe je ein Schwarzweissfoto, irgendwo aus der Schweiz. Bis im Oktober läuft eine Freiluftausstellung am Lauerzersee. Wem das zu weit ist, kann sich die <a href="http://www.sonntagnachmittaginderschweiz.ch/sonach/#background">Bilder hier online ansehen</a>. Die Bilder zeigen sowohl Alltag wie auch Kurioses und sprengen in ihrer Vielfalt die üblichen, einseitigen Klischees zur Schweiz.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/08/21/sonntagnachmittag-in-der-schweiz/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Wissen über Wortbildung als Lernhilfe</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/08/02/wissen-uber-wortbildung-als-lernhilfe</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/08/02/wissen-uber-wortbildung-als-lernhilfe#comments</comments>
+		<pubDate>Sun, 02 Aug 2015 10:07:50 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Für Lernende]]></category>
+		<category><![CDATA[Sprachbetrachtung]]></category>
+		<category><![CDATA[Unterrichtsidee]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[A1]]></category>
+		<category><![CDATA[A2]]></category>
+		<category><![CDATA[autonomes Lernen]]></category>
+		<category><![CDATA[B1]]></category>
+		<category><![CDATA[B2]]></category>
+		<category><![CDATA[Lerntipps]]></category>
+		<category><![CDATA[Niveau C]]></category>
+		<category><![CDATA[Wortbildung]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3356</guid>
+		<description><![CDATA[Wissen über Wortbildung kann helfen, sich besser an die einzelnen Bestandteile eines Wortes und damit an das ganze Wort und seine Bedeutung zu erinnern. Nation, I.S.P (2013): Learning Vocabulary in Another Language,   S. 408-411, schlägt zwei (ziemlich einleichtende) Schritte vor: Das Wort in seine Teile zerlegen, z.B. un-sicht-bar, Er-klär-ung Das Wort soweit wie möglich [...]]]></description>
+			<content:encoded><![CDATA[<p><strong></strong>Wissen über Wortbildung kann helfen, sich besser an die einzelnen Bestandteile eines Wortes und damit an das ganze Wort und seine Bedeutung zu erinnern. Nation, I.S.P (2013): Learning Vocabulary in Another Language,   S. 408-411, schlägt zwei (ziemlich einleichtende) Schritte vor:</p>
+<ol>
+<li><strong>Das Wort in seine Teile</strong> <strong>zerlegen</strong>, z.B. un-sicht-bar, Er-klär-ung</li>
+<li><strong>Das Wort</strong> soweit wie möglich <strong>durch seine Bestandteile erklären</strong>. Zum Beispiel so:</li>
+</ol>
+<ul>
+<li>unsichtbar: kann man (bar) etwas nicht (un) sehen (sicht)</li>
+<li>Erklärung: Feminines Nomen (ung) zum Verb erklären: etwas Komplizertes durch Worte klar (klär) machen (er)</li>
+</ul>
+<p>Für diese Strategie sind vor allem <strong>Präfixe</strong> (am Anfang des Wortes, z.B. ver-, an, un- &#8230;) und <strong>Suffixe</strong> (am Ende des Wortes, z.B. –isch, -heit etc.) wichtig.</p>
+<p>Leider sind die Präfixe/Suffixe keine kleine Gruppe mit klaren Bedeutungen. Glücklicherweise wurde die Arbeit sie zu sammeln bzw. zu beschreiben (grösstenteils) schon gemacht. Listen mit der Bedeutung / Funktion der Präfixe/Suffixe mit englischen Erklärung findet ihr unter</p>
+<ul>
+<li><a href="https://en.wiktionary.org/wiki/Category:German_prefixes">https://en.wiktionary.org/wiki/Category:German_prefixes</a></li>
+<li><a href="https://en.wiktionary.org/wiki/Category:German_suffixes">https://en.wiktionary.org/wiki/Category:German_suffixes</a></li>
+</ul>
+<p>Falls man Lernenden die oben genannten Wikitonary-Links gibt (was ich auf Nachfrage hin und wieder tue), ist meiner Ansicht nach wichtig zu betonen, dass es kaum Sinn macht, die ganze Liste auswenig zu lernen. Sinnvoller ist es, die Liste gezielt auf (vermutete) Präfixe/Suffixe durchzusehen, falls man Schwierigkeiten hat, sich ein bestimmtes Wort zu merken bzw. seine Bedeutung zu behalten.</p>
+<p>Ob man jetzt Präfixe/Suffixe im Unterricht thematisiert oder ob man ihnen sogar die Listen zur Verfügung stellt; es ist in jedem Fall so, dass Wortbildungswissen  nur für einen Teil der Wörter eine geeignete Merkhilfe darstellt. Manche Suffixe haben eben keine klare oder sehr viele Bedeutungen. Aber sich mit einem Wort überhaupt zu beschäftigen, hilft auf jeden Fall beim Behalten des Wortes. Dabei ist es nicht wichtig, ob die Erklärungen, die die Lernenden für sich selber finden,  sprachwissenschaftlich korrekt sind, solange sie ihnen helfen, sich an das Wort und seine Bedeutung zu erinnern.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/08/02/wissen-uber-wortbildung-als-lernhilfe/feed</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Wortschatz-Level-Tests</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/05/15/wortschatztest-level-tests</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/05/15/wortschatztest-level-tests#comments</comments>
+		<pubDate>Thu, 14 May 2015 23:06:24 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Forschung]]></category>
+		<category><![CDATA[Lesen]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[Test]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3348</guid>
+		<description><![CDATA[Das Institut für Testforschung und Testentwicklung in Leipzig hat basierend auf den frequenzbasierten Wortschätzen, die in der Lextra-Reihe des Cornelsen-Verlag bzw. Routledge Frequency Dictionaries veröffentlicht worden sind, Wortschatztest erstellt, mit denen man testen kann, wie viele der jeweils 5000 häufigsten Wörter man rezeptiv und/oder produktiv beherrscht. Interessant ist der Test vor allem im Zusammenhang mit [...]]]></description>
+			<content:encoded><![CDATA[<p>Das <a href="http://www.itt-leipzig.de/">Institut für Testforschung und Testentwicklung</a> in Leipzig hat basierend auf den frequenzbasierten Wortschätzen, die in der <a href="http://www.cornelsen.de/lextra/1.c.3093454.de">Lextra-Reihe</a> des Cornelsen-Verlag bzw. <a href="http://www.routledge.com/books/series/RFD/">Routledge Frequency Dictionaries</a> veröffentlicht worden sind, <a href="http://www.itt-leipzig.de/static/startseite.html">Wortschatztest</a> erstellt, mit denen man testen kann, wie viele der jeweils 5000 häufigsten Wörter man rezeptiv und/oder produktiv beherrscht. Interessant ist der Test vor allem im Zusammenhang mit der Lesekompetenz. Weitere Hingergrundinformationen zu den Tests könnt ihr <a href="http://www.itt-leipzig.de/static/informationen.html">hier </a>nachlesen.</p>
+<p>Ihr findet auf der Seite übrigens nicht nur die Tests für Deutsch, sondern auch für Arabisch, Englisch, Französisch, Italienisch, Japanisch, Portugiesisch, Russisch und Spanisch. Bei Japanisch ist allerdings zu sagen, dass man Kanji lesen können muss. Wer nur die Aussprache der Wörter kann bzw. sich an Furiganisierung gewöhnt ist, kommt in dem Test nicht weit.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/05/15/wortschatztest-level-tests/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Schlauer in 60 Sekunden</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2015/03/16/schlauer-in-60-sekunden</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2015/03/16/schlauer-in-60-sekunden#comments</comments>
+		<pubDate>Mon, 16 Mar 2015 17:28:45 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Hören]]></category>
+		<category><![CDATA[Audio]]></category>
+		<category><![CDATA[B1]]></category>
+		<category><![CDATA[B2]]></category>
+		<category><![CDATA[Niveau C]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3345</guid>
+		<description><![CDATA[Schlauer in 60 Sekunden ist eine Sendung von Radio DRS 3. In einer Minute werden Alltagsbegriffe und Phänomne erklärt. Wenn man auf den Titel klickt, kommt man zu einer (nicht immer ganz wörtlichen) Transkription: http://m.rtr.ch/sendungen/schlauer-in-60-sekunden/sendungen &#160;]]></description>
+			<content:encoded><![CDATA[<p>Schlauer in 60 Sekunden ist eine Sendung von Radio DRS 3. In einer Minute werden Alltagsbegriffe und Phänomne erklärt. Wenn man auf den Titel klickt, kommt man zu einer (nicht immer ganz wörtlichen) Transkription: <a href="http://m.rtr.ch/sendungen/schlauer-in-60-sekunden/sendungen">http://m.rtr.ch/sendungen/schlauer-in-60-sekunden/sendungen</a></p>
+<p>&nbsp;</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2015/03/16/schlauer-in-60-sekunden/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>DACH-HV-Quiz</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2014/12/06/dach-hv-quiz</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2014/12/06/dach-hv-quiz#comments</comments>
+		<pubDate>Sat, 06 Dec 2014 09:57:32 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Hören]]></category>
+		<category><![CDATA[Landeskunde]]></category>
+		<category><![CDATA[Quiz]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3342</guid>
+		<description><![CDATA[Naomi Shafer hat ein Quiz gestaltet, bei dem man raten muss, ob jemand aus Deutschland, Österreich oder der Schweiz kommt. Wenn ihr das kurze Quiz (ca. 5 Minuten) bearbeitet, erfahrt ihr nicht nur, wie DACH-geprüft euer Ohr ist, sondern ihr helft auch Naomi bei ihrem Projekt. Hier geht es zum Deutsch-Quiz: http://tinyurl.com/deutschquiz, das bis ca. [...]]]></description>
+			<content:encoded><![CDATA[<p>Naomi Shafer hat ein Quiz gestaltet, bei dem man raten muss, ob jemand aus Deutschland, Österreich oder der Schweiz kommt. Wenn ihr das kurze Quiz (ca. 5 Minuten) bearbeitet, erfahrt ihr nicht nur, wie DACH-geprüft euer Ohr ist, sondern ihr helft auch Naomi bei ihrem Projekt.</p>
+<p>Hier geht es zum Deutsch-Quiz: <a href="http://tinyurl.com/deutschquiz">http://tinyurl.com/deutschquiz</a>, das bis ca. Ende Dezember online sein wird.</p>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2014/12/06/dach-hv-quiz/feed</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Kommunikative Kreuzworträtsel</title>
+		<link>http://cornelia.siteware.ch/blog/wordpress/2014/11/21/kommunikative-kreuzwortratsel</link>
+		<comments>http://cornelia.siteware.ch/blog/wordpress/2014/11/21/kommunikative-kreuzwortratsel#comments</comments>
+		<pubDate>Fri, 21 Nov 2014 14:49:45 +0000</pubDate>
+		<dc:creator>Cornelia</dc:creator>
+				<category><![CDATA[Für Lehrende]]></category>
+		<category><![CDATA[Sprechen]]></category>
+		<category><![CDATA[Unterrichtsidee]]></category>
+		<category><![CDATA[Wortschatz]]></category>
+		<category><![CDATA[automatisierung]]></category>
+		<category><![CDATA[Kreuzworträtsel]]></category>
+		<category><![CDATA[Partnerarbeit]]></category>
+
+		<guid isPermaLink="false">http://cornelia.siteware.ch/blog/wordpress/?p=3322</guid>
+		<description><![CDATA[Bei kommunikativen Kreuzworträtsel erhalten zwei Lernende je ein zur Hälfte ausgefülltes Kreuzworträtsel, aber keine Hinweise. Diese Hinweise müssen die Lernenden einander selber geben. Eine ausführliche Beschreibung der Technik findet ihr auf dieser englischsprachigen Webseite: http://waze.net/oea/activities/18 Bei der Aktivität gibt es einerseits eine Informationslücke (die Lernenden müssen jeweils die Hälfte der Wörter erraten und eintragen), andererseits [...]]]></description>
+			<content:encoded><![CDATA[<p>Bei kommunikativen Kreuzworträtsel erhalten zwei Lernende je ein zur Hälfte ausgefülltes Kreuzworträtsel, aber keine Hinweise. Diese Hinweise müssen die Lernenden einander selber geben. Eine ausführliche Beschreibung der Technik findet ihr auf dieser englischsprachigen Webseite: <a href="http://waze.net/oea/activities/18">http://waze.net/oea/activities/18</a></p>
+<p>Bei der Aktivität gibt es einerseits eine <a title="Informationslücken als Kommunikationsanlässe" href="http://cornelia.siteware.ch/blog/wordpress/2011/05/04/informationslucken-als-kommunikationsanlasse">Informationslücke</a> (die Lernenden müssen jeweils die Hälfte der Wörter erraten und eintragen), andererseits müssen die Informationen, die kommuniziert werden sollen, auch noch transformiert werden (die Lernenden geben Hinweise auf die gesuchten Wörter, können also nicht einfach den vorgegebenen Text wiedergeben). Die Bedeutungen der Wörter und das Darübersprechen stehen im Zentrum der Aufgabe. Damit die Lernenden die Aufgabe möglichst selbständig mit ihrem Partner lösen können, ist es meiner Meinung nach sinnvoll</p>
+<ul>
+<li>vor der Aufgabe mit den Lernenden Redemittel bzw. Beispiele zu sammeln, wie man Wörter erklären kann (z.B. X ist ein &#8230;, ist ähnlich wie, klingt wie &#8230;, X nennt man auch &#8230;, das gibt es in &#8230;, X musst &#8230; (V) für &#8230;, X ist ein Verb/Nomen/Adjektiv</li>
+<li>den Lernenden die Möglichkeit zu geben, die Bedeutung der Wörter, die sie erklären sollen, nachzuschlagen. Das kann durch die Bereitstellung von Wörterbüchern (z.B. auch Handyapps) geschehen oder durch das Angeben von Übersetzungen. Man sollte den Lernenden das Nachschlagen aber nicht zu einfach machen bzw. klarstellen, dass sie vor dem Nachschlagen über das Wort und ihr Wissen darüber nachdenken sollten.</li>
+</ul>
+<p>Gemäss Nation 2013:179 wurde diese Aktivität das erste Mal von Woodeson 1982 beschrieben. Die bibliografischen Angaben findet ihr unten, den Artikel von Woodeson habe ich aber selbst nicht gelesen.</p>
+<ul>
+<li>Nation, I.S.P (2013). Learning Vocabulary in another language. Second Edition. Cambridge.</li>
+<li>Woodeson, E. (1982) Communicative crosswords. Modern English Teacher l0, 2: 29-30.</li>
+</ul>
+   ]]></content:encoded>
+			<wfw:commentRss>http://cornelia.siteware.ch/blog/wordpress/2014/11/21/kommunikative-kreuzwortratsel/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

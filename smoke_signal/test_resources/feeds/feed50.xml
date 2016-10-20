@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:syn="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/">
+  <channel rdf:about="http://pinboard.in">
+    <title>Pinboard (cabresto)</title>
+    <link>https://pinboard.in/u:cabresto/public/</link>
+    <description>recent bookmarks from cabresto</description>
+    <items>
+      <rdf:Seq>	<rdf:li rdf:resource="http://www.newyorker.com/magazine/2005/02/28/time-bandits-2"/>
+	<rdf:li rdf:resource="http://www.kristeligt-dagblad.dk/historie/historie-kartoffelferien-var-v%C3%A5d-kold-og-modbydelig"/>
+	<rdf:li rdf:resource="http://siliconvikings.com/nordicbaltic-tech-conferences-in-english/"/>
+	<rdf:li rdf:resource="http://www.danes.dk/om-os/job/"/>
+	<rdf:li rdf:resource="http://webstory.zdf.de/putins-geheimes-netzwerk/"/>
+	<rdf:li rdf:resource="https://medium.com/m/global-identity?redirectUrl=https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f"/>
+	<rdf:li rdf:resource="http://warp.worldmap.harvard.edu/"/>
+	<rdf:li rdf:resource="https://www.technologyreview.com/s/602541/physicists-create-worlds-first-time-crystal/"/>
+	<rdf:li rdf:resource="https://theconversation.com/back-to-the-19th-century-how-language-is-being-used-to-mark-national-borders-66357"/>
+	<rdf:li rdf:resource="http://www.economist.com/news/europe/21707984-why-do-so-many-foreigners-want-copy-denmark-cocoa-candlelight"/>
+	<rdf:li rdf:resource="http://chrisblattman.com/2016/09/29/14655/"/>
+	<rdf:li rdf:resource="https://resources.allsetlearning.com/chinese/grammar/"/>
+	<rdf:li rdf:resource="https://hg.mozilla.org/mozilla-central/file/fc69febcbf6c/gfx"/>
+	<rdf:li rdf:resource="http://berlinstartupjobs.com/engineering/full-stack-developer-reactjs-java-google-cloud-small-improvements/"/>
+	<rdf:li rdf:resource="https://en.wikipedia.org/wiki/Oaths_of_Strasbourg"/>
+	<rdf:li rdf:resource="http://www.mathematik.uni-kl.de/~thofmann/ants/rump/rump_galbraith.pdf"/>
+	<rdf:li rdf:resource="http://defeo.lu/docet/class/2016/09/08/diffie-hellman/"/>
+	<rdf:li rdf:resource="https://medium.com/@1ngi/what-a-stupid-scrabble-article-taught-me-about-welsh-bc4f315490c9#.ydhzrqfng"/>
+	<rdf:li rdf:resource="http://www.chiark.greenend.org.uk/~sgtatham/coroutines.html"/>
+	<rdf:li rdf:resource="https://www.bloomberg.com/view/articles/2016-09-29/brazil-s-half-price-culture-hurts-artists-and-taxpayers"/>
+	<rdf:li rdf:resource="http://m.b.dk/nationalt/hvad-ved-facebook-om-dig-tjek-selv-hvis-du-toer?redirected=true"/>
+	<rdf:li rdf:resource="http://defeo.lu/docet/talk/2016/09/29/isogeny-cycle-seminar/"/>
+	<rdf:li rdf:resource="http://cornelia.siteware.ch/blog/wordpress/2007/05/09/elfchen/comment-page-1#comment-678503"/>
+	<rdf:li rdf:resource="http://cornelia.siteware.ch/blog/wordpress/2016/09/27/quizlet-live"/>
+	<rdf:li rdf:resource="http://sro.sussex.ac.uk/55352/1/Conroy_deVisser_BeingNonDrinkerStudent_accepted.pdf"/>
+	<rdf:li rdf:resource="http://ekstrabladet.dk/112/christianitter-til-politiet-se-vi-har-jeres-kamera-lige-her/6311663"/>
+	<rdf:li rdf:resource="http://m.b.dk/nationalt/opraab-fra-gymnasielaerere-elever-kan-ikke-laese-en-bog?redirected=true"/>
+	<rdf:li rdf:resource="https://aeon.co/ideas/coding-is-not-fun-it-s-technically-and-ethically-complex"/>
+	<rdf:li rdf:resource="http://www.kalzumeus.com/2011/10/28/dont-call-yourself-a-programmer/"/>
+	<rdf:li rdf:resource="https://en.wikipedia.org/wiki/Baumol%27s_cost_disease"/>
+	<rdf:li rdf:resource="https://thimble.mozilla.org/en-US/"/>
+	<rdf:li rdf:resource="http://passcode.csmonitor.com/cypherpunk"/>
+	<rdf:li rdf:resource="https://eev.ee/blog/2016/09/18/the-curious-case-of-the-switch-statement/"/>
+	<rdf:li rdf:resource="http://www.quickposes.com/"/>
+	<rdf:li rdf:resource="http://reference.sketchdaily.net/en/"/>
+	<rdf:li rdf:resource="http://jvns.ca/blog/2016/09/17/strange-loop-talk/"/>
+	<rdf:li rdf:resource="http://jvns.ca/blog/2016/09/15/whats-up-with-containers-docker-and-rkt/"/>
+	<rdf:li rdf:resource="https://www.facebook.com/groups/736175203148711/"/>
+	<rdf:li rdf:resource="http://www.unicode.org/reports/tr29/tr29-9.html#Word_Boundaries"/>
+	<rdf:li rdf:resource="https://github.com/servo/servo/issues/9673"/>
+	<rdf:li rdf:resource="http://wecancutthisout.com/"/>
+	<rdf:li rdf:resource="http://rmarkdown.rstudio.com/"/>
+	<rdf:li rdf:resource="https://github.com/servo/servo/issues/13088"/>
+	<rdf:li rdf:resource="https://github.com/servo/servo/issues/11980"/>
+	<rdf:li rdf:resource="https://github.com/servo/highfive/issues/49"/>
+	<rdf:li rdf:resource="http://www.metafilter.com/144911/Melvyn-no-need-to-Bragg"/>
+	<rdf:li rdf:resource="http://blog.kristykate.com/2014/07/07/week-15-studies/"/>
+	<rdf:li rdf:resource="https://careers.mozilla.org/position/gh/267268"/>
+	<rdf:li rdf:resource="https://news.ycombinator.com/item?id=12405698"/>
+	<rdf:li rdf:resource="http://aasr.dk/programmer/filmofilerne/"/>
+	<rdf:li rdf:resource="http://nymag.com/scienceofus/2016/08/introvert-hangovers.html"/>
+	<rdf:li rdf:resource="https://eprint.iacr.org/2015/1092.pdf"/>
+	<rdf:li rdf:resource="http://cseweb.ucsd.edu/~daniele/papers/PostQuantum.pdf"/>
+	<rdf:li rdf:resource="http://blog.regehr.org/archives/1401"/>
+	<rdf:li rdf:resource="http://www.anthropology-news.org/index.php/2016/08/24/the-gap-that-wont-be-filled/"/>
+	<rdf:li rdf:resource="https://mesosphere.com/careers/?gh_src=x0enob"/>
+	<rdf:li rdf:resource="http://urbandemographics.blogspot.dk/2016/09/how-equal-do-we-want-world-to-be-youd.html"/>
+	<rdf:li rdf:resource="https://cybermashup.com/2016/08/30/data-science-for-doofuses-what-toolbox-to-use/"/>
+	<rdf:li rdf:resource="http://nymag.com/scienceofus/2016/08/workout-plans-based-on-muscle-confusion-dont-work.html?mid=full-rss-scienceofus"/>
+	<rdf:li rdf:resource="https://en.m.wikipedia.org/wiki/A_Royal_Affair"/>
+	<rdf:li rdf:resource="https://de.m.wikipedia.org/wiki/Strukturwandel_der_%C3%96ffentlichkeit"/>
+	<rdf:li rdf:resource="https://news.ycombinator.com/item?id=12377385"/>
+	<rdf:li rdf:resource="http://www.tobefluent.com/2014/09/02/language-exchange-so-what-do-you-want-to-talk-about/"/>
+	<rdf:li rdf:resource="http://www.theatlantic.com/health/archive/2016/08/civil-inattention/497183/"/>
+	<rdf:li rdf:resource="http://www.linux-toys.com/?p=684"/>
+	<rdf:li rdf:resource="https://www.sigmobile.org/mobicom/2015/papers/p90-aliA.pdf"/>
+	<rdf:li rdf:resource="http://qz.com/762868/giving-up-alcohol-opened-my-eyes-to-the-infuriating-truth-about-why-women-drink/"/>
+	<rdf:li rdf:resource="http://www.mckinsey.com/"/>
+	<rdf:li rdf:resource="http://bristolcrypto.blogspot.dk/2016/08/ches-2016-flush-gauss-and-reload-cache.html"/>
+	<rdf:li rdf:resource="http://xcede.de/"/>
+      </rdf:Seq>
+    </items>
+  </channel><item rdf:about="http://www.newyorker.com/magazine/2005/02/28/time-bandits-2">
+    <title>Time Bandits - The New Yorker</title>
+    <dc:date>2016-10-13T13:52:09+00:00</dc:date>
+    <link>http://www.newyorker.com/magazine/2005/02/28/time-bandits-2</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>godel einstein physics philosophy mathematics logic history</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:b0c1cbe42be0/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:godel"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:einstein"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:physics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:philosophy"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:mathematics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:logic"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:history"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.kristeligt-dagblad.dk/historie/historie-kartoffelferien-var-v%C3%A5d-kold-og-modbydelig">
+    <title>Historie: Kartoffelferien var våd, kold og modbydelig - Kristeligt Dagblad</title>
+    <dc:date>2016-10-10T18:40:25+00:00</dc:date>
+    <link>http://www.kristeligt-dagblad.dk/historie/historie-kartoffelferien-var-v%C3%A5d-kold-og-modbydelig</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e1b6df1c1fb2/</dc:identifier>
+</item>
+<item rdf:about="http://siliconvikings.com/nordicbaltic-tech-conferences-in-english/">
+    <title>Nordic/Baltic Tech Conferences — SiliconVikingsSilicon Vikings Events</title>
+    <dc:date>2016-10-09T11:41:19+00:00</dc:date>
+    <link>http://siliconvikings.com/nordicbaltic-tech-conferences-in-english/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>tech conferences scandinavia denmark programming</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:ebc64a8e8ccf/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:tech"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:conferences"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:scandinavia"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:denmark"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:programming"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.danes.dk/om-os/job/">
+    <title>Job - Danes Worldwide</title>
+    <dc:date>2016-10-08T19:08:21+00:00</dc:date>
+    <link>http://www.danes.dk/om-os/job/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:ab3189bf810a/</dc:identifier>
+</item>
+<item rdf:about="http://webstory.zdf.de/putins-geheimes-netzwerk/">
+    <title>Putins geheimes Netzwerk | Wie Russland den Westen spaltet</title>
+    <dc:date>2016-10-08T05:10:44+00:00</dc:date>
+    <link>http://webstory.zdf.de/putins-geheimes-netzwerk/</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:3e63731b6433/</dc:identifier>
+</item>
+<item rdf:about="https://medium.com/m/global-identity?redirectUrl=https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">
+    <title>How it feels to learn JavaScript in 2016</title>
+    <dc:date>2016-10-07T11:55:25+00:00</dc:date>
+    <link>https://medium.com/m/global-identity?redirectUrl=https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>JavaScript satire startup via:popular coap</dc:subject>
+<dc:identifier>http://pinboard.in/u:cabresto/b:1a9a76dc2277/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:JavaScript"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:satire"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:startup"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:via:popular"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:coap"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://warp.worldmap.harvard.edu/">
+    <title>Home - Map Warper</title>
+    <dc:date>2016-10-07T09:31:32+00:00</dc:date>
+    <link>http://warp.worldmap.harvard.edu/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>gis maps rectifying</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:2b63834ace39/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:gis"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:maps"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:rectifying"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://www.technologyreview.com/s/602541/physicists-create-worlds-first-time-crystal/">
+    <title>Physicists Create World’s First Time Crystal</title>
+    <dc:date>2016-10-07T09:23:08+00:00</dc:date>
+    <link>https://www.technologyreview.com/s/602541/physicists-create-worlds-first-time-crystal/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>physics science quantum time-crystals experiment quantum-memories</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:f964ec6e6c2c/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:physics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:science"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:quantum"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:time-crystals"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:experiment"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:quantum-memories"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://theconversation.com/back-to-the-19th-century-how-language-is-being-used-to-mark-national-borders-66357">
+    <title>Back to the 19th century: how language is being used to mark national borders</title>
+    <dc:date>2016-10-05T14:37:41+00:00</dc:date>
+    <link>https://theconversation.com/back-to-the-19th-century-how-language-is-being-used-to-mark-national-borders-66357</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>english language politics diplomacy borders nationalism history racism</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:77ff8740af3e/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:english"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:politics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:diplomacy"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:borders"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:nationalism"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:history"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:racism"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.economist.com/news/europe/21707984-why-do-so-many-foreigners-want-copy-denmark-cocoa-candlelight">
+    <title>Cocoa by candlelight | The Economist</title>
+    <dc:date>2016-10-05T10:04:01+00:00</dc:date>
+    <link>http://www.economist.com/news/europe/21707984-why-do-so-many-foreigners-want-copy-denmark-cocoa-candlelight</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:9e89044799b6/</dc:identifier>
+</item>
+<item rdf:about="http://chrisblattman.com/2016/09/29/14655/">
+    <title>More sweatshops for Africa? - Chris Blattman</title>
+    <dc:date>2016-10-05T07:30:45+00:00</dc:date>
+    <link>http://chrisblattman.com/2016/09/29/14655/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>globalization sweatshops data africa poor wages work</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:81601846ba59/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:globalization"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:sweatshops"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:data"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:africa"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:poor"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:wages"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:work"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://resources.allsetlearning.com/chinese/grammar/">
+    <title>Chinese Grammar Wiki</title>
+    <dc:date>2016-10-03T20:09:44+00:00</dc:date>
+    <link>https://resources.allsetlearning.com/chinese/grammar/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:cb8dec012f51/</dc:identifier>
+</item>
+<item rdf:about="https://hg.mozilla.org/mozilla-central/file/fc69febcbf6c/gfx">
+    <title>mozilla-central: files</title>
+    <dc:date>2016-10-03T14:05:36+00:00</dc:date>
+    <link>https://hg.mozilla.org/mozilla-central/file/fc69febcbf6c/gfx</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>firefox files mozilla code</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:b34bd7e923e8/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:firefox"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:files"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:mozilla"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:code"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://berlinstartupjobs.com/engineering/full-stack-developer-reactjs-java-google-cloud-small-improvements/">
+    <title>Full-stack Developer (ReactJS, Java, Google Cloud) // Small Improvements | IT / Software Development, Small Improvements | Berlin Startup Jobs</title>
+    <dc:date>2016-10-03T09:52:42+00:00</dc:date>
+    <link>http://berlinstartupjobs.com/engineering/full-stack-developer-reactjs-java-google-cloud-small-improvements/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:89726d8e9fab/</dc:identifier>
+</item>
+<item rdf:about="https://en.wikipedia.org/wiki/Oaths_of_Strasbourg">
+    <title>Oaths of Strasbourg - Wikipedia, the free encyclopedia</title>
+    <dc:date>2016-10-02T20:37:49+00:00</dc:date>
+    <link>https://en.wikipedia.org/wiki/Oaths_of_Strasbourg</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>language german french history linguistics vernacular romance</dc:subject>
+<dc:identifier>http://pinboard.in/u:cabresto/b:f1bb660e5ab6/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:german"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:french"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:history"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:linguistics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:vernacular"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:romance"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.mathematik.uni-kl.de/~thofmann/ants/rump/rump_galbraith.pdf">
+    <title>Supersingular Curves and Isogenies - rump_galbraith.pdf</title>
+    <dc:date>2016-10-02T19:17:17+00:00</dc:date>
+    <link>http://www.mathematik.uni-kl.de/~thofmann/ants/rump/rump_galbraith.pdf</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>crypto supersingular elliptic isogenies post-quantum</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:4148c91fe823/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:crypto"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:supersingular"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:elliptic"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:isogenies"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:post-quantum"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://defeo.lu/docet/class/2016/09/08/diffie-hellman/">
+    <title>40 years of secret key exchange – D.O.C.E.T</title>
+    <dc:date>2016-10-02T19:17:11+00:00</dc:date>
+    <link>http://defeo.lu/docet/class/2016/09/08/diffie-hellman/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:c1c36c330f8f/</dc:identifier>
+</item>
+<item rdf:about="https://medium.com/@1ngi/what-a-stupid-scrabble-article-taught-me-about-welsh-bc4f315490c9#.ydhzrqfng">
+    <title>What a stupid Scrabble article taught me about Welsh – Medium</title>
+    <dc:date>2016-10-02T07:16:59+00:00</dc:date>
+    <link>https://medium.com/@1ngi/what-a-stupid-scrabble-article-taught-me-about-welsh-bc4f315490c9#.ydhzrqfng</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>welsh language-learning language politeness</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:1914cd6c3a46/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:welsh"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language-learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:politeness"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.chiark.greenend.org.uk/~sgtatham/coroutines.html">
+    <title>Coroutines in C</title>
+    <dc:date>2016-10-01T20:48:42+00:00</dc:date>
+    <link>http://www.chiark.greenend.org.uk/~sgtatham/coroutines.html</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:433fa310e8ef/</dc:identifier>
+</item>
+<item rdf:about="https://www.bloomberg.com/view/articles/2016-09-29/brazil-s-half-price-culture-hurts-artists-and-taxpayers">
+    <title>Brazil's 'Half-Price Culture' Hurts Artists and Taxpayers - Bloomberg View</title>
+    <dc:date>2016-10-01T08:23:12+00:00</dc:date>
+    <link>https://www.bloomberg.com/view/articles/2016-09-29/brazil-s-half-price-culture-hurts-artists-and-taxpayers</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:10ce70f41c54/</dc:identifier>
+</item>
+<item rdf:about="http://m.b.dk/nationalt/hvad-ved-facebook-om-dig-tjek-selv-hvis-du-toer?redirected=true">
+    <title>Hvem tror Facebook egentlig, du er? Tjek selv, hvis du tør - Nationalt | www.b.dk</title>
+    <dc:date>2016-10-01T05:21:31+00:00</dc:date>
+    <link>http://m.b.dk/nationalt/hvad-ved-facebook-om-dig-tjek-selv-hvis-du-toer?redirected=true</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:2b6caac56e27/</dc:identifier>
+</item>
+<item rdf:about="http://defeo.lu/docet/talk/2016/09/29/isogeny-cycle-seminar/">
+    <title>The isogeny cycle seminar – D.O.C.E.T</title>
+    <dc:date>2016-09-30T20:30:41+00:00</dc:date>
+    <link>http://defeo.lu/docet/talk/2016/09/29/isogeny-cycle-seminar/</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:707021cc3c88/</dc:identifier>
+</item>
+<item rdf:about="http://cornelia.siteware.ch/blog/wordpress/2007/05/09/elfchen/comment-page-1#comment-678503">
+    <title>DaF-Blog » Elfchen</title>
+    <dc:date>2016-09-29T08:23:14+00:00</dc:date>
+    <link>http://cornelia.siteware.ch/blog/wordpress/2007/05/09/elfchen/comment-page-1#comment-678503</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>deutsch language german language-learning technique</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:c8e8e801d67a/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:deutsch"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:german"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language-learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:technique"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://cornelia.siteware.ch/blog/wordpress/2016/09/27/quizlet-live">
+    <title>DaF-Blog » Quizlet-Live</title>
+    <dc:date>2016-09-29T08:18:17+00:00</dc:date>
+    <link>http://cornelia.siteware.ch/blog/wordpress/2016/09/27/quizlet-live</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:410864925ed6/</dc:identifier>
+</item>
+<item rdf:about="http://sro.sussex.ac.uk/55352/1/Conroy_deVisser_BeingNonDrinkerStudent_accepted.pdf">
+    <title>Microsoft Word - Conroy_deVisser_BeingNonDrinkerStudent_accepted - Conroy_deVisser_BeingNonDrinkerStudent_accepted.pdf</title>
+    <dc:date>2016-09-28T08:19:16+00:00</dc:date>
+    <link>http://sro.sussex.ac.uk/55352/1/Conroy_deVisser_BeingNonDrinkerStudent_accepted.pdf</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>alcohol drinking teetotal social friendship filetype:pdf</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:020e9004c775/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:alcohol"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:drinking"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:teetotal"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:social"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:friendship"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:filetype:pdf"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://ekstrabladet.dk/112/christianitter-til-politiet-se-vi-har-jeres-kamera-lige-her/6311663">
+    <title>Christianitter til politiet: Se, vi har jeres kamera lige her – Ekstra Bladet</title>
+    <dc:date>2016-09-25T05:13:13+00:00</dc:date>
+    <link>http://ekstrabladet.dk/112/christianitter-til-politiet-se-vi-har-jeres-kamera-lige-her/6311663</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:ee25b5aa3804/</dc:identifier>
+</item>
+<item rdf:about="http://m.b.dk/nationalt/opraab-fra-gymnasielaerere-elever-kan-ikke-laese-en-bog?redirected=true">
+    <title>http://m.b.dk/nationalt/opraab-fra-gymnasielaerere-elever-kan-ikke-laese-en-bog?redirected=true</title>
+    <dc:date>2016-09-25T05:12:22+00:00</dc:date>
+    <link>http://m.b.dk/nationalt/opraab-fra-gymnasielaerere-elever-kan-ikke-laese-en-bog?redirected=true</link>
+    <dc:creator>cabresto</dc:creator><dc:identifier>http://pinboard.in/u:cabresto/b:6cfff74d3047/</dc:identifier>
+</item>
+<item rdf:about="https://aeon.co/ideas/coding-is-not-fun-it-s-technically-and-ethically-complex">
+    <title>Coding is not ‘fun’, it’s technically and ethically complex | Aeon Ideas</title>
+    <dc:date>2016-09-23T12:53:13+00:00</dc:date>
+    <link>https://aeon.co/ideas/coding-is-not-fun-it-s-technically-and-ethically-complex</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:19fb39e2ea39/</dc:identifier>
+</item>
+<item rdf:about="http://www.kalzumeus.com/2011/10/28/dont-call-yourself-a-programmer/">
+    <title>Don't Call Yourself A Programmer, And Other Career Advice | Kalzumeus Software</title>
+    <dc:date>2016-09-21T19:01:09+00:00</dc:date>
+    <link>http://www.kalzumeus.com/2011/10/28/dont-call-yourself-a-programmer/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>career advice programming job</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e59e38f8390e/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:career"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:advice"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:programming"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:job"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://en.wikipedia.org/wiki/Baumol%27s_cost_disease">
+    <title>Baumol's cost disease - Wikipedia, the free encyclopedia</title>
+    <dc:date>2016-09-21T13:19:21+00:00</dc:date>
+    <link>https://en.wikipedia.org/wiki/Baumol%27s_cost_disease</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>economics cost wages productivity</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:3235cd05203a/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:economics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:cost"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:wages"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:productivity"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://thimble.mozilla.org/en-US/">
+    <title>Mozilla Thimble</title>
+    <dc:date>2016-09-20T10:53:10+00:00</dc:date>
+    <link>https://thimble.mozilla.org/en-US/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>web learning programming javascript</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:772d00139dd8/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:web"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:programming"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:javascript"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://passcode.csmonitor.com/cypherpunk">
+    <title>The cypherpunk revolution</title>
+    <dc:date>2016-09-20T10:52:26+00:00</dc:date>
+    <link>http://passcode.csmonitor.com/cypherpunk</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:86599e1e11f1/</dc:identifier>
+</item>
+<item rdf:about="https://eev.ee/blog/2016/09/18/the-curious-case-of-the-switch-statement/">
+    <title>The curious case of the switch statement / fuzzy notepad</title>
+    <dc:date>2016-09-19T11:51:28+00:00</dc:date>
+    <link>https://eev.ee/blog/2016/09/18/the-curious-case-of-the-switch-statement/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e57b283f72b4/</dc:identifier>
+</item>
+<item rdf:about="http://www.quickposes.com/">
+    <title>Quickposes: pose library for figure &amp; gesture drawing practice</title>
+    <dc:date>2016-09-18T13:52:55+00:00</dc:date>
+    <link>http://www.quickposes.com/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>drawing art gesture-drawing practice</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:891b2fa51e24/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:drawing"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:art"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:gesture-drawing"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:practice"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://reference.sketchdaily.net/en/">
+    <title>SketchDaily Gesture/Figure Drawing</title>
+    <dc:date>2016-09-18T13:11:08+00:00</dc:date>
+    <link>http://reference.sketchdaily.net/en/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>drawing sketch practice gesture-drawing</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:3c6d68ed7bf0/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:drawing"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:sketch"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:practice"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:gesture-drawing"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://jvns.ca/blog/2016/09/17/strange-loop-talk/">
+    <title>A swiss army knife of debugging tools: talk &amp; transcript - Julia Evans</title>
+    <dc:date>2016-09-18T07:31:44+00:00</dc:date>
+    <link>http://jvns.ca/blog/2016/09/17/strange-loop-talk/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:ed762d630e3a/</dc:identifier>
+</item>
+<item rdf:about="http://jvns.ca/blog/2016/09/15/whats-up-with-containers-docker-and-rkt/">
+    <title>Some questions about Docker and rkt - Julia Evans</title>
+    <dc:date>2016-09-16T18:09:06+00:00</dc:date>
+    <link>http://jvns.ca/blog/2016/09/15/whats-up-with-containers-docker-and-rkt/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:d944e3619bf2/</dc:identifier>
+</item>
+<item rdf:about="https://www.facebook.com/groups/736175203148711/">
+    <title>(1) Bogklub Lærdansk Aarhus</title>
+    <dc:date>2016-09-14T15:20:22+00:00</dc:date>
+    <link>https://www.facebook.com/groups/736175203148711/</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:5123da6bf950/</dc:identifier>
+</item>
+<item rdf:about="http://www.unicode.org/reports/tr29/tr29-9.html#Word_Boundaries">
+    <title>UAX #29: Text Boundaries</title>
+    <dc:date>2016-09-13T08:08:47+00:00</dc:date>
+    <link>http://www.unicode.org/reports/tr29/tr29-9.html#Word_Boundaries</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:d255f97d2a3f/</dc:identifier>
+</item>
+<item rdf:about="https://github.com/servo/servo/issues/9673">
+    <title>Implement `word-break: keep-all' · Issue #9673 · servo/servo</title>
+    <dc:date>2016-09-12T15:56:10+00:00</dc:date>
+    <link>https://github.com/servo/servo/issues/9673</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:0eca4cc58c90/</dc:identifier>
+</item>
+<item rdf:about="http://wecancutthisout.com/">
+    <title>We Can Cut This Out</title>
+    <dc:date>2016-09-12T07:40:45+00:00</dc:date>
+    <link>http://wecancutthisout.com/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>rotl podcast humor annotating tag</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:d2f11046bbc3/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:rotl"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:podcast"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:humor"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:annotating"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:tag"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://rmarkdown.rstudio.com/">
+    <title>R Markdown</title>
+    <dc:date>2016-09-12T07:24:43+00:00</dc:date>
+    <link>http://rmarkdown.rstudio.com/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>r data statistics markdown writing</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:981331857d41/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:r"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:data"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:statistics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:markdown"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:writing"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://github.com/servo/servo/issues/13088">
+    <title>Servo does not break Thai text line properly. · Issue #13088 · servo/servo</title>
+    <dc:date>2016-09-11T14:40:51+00:00</dc:date>
+    <link>https://github.com/servo/servo/issues/13088</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:b600bf027293/</dc:identifier>
+</item>
+<item rdf:about="https://github.com/servo/servo/issues/11980">
+    <title>Make builds fully reproducible · Issue #11980 · servo/servo</title>
+    <dc:date>2016-09-07T12:36:14+00:00</dc:date>
+    <link>https://github.com/servo/servo/issues/11980</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:937d93a52831/</dc:identifier>
+</item>
+<item rdf:about="https://github.com/servo/highfive/issues/49">
+    <title>Add TestBinding.webidl and testbinding.rs to the test check · Issue #49 · servo/highfive</title>
+    <dc:date>2016-09-07T12:34:21+00:00</dc:date>
+    <link>https://github.com/servo/highfive/issues/49</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:f71464db0ae9/</dc:identifier>
+</item>
+<item rdf:about="http://www.metafilter.com/144911/Melvyn-no-need-to-Bragg">
+    <title>Melvyn, no need to Bragg | MetaFilter</title>
+    <dc:date>2016-09-07T09:43:27+00:00</dc:date>
+    <link>http://www.metafilter.com/144911/Melvyn-no-need-to-Bragg</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:0ff9666f3fbc/</dc:identifier>
+</item>
+<item rdf:about="http://blog.kristykate.com/2014/07/07/week-15-studies/">
+    <title>Week 15 Studies – Kristy Kate</title>
+    <dc:date>2016-09-06T12:10:50+00:00</dc:date>
+    <link>http://blog.kristykate.com/2014/07/07/week-15-studies/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>drawing</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:7aa950f1cd56/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:drawing"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://careers.mozilla.org/position/gh/267268">
+    <title>Research Engineer - Servo — Mozilla Jobs — Open Positions</title>
+    <dc:date>2016-09-05T18:35:04+00:00</dc:date>
+    <link>https://careers.mozilla.org/position/gh/267268</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:96fff7d92d3b/</dc:identifier>
+</item>
+<item rdf:about="https://news.ycombinator.com/item?id=12405698">
+    <title>Ask HN: Who is hiring? (September 2016) | Hacker News</title>
+    <dc:date>2016-09-05T18:10:09+00:00</dc:date>
+    <link>https://news.ycombinator.com/item?id=12405698</link>
+    <dc:creator>cabresto</dc:creator><dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:f9c5b39f272c/</dc:identifier>
+</item>
+<item rdf:about="http://aasr.dk/programmer/filmofilerne/">
+    <title>Filmofilerne | AASR | 98,7 FM</title>
+    <dc:date>2016-09-05T13:18:20+00:00</dc:date>
+    <link>http://aasr.dk/programmer/filmofilerne/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>film aarhus</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e00c28197eb4/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:film"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:aarhus"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://nymag.com/scienceofus/2016/08/introvert-hangovers.html">
+    <title>Introvert Hangovers Can Be Really Rough -- Science of Us</title>
+    <dc:date>2016-09-05T11:57:20+00:00</dc:date>
+    <link>http://nymag.com/scienceofus/2016/08/introvert-hangovers.html</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>introversion anxiety health introvert</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e2272a7b016a/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:introversion"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:anxiety"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:health"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:introvert"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://eprint.iacr.org/2015/1092.pdf">
+    <title>A New Hope</title>
+    <dc:date>2016-09-03T20:29:27+00:00</dc:date>
+    <link>https://eprint.iacr.org/2015/1092.pdf</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>post-quantum quantum cryptography lattice lwe filetype:pdf</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:12624a2fde88/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:post-quantum"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:quantum"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:cryptography"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:lattice"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:lwe"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:filetype:pdf"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://cseweb.ucsd.edu/~daniele/papers/PostQuantum.pdf">
+    <title>Lattice-based cryptography</title>
+    <dc:date>2016-09-03T20:29:22+00:00</dc:date>
+    <link>http://cseweb.ucsd.edu/~daniele/papers/PostQuantum.pdf</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>lattice lwe quantum post-quantum cryptography filetype:pdf</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:78bd63adb322/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:lattice"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:lwe"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:quantum"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:post-quantum"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:cryptography"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:filetype:pdf"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://blog.regehr.org/archives/1401">
+    <title>Solutions to Integer Overflow – Embedded in Academia</title>
+    <dc:date>2016-09-02T21:29:47+00:00</dc:date>
+    <link>http://blog.regehr.org/archives/1401</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>integer arithmetic overflow languages programming</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:063ad1e37e43/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:integer"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:arithmetic"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:overflow"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:languages"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:programming"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.anthropology-news.org/index.php/2016/08/24/the-gap-that-wont-be-filled/">
+    <title>An Anthropolitical Critique of the “Language Gap”</title>
+    <dc:date>2016-09-02T08:59:34+00:00</dc:date>
+    <link>http://www.anthropology-news.org/index.php/2016/08/24/the-gap-that-wont-be-filled/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>language language-learning learning gap anthropology</dc:subject>
+<dc:identifier>http://pinboard.in/u:cabresto/b:1b7f3474b688/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language-learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:gap"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:anthropology"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://mesosphere.com/careers/?gh_src=x0enob">
+    <title>Careers - Mesosphere</title>
+    <dc:date>2016-09-01T17:37:18+00:00</dc:date>
+    <link>https://mesosphere.com/careers/?gh_src=x0enob</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>job mesos distributed-systems</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:9bcfcf14f48c/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:job"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:mesos"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:distributed-systems"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://urbandemographics.blogspot.dk/2016/09/how-equal-do-we-want-world-to-be-youd.html">
+    <title>Urban Demographics: How equal do we want the world to be? You'd be surprised</title>
+    <dc:date>2016-09-01T09:14:31+00:00</dc:date>
+    <link>http://urbandemographics.blogspot.dk/2016/09/how-equal-do-we-want-world-to-be-youd.html</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>dan-ariely ted talk video inequality economics psychology</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e717053e8bc3/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:dan-ariely"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:ted"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:talk"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:video"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:inequality"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:economics"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:psychology"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://cybermashup.com/2016/08/30/data-science-for-doofuses-what-toolbox-to-use/">
+    <title>Data Science for Doofuses: What Toolbox to Use | CyberSmashup</title>
+    <dc:date>2016-08-30T13:55:37+00:00</dc:date>
+    <link>https://cybermashup.com/2016/08/30/data-science-for-doofuses-what-toolbox-to-use/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>data machine-learning python programming</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:79cbc28a2dd1/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:data"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:machine-learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:python"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:programming"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://nymag.com/scienceofus/2016/08/workout-plans-based-on-muscle-confusion-dont-work.html?mid=full-rss-scienceofus">
+    <title>Workout Plans Based on 'Muscle Confusion' Don't Work -- Science of Us</title>
+    <dc:date>2016-08-29T07:53:34+00:00</dc:date>
+    <link>http://nymag.com/scienceofus/2016/08/workout-plans-based-on-muscle-confusion-dont-work.html?mid=full-rss-scienceofus</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>workout process weightlifting muscles awareness</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:54ee29ffea91/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:workout"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:process"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:weightlifting"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:muscles"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:awareness"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://en.m.wikipedia.org/wiki/A_Royal_Affair">
+    <title>A Royal Affair - Wikipedia, the free encyclopedia</title>
+    <dc:date>2016-08-29T05:19:44+00:00</dc:date>
+    <link>https://en.m.wikipedia.org/wiki/A_Royal_Affair</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>danish film</dc:subject>
+<dc:identifier>http://pinboard.in/u:cabresto/b:d809e6b98197/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:danish"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:film"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://de.m.wikipedia.org/wiki/Strukturwandel_der_%C3%96ffentlichkeit">
+    <title>Strukturwandel der Öffentlichkeit – Wikipedia</title>
+    <dc:date>2016-08-29T05:19:43+00:00</dc:date>
+    <link>https://de.m.wikipedia.org/wiki/Strukturwandel_der_%C3%96ffentlichkeit</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>habermas german enlightenment history</dc:subject>
+<dc:identifier>http://pinboard.in/u:cabresto/b:f10ca89d2d54/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:habermas"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:german"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:enlightenment"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:history"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://news.ycombinator.com/item?id=12377385">
+    <title>Why bad scientific code beats code following “best practices” (2014) | Hacker News</title>
+    <dc:date>2016-08-28T20:21:46+00:00</dc:date>
+    <link>https://news.ycombinator.com/item?id=12377385</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>code programming science data hpc</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:fb5fde87fe13/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:code"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:programming"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:science"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:data"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:hpc"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.tobefluent.com/2014/09/02/language-exchange-so-what-do-you-want-to-talk-about/">
+    <title>Language Exchange – So What Do You Want to Talk About? | to be fluent</title>
+    <dc:date>2016-08-28T19:38:18+00:00</dc:date>
+    <link>http://www.tobefluent.com/2014/09/02/language-exchange-so-what-do-you-want-to-talk-about/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>language-learning language ideas danish</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:e3540b4d16d0/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language-learning"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:language"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:ideas"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:danish"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.theatlantic.com/health/archive/2016/08/civil-inattention/497183/">
+    <title>How to Talk to Strangers IRL - The Atlantic</title>
+    <dc:date>2016-08-26T12:05:50+00:00</dc:date>
+    <link>http://www.theatlantic.com/health/archive/2016/08/civil-inattention/497183/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>social-anxiety strangers talking conversation</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:1256bcc70f58/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:social-anxiety"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:strangers"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:talking"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:conversation"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.linux-toys.com/?p=684">
+    <title>Linux-toys.com » Blog Archive » The Sad State of Docker</title>
+    <dc:date>2016-08-26T09:10:37+00:00</dc:date>
+    <link>http://www.linux-toys.com/?p=684</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>docker distributed-systems</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:fb53c968bf1a/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:docker"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:distributed-systems"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="https://www.sigmobile.org/mobicom/2015/papers/p90-aliA.pdf">
+    <title>Keystroke recognition using WiFi</title>
+    <dc:date>2016-08-26T08:15:51+00:00</dc:date>
+    <link>https://www.sigmobile.org/mobicom/2015/papers/p90-aliA.pdf</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>paper wifi filetype:pdf side-channel</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:31feca7a1546/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:paper"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:wifi"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:filetype:pdf"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:side-channel"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://qz.com/762868/giving-up-alcohol-opened-my-eyes-to-the-infuriating-truth-about-why-women-drink/">
+    <title>The real reason why women drink — Quartz</title>
+    <dc:date>2016-08-25T11:33:05+00:00</dc:date>
+    <link>http://qz.com/762868/giving-up-alcohol-opened-my-eyes-to-the-infuriating-truth-about-why-women-drink/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>women feminism drink social</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:981bdebfc61f/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:women"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:feminism"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:drink"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:social"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://www.mckinsey.com/">
+    <title>McKinsey &amp; Company | Global management consulting</title>
+    <dc:date>2016-08-24T07:56:59+00:00</dc:date>
+    <link>http://www.mckinsey.com/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>job consulting</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:c632a2def615/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:job"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:consulting"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://bristolcrypto.blogspot.dk/2016/08/ches-2016-flush-gauss-and-reload-cache.html">
+    <title>Bristol Cryptography Blog: CHES 2016: Flush, Gauss, and Reload – A Cache Attack on the BLISS Lattice-Based Signature Scheme</title>
+    <dc:date>2016-08-23T20:23:11+00:00</dc:date>
+    <link>http://bristolcrypto.blogspot.dk/2016/08/ches-2016-flush-gauss-and-reload-cache.html</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>cryptography side-channel lattice lwe</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:692098755d2e/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:cryptography"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:side-channel"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:lattice"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:lwe"/>
+</rdf:Bag></taxo:topics>
+</item>
+<item rdf:about="http://xcede.de/">
+    <title>XCEDE | Recruitment Spezialisten für Digitaltechnik</title>
+    <dc:date>2016-08-23T09:40:32+00:00</dc:date>
+    <link>http://xcede.de/</link>
+    <dc:creator>cabresto</dc:creator><dc:subject>job recruiting</dc:subject>
+<dc:source>http://pinboard.in/</dc:source>
+<dc:identifier>http://pinboard.in/u:cabresto/b:027464f4a3e4/</dc:identifier>
+<taxo:topics><rdf:Bag>	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:job"/>
+	<rdf:li rdf:resource="http://pinboard.in/u:cabresto/t:recruiting"/>
+</rdf:Bag></taxo:topics>
+</item>
+</rdf:RDF>

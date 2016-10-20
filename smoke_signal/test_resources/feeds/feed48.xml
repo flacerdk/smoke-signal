@@ -1,0 +1,1592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>ImperialViolet</title>
+ <link href="http://www.imperialviolet.org/iv-rss.xml" rel="self"/>
+ <link href="http://www.imperialviolet.org/"/>
+ <updated>2016-09-20T12:44:49-04:00</updated>
+ <id>http://www.imperialviolet.org/</id>
+ <author>
+   <name>Adam Langley</name>
+ </author>
+
+ 
+ <entry>
+   <title>Roughtime</title>
+   <link href="http://www.imperialviolet.org/2016/09/19/roughtime.html"/>
+   <updated>2016-09-19T00:00:00-04:00</updated>
+   <id>http://www.imperialviolet.org/2016/09/19/roughtime</id>
+   <content type="html">&lt;p&gt;Security protocols often assume an accurate, local clock (e.g. TLS, Kerberos, DNSSEC and more). It's a widely accepted assumption when designing protocols but, for a lot of people, it just isn't true. We find good evidence that at least 25% of all certificate errors in Chrome are due to a bad local clock.&lt;/p&gt;
+
+&lt;p&gt;Even when the local clock is being synchronised, it's very likely to be using unauthenticated NTP. So if your threat model includes man-in-the-middle attackers then you still can't trust the local clock.&lt;/p&gt;
+
+&lt;p&gt;There have been efforts to augment NTP with authentication, but they still assume a world where each client trusts one or more time servers absolutely. In order to explore a solution that allows time servers to be effectively audited by clients, myself and my colleague Matt Braithwaite (with assistance and advice from Ben Laurie and Michael Shields) have developed &lt;a href=&quot;https://roughtime.googlesource.com/roughtime&quot;&gt;Roughtime&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Very briefly: using some tricks we believe that it's viable to deploy servers that sign a client-chosen nonce and timestamp on demand. Once you have several of these servers, clients can generate their nonces by hashing replies from other servers with some entropy. That proves that a nonce was created after the reply was received. Clients maintain a chain of nonces and replies and, if a server misbehaves, can use replies from several other servers to prove and report it.&lt;/p&gt;
+
+&lt;p&gt;Currently there's only one Roughtime service running, so the idea of spreading trust around is inchoate. But we would like to gauge whether others are interested in this idea, specifically whether there are any organisations who would be seriously interested in deploying something like this in their clients. (Because I assume that, if you have clients, then you'll also be interested in running a server.)&lt;/p&gt;
+
+&lt;p&gt;There's a much longer introduction and many more details on the &lt;a href=&quot;https://roughtime.googlesource.com/roughtime&quot;&gt;Roughtime site&lt;/a&gt; and we've also setup a &lt;a href=&quot;https://groups.google.com/a/chromium.org/forum/#!forum/proto-roughtime&quot;&gt;mailing list&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>memcpy (and friends) with NULL pointers</title>
+   <link href="http://www.imperialviolet.org/2016/06/26/nonnull.html"/>
+   <updated>2016-06-26T00:00:00-04:00</updated>
+   <id>http://www.imperialviolet.org/2016/06/26/nonnull</id>
+   <content type="html">&lt;p&gt;The C standard (ISO/IEC 9899:2011) has a sane-seeming definition of &lt;kbd&gt;memcpy&lt;/kbd&gt; (section 7.24.2.1):&lt;/p&gt;
+
+&lt;q&gt;The &lt;kbd&gt;memcpy&lt;/kbd&gt; function copies &lt;kbd&gt;n&lt;/kbd&gt; characters from the object pointed to by &lt;kbd&gt;s2&lt;/kbd&gt; into the object pointed to by &lt;kbd&gt;s1&lt;/kbd&gt;.&lt;/q&gt;
+
+&lt;p&gt;Apart from a prohibition on passing overlapping objects, I think every C programmer understands that.&lt;/p&gt;
+
+&lt;p&gt;However, the standard also says (section 7.1.4):&lt;/p&gt;
+
+&lt;q&gt;If an argument to a function has an invalid value (such as a value outside the domain of the function, or a pointer outside the address space of the program, &lt;b&gt;or a null pointer&lt;/b&gt;, or a pointer to non-modifiable storage when the corresponding parameter is not const-qualified) or a type (after promotion) not expected by a function with variable number of arguments, the behavior is undefined.&lt;/q&gt;
+
+&lt;p&gt;(Emphasis is mine.)&lt;/p&gt;
+
+&lt;p&gt;I'm sure that 7.1.4 seemed quite reasonable in isolation, but how does it interact with the case where &lt;kbd&gt;memcpy&lt;/kbd&gt; is called with a zero length? If you read 7.24.2.1 then you might well think that, since the function copies zero bytes, it's valid to pass NULL as either of the pointer arguments. I claim that the vast majority of C programmers would agree with that, but 7.24.1(2) clarifies that 7.1.4 really does apply:&lt;/p&gt;
+
+&lt;q&gt;Where an argument declared as &lt;kbd&gt;size_t n&lt;/kbd&gt; specifies the length of the array for a function, &lt;kbd&gt;n&lt;/kbd&gt; can have the value zero [&amp;hellip;] pointer arguments on such a call shall still have valid values, as described in 7.1.4.&lt;/q&gt;
+
+&lt;p&gt;(Nobody would actually write &lt;kbd&gt;memcpy(NULL, NULL, 0)&lt;/kbd&gt;, of course, because it (at best) does nothing. But such a call can easily arise at run-time when an empty object is handled by a more general function.)&lt;/p&gt;
+
+&lt;p&gt;Some compilers will use this corner of the standard to assume that pointers passed to &lt;kbd&gt;memcpy&lt;/kbd&gt; are non-NULL, irrespective of the length argument. GCC has built this in, while Clang can get it from the fact that glibc annotates &lt;kbd&gt;memcpy&lt;/kbd&gt; with &lt;kbd&gt;nonnull&lt;/kbd&gt; specifications.&lt;/p&gt;
+
+&lt;p&gt;Consider the following function:&lt;/p&gt;
+
+&lt;pre&gt;#include &amp;lt;stdint.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+int f(uint8_t *dest, uint8_t *src, size_t len) {
+  memcpy(dest, src, len);
+  return dest == NULL;
+}&lt;/pre&gt;
+
+&lt;p&gt;Here's the output of building that with GCC 6.1.1 with -O2:&lt;/p&gt;
+
+&lt;pre&gt;0000000000000000 &amp;lt;f&amp;gt;:
+   0:	48 83 ec 08          	sub    rsp,0x8
+   4:	e8 00 00 00 00       	call   9 &amp;lt;f+0x9&amp;gt;  # memcpy
+   9:	31 c0                	xor    eax,eax
+   b:	48 83 c4 08          	add    rsp,0x8
+   f:	c3                   	ret&lt;/pre&gt;
+
+&lt;p&gt;From that we can see that &lt;kbd&gt;rax&lt;/kbd&gt; (which holds the return value of a function in the amd64 ABI) is unconditionally set to zero, i.e. the compiler has assumed that &lt;kbd&gt;dest == NULL&lt;/kbd&gt; is false because it has been passed to &lt;kbd&gt;memcpy&lt;/kbd&gt;. The compiler's reasoning goes like this: 7.1.4 says that passing a NULL pointer to a standard library function is undefined behaviour, therefore if &lt;kbd&gt;dest&lt;/kbd&gt; was NULL any behaviour is reasonable. So the code can be optimised with the assumption that it's non-NULL, as that's the only case with defined behaviour.&lt;/p&gt;
+
+&lt;p&gt;(You can also play with this snippet in &lt;a href=&quot;https://godbolt.org/g/QNAegL&quot;&gt;Matt Godbolt's excellent tool&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Opinions on this vary from &amp;ldquo;the C standard defines the language thus that optimisation is fine by definition&amp;rdquo; to &amp;ldquo;that's crazy: there's a huge amount of code out there that probably assumes the obvious behaviour of &lt;kbd&gt;memcpy&lt;/kbd&gt;&amp;rdquo;. Personally, I find myself further towards the latter position than the former.&lt;/p&gt;
+
+&lt;p&gt;Also, &lt;i&gt;it's not just &lt;kbd&gt;memcpy&lt;/kbd&gt;&lt;/i&gt;: the same optimisations are annotated in glibc for (at least) &lt;kbd&gt;memccpy&lt;/kbd&gt;, &lt;kbd&gt;memset&lt;/kbd&gt;, &lt;kbd&gt;memcmp&lt;/kbd&gt;, &lt;kbd&gt;memchr&lt;/kbd&gt;, &lt;kbd&gt;memrchr&lt;/kbd&gt;, &lt;kbd&gt;memmem&lt;/kbd&gt;, &lt;kbd&gt;mempcpy&lt;/kbd&gt;, &lt;kbd&gt;bcopy&lt;/kbd&gt; and &lt;kbd&gt;bcmp&lt;/kbd&gt;. Section 7.1.4 can be applied to any standard library function.&lt;/p&gt;
+
+&lt;h4&gt;Measurement&lt;/h4&gt;
+
+&lt;p&gt;To try and figure out the impact that this optimisation is having I built a number of open-source programs with GCC 6.1.1, with &lt;kbd&gt;-fno-builtin&lt;/kbd&gt; (to disable GCC's built-in versions of these functions) and with glibc's &lt;kbd&gt;string.h&lt;/kbd&gt; including, or not, the &lt;kbd&gt;nonnull&lt;/kbd&gt; annotations. For example, the snippet of code above produces this diff when tested this way:&lt;/p&gt;
+
+&lt;pre&gt;0000000000000000 &amp;lt;f&amp;gt;:
+&lt;span style=&quot;color: red&quot;&gt;-   0:	48 83 ec 08          	sub    rsp,0x8&lt;/span&gt;
+&lt;span style=&quot;color: green&quot;&gt;+   0:	53                   	push   rbx&lt;/span&gt;
+&lt;span style=&quot;color: green&quot;&gt;+   1:	48 89 fb             	mov    rbx,rdi&lt;/span&gt;
+    4:	e8 00 00 00 00       	call   9 &amp;lt;f+0x9&amp;gt;
+    9:	31 c0                	xor    eax,eax
+&lt;span style=&quot;color: red&quot;&gt;-   b:	48 83 c4 08          	add    rsp,0x8&lt;/span&gt;
+&lt;span style=&quot;color: red&quot;&gt;-   f:	c3                   	ret    &lt;/span&gt;
+&lt;span style=&quot;color: green&quot;&gt;+   b:	48 85 db             	test   rbx,rbx&lt;/span&gt;
+&lt;span style=&quot;color: green&quot;&gt;+   e:	0f 94 c0             	sete   al&lt;/span&gt;
+&lt;span style=&quot;color: green&quot;&gt;+  11:	5b                   	pop    rbx&lt;/span&gt;
+&lt;span style=&quot;color: green&quot;&gt;+  12:	c3                   	ret    &lt;/span&gt;&lt;/pre&gt;
+
+&lt;p&gt;The added code tests &lt;kbd&gt;dest&lt;/kbd&gt; to set the return value, as intended.&lt;/p&gt;
+
+&lt;p&gt;The first program I tested was BIND 9.9.5 because of &lt;a href=&quot;https://kb.isc.org/article/AA-01167&quot;&gt;this advisory&lt;/a&gt; that says: &amp;ldquo;GCC now includes (by default) an optimization which is intended to eliminate unnecessary null pointer comparisons in compiled code. Unfortunately this optimization removes checks which are necessary in BIND and the demonstrated effect is to cause unpredictable assertion failures during execution of &lt;kbd&gt;named&lt;/kbd&gt;, resulting in termination of the server process&amp;rdquo;. Although version 9.9.5 should be affected according to the advisory, I found no differences in the compiled output based on &lt;kbd&gt;nonnull&lt;/kbd&gt; annotations in &lt;kbd&gt;string.h&lt;/kbd&gt;. Perhaps it's because I'm using a different GCC, perhaps I just got something wrong in my testing, or perhaps these checks were eliminated for different reasons. (For example, a local root exploit in the kernel &lt;a href=&quot;https://lwn.net/Articles/342330/&quot;&gt;was enabled&lt;/a&gt; by a dereference-based removal of a NULL check.)&lt;/p&gt;
+
+&lt;p&gt;Next up, I tried something that I'm more involved with: &lt;a href=&quot;https://boringssl.googlesource.com/boringssl&quot;&gt;BoringSSL&lt;/a&gt;. Here there are two changes: a reordering of two conditions in &lt;kbd&gt;OPENSSL_realloc_clean&lt;/kbd&gt; (which has no semantic effect) and extensive changes in &lt;kbd&gt;BN_mod_exp_mont&lt;/kbd&gt;. I'm sure I would be able to do a better analysis if I were more experienced with disassembling large programs, but I'm just using &lt;kbd&gt;objdump&lt;/kbd&gt; and &lt;kbd&gt;diff&lt;/kbd&gt;. Still, I believe that all the changes are the result of a single NULL check being removed and then the resulting offset shift of all the following code. That counts as an optimisation, but it's statically clear that the pointer cannot be NULL even without any assumptions about &lt;kbd&gt;string.h&lt;/kbd&gt; functions so I struggle to give much credit.&lt;/p&gt;
+
+&lt;p&gt;Since BoringSSL showed some changes, I tried OpenSSL 1.0.2h. This also shows the same large changes around &lt;kbd&gt;BN_mod_exp_mont&lt;/kbd&gt;. There's also a large change in &lt;kbd&gt;dsa_builtin_paramgen2&lt;/kbd&gt; (a function that we don't have in BoringSSL) but that appears to be another insignificant NULL-check removed and a consequent change of all the later offsets. Lastly, there are a handful of no-op changes: like swapping the arguments to &lt;kbd&gt;cmp&lt;/kbd&gt; before &lt;kbd&gt;jne&lt;/kbd&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next I tried &lt;kbd&gt;openssh-7.2p2&lt;/kbd&gt;, which shows no changes. I wondered whether someone had already done this analysis and corrected any problems in OpenSSH so tried a much older version too: 5.4p1. That does show a small, but non-trivial, change in &lt;kbd&gt;ssh_rsa_verify&lt;/kbd&gt;. After a bit of thought, I believe that GCC has managed to eliminate a test for a non-NULL pointer at the end of &lt;kbd&gt;openssh_RSA_verify&lt;/kbd&gt;. Just like the BoringSSL case, it's already possible to deduce that the pointer must be non-NULL without any section 7.1.4 assumptions.
+
+&lt;h4&gt;Conclusions&lt;/h4&gt;
+
+&lt;p&gt;It's clear that one has to write C code that's resilient to the compiler assuming that any pointers passed to standard library functions are non-NULL. There have been too many releases of glibc and GCC with this in to safely assume that it'll ever go away.&lt;/p&gt;
+
+&lt;p&gt;However, the benefits of this (i.e. the optimisations that the compiler can perform because of it) are nearly zero. Large programs can be built where it has no effect. When there are changes they are either cases that the compiler should have been able to figure out anyway, or else noise changes with no effect.&lt;/p&gt;
+
+&lt;p&gt;As for the costs: there have been several cases where removing NULL checks has resulted in a security vulnerability, although I can't find any cases of this precise corner of the C standard causing it. It also adds a very subtle, exceptional case to several very common functions, burdening programmers. But it thankfully rarely seems to make a difference in real-life code, so hopefully there's not a large pool of bugs in legacy code that have been created by this change.
+
+&lt;p&gt;Still, given the huge amount of legacy C code that exists, this optimisation seems unwise to me. Although I've little hope of it happening, I'd suggest that GCC and glibc remove these assumptions and that the next revision of the C standard change 7.24.1(2) to clarify that when a length is zero, pointers can be NULL.&lt;/p&gt;
+
+&lt;p&gt;If anyone wishes to check my results here, I've put the scripts that I used &lt;a href=&quot;https://github.com/agl/nullok/&quot;&gt;on GitHub&lt;/a&gt;. I'm afraid that it takes a bit of manual setup and, given variation in GCC versions across systems, some differences are to be expected but the results should be reproducible.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Cryptographic Agility</title>
+   <link href="http://www.imperialviolet.org/2016/05/16/agility.html"/>
+   <updated>2016-05-16T00:00:00-04:00</updated>
+   <id>http://www.imperialviolet.org/2016/05/16/agility</id>
+   <content type="html">&lt;p&gt;(&lt;i&gt;These are notes that I wrote up from a talk that I gave at the &lt;a href=&quot;http://www.nationalacademies.org/&quot;&gt;National Academies&lt;/a&gt; &lt;a href=&quot;http://sites.nationalacademies.org/deps/cyber/index.htm&quot;&gt;Forum on Cyber Resilience&lt;/a&gt;. You can tell that it was in Washington, DC because of the “cyber”.&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;I wasn't quite sure how technical to pitch this talk so it's relatively introductory; regular readers probably know all this.&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;This isn't a transcript of what I said, but I try to hit the main points in my notes.&lt;/i&gt;)&lt;/p&gt;
+
+&lt;p&gt;Firstly I'd like to separate extensibility from agility. A protocol is extensible if you can add features to it without having to update every implementation at the same time&amp;mdash;which is generally impossible. Cryptographic agility depends on having extensibility, at least if you ever want to use something that wasn't designed into a protocol at the beginning.&lt;/p&gt;
+
+&lt;p&gt;Protocols &lt;i&gt;should&lt;/i&gt; be extensible: the world keeps changing and no design is going to be perfect for all time. But extensibility is much harder in practice than it sounds.&lt;/p&gt;
+
+&lt;p&gt;I happen to be particularly familiar with TLS and TLS has two, major extensibility mechanisms. The first is a simple version number. Here's how the specification says that it should work:&lt;/p&gt;
+
+&lt;div style=&quot;margin-left: 4em;&quot;&gt;
+	&lt;p&gt;Client: I support up to version 1.2.&lt;/p&gt;
+	&lt;p&gt;Server: (&lt;i&gt;calculates the minimum of the version that the client supports and the maximum version that the server supports&lt;/i&gt;) Ok, let's use version 1.1.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is commendably simple: it's not possible to express a range of versions and certainly not a discontinuous range. This is about as simple as an extensibility mechanism could be, and yet lots of implementations get it wrong. It's a &lt;i&gt;common&lt;/i&gt; mistake for implementations to return an error when the client offers a version number that they don't understand.&lt;/p&gt;
+
+&lt;p&gt;This, of course, means that deploying new versions doesn't work. But it's insidious because the server will work fine until someone &lt;i&gt;tries&lt;/i&gt; to deploy a new version. We thought that we had flexibility in the protocol but it turned out that bugs in code had rusted it in place.&lt;/p&gt;
+
+&lt;p&gt;At this point it's worth recalling the Law of the Internet: &lt;i&gt;blame attaches to the last thing that changed&lt;/i&gt;. If Chrome updates and then something stops working then Chrome gets the blame. It doesn't matter that the server couldn't correctly calculate the minimum of two numbers. No normal person understands or cares about that.&lt;/p&gt;
+
+&lt;p&gt;What's to be done about this? Well, we work around issues if they're big and suck up the breakage if they're small. It's taken about 15 years to get to the point where web browsers don't have to work around broken version negotiation in TLS and that's mostly because we only have three active versions of TLS. When we try to add a fourth (TLS 1.3) in the next year, we'll have to add back the workaround, no doubt. In summary, this extensibility mechanism hasn't worked well because it's rarely used and that lets bugs thrive.&lt;/p&gt;
+
+&lt;p&gt;TLS has a second, major extension mechanism which is a series of (key, value) pairs where servers should ignore unknown keys. This has worked a little better because, while there are only three or four versions in play, with many years between versions, there are 25 to 30 extensions defined. It's not perfect: bugs in implementations have led them to be dependent on the order of extensions and somebody at least managed to write a server that breaks if the last value is empty.&lt;/p&gt;
+
+&lt;p&gt;Sometimes more extensibility points have been added inside of extensions in the expectation that it'll save adding another, top-level extension in the future. This has generally been a mistake: these extension points have added complexity for little reason and, when we try to use them, we often find that bugs have rusted them solid anyway. They've just been a waste.&lt;/p&gt;
+
+&lt;p&gt;There's a lesson in all this: &lt;i&gt;have one joint and keep it well oiled&lt;/i&gt;.
+
+&lt;p&gt;Protocol designers underestimate how badly people will implement their designs. Writing down how you think it should work and hoping that it'll work, doesn't work. TLS's protocol negotiation is trivial and the specification &lt;a href=&quot;https://tools.ietf.org/html/rfc5246#section-7.4.1.3&quot;&gt;is clear&lt;/a&gt;, yet it still didn't work in practice because it's difficult to oil.&lt;/p&gt;
+
+&lt;p&gt;Rather one needs to minimise complexity, concentrate all extensibility in a single place and &lt;i&gt;actively defend it&lt;/i&gt;. An active defense can take many forms: fuzzing the extensibility system in test suites and compliance testing is good. You might want to define and implement dummy extensions once a year or such, and retire old ones on a similar schedule. When extensions contain lists of values, define a range of values that clients insert at random. In short, be creative otherwise you'll find that bug rust will quickly settle in.&lt;/p&gt;
+
+&lt;h4&gt;Agility itself&lt;/h4&gt;
+
+&lt;p&gt;Cryptographic agility is a huge cost. Implementing and supporting multiple algorithms means more code. More code begets more bugs. More things in general means less academic focus on any one thing, and less testing and code-review per thing. Any increase in the number of options also means more combinations and a higher chance for a bad interaction to arise.&lt;/p&gt;
+
+&lt;p&gt;Let's just consider symmetric ciphers for a moment. Because everyone wants them to be as fast as possible, &lt;a href=&quot;https://www.imperialviolet.org/2015/10/17/boringssl.html&quot;&gt;BoringSSL&lt;/a&gt; currently contains 27 thousand lines of Perl scripts (taken from OpenSSL, who wrote them all) that generate assembly code just in order to implement AES-GCM. That's a tremendous amount of work and a tremendous scope for bugs.&lt;/p&gt;
+
+&lt;p&gt;Focusing again on TLS: over the years, 25 different ciphers and modes have been specified for use in TLS. Thankfully, of those, only nine are actively used. But that doesn't mean that the zombies of the others might not still be &lt;a href=&quot;https://drownattack.com/&quot;&gt;lurking around&lt;/a&gt;, ready to cause problems.&lt;/p&gt;
+
+&lt;p&gt;Where did this mess of diversity come from?&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;1&lt;/i&gt;. Old age / we had no idea what we were doing in the 1990's:&lt;/p&gt;
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;kbd&gt;3DES_EDE_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;AES_128_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;AES_256_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;DES40_CBC&lt;/kbd&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;kbd&gt;DES_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;DES_CBC_40&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;IDEA_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;NULL&lt;/kbd&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;kbd&gt;RC2_CBC_40&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;RC4_128&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;RC4_40&lt;/kbd&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A lot of mistakes were made in the 1990's—we really didn't know what we were doing. Phil Rogaway did, but sadly not enough people listened to him; probably because they were busy fighting the US Government which was trying to ban the whole field of study at the time. Unfortunately that coincided with the early inflation period of the internet and a lot of those mistakes were embedded pretty deeply. We're still living with them today.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;2&lt;/i&gt;. National pride cipher suites&lt;/p&gt;
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;kbd&gt;ARIA_128_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;ARIA_128_GCM&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;ARIA_256_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;ARIA_256_GCM&lt;/kbd&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;kbd&gt;CAMELLIA_128_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;CAMELLIA_128_GCM&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;CAMELLIA_256_CBC&lt;/kbd&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;kbd&gt;CAMELLIA_256_GCM&lt;/kbd&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;kbd&gt;SEED_CBC&lt;/kbd&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The next cause of excess agility are the national pride cipher suites. Many countries consider cryptography to be an area of national interest but then mistakenly believe that means that they have to invent their own standards and primitives. South Korea and Japan were especially forthright about this and so managed to get these ciphers assigned code points in TLS but Russia and China and, to some extent, many other countries do the same thing.&lt;/p&gt;
+
+&lt;p&gt;Although they receive limited analysis compared to something like AES, they're generally not &lt;i&gt;bad&lt;/i&gt;, per se, but they bring nothing new to the table: they add nothing but costs, and the costs are significant. Cryptographic diversity for the point of national pride should be strenuously resisted for that reason. Other countries may complain that the US got their standards widely used but the US got to specify a lot about the internet by being the first mover. (And AES is from Belgium anyway.) However, it is the case that I'm not aware of any of these national standards being used to promote something that's actually a deliberate backdoor; which is, of course, &lt;a href=&quot;https://projectbullrun.org/dual-ec/&quot;&gt;not true&lt;/a&gt; of the US.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;3&lt;/i&gt;. Reasonable cases for diversity:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Embedded systems want to minimise circuit size: &lt;kbd&gt;AES_128_CCM&lt;/kbd&gt; and &lt;kbd&gt;AES_256_CCM&lt;/kbd&gt;.&lt;/li&gt;
+
+&lt;li&gt;We want something faster for when we don't have AES hardware: &lt;kbd&gt;CHACHA20_POLY1305&lt;/kbd&gt;.&lt;/li&gt;
+
+&lt;li&gt;US Government standard, got hardware support from Intel: &lt;kbd&gt;AES_128_GCM&lt;/kbd&gt; and &lt;kbd&gt;AES_256_GCM&lt;/kbd&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now we come to the ones that are reasonable to use and the reasons for diversity there. It's all about performance optimisation for different environments really: tiny devices want CCM because it only needs an AES-encrypt circuit. Devices without hardware support for AES-GCM want to use ChaCha20-Poly1305 because it's much more efficient in software. Everything else wants to use AES-GCM.&lt;/p&gt;
+
+&lt;p&gt;Agility has allowed us to introduce the ciphers in the final set and that's really important. But it's equally important to kill off the old stuff, and that's very hard. Nearly all the incentives are aligned against it. Recall the Law of the Internet (mentioned above); users hate stuff breaking and always blame you. Even djb will &lt;a href=&quot;https://twitter.com/hashbreaker/status/701587160378413057?lang=en&quot;&gt;take to Twitter&lt;/a&gt; when one &lt;a href=&quot;http://www.openssh.com/txt/release-7.0&quot;&gt;drops DSA support&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We have a long conveyor belt of primitives, we put new ones at the front and, every so often, we turn the crank and something drops off the end. In addition to all the obvious problems with killing off old stuff, that also means that there's a lot of inadvisable options that will generally function at any given time and this is leading to new products launching with no idea that they're sitting towards the end of this conveyor belt. These products expect a lifetime of some number of years and are unaware that we hope to discontinue something that they're using much sooner than that. It's no longer the case that we can assume that waiting a year will result in a reduction of the amount of use that a deprecated primitive gets because of new launches.&lt;/p&gt;
+
+&lt;p&gt;Google tries to address this where it can by requiring support for the newest options in our certification process for devices that interact with our services. But only a tiny subset of the things that interact with Google go through any of our certifications.&lt;/p&gt;
+
+&lt;p&gt;Things are even harder in non-interactive cases. TLS at least gets to negotiate between the client and server but algorithms in S/MIME messages and certificate signatures don't allow that. (One can think of ways to help change that, but the current reality is that they're not negotiated.) That's why dropping SHA-1 support in certificates has been a such a gruesome fight and why PKCS#8 messages still require us to support 40-bit RC2.&lt;/p&gt;
+
+&lt;p&gt;So what's the lesson here? I'd say that you need extensibility but, when it comes to cryptographic agility, have &lt;i&gt;one&lt;/i&gt; option. Maybe two. Fight to keep it that small.&lt;/p&gt;
+
+&lt;p&gt;It's worth highlighting that, for the purposes of time, I've simplified things dramatically. I've considered only symmetric ciphers and modes above but, even within TLS, there's a whole separate conveyor belt for asymmetric algorithms. And I've not mentioned the oncoming storm of quantum computers. Quantum computers are going to be &lt;i&gt;hilarious&lt;/i&gt; and I hope to be retired before they get big enough to cause problems!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Post-quantum key agreement</title>
+   <link href="http://www.imperialviolet.org/2015/12/24/rlwe.html"/>
+   <updated>2015-12-24T00:00:00-05:00</updated>
+   <id>http://www.imperialviolet.org/2015/12/24/rlwe</id>
+   <content type="html">&lt;p&gt;If large quantum computers can be built (&lt;a href=&quot;http://www.scottaaronson.com/blog/?p=2555&quot;&gt;and not of the D-Wave variety&lt;/a&gt;) then they'll make quite a mess of public-key cryptography. RSA and systems based on discrete logarithms (i.e. finite-field and elliptic-curve Diffie-Hellman) are all broken. I've written about &lt;a href=&quot;https://www.imperialviolet.org/2013/07/18/hashsig.html&quot;&gt;hash-based signatures&lt;/a&gt; (which resist quantum attacks) before and the recent &lt;a href=&quot;http://pqcrypto.eu.org/docs/initial-recommendations.pdf&quot;&gt;PQCRYPTO recommendations&lt;/a&gt; suggest those for signatures and McEliece for public-key encryption. Those are both sound, conservative recommendations but both have some size problems: McEliece public keys can be on the order of a megabyte of data and conservative hash-based signatures are about 40KB.&lt;/p&gt;
+
+&lt;p&gt;In some situations that's not a problem, and things like firmware signatures, where the key is embedded in hard-to-change silicon, should consider using hash-based signatures today. But those costs motivate the search for post-quantum schemes that are closer to the small, fast primitives that we have today.&lt;/p&gt;
+
+&lt;p&gt;One candidate is called Ring Learning-With-Errors (RLWE) and I'll try to give a taste of how it works in this post. This is strongly based on the &lt;a href=&quot;https://eprint.iacr.org/2015/1092&quot;&gt;A New Hope&lt;/a&gt; paper by Alkim, Ducas, Pöppelmann &amp;amp; Schwabe, and, in turn, on papers by &lt;a href=&quot;http://eprint.iacr.org/2014/599&quot;&gt;Bos, Costello, Naehrig &amp;amp; Stebila&lt;/a&gt; and &lt;a href=&quot;http://web.eecs.umich.edu/~cpeikert/pubs/suite.pdf&quot;&gt;Peikert&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Firstly, the basic stats (because I always hate having to dig around for these values in papers). I've included the numbers for a current, elliptic-curve based Diffie-Hellman scheme (X25519) for comparision:&lt;/p&gt;
+
+&lt;table&gt;
+	&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;A New Hope&lt;/th&gt;&lt;th&gt;X25519&lt;/th&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;th&gt;Alice's transmission size&lt;/th&gt;&lt;td&gt;1,824 bytes&lt;sup&gt;a&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;32 bytes&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;th&gt;Alice's computation&lt;/th&gt;&lt;td&gt;129,638 cycles&lt;sup&gt;b&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;331,568 cycles&lt;sup&gt;c&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;th&gt;Bob's transmission size&lt;/th&gt;&lt;td&gt;1,824 bytes&lt;/td&gt;&lt;td&gt;32 bytes&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;th&gt;Bob's computation&lt;/th&gt;&lt;td&gt;126,236 cycles&lt;/td&gt;&lt;td&gt;331,568 cycles&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;(&lt;sup&gt;a&lt;/sup&gt; This is using a more compact scheme than in the paper. &lt;sup&gt;b&lt;/sup&gt; These are Haswell cycle counts from the paper. &lt;sup&gt;c&lt;/sup&gt; These are values from the &lt;a href=&quot;http://bench.cr.yp.to/results-dh.html&quot;&gt;SUPERCOP&lt;/a&gt; benchmark on &lt;kbd&gt;titan0&lt;/kbd&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Something to keep in mind when looking at the numbers above: sending 1,824 bytes on a 10MBit link takes 5.1 million cycles, assuming that your CPU is running at 3.5GHz.&lt;/p&gt;
+
+&lt;h4&gt;RLWE key agreement&lt;/h4&gt;
+
+&lt;p&gt;Our fundamental setting is ℤ&lt;sub&gt;12289&lt;/sub&gt;[X]/(X&lt;sup&gt;1024&lt;/sup&gt;+1). That's the set of polynomial equations where the largest power of &lt;i&gt;x&lt;/i&gt; is 1023 and the coefficients are values between zero and 12288 (inclusive). For example, 66 + 4532&lt;i&gt;x&lt;/i&gt; + 10000&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; + &amp;hellip; + 872&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;1023&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;Addition and multiplication can be defined for polynomials in this set. Addition is done by matching up powers of &lt;i&gt;x&lt;/i&gt; and adding the corresponding coefficients. If the result is out of range then it's reduced modulo 12289.&lt;/p&gt;
+
+&lt;p&gt;Multiplication is high-school polynomial multiplication where the polynomial on the right is multiplied by every term of the polynomial on the left and the result is the sum of those terms. Coefficients are reduced modulo 12289 to keep them in range, but it's likely that the resulting powers of &lt;i&gt;x&lt;/i&gt; will be too large&amp;mdash;multiplying two &lt;i&gt;x&lt;/i&gt;&lt;sup&gt;1023&lt;/sup&gt; terms gives a result in terms of &lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2046&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;Polynomials with too large a degree can be reduced modulo &lt;i&gt;x&lt;/i&gt;&lt;sup&gt;1024&lt;/sup&gt;+1 until they're in range again. So, if we ended up with a term of &lt;i&gt;a&lt;/i&gt;×&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2046&lt;/sup&gt; then we could subtract a×&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;1022&lt;/sup&gt;(&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;1024&lt;/sup&gt;+1) to eliminate it. By repeated application of that trick, all the terms with powers of &lt;i&gt;x&lt;/i&gt; greater than 1023 can be eliminated and then the result is back in the set.&lt;/p&gt;
+
+&lt;p&gt;Now that we can add and multiply within this set of polynomials we need to define a &lt;i&gt;noise&lt;/i&gt; polynomial: this is simply a polynomial where each coefficient is sampled from a random distribution. In this case, the distribution will be a centered binomial distribution that ranges from -12 to 12. The probability density looks like this:&lt;/p&gt;
+
+&lt;svg
+   style=&quot;margin-left: 3em; width: 90%; max-width: 533px;&quot;
+   xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;
+   xmlns:cc=&quot;http://creativecommons.org/ns#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
+   xmlns:sodipodi=&quot;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&quot;
+   xmlns:inkscape=&quot;http://www.inkscape.org/namespaces/inkscape&quot;
+   width=&quot;90%&quot;
+   height=&quot;450.41718&quot;
+   viewBox=&quot;0 0 533.48083 450.41718&quot;
+   id=&quot;svg2&quot;
+   version=&quot;1.1&quot;
+   inkscape:version=&quot;0.91 r13725&quot;
+   sodipodi:docname=&quot;noise.svg&quot;&gt;
+  &lt;metadata
+     id=&quot;metadata248&quot;&gt;
+    &lt;rdf:RDF&gt;
+      &lt;cc:Work
+         rdf:about=&quot;&quot;&gt;
+        &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
+        &lt;dc:type
+           rdf:resource=&quot;http://purl.org/dc/dcmitype/StillImage&quot; /&gt;
+        &lt;dc:title&gt;Gnuplot&lt;/dc:title&gt;
+      &lt;/cc:Work&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/metadata&gt;
+  &lt;defs
+     id=&quot;defs246&quot;&gt;
+    &lt;defs
+       id=&quot;defs11&quot;&gt;
+      &lt;circle
+         r=&quot;0.5&quot;
+         id=&quot;gpDot&quot;
+         cx=&quot;0&quot;
+         cy=&quot;0&quot;
+         style=&quot;stroke-width:0.5&quot; /&gt;
+      &lt;path
+         d=&quot;M -1,0 1,0 M 0,-1 0,1&quot;
+         id=&quot;gpPt0&quot;
+         inkscape:connector-curvature=&quot;0&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;path
+         d=&quot;M -1,-1 1,1 M 1,-1 -1,1&quot;
+         id=&quot;gpPt1&quot;
+         inkscape:connector-curvature=&quot;0&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;path
+         d=&quot;M -1,0 1,0 M 0,-1 0,1 m -1,-2 2,2 m -2,0 2,-2&quot;
+         id=&quot;gpPt2&quot;
+         inkscape:connector-curvature=&quot;0&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;rect
+         height=&quot;2&quot;
+         width=&quot;2&quot;
+         y=&quot;-1&quot;
+         x=&quot;-1&quot;
+         id=&quot;gpPt3&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;rect
+         height=&quot;2&quot;
+         width=&quot;2&quot;
+         y=&quot;-1&quot;
+         x=&quot;-1&quot;
+         id=&quot;gpPt4&quot;
+         style=&quot;fill:currentColor;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;circle
+         r=&quot;1&quot;
+         cy=&quot;0&quot;
+         cx=&quot;0&quot;
+         id=&quot;gpPt5&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;use
+         id=&quot;gpPt6&quot;
+         xlink:href=&quot;#gpPt5&quot;
+         style=&quot;fill:currentColor;stroke:none&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;path
+         d=&quot;m 0,-1.33 -1.33,2 2.66,0 z&quot;
+         id=&quot;gpPt7&quot;
+         inkscape:connector-curvature=&quot;0&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;use
+         id=&quot;gpPt8&quot;
+         xlink:href=&quot;#gpPt7&quot;
+         style=&quot;fill:currentColor;stroke:none&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;use
+         transform=&quot;scale(-1,-1)&quot;
+         id=&quot;gpPt9&quot;
+         xlink:href=&quot;#gpPt7&quot;
+         style=&quot;stroke:currentColor&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;use
+         id=&quot;gpPt10&quot;
+         xlink:href=&quot;#gpPt9&quot;
+         style=&quot;fill:currentColor;stroke:none&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;use
+         transform=&quot;matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)&quot;
+         id=&quot;gpPt11&quot;
+         xlink:href=&quot;#gpPt3&quot;
+         style=&quot;stroke:currentColor&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;use
+         id=&quot;gpPt12&quot;
+         xlink:href=&quot;#gpPt11&quot;
+         style=&quot;fill:currentColor;stroke:none&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;path
+         d=&quot;M 0,1.33 1.265,0.411 0.782,-1.067 -0.782,-1.076 -1.265,0.411 Z&quot;
+         id=&quot;gpPt13&quot;
+         inkscape:connector-curvature=&quot;0&quot;
+         style=&quot;stroke:currentColor;stroke-width:0.222&quot; /&gt;
+      &lt;use
+         id=&quot;gpPt14&quot;
+         xlink:href=&quot;#gpPt13&quot;
+         style=&quot;fill:currentColor;stroke:none&quot;
+         x=&quot;0&quot;
+         y=&quot;0&quot;
+         width=&quot;100%&quot;
+         height=&quot;100%&quot; /&gt;
+      &lt;filter
+         width=&quot;1&quot;
+         height=&quot;1&quot;
+         y=&quot;0&quot;
+         x=&quot;0&quot;
+         filterUnits=&quot;objectBoundingBox&quot;
+         id=&quot;textbox&quot;&gt;
+        &lt;feFlood
+           id=&quot;feFlood30&quot;
+           result=&quot;bgnd&quot;
+           flood-opacity=&quot;1&quot;
+           flood-color=&quot;white&quot; /&gt;
+        &lt;feComposite
+           id=&quot;feComposite32&quot;
+           operator=&quot;atop&quot;
+           in2=&quot;bgnd&quot;
+           in=&quot;SourceGraphic&quot; /&gt;
+      &lt;/filter&gt;
+      &lt;filter
+         width=&quot;1&quot;
+         height=&quot;1&quot;
+         y=&quot;0&quot;
+         x=&quot;0&quot;
+         filterUnits=&quot;objectBoundingBox&quot;
+         id=&quot;greybox&quot;&gt;
+        &lt;feFlood
+           id=&quot;feFlood35&quot;
+           result=&quot;grey&quot;
+           flood-opacity=&quot;1&quot;
+           flood-color=&quot;lightgrey&quot; /&gt;
+        &lt;feComposite
+           id=&quot;feComposite37&quot;
+           operator=&quot;atop&quot;
+           in2=&quot;grey&quot;
+           in=&quot;SourceGraphic&quot; /&gt;
+      &lt;/filter&gt;
+    &lt;/defs&gt;
+  &lt;/defs&gt;
+  &lt;sodipodi:namedview
+     pagecolor=&quot;#ffffff&quot;
+     bordercolor=&quot;#666666&quot;
+     borderopacity=&quot;1&quot;
+     objecttolerance=&quot;10&quot;
+     gridtolerance=&quot;10&quot;
+     guidetolerance=&quot;10&quot;
+     inkscape:pageopacity=&quot;0&quot;
+     inkscape:pageshadow=&quot;2&quot;
+     inkscape:window-width=&quot;2560&quot;
+     inkscape:window-height=&quot;1376&quot;
+     id=&quot;namedview244&quot;
+     showgrid=&quot;false&quot;
+     inkscape:zoom=&quot;1.3906433&quot;
+     inkscape:cx=&quot;256.37873&quot;
+     inkscape:cy=&quot;226.61719&quot;
+     inkscape:window-x=&quot;0&quot;
+     inkscape:window-y=&quot;27&quot;
+     inkscape:window-maximized=&quot;1&quot;
+     inkscape:current-layer=&quot;svg2&quot;
+     fit-margin-top=&quot;0&quot;
+     fit-margin-left=&quot;0&quot;
+     fit-margin-right=&quot;0&quot;
+     fit-margin-bottom=&quot;0&quot; /&gt;
+  &lt;title
+     id=&quot;title4&quot;&gt;Gnuplot&lt;/title&gt;
+  &lt;desc
+     id=&quot;desc6&quot;&gt;Produced by GNUPLOT 5.0 patchlevel 1 &lt;/desc&gt;
+  &lt;rect
+     style=&quot;fill:none&quot;
+     id=&quot;rect9&quot;
+     height=&quot;480&quot;
+     width=&quot;600&quot;
+     y=&quot;-16.200001&quot;
+     x=&quot;-47.689064&quot; /&gt;
+  &lt;g
+     style=&quot;color:#ffffff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g39&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g41&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path43&quot;
+       d=&quot;m 62.2,444 9,0 m 503.8,0 -9,0&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:end;fill:#000000;stroke:none&quot;
+       id=&quot;g45&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(53.9,448.5)&quot;&gt;
+      &lt;text
+         id=&quot;text47&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan49&quot;&gt;0&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g141&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path143&quot;
+       d=&quot;m 62.2,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g145&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(62.2,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text147&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan149&quot;&gt;-15&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g151&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path153&quot;
+       d=&quot;m 147.7,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g155&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(147.7,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text157&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan159&quot;&gt;-10&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g161&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path163&quot;
+       d=&quot;m 233.1,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g165&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(233.1,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text167&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan169&quot;&gt;-5&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g171&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path173&quot;
+       d=&quot;m 318.6,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g175&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(318.6,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text177&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan179&quot;&gt;0&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g181&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path183&quot;
+       d=&quot;m 404.1,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g185&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(404.1,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text187&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan189&quot;&gt;5&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g191&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path193&quot;
+       d=&quot;m 489.5,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g195&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(489.5,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text197&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan199&quot;&gt;10&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g201&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path203&quot;
+       d=&quot;m 575,444 0,-9 m 0,-418.3 0,9&quot; /&gt;
+    &lt;g
+       style=&quot;font-size:12px;font-family:Arial;text-anchor:middle;fill:#000000;stroke:none&quot;
+       id=&quot;g205&quot;
+       font-size=&quot;12.00&quot;
+       transform=&quot;translate(575,466.5)&quot;&gt;
+      &lt;text
+         id=&quot;text207&quot;&gt;
+        &lt;tspan
+           style=&quot;font-family:Arial&quot;
+           id=&quot;tspan209&quot;&gt;15&lt;/tspan&gt;
+      &lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g211&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g213&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path215&quot;
+       d=&quot;m 62.2,16.7 0,427.3 512.8,0 0,-427.3 -512.8,0 z&quot; /&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g217&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+  &lt;g
+     id=&quot;g228&quot;
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       d=&quot;m 113.5,444 17.1,0 17.1,0 17.1,0 17.1,-1.9 17,-3.3 17.1,-16.2 17.1,-23 17.1,-59.6 17.1,-73.1 17.1,-108.5 17.1,-82.4 17.1,-34.6 17.1,28.7 17.1,90.5 17.1,108.4 17.1,67.5 17.1,55.5 17.1,32.8 17.1,12.6 17,3.8 17.1,2.6 17.1,0.2 17.1,0 17.1,0&quot;
+       id=&quot;path230&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       style=&quot;stroke:#9400d3&quot;
+       sodipodi:nodetypes=&quot;ccccccccccccccccccccccccc&quot; /&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#ffffff;fill:none;stroke:#9400d3;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g232&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g234&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g236&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g238&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot;&gt;
+    &lt;path
+       style=&quot;stroke:#000000&quot;
+       inkscape:connector-curvature=&quot;0&quot;
+       id=&quot;path240&quot;
+       d=&quot;m 62.2,16.7 0,427.3 512.8,0 0,-427.3 -512.8,0 z&quot; /&gt;
+  &lt;/g&gt;
+  &lt;g
+     style=&quot;color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter&quot;
+     id=&quot;g242&quot;
+     transform=&quot;translate(-47.689062,-16.2)&quot; /&gt;
+&lt;/svg&gt;
+
+&lt;p&gt;An important feature of noise polynomials is that the magnitude of each coefficient is small. That will be critical later on.&lt;/p&gt;
+
+&lt;p&gt;A &lt;i&gt;random&lt;/i&gt; polynomial is one where each coefficient is sampled from a uniform distribution over the full range of zero to 12288.&lt;/p&gt;
+
+&lt;p&gt;To build a Diffie-Hellman protocol from this, Alice generates a random polynomial, &lt;b&gt;a&lt;/b&gt;, and two noise polynomials, &lt;b&gt;s&lt;/b&gt; and &lt;b&gt;e&lt;/b&gt;. Alice calculates &lt;b&gt;b&lt;/b&gt; = &lt;b&gt;as&lt;/b&gt;+&lt;b&gt;e&lt;/b&gt; and sends &lt;b&gt;a&lt;/b&gt; and &lt;b&gt;b&lt;/b&gt; to Bob. Bob generates his own &lt;b&gt;s′&lt;/b&gt; and &lt;b&gt;e′&lt;/b&gt;, uses Alice's &lt;b&gt;a&lt;/b&gt; to calculate &lt;b&gt;u&lt;/b&gt; = &lt;b&gt;as′&lt;/b&gt;+&lt;b&gt;e′&lt;/b&gt;, and sends &lt;b&gt;u&lt;/b&gt; back to Alice. Now Alice can calculate &lt;b&gt;us&lt;/b&gt; = (&lt;b&gt;as′&lt;/b&gt;+&lt;b&gt;e′&lt;/b&gt;)&lt;b&gt;s&lt;/b&gt; = &lt;b&gt;as′s&lt;/b&gt;+&lt;b&gt;e′s&lt;/b&gt; and Bob can calculate &lt;b&gt;bs′&lt;/b&gt; = (&lt;b&gt;as&lt;/b&gt;+&lt;b&gt;e&lt;/b&gt;)&lt;b&gt;s′&lt;/b&gt; = &lt;b&gt;ass′&lt;/b&gt;+&lt;b&gt;es′&lt;/b&gt;. But the keen-eyed will notice that those are different values!&lt;/p&gt;
+
+&lt;p&gt;The added noise is necessary for security but it means that the two sides to this protocol calculate different values. But, while the values &lt;i&gt;are&lt;/i&gt; different, they're very similar because the magnitude of the noise polynomials is small. So a &lt;i&gt;reconciliation&lt;/i&gt; mechanism is needed to find a shared value given two, similar polynomials.&lt;/p&gt;
+
+&lt;h4&gt;Reconciliation&lt;/h4&gt;
+
+&lt;p&gt;So far I've been following the &lt;a href=&quot;https://eprint.iacr.org/2015/1092.pdf&quot;&gt;A New Hope&lt;/a&gt; paper and it does include a reconciliation mechanism. But, to be honest, I'm not sure that I understand it, so I'm going to be describing a mechanism by Peikert here:&lt;/p&gt;
+
+&lt;p&gt;The reconciliation will treat each coefficient in the similar polynomials separately and will extract a single, shared bit from each. Since we're dealing with polynomials that have 1024 terms, we'll get a 1024-bit shared secret in total but I'm just going to discuss the process of processing a single coefficient to get a single bit.&lt;/p&gt;
+
+&lt;p&gt;Consider the coefficient space as a circle: zero and 12289 are the same value modulo 12289 and we put that at the top of the circle. At the bottom of the circle will be 12289/2 = 6144 (rounding down). We know that, for each coefficient, Alice and Bob will have similar values&amp;mdash;meaning that the values will be close by on the circle. &lt;/p&gt;
+
+&lt;svg
+   style=&quot;margin-left: 3em;&quot;
+   xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;
+   xmlns:cc=&quot;http://creativecommons.org/ns#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns:sodipodi=&quot;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&quot;
+   xmlns:inkscape=&quot;http://www.inkscape.org/namespaces/inkscape&quot;
+   version=&quot;1.1&quot;
+   id=&quot;svg4527&quot;
+   viewBox=&quot;0 0 249.42644 317.96347&quot;
+   height=&quot;89.736359mm&quot;
+   width=&quot;70.393684mm&quot;
+   inkscape:version=&quot;0.91 r13725&quot;
+   sodipodi:docname=&quot;rlwe-fig1.svg&quot;&gt;
+  &lt;sodipodi:namedview
+     pagecolor=&quot;#ffffff&quot;
+     bordercolor=&quot;#666666&quot;
+     borderopacity=&quot;1&quot;
+     objecttolerance=&quot;10&quot;
+     gridtolerance=&quot;10&quot;
+     guidetolerance=&quot;10&quot;
+     inkscape:pageopacity=&quot;0&quot;
+     inkscape:pageshadow=&quot;2&quot;
+     inkscape:window-width=&quot;777&quot;
+     inkscape:window-height=&quot;480&quot;
+     id=&quot;namedview5848&quot;
+     showgrid=&quot;false&quot;
+     fit-margin-top=&quot;0&quot;
+     fit-margin-left=&quot;0&quot;
+     fit-margin-right=&quot;0&quot;
+     fit-margin-bottom=&quot;0&quot;
+     inkscape:zoom=&quot;0.22425739&quot;
+     inkscape:cx=&quot;166.61301&quot;
+     inkscape:cy=&quot;2.2350353&quot;
+     inkscape:window-x=&quot;0&quot;
+     inkscape:window-y=&quot;27&quot;
+     inkscape:window-maximized=&quot;0&quot;
+     inkscape:current-layer=&quot;svg4527&quot; /&gt;
+  &lt;defs
+     id=&quot;defs4529&quot; /&gt;
+  &lt;metadata
+     id=&quot;metadata4532&quot;&gt;
+    &lt;rdf:RDF&gt;
+      &lt;cc:Work
+         rdf:about=&quot;&quot;&gt;
+        &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
+        &lt;dc:type
+           rdf:resource=&quot;http://purl.org/dc/dcmitype/StillImage&quot; /&gt;
+        &lt;dc:title&gt;&lt;/dc:title&gt;
+      &lt;/cc:Work&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/metadata&gt;
+  &lt;g
+     id=&quot;layer1&quot;
+     transform=&quot;translate(-205.43423,-210.45267)&quot;&gt;
+    &lt;circle
+       r=&quot;120.71323&quot;
+       cy=&quot;370.33682&quot;
+       cx=&quot;330.14746&quot;
+       id=&quot;path5075&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#968b96;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;rect
+       y=&quot;233.82047&quot;
+       x=&quot;330.59653&quot;
+       height=&quot;18.687822&quot;
+       width=&quot;0.25253814&quot;
+       id=&quot;rect5077&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;rect
+       style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       id=&quot;rect5079&quot;
+       width=&quot;0.25253814&quot;
+       height=&quot;18.687822&quot;
+       x=&quot;330.59653&quot;
+       y=&quot;488.92297&quot; /&gt;
+    &lt;text
+       id=&quot;text5081&quot;
+       y=&quot;226.76736&quot;
+       x=&quot;324.17847&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;
+       sodipodi:linespacing=&quot;125%&quot;&gt;&lt;tspan
+         y=&quot;226.76736&quot;
+         x=&quot;324.17847&quot;
+         id=&quot;tspan5083&quot;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text
+       id=&quot;text5085&quot;
+       y=&quot;528.19641&quot;
+       x=&quot;304.92432&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;
+       sodipodi:linespacing=&quot;125%&quot;&gt;&lt;tspan
+         y=&quot;528.19641&quot;
+         x=&quot;304.92432&quot;
+         id=&quot;tspan5087&quot;&gt;6144&lt;/tspan&gt;&lt;/text&gt;
+    &lt;circle
+       r=&quot;4.7982244&quot;
+       cy=&quot;264.44324&quot;
+       cx=&quot;387.64603&quot;
+       id=&quot;path5105&quot;
+       style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;circle
+       style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       id=&quot;circle5107&quot;
+       cx=&quot;422.49628&quot;
+       cy=&quot;292.98004&quot;
+       r=&quot;4.7982244&quot; /&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;
+
+&lt;p&gt;One option is to split the circle into left and right halves and say that if the point is in the left half then it's a zero, otherwise it's a one.&lt;/p&gt;
+
+&lt;svg
+   style=&quot;margin-left: 3em;&quot;
+   xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;
+   xmlns:cc=&quot;http://creativecommons.org/ns#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns:sodipodi=&quot;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&quot;
+   xmlns:inkscape=&quot;http://www.inkscape.org/namespaces/inkscape&quot;
+   version=&quot;1.1&quot;
+   id=&quot;svg4527&quot;
+   viewBox=&quot;0 0 273.65143 317.96347&quot;
+   height=&quot;89.736359mm&quot;
+   width=&quot;77.230515mm&quot;
+   inkscape:version=&quot;0.91 r13725&quot;
+   sodipodi:docname=&quot;rlwe-fig2.svg&quot;&gt;
+  &lt;sodipodi:namedview
+     pagecolor=&quot;#ffffff&quot;
+     bordercolor=&quot;#666666&quot;
+     borderopacity=&quot;1&quot;
+     objecttolerance=&quot;10&quot;
+     gridtolerance=&quot;10&quot;
+     guidetolerance=&quot;10&quot;
+     inkscape:pageopacity=&quot;0&quot;
+     inkscape:pageshadow=&quot;2&quot;
+     inkscape:window-width=&quot;777&quot;
+     inkscape:window-height=&quot;480&quot;
+     id=&quot;namedview5246&quot;
+     showgrid=&quot;false&quot;
+     inkscape:zoom=&quot;0.31714784&quot;
+     inkscape:cx=&quot;16.951334&quot;
+     inkscape:cy=&quot;149.00354&quot;
+     inkscape:window-x=&quot;311&quot;
+     inkscape:window-y=&quot;256&quot;
+     inkscape:window-maximized=&quot;0&quot;
+     inkscape:current-layer=&quot;svg4527&quot;
+     fit-margin-top=&quot;0&quot;
+     fit-margin-left=&quot;0&quot;
+     fit-margin-right=&quot;0&quot;
+     fit-margin-bottom=&quot;0&quot; /&gt;
+  &lt;defs
+     id=&quot;defs4529&quot; /&gt;
+  &lt;metadata
+     id=&quot;metadata4532&quot;&gt;
+    &lt;rdf:RDF&gt;
+      &lt;cc:Work
+         rdf:about=&quot;&quot;&gt;
+        &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
+        &lt;dc:type
+           rdf:resource=&quot;http://purl.org/dc/dcmitype/StillImage&quot; /&gt;
+        &lt;dc:title /&gt;
+      &lt;/cc:Work&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/metadata&gt;
+  &lt;circle
+     style=&quot;fill:none;fill-opacity:1;stroke:#968b96;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+     id=&quot;path5075&quot;
+     cx=&quot;136.61693&quot;
+     cy=&quot;159.88416&quot;
+     r=&quot;120.71323&quot; /&gt;
+  &lt;rect
+     style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+     id=&quot;rect5077&quot;
+     width=&quot;0.25253814&quot;
+     height=&quot;18.687822&quot;
+     x=&quot;137.06599&quot;
+     y=&quot;23.367798&quot; /&gt;
+  &lt;rect
+     y=&quot;278.47031&quot;
+     x=&quot;137.06599&quot;
+     height=&quot;18.687822&quot;
+     width=&quot;0.25253814&quot;
+     id=&quot;rect5079&quot;
+     style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+  &lt;text
+     sodipodi:linespacing=&quot;125%&quot;
+     xml:space=&quot;preserve&quot;
+     style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+     x=&quot;130.64793&quot;
+     y=&quot;16.314697&quot;
+     id=&quot;text5081&quot;&gt;&lt;tspan
+       id=&quot;tspan5083&quot;
+       x=&quot;130.64793&quot;
+       y=&quot;16.314697&quot;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text
+     sodipodi:linespacing=&quot;125%&quot;
+     xml:space=&quot;preserve&quot;
+     style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+     x=&quot;111.39378&quot;
+     y=&quot;317.74374&quot;
+     id=&quot;text5085&quot;&gt;&lt;tspan
+       id=&quot;tspan5087&quot;
+       x=&quot;111.39378&quot;
+       y=&quot;317.74374&quot;&gt;6144&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path
+     inkscape:connector-curvature=&quot;0&quot;
+     style=&quot;fill:none;fill-opacity:1;stroke:#ea3737;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+     d=&quot;m 150.04033,290.48288 c 67.51838,-6.19612 119.206,-62.79754 119.26172,-130.59961 C 269.27455,92.060233 217.57958,35.427023 150.04033,29.228973&quot;
+     id=&quot;circle5096&quot; /&gt;
+  &lt;path
+     inkscape:connector-curvature=&quot;0&quot;
+     id=&quot;path5101&quot;
+     d=&quot;M 123.61109,290.48288 C 56.092714,284.28676 4.4050936,227.68534 4.3493736,159.88327 4.3768736,92.060233 56.071844,35.427023 123.61109,29.228973&quot;
+     style=&quot;fill:none;fill-opacity:1;stroke:#ea3737;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+  &lt;circle
+     style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+     id=&quot;path5105&quot;
+     cx=&quot;194.11549&quot;
+     cy=&quot;53.99057&quot;
+     r=&quot;4.7982244&quot; /&gt;
+  &lt;circle
+     r=&quot;4.7982244&quot;
+     cy=&quot;82.527374&quot;
+     cx=&quot;228.96574&quot;
+     id=&quot;circle5107&quot;
+     style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+  &lt;text
+     xml:space=&quot;preserve&quot;
+     style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ea3737;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+     x=&quot;61.756481&quot;
+     y=&quot;26.440308&quot;
+     id=&quot;text5788&quot;
+     sodipodi:linespacing=&quot;125%&quot;&gt;&lt;tspan
+       sodipodi:role=&quot;line&quot;
+       id=&quot;tspan5790&quot;
+       x=&quot;61.756481&quot;
+       y=&quot;26.440308&quot;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text
+     sodipodi:linespacing=&quot;125%&quot;
+     id=&quot;text5803&quot;
+     y=&quot;26.440308&quot;
+     x=&quot;193.30177&quot;
+     style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ea3737;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+     xml:space=&quot;preserve&quot;&gt;&lt;tspan
+       y=&quot;26.440308&quot;
+       x=&quot;193.30177&quot;
+       id=&quot;tspan5805&quot;
+       sodipodi:role=&quot;line&quot;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;
+
+
+&lt;p&gt;But while that will work most of the time, there's obviously a problem when the points are near the top or the bottom. In these cases, a small difference in location can result in a point being in a different half, and thus Alice and Bob will get a different result.&lt;/p&gt;
+
+&lt;p&gt;In this case we want to split the circle into top (zero) and bottom (one), so that both points are clearly in the bottom half.&lt;/p&gt;
+
+&lt;svg
+   style=&quot;margin-left: 3em;&quot;
+   xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;
+   xmlns:cc=&quot;http://creativecommons.org/ns#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns=&quot;http://www.w3.org/2000/svg&quot;
+   version=&quot;1.1&quot;
+   id=&quot;svg4527&quot;
+   viewBox=&quot;0 0 294.96772 317.96347&quot;
+   height=&quot;89.736359mm&quot;
+   width=&quot;83.246445mm&quot;&gt;
+  &lt;defs
+     id=&quot;defs4529&quot; /&gt;
+  &lt;metadata
+     id=&quot;metadata4532&quot;&gt;
+    &lt;rdf:RDF&gt;
+      &lt;cc:Work
+         rdf:about=&quot;&quot;&gt;
+        &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
+        &lt;dc:type
+           rdf:resource=&quot;http://purl.org/dc/dcmitype/StillImage&quot; /&gt;
+        &lt;dc:title&gt;&lt;/dc:title&gt;
+      &lt;/cc:Work&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/metadata&gt;
+  &lt;g
+     transform=&quot;translate(-169.97784,-210.45267)&quot;
+     id=&quot;layer1&quot;&gt;
+    &lt;circle
+       r=&quot;120.71323&quot;
+       cy=&quot;370.33682&quot;
+       cx=&quot;330.14746&quot;
+       id=&quot;path5075&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#968b96;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;text
+       id=&quot;text5081&quot;
+       y=&quot;226.76736&quot;
+       x=&quot;324.17847&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;&gt;&lt;tspan
+         y=&quot;226.76736&quot;
+         x=&quot;324.17847&quot;
+         id=&quot;tspan5083&quot;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text
+       id=&quot;text5085&quot;
+       y=&quot;528.19641&quot;
+       x=&quot;304.92432&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;&gt;&lt;tspan
+         y=&quot;528.19641&quot;
+         x=&quot;304.92432&quot;
+         id=&quot;tspan5087&quot;&gt;6144&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path
+       id=&quot;circle5096&quot;
+       d=&quot;m 199.36048,382.46344 c 6.19612,67.51838 62.79754,119.206 130.59962,119.26172 67.82304,-0.0275 124.45624,-51.72247 130.6543,-119.26172&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#5037ea;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;circle
+       r=&quot;4.7982244&quot;
+       cy=&quot;489.44324&quot;
+       cx=&quot;348.00317&quot;
+       id=&quot;path5105&quot;
+       style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;circle
+       style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       id=&quot;circle5107&quot;
+       cx=&quot;312.13913&quot;
+       cy=&quot;489.76575&quot;
+       r=&quot;4.7982244&quot; /&gt;
+    &lt;path
+       style=&quot;fill:none;fill-opacity:1;stroke:#5037ea;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       d=&quot;m 199.36048,358.89135 c 6.19612,-67.51838 62.79754,-119.206 130.59962,-119.26172 67.82304,0.0275 124.45624,51.72247 130.6543,119.26172&quot;
+       id=&quot;path5202&quot; /&gt;
+    &lt;rect
+       style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       id=&quot;rect5079&quot;
+       width=&quot;0.25253814&quot;
+       height=&quot;18.687822&quot;
+       x=&quot;330.59653&quot;
+       y=&quot;488.92297&quot; /&gt;
+    &lt;rect
+       y=&quot;233.82047&quot;
+       x=&quot;330.59653&quot;
+       height=&quot;18.687822&quot;
+       width=&quot;0.25253814&quot;
+       id=&quot;rect5077&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;text
+       id=&quot;text5223&quot;
+       y=&quot;327.00507&quot;
+       x=&quot;169.28571&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5037ea;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;&gt;&lt;tspan
+         y=&quot;327.00507&quot;
+         x=&quot;169.28571&quot;
+         id=&quot;tspan5225&quot;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text
+       xml:space=&quot;preserve&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5037ea;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       x=&quot;169.28571&quot;
+       y=&quot;426.64792&quot;
+       id=&quot;text5227&quot;&gt;&lt;tspan
+         id=&quot;tspan5229&quot;
+         x=&quot;169.28571&quot;
+         y=&quot;426.64792&quot;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;
+
+&lt;p&gt;But that just moves the problem around to the left and right edges of the circle. So how about we vary the basis in which we measure the points depending where they are? If the point is near the bottom or the top we'll use the top&amp;ndash;bottom (blue) basis and, if not, we'll use the left&amp;ndash;right (red) basis.&lt;/p&gt;
+
+&lt;svg
+   style=&quot;margin-left: 3em;&quot;
+   xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;
+   xmlns:cc=&quot;http://creativecommons.org/ns#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+   xmlns=&quot;http://www.w3.org/2000/svg&quot;
+   version=&quot;1.1&quot;
+   id=&quot;svg4527&quot;
+   viewBox=&quot;0 0 271.65962 317.96348&quot;
+   height=&quot;89.736359mm&quot;
+   width=&quot;76.668381mm&quot;&gt;
+  &lt;defs
+     id=&quot;defs4529&quot; /&gt;
+  &lt;metadata
+     id=&quot;metadata4532&quot;&gt;
+    &lt;rdf:RDF&gt;
+      &lt;cc:Work
+         rdf:about=&quot;&quot;&gt;
+        &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
+        &lt;dc:type
+           rdf:resource=&quot;http://purl.org/dc/dcmitype/StillImage&quot; /&gt;
+        &lt;dc:title&gt;&lt;/dc:title&gt;
+      &lt;/cc:Work&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/metadata&gt;
+  &lt;g
+     transform=&quot;translate(-194.53689,-210.45267)&quot;
+     id=&quot;layer1&quot;&gt;
+    &lt;circle
+       r=&quot;120.71323&quot;
+       cy=&quot;370.33682&quot;
+       cx=&quot;330.14746&quot;
+       id=&quot;path5075&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#968b96;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;text
+       id=&quot;text5081&quot;
+       y=&quot;226.76736&quot;
+       x=&quot;324.17847&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;&gt;&lt;tspan
+         y=&quot;226.76736&quot;
+         x=&quot;324.17847&quot;
+         id=&quot;tspan5083&quot;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text
+       id=&quot;text5085&quot;
+       y=&quot;528.19641&quot;
+       x=&quot;304.92432&quot;
+       style=&quot;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1&quot;
+       xml:space=&quot;preserve&quot;&gt;&lt;tspan
+         y=&quot;528.19641&quot;
+         x=&quot;304.92432&quot;
+         id=&quot;tspan5087&quot;&gt;6144&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path
+       id=&quot;circle5096&quot;
+       d=&quot;m 239.42188,465.39844 c 23.62669,22.55562 55.59585,36.29745 90.53906,36.32617 35.32975,-0.0143 67.61635,-14.05441 91.32617,-37.04492&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#5037ea;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;circle
+       r=&quot;4.7982244&quot;
+       cy=&quot;463.01468&quot;
+       cx=&quot;253.18173&quot;
+       id=&quot;path5105&quot;
+       style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;circle
+       style=&quot;fill:#2fff0e;fill-opacity:1;stroke:none;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       id=&quot;circle5107&quot;
+       cx=&quot;234.99628&quot;
+       cy=&quot;444.76575&quot;
+       r=&quot;4.7982244&quot; /&gt;
+    &lt;rect
+       style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       id=&quot;rect5079&quot;
+       width=&quot;0.25253814&quot;
+       height=&quot;18.687822&quot;
+       x=&quot;330.59653&quot;
+       y=&quot;488.92297&quot; /&gt;
+    &lt;rect
+       y=&quot;233.82047&quot;
+       x=&quot;330.59653&quot;
+       height=&quot;18.687822&quot;
+       width=&quot;0.25253814&quot;
+       id=&quot;rect5077&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+    &lt;path
+       style=&quot;fill:none;fill-opacity:1;stroke:#5037ea;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       d=&quot;m 239.42188,275.0899 c 23.62669,-22.55562 55.59585,-36.29745 90.53906,-36.32617 35.32975,0.0143 67.61635,14.05441 91.32617,37.04492&quot;
+       id=&quot;path5810&quot; /&gt;
+    &lt;path
+       style=&quot;fill:none;fill-opacity:1;stroke:#ea3737;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot;
+       d=&quot;m 425.52097,461.18899 c 22.55562,-23.62669 36.29745,-55.59585 36.32617,-90.53906 -0.0143,-35.32975 -14.05441,-67.61635 -37.04492,-91.32617&quot;
+       id=&quot;path5812&quot; /&gt;
+    &lt;path
+       id=&quot;path5814&quot;
+       d=&quot;m 235.21243,461.18899 c -22.55562,-23.62669 -36.29745,-55.59585 -36.32617,-90.53906 0.0143,-35.32975 14.05441,-67.61635 37.04492,-91.32617&quot;
+       style=&quot;fill:none;fill-opacity:1;stroke:#ea3737;stroke-width:8.69874573;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1&quot; /&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;
+
+&lt;p&gt;But there's still a problem! Consider the two points in the diagram just above. One party will think that it's in a red area, measure it left&amp;ndash;right and conclude that the shared bit is a zero. The other will think it's in a blue area, measure it top&amp;ndash;bottom and conclude that the shared bit is a one.&lt;/p&gt;
+
+&lt;p&gt;There isn't a solution to this in which the parties operate independently so, instead, one of the parties chooses the basis in which each coefficient will be measured. This information is a single bit of information (i.e. red or blue) that we have Bob send to Alice along with his value &lt;b&gt;u&lt;/b&gt;. With this &lt;i&gt;reconciliation information&lt;/i&gt; in hand, both parties can measure their points in the same, optimal basis and calculate the same, shared value.&lt;/p&gt;
+
+&lt;h4&gt;Optimisations&lt;/h4&gt;
+
+&lt;p&gt;There's lots in the paper that I've skipped over here. Most importantly (for performance), a variant of the Fourier transform can be used to convert the polynomials into the frequency domain where multiplication is much faster. Some of the values transmitted can be transmitted in the frequency domain too to save conversions overall. Also, random polynomials can be sampled directly in the frequency domain.&lt;/p&gt;
+
+&lt;p&gt;The parameters here have also been carefully selected so that the reduction stage of multiplication happens magically, just by point-wise multiplication of a some constants before and after the transform.&lt;/p&gt;
+
+&lt;p&gt;The &lt;b&gt;a&lt;/b&gt; value that Alice generates could be a global constant, but in order to save worrying about how it was generated, and to eliminate the possibility of all-for-the-price-of-one attacks (like &lt;a href=&quot;https://weakdh.org/&quot;&gt;LogJam&lt;/a&gt;), it's generated fresh for each instance. Rather than transmit it in full, Alice need only send a seed value for it to Bob.&lt;/p&gt;
+
+&lt;h4&gt;Contrasts with Diffie-Hellman&lt;/h4&gt;
+
+&lt;p&gt;The most important change from Diffie-Hellman is that this scheme requires that all values be ephemeral. Both QUIC and TLS 1.3 assume that a Diffie-Hellman public-value can be reused but, in this scheme, that breaks the security of the system. More traditional uses of Diffie-Hellman, e.g. TLS 1.2 and SSH, are fine though.&lt;/p&gt;
+
+&lt;p&gt;Another important change is that this scheme takes a full round-trip for Alice. With Diffie-Hellman, both parties can transmit a message at time zero and as soon as the other party has received the message, they can calculate the shared key and start transmitting. But even if the &lt;b&gt;a&lt;/b&gt; value is a global constant in this scheme, the reconciliation process means that Bob can't send a message until he's received Alice's message, and Alice can't calculate the shared key until she has received Bob's message. So Alice has a wait a full round-trip.&lt;/p&gt;
+
+&lt;p&gt;Often that limitation isn't important because other parts of the protocol already require the round-trip (for example, in TLS). But for some uses it's a critical difference.&lt;/p&gt;
+
+&lt;p&gt;Also, since this protocol involves random noise it has a failure probability: it's possible that the reconciliation mechanism produces different answers for each side. Thankfully this probability can be made negligible (i.e. less than one in 2&lt;sup&gt;64&lt;/sup&gt;).&lt;/p&gt;
+
+&lt;p&gt;I should also note that the RLWE problem is hypothesised to be resistant to quantum attack, but we don't know that. We also don't know that it's resistant to attacks by classical computers! It's possible that someone will develop a classical algorithm tomorrow that breaks the scheme above. Thus it should be used concurrently with a standard Diffie-Hellman (e.g. &lt;a href=&quot;https://tools.ietf.org/html/draft-irtf-cfrg-curves-11&quot;&gt;X25519&lt;/a&gt;) and the outputs of each should concatenated as the input keying material for a KDF.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Juniper: recording some Twitter conversations</title>
+   <link href="http://www.imperialviolet.org/2015/12/19/juniper.html"/>
+   <updated>2015-12-19T00:00:00-05:00</updated>
+   <id>http://www.imperialviolet.org/2015/12/19/juniper</id>
+   <content type="html">&lt;p&gt;&lt;b&gt;Update&lt;/b&gt;: Ralf wrote up &lt;a href=&quot;https://rpw.sh/blog/2015/12/21/the-backdoored-backdoor/&quot;&gt;some notes&lt;/a&gt; from his work. These now include an update themselves with information from &lt;a href=&quot;https://twitter.com/_dvorak_&quot;&gt;Willem Pinckaers&lt;/a&gt; that suggests that the presumed Dual-EC output is exposed to the world in Juniper devices.&lt;/p&gt;
+
+&lt;p&gt;On Thursday, Juniper &lt;a href=&quot;http://forums.juniper.net/t5/Security-Incident-Response/Important-Announcement-about-ScreenOS/ba-p/285554&quot;&gt;announced&lt;/a&gt; that &lt;i&gt;some&lt;/i&gt; of their products were affected by &amp;ldquo;unauthorized code in ScreenOS that could allow a knowledgeable attacker to gain administrative access to NetScreen® devices and to decrypt VPN connections&amp;rdquo;. That sounds like an attacker managed to subvert Juniper's source code repository and insert a backdoor. Of course, any glimpses that we get of these sorts of attacks are fascinating.&lt;/p&gt;
+
+&lt;p&gt;Juniper followed up with a slightly more detailed &lt;a href=&quot;http://kb.juniper.net/InfoCenter/index?page=content&amp;id=JSA10713&amp;actp=search&quot;&gt;post&lt;/a&gt; that noted that there were two backdoors: one via SSH and one that &amp;ldquo;may allow a knowledgeable attacker who can monitor VPN traffic to decrypt that traffic&amp;rdquo;. Either of these would be very interesting to a nation-state attacker but that latter&amp;mdash;passive decryption of VPN connections&amp;mdash;is really in their neighborhood.&lt;/p&gt;
+
+&lt;p&gt;So, of course, smarter people than I quickly took to Twitter to pull apart the differences in the fixed firmware versions. Since Twitter conversations are terrible to try and pick apart after the fact, I'm writing down the gist of things here. But I'm just the scribe in this case; other people did the work.&lt;/p&gt;
+
+&lt;p&gt;One of the first things that people focused on was a &lt;a href=&quot;https://gist.github.com/pzb/4bdc09c577b1dff66770&quot;&gt;difference&lt;/a&gt; to a large, hex value that was visible by just diffing the &lt;kbd&gt;strings&lt;/kbd&gt; of the two firmwares. That change is interesting not just because it's a large, opaque hex string in a binary, but because of the hex strings that immediately precede it. Specially they were:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;kbd&gt;FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF&lt;/kbd&gt;: this is the prime order of the underlying field of P-256, a standard elliptic curve.&lt;/li&gt;
+	&lt;li&gt;&lt;kbd&gt;FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC&lt;/kbd&gt;: P-256 is typically written in &lt;a href=&quot;https://www.hyperelliptic.org/EFD/g1p/auto-shortw.html&quot;&gt;short-Weierstrass&lt;/a&gt; form: y&lt;sup&gt;2&lt;/sup&gt;=x&lt;sup&gt;3&lt;/sup&gt;+ax+b. This is then the &lt;i&gt;a&lt;/i&gt; value for P-256.&lt;/li&gt;
+	&lt;li&gt;&lt;kbd&gt;5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B&lt;/kbd&gt;: This is the &lt;i&gt;b&lt;/i&gt; value for the P-256 equation.&lt;/li&gt;
+	&lt;li&gt;&lt;kbd&gt;6B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296&lt;/kbd&gt;: This is the &lt;i&gt;x&lt;/i&gt; coordinate for the standard generator of P-256&amp;mdash;the starting point for operations on the curve.&lt;/li&gt;
+	&lt;li&gt;&lt;kbd&gt;FFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551&lt;/kbd&gt;: This is the number of points on P-256.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So all the values just before the changed one are constants for P-256, suggesting that the changed value is cryptographic too. The obvious, missing value would be the &lt;i&gt;y&lt;/i&gt; coordinate for the standard generator. One possibility was that the attack put in the wrong &lt;i&gt;y&lt;/i&gt; value. This could put the generator on the wrong curve, say a weaker curve that shares most of the same parameters as P-256 but with a different value for &lt;i&gt;b&lt;/i&gt;. But the curve that would have resulted, while weaker, wasn't real-time-passive-decryption weak. Also the replacement value in the fixed version wasn't the standard &lt;i&gt;y&lt;/i&gt; value either.&lt;/p&gt;
+
+&lt;p&gt;Ralf-Philipp Weinmann was looking at the code itself and found:&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;.&lt;a href=&quot;https://twitter.com/agl__&quot;&gt;@agl__&lt;/a&gt; &lt;a href=&quot;https://twitter.com/ioerror&quot;&gt;@ioerror&lt;/a&gt; &lt;a href=&quot;https://twitter.com/matthew_d_green&quot;&gt;@matthew_d_green&lt;/a&gt; &lt;a href=&quot;https://twitter.com/sweis&quot;&gt;@sweis&lt;/a&gt; ok, it calls EC_POINT_set_compressed_coordinates_GFp() x arg being changed const converted to a BN&lt;/p&gt;&amp;mdash; Ralf (RPW) (@esizkur) &lt;a href=&quot;https://twitter.com/esizkur/status/677909079935815686&quot;&gt;December 18, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;That means that the changed value is an &lt;i&gt;x&lt;/i&gt; coordinate and that the code was calculating the &lt;i&gt;y&lt;/i&gt; value from it given the curve equation. Thus it would only need the &lt;i&gt;x&lt;/i&gt; values and the points would always be on the correct curve. So perhaps it's a public key for something?&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/sevenps&quot;&gt;@sevenps&lt;/a&gt; &lt;a href=&quot;https://twitter.com/agl__&quot;&gt;@agl__&lt;/a&gt; &lt;a href=&quot;https://twitter.com/pbarreto&quot;&gt;@pbarreto&lt;/a&gt; &lt;a href=&quot;https://twitter.com/esizkur&quot;&gt;@esizkur&lt;/a&gt; &lt;a href=&quot;https://twitter.com/ioerror&quot;&gt;@ioerror&lt;/a&gt; &lt;a href=&quot;https://twitter.com/sweis&quot;&gt;@sweis&lt;/a&gt; I agree. A public key for a signature, or a test key.&lt;/p&gt;&amp;mdash; Matthew Green (@matthew_d_green) &lt;a href=&quot;https://twitter.com/matthew_d_green/status/677921453858275328&quot;&gt;December 18, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Changing a public key could easily be a big backdoor, but recall that the result here is somehow passive decryption of VPN traffic. It's unclear how changing a public key could result in passive decryption.&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Back at the keyboard, things are making sense again. This will need some digging, but here&amp;#39;s a hint: :&amp;quot;EC PRNG KAT failure&amp;quot;.&lt;/p&gt;&amp;mdash; Ralf (RPW) (@esizkur) &lt;a href=&quot;https://twitter.com/esizkur/status/677951226265346048&quot;&gt;December 18, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Oh dear. To explain: &amp;ldquo;EC PRNG&amp;rdquo; suggests that the value might be a constant in an elliptic-curve based pseudo-random number generator. That could certainly explain how passive decryption of VPN traffic was possible because it brings up memories of &lt;a href=&quot;http://dualec.org/&quot;&gt;Dual-EC&lt;/a&gt;. Dual-EC was an NSA effort to introduce a backdoored pseudo-random number generator (PRNG) that, given knowledge of a secret key, allowed an attacker to observe output from the RNG and then predict its future output. If an attacker can predict the output of the PRNG then they can know the keys that one or both sides of a VPN connection will choose and decrypt it. (For more details, see &lt;a href=&quot;http://dualec.org/DualECTLS.pdf&quot;&gt;the research paper&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Indeed, it quickly came to light that Juniper have &lt;a href=&quot;https://kb.juniper.net/InfoCenter/index?page=content&amp;id=KB28205&amp;pmv=print&amp;actp=LIST&quot;&gt;a page&lt;/a&gt; where they say that the VPN devices in question here &amp;ldquo;do utilize Dual_EC_DRBG, but do not use the pre-defined points cited by NIST&amp;rdquo;. In short, they used a backdoored RNG but changed the locks. Then this attack &lt;i&gt;might&lt;/i&gt; be explained by saying that someone broke in and changed the locks &lt;i&gt;again&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;We're not sure that's actually what happened&lt;/i&gt;, but it seems like a reasonable hypothesis at this point. If it's correct, this is fairly bananas. Dual-EC is not a reasonable RNG: it's massively larger, slower and more complex than standard RNGs. It's output isn't even very uniform. Huge compromises were made in its design in order to meet its primary objective: to be a NOBUS, passive backdoor. (&amp;ldquo;NOBUS&amp;rdquo; is an intelligence community term for &amp;ldquo;nobody but us&amp;rdquo;, i.e. other parties shouldn't be able to use the backdoor.) Why would it be used in ScreenOS in the first place?&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;If nothing else, Juniper deserves credit for being forthcoming that there was a backdoor, and not just quietly rolling out a patch.&lt;/p&gt;&amp;mdash; matt blaze (@mattblaze) &lt;a href=&quot;https://twitter.com/mattblaze/status/677967177564188672&quot;&gt;December 18, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Again, assuming this hypothesis is correct then, if it wasn't the NSA who did this, we have a case where a US government backdoor effort (Dual-EC) laid the groundwork for someone else to attack US interests. Certainly this attack would be a lot easier given the presence of a backdoor-friendly RNG already in place. And I've not even discussed the SSH backdoor which, as &lt;a href=&quot;http://www.wired.com/2015/12/juniper-networks-hidden-backdoors-show-the-risk-of-government-backdoors/&quot;&gt;Wired notes&lt;/a&gt;, could have been the work of a different group entirely. That backdoor certainly isn't NOBUS&amp;mdash;Fox-IT claim to have found the backdoor password in six hours.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>BoringSSL</title>
+   <link href="http://www.imperialviolet.org/2015/10/17/boringssl.html"/>
+   <updated>2015-10-17T00:00:00-04:00</updated>
+   <id>http://www.imperialviolet.org/2015/10/17/boringssl</id>
+   <content type="html">&lt;p&gt;We recently switched Google's &lt;a href=&quot;http://www.wired.com/2015/09/google-2-billion-lines-codeand-one-place/&quot;&gt;two billion line repository&lt;/a&gt; over to &lt;a href=&quot;https://boringssl.googlesource.com&quot;&gt;BoringSSL&lt;/a&gt;, our &lt;a href=&quot;https://www.imperialviolet.org/2014/06/20/boringssl.html&quot;&gt;fork of OpenSSL&lt;/a&gt;. This means that BoringSSL is now powering Chromium (on nearly all platforms), Android M and Google's production services. For the first time, the majority of Google's products are sharing a single TLS stack and making changes no longer involves several days of work juggling patch files across multiple repositories.&lt;/p&gt;
+
+&lt;p&gt;This is a big positive for Google and I'm going to document some of the changes that we've made in BoringSSL in this post. I am &lt;i&gt;not&lt;/i&gt; saying that people should be ditching OpenSSL and switching to BoringSSL. For Linux distributions that doesn't even make sense because we've removed too much for many applications to run unaltered and, without linker trickery, it's not possible to have both OpenSSL and BoringSSL in the same process because their symbols will collide. Even if you're in the position of shipping your own TLS stack with your code, you should still heed &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/&quot;&gt;the warnings in the README&lt;/a&gt; well.&lt;/p&gt;
+
+&lt;p&gt;OpenSSL have considerably improved their processes since last April, which is great and important because huge swathes of the Internet will continue to depend on it. BoringSSL started before those changes but, even taking them into consideration, I'm still happy with my decision to fork. (But note that Google employs OpenSSL team members Emilia Käsper, Bodo Möller and Ben Laurie and contributes monetarily via the &lt;a href=&quot;https://www.coreinfrastructure.org/&quot;&gt;Core Infrastructure Initiative&lt;/a&gt;, so we haven't dropped our support of OpenSSL as a project.)&lt;/p&gt;
+
+&lt;p&gt;With that in mind, I'm going to mention some of the cleanups that we've done in BoringSSL from the lowest level, upwards. While most people should continue to use OpenSSL, there are lots of developers outside of Google who work on Chromium and Android and thus this document shouldn't be internal to Google. This post may seem critical of OpenSSL, but remember that many of these changes are possible because we only have to worry about Google's needs—we have an order of magnitude fewer platforms and configurations to support than OpenSSL and we don't keep any ABI compatibility. We also have the superpower of being able to change, where needed, the code that calls BoringSSL, so you can't really compare the two.&lt;/p&gt;
+
+&lt;p&gt;The “we”, above, is primarily myself and my colleagues &lt;a href=&quot;https://twitter.com/davidben__&quot;&gt;David Benjamin&lt;/a&gt; and Matt Braithwaite. But BoringSSL is open source and &lt;a href=&quot;https://briansmith.org/&quot;&gt;Brian Smith&lt;/a&gt; has clocked up 55 patches and we've also had contributions from Opera and CloudFlare. (Brian's number would be higher if I had had more time to review his pending changes in the past couple of weeks).&lt;/p&gt;
+
+&lt;h4&gt;“Forking”&lt;/h4&gt;
+
+&lt;p&gt;Generally when people say “forking” they mean that they took a copy of the code and started landing patches independently of the original source. That's not what we did with BoringSSL. Rather than start with a copy, I started with an empty directory and went through OpenSSL function-by-function, reformatting, cleaning up (sometimes discarding) and documenting each one. So BoringSSL headers and sources look like &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/include/openssl/err.h#121&quot;&gt;this&lt;/a&gt; rather than &lt;a href=&quot;https://github.com/openssl/openssl/blob/eb05f17344c6538d9ee48770d963ae2c1822d070/include/openssl/bio.h&quot;&gt;this&lt;/a&gt;. The comments in BoringSSL headers can be extracted by a tool to produce &lt;a href=&quot;https://commondatastorage.googleapis.com/chromium-boringssl-docs/headers.html&quot;&gt;documentation&lt;/a&gt; of a sort. (Although it could do with a make-over.)&lt;/p&gt;
+
+&lt;p&gt;(Clang's &lt;a href=&quot;http://clang.llvm.org/docs/ClangFormat.html&quot;&gt;formatting tool&lt;/a&gt; and its Vim integration are very helpful! It's been the biggest improvement in my code-editing experience in many years.)&lt;/p&gt;
+
+&lt;p&gt;For much of the code, lengths were converted from &lt;kbd&gt;int&lt;/kbd&gt;s to &lt;kbd&gt;size_t&lt;/kbd&gt;s and functions that returned one, zero or minus one were converted to just returning one or zero. (Not handling a minus one return value is an easy and dangerous mistake.)&lt;/p&gt;
+
+&lt;p&gt;I didn't always get everything right: sometimes I discarded a function that we later found we actually needed or I changed something that, on balance, wasn't worth the changes required in other code. Where possible, code that we've needed to bring back has gone into a separate section called “decrepit” which isn't built in Chromium or Android.&lt;/p&gt;
+
+&lt;p&gt;But large amounts of OpenSSL could simply be discarded given our more limited scope. All the following were simply never copied into the main BoringSSL: Blowfish, Camllia, CMS, compression, the ENGINE code, IDEA, JPAKE, Kerberos, MD2, MDC2, OCSP, PKCS#7, RC5, RIPE-MD, SEED, SRP, timestamping and Whirlpool. The OpenSSL that we started from has about 468,000 lines of code but, today, even with the things that we've added (including tests) BoringSSL is just 200,000. Even projects that were using OpenSSL's &lt;kbd&gt;OPENSSL_NO_&lt;/kbd&gt;&lt;i&gt;x&lt;/i&gt; defines to exclude functionality at compile time have seen binaries sizes drop by 300KB when switching to BoringSSL.&lt;/p&gt;
+
+&lt;p&gt;Some important bits of OpenSSL are too large to bite off all at once, however. The SSL, ASN.1 and X.509 code were “forked” in the traditional sense: they were copied with minimal changes and improved incrementally. (Or, in the case of ASN.1 and X.509, left alone until they could be replaced completely.)&lt;/p&gt;
+
+&lt;h4&gt;The lowest-levels&lt;/h4&gt;
+
+&lt;p&gt;OpenSSL has a confusing number of initialisation functions. Code that uses OpenSSL generally takes a shotgun approach to calling some subset of &lt;kbd&gt;OpenSSL_&amp;shy;add_&amp;shy;all_&amp;shy;algorithms&lt;/kbd&gt;, &lt;kbd&gt;SSL_&amp;shy;library_&amp;shy;init&lt;/kbd&gt;, &lt;kbd&gt;ERR_&amp;shy;load_&amp;shy;crypto_&amp;shy;strings&lt;/kbd&gt; and the deprecated SSLeay aliases of the same. BoringSSL doesn't need any of them; everything works immediately and the errors don't print out funny just because you forgot to load the error strings. If, like Chromium, you care about avoiding static initialisation (because every disk seek to load pages of code delays displaying the window at startup) then you can build with &lt;kbd&gt;BORINGSSL_&amp;shy;NO_&amp;shy;STATIC_&amp;shy;INITIALIZER&lt;/kbd&gt; and initialise the library when you need with &lt;kbd&gt;CRYPTO_&amp;shy;library_&amp;shy;init&lt;/kbd&gt;. But the vast majority of code just wants to avoid having to think about it. In the future, we would like to move to an automatic lazy-init which would solve even Chromium's needs.&lt;/p&gt;
+
+&lt;p&gt;OpenSSL and BoringSSL are often built into shared libraries, but OpenSSL doesn't have any visibility annotations. By default symbols are not hidden and &lt;a href=&quot;https://software.intel.com/sites/default/files/m/a/1/e/dsohowto.pdf&quot;&gt;ELF requires&lt;/a&gt; that any non-hidden symbols can be interposed. So if you look at &lt;kbd&gt;libcrypto.so&lt;/kbd&gt; in a Linux distribution you'll see lots of internal functions polluting the dynamic symbol table and calls to those functions from within the library have to indirect via the PLT. BoringSSL builds with hidden visibility by default so calls to internal functions are direct and only functions marked &lt;kbd&gt;OPENSSL_&amp;shy;EXPORT&lt;/kbd&gt; are included in the dynamic symbol table.&lt;/p&gt;
+
+&lt;p&gt;Multi-threaded code is common these days but OpenSSL requires that you &lt;a href=&quot;https://www.openssl.org/docs/manmaster/crypto/threads.html&quot;&gt;install callbacks&lt;/a&gt; to lock and unlock a conceptual array of locks. This trips up people who now take thread-safety to be a given, and can also mean that contention profiling shows a large, opaque amount of contention in the locking callback with no hint as to the real source. BoringSSL has a native concept of locks so is thread-safe by default. It also has “once” objects, atomic reference counting and thread-local storage, which eliminates much of the need for locking in the first place.
+
+&lt;h4&gt;Errors&lt;/h4&gt;
+
+&lt;p&gt;OpenSSL has a fairly unique method of handling errors: it pushes errors onto a per-thread queue as the stack unwinds. This means that OpenSSL errors can generally give you something like a stack trace that you might expect from gdb or a Python exception, which is definitely helpful in some cases. For contrast, NSS (Mozilla's crypto library) uses a more traditional, errno-like system of error codes. Debugging an NSS error involves &lt;a href=&quot;https://chromium.googlesource.com/chromium/third_party/nss/+/055e9078b1108a80bcd3113be5ba977ca75c56b7/mozilla/security/nss/lib/ssl/sslerr.h&quot;&gt;looking up&lt;/a&gt; the numeric error code and then grepping the source code to find all the places where that error code can be set and figuring out which triggered this time.&lt;/p&gt;
+
+&lt;p&gt;However, this single error-code system is better for programmatic use. Code that tries to do something with OpenSSL errors (other than dumping them for human debugging) tends to look only at the first (i.e. deepest) error on the queue and tries to match on the reason or even function code. Thus changing the name of even internal functions could break calling code because these names were implicitly exported by the error system. Adding errors could also break code because now a different error could be first in the queue. Lastly, forgetting to clear the error queue after a failed function is very easy to do and thus endemic.&lt;/p&gt;
+
+&lt;p&gt;So BoringSSL no longer saves functions in the error queue: they all appear as &lt;kbd&gt;OPENSSL_&amp;shy;internal&lt;/kbd&gt;, which saved about 15KB of binary size alone. As a bonus, we no longer need to run a script every time we add a new function. The file name and line number is still saved but, thankfully, I've never seen code try to match line numbers from the error queue. Trying to match on reason codes is still problematic, but we're living with it for now. We also have no good answer for forgetting to clear the error queue. It's possible that we'll change things in the future to automatically clear the error queue when calling most functions as, now that we're using thread-local storage, that'll no longer cause servers to burst into a flaming ball of lock contention. But we've not done that yet.&lt;/p&gt;
+
+&lt;h4&gt;Parsing and serialisation&lt;/h4&gt;
+
+&lt;p&gt;OpenSSL's parsing and serialisation involves a lot of &lt;a href=&quot;https://github.com/openssl/openssl/blob/OpenSSL_1_0_2-stable/ssl/s3_srvr.c#L999&quot;&gt;incrementing pointers with single-letter names&lt;/a&gt;. BoringSSL drags this firmly into the 1990's with &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/include/openssl/bytestring.h#82&quot;&gt;functions that automatically check bounds&lt;/a&gt; for parsing and &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/include/openssl/bytestring.h#303&quot;&gt;functions that automatically resize buffers&lt;/a&gt; for serialisation. This code also handles parsing and serialising ASN.1 in an imperative fashion and we're slowly switching over to these functions because the OpenSSL ASN.1 code is just &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/crypto/asn1/tasn_dec.c#155&quot;&gt;too complicated&lt;/a&gt; for us.&lt;/a&gt;
+
+&lt;p&gt;But I should note that OpenSSL's master branch now uses &lt;a href=&quot;https://github.com/openssl/openssl/blob/eb05f17344c6538d9ee48770d963ae2c1822d070/ssl/packet_locl.h&quot;&gt;some similar parsing functions&lt;/a&gt; for parsing TLS structures at least. I've no idea whether that was inspired by BoringSSL, but it's great to see.&lt;/p&gt;
+
+&lt;h4&gt;Random number generation&lt;/h4&gt;
+
+&lt;p&gt;Random number generation in OpenSSL suffers because entropy used to be really difficult. There were entropy files on disk that applications would read and write, timestamps and PIDs would be mixed into entropy pools and applications would try other tricks to gather entropy and mix it into the pool. That has all made OpenSSL &lt;a href=&quot;https://github.com/openssl/openssl/blob/eb05f17344c6538d9ee48770d963ae2c1822d070/crypto/rand/md_rand.c&quot;&gt;complicated&lt;/a&gt;.
+
+&lt;p&gt;BoringSSL just uses urandom—it's the &lt;a href=&quot;http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/&quot;&gt;right answer&lt;/a&gt;. (Although we'll probably do it via &lt;a href=&quot;http://man7.org/linux/man-pages/man2/getrandom.2.html&quot;&gt;&lt;kbd&gt;getrandom&lt;/kbd&gt;&lt;/a&gt; rather than &lt;kbd&gt;/dev/urandom&lt;/kbd&gt; in the future.) There are no return values that you can forget to check: if anything goes wrong, it crashes the address space.&lt;/p&gt;
+
+&lt;p&gt;For the vast majority of code, that's all that you need to know, although there are some concessions to performance in the details:&lt;/p&gt;
+
+&lt;p&gt;TLS servers that are pushing lots of AES-CBC need the RNG to be really fast because each record needs a random IV. Because of this, if BoringSSL detects that the machine supports Intel's RDRAND instruction, it'll read a seed from urandom, expand it with ChaCha20 and XOR entropy from RDRAND. The seed is thread-local and &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/crypto/rand/rand.c#117&quot;&gt;refreshed&lt;/a&gt; every 1024 calls or 1MB output, whichever happens first.&lt;/p&gt;
+
+&lt;h4&gt;Authenticated Encryption&lt;/h4&gt;
+
+&lt;p&gt;Handing people a block cipher and hash function and expecting them to figure out the rest does not work. Authenticated Encryption is much closer to being reasonable and BoringSSL &lt;a href=&quot;https://commondatastorage.googleapis.com/chromium-boringssl-docs/aead.h.html&quot;&gt;promotes it where possible&lt;/a&gt;. One very pleasing BoringSSL tale is that I handed that header file to a non-crypto developer and they produced secure code, first time. That would not have happened had I pointed them at &lt;kbd&gt;EVP_CIPHER&lt;/kbd&gt;.&lt;/p&gt;
+
+&lt;p&gt;There is more to be done here as I've &lt;a href=&quot;https://www.imperialviolet.org/2015/05/16/aeads.html&quot;&gt;talked about before&lt;/a&gt;: we need nonce-misuse-resistant primitives and solutions for large files but what we have now is a significant improvement and the foundations for that future work are now in place.&lt;/p&gt;
+
+&lt;h4&gt;SSL/TLS&lt;/h4&gt;
+
+&lt;p&gt;As I mentioned, the SSL/TLS code wasn't reworked function-by-function like most of BoringSSL. It was copied whole and incrementally improved, predominantly by David Benjamin. I'm really happy with what he's managed to do with it.&lt;/p&gt;
+
+&lt;p&gt;At the small scale, most of the parsing and serialisation is now using the safe functions that I covered above. (Changes to convert most of the remaining pointer-juggling code are in my review queue.) TLS extensions are now a &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/ssl/t1_lib.c#2092&quot;&gt;bit saner&lt;/a&gt; and no longer handled with huge &lt;kbd&gt;switch&lt;/kbd&gt; statements. Support for SSLv2, DSS, SRP and Kerberos has all been dropped. The header file actually &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/include/openssl/ssl.h&quot;&gt;has comments&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Some important, small scale cleanups are less obvious. The large number of “functions” that were actually macros around &lt;kbd&gt;ctrl&lt;/kbd&gt; functions (that bypassed the type system) are now real functions. In order to get TLS 1.0–1.2 you no longer use the ridiculously named &lt;kbd&gt;SSLv23_method&lt;/kbd&gt; and then disable SSLv2 and SSLv3 by setting options on the &lt;kbd&gt;SSL_CTX&lt;/kbd&gt;, rather you use &lt;kbd&gt;TLS_method&lt;/kbd&gt; and control the versions by &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/include/openssl/ssl.h#479&quot;&gt;setting&lt;/a&gt; a minimum and maximum version.&lt;/p&gt;
+
+&lt;p&gt;There is lots more that I could mention like that.&lt;/p&gt;
+
+&lt;p&gt;At the larger scale, the buffer handling code has been substantially improved and the TLS code now does symmetric crypto using the AEAD interface, which cleanly partitions concerns that previously leaked all over the SSL code. We've also rewritten the version negotiation code so it no longer preprocesses the ClientHello and fiddles with method tables to use the correct version. This avoids some duplicated code and session resumption bugs and OpenSSL has since done a similar rewrite for 1.1.0. To solve a particular problem for Chrome, we've added some support for asynchronous private key operations so that slow smartcards don't block the network thread. Much of the DTLS logic has also been rewritten or pruned.&lt;/p&gt;
+
+&lt;p&gt;Perhaps most importantly, the state machine is much reduced. Renegotiation has been dropped except for the case of a TLS client handling renegotiation from a server while the application data flow has stopped, and even that is disabled by default. The DTLS code (a source of many bugs) is much saner in light of this.&lt;/p&gt;
+
+&lt;h4&gt;Testing&lt;/h4&gt;
+
+&lt;p&gt;OpenSSL has always had decent test coverage of lower-level parts like hash functions and ciphers, but testing of the more complex SSL/TLS code has been lacking. Testing that code is harder because you need to be able to produce sufficiently correct handshakes to get close to its edge cases, but you don't want to litter your real code with dozens of options for producing incorrect outputs in order to hit them. In BoringSSL, we've solved this by using a copy of Go's TLS stack for testing and we've littered it with &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/ssl/test/runner/common.go#402&quot;&gt;such options&lt;/a&gt;. Our tests also stress asynchronous resume points across a &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/ssl/test/runner/runner.go#2513&quot;&gt;range of handshakes&lt;/a&gt;. We wrote partial DTLS support in Go to test DTLS-only edge cases like reassembly, replay and retransmission. Along the way, we even discovered one of OpenSSL's old bug workarounds didn't work, allowing both projects to &lt;a href=&quot;https://git.openssl.org/gitweb/?p=openssl.git;a=commit;h=a8e4ac6a2fe67c19672ecf0c6aeafa15801ce3a5&quot;&gt;shed some code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In C, any &lt;kbd&gt;malloc&lt;/kbd&gt; call may fail. OpenSSL attempts to handle this, but such code is error-prone and rarely tested. It's best to use a &lt;kbd&gt;malloc&lt;/kbd&gt; which crashes on failure, but for the benefit of consumers who can't, we have a &quot;&lt;kbd&gt;malloc&lt;/kbd&gt; test&quot; mode. This runs all tests repeatedly, causing each successive allocation to fail, looking for crashes.&lt;/p&gt;
+
+&lt;p&gt;We now have &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/63fa118f3a3d065adb6ca17227bb9e407ffadccb/ssl/test/runner/runner.go#832&quot;&gt;1,139&lt;/a&gt; TLS tests which gives us 70% coverage of the TLS code—still better than any other TLS library that we've used.&lt;/p&gt;
+
+&lt;h4&gt;The future&lt;/h4&gt;
+
+&lt;p&gt;Now that we've done the task of aligning Google around BoringSSL, we'll hopefully be able to turn a little bit more attention to some feature work. Support for the IETF-approved ChaCha20-Poly1305 is coming soon. (Brian Smith has a change waiting for me.) Curve25519 and Ed25519 support are likely too. Next year, we will probably start on TLS 1.3 support.&lt;/p&gt;
+
+&lt;p&gt;But more cleanups are probably more important. The big one is the elimination of the ASN.1 and X.509 code in many cases. If you recall, we imported that code whole without cleanups and it hasn't been touched since. We've been incrementally replacing uses of the ASN.1 code with the new &lt;kbd&gt;CBS&lt;/kbd&gt; and &lt;kbd&gt;CBB&lt;/kbd&gt; functions but X.509 remains as a substantial user. We're not going to be able to drop that code completely because too much expects the X.509 functions to be available for reading and writing certificates, but we can make it so that the rest of the code doesn't depend on it. Then we can put it in a separate library and drop in a new certificate verification library that some of my Chromium colleagues are writing. Most users of BoringSSL will then, transparently, end up using the new library.&lt;/p&gt;
+
+&lt;p&gt;In the SSL code, the &lt;kbd&gt;SSL&lt;/kbd&gt; object itself is a mess. We need to partition state that's really needed for the whole connection from state that can be thrown away after the handshake from state that can be optionally discarded after the handshake. That will save memory in servers as well as improving the clarity of the code. Since we don't have ABI compatibility, we can also reorder the structs to pack them better.&lt;/p&gt;
+
+&lt;p&gt;Lastly, we need to make fuzzing part of our process. Michał Zalewski's &lt;a href=&quot;http://lcamtuf.coredump.cx/afl/&quot;&gt;AFL&lt;/a&gt; has substantially improved the state of fuzzing but, whether we're using AFL or &lt;a href=&quot;http://llvm.org/docs/LibFuzzer.html&quot;&gt;LibFuzzer&lt;/a&gt;, it's still a one-off for us. It should be much more like our CI builders. So should running &lt;a href=&quot;http://clang-analyzer.llvm.org/&quot;&gt;clang-analyzer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(David Benjamin contributed to this post.)&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The ICANN Public Comments on WHOIS Privacy</title>
+   <link href="http://www.imperialviolet.org/2015/07/05/icannwhois.html"/>
+   <updated>2015-07-05T00:00:00-04:00</updated>
+   <id>http://www.imperialviolet.org/2015/07/05/icannwhois</id>
+   <content type="html">&lt;p&gt;ICANN is currently considering a proposal that “domains used for online financial transactions for commercial purpose should be ineligible for [WHOIS] privacy and proxy registrations” [&lt;a href=&quot;https://gnso.icann.org/en/issues/raa/ppsai-initial-05may15-en.pdf&quot;&gt;PDF&lt;/a&gt;]. Given the vagueness around what would count as “commercial purpose” (tip jars? advertising? promoting your Kickstarter?) and concerns that some commercial sites are for small, home-run businesses, quite a lot of people are grumpy about this.&lt;/p&gt;
+
+&lt;p&gt;ICANN has a public comment period on this document until July 7&lt;sup&gt;th&lt;/sup&gt; and what's interesting is that the comments (those that were emailed at least) are all in a &lt;a href=&quot;http://forum.icann.org/lists/comments-ppsai-initial-05may15/&quot;&gt;mailing list archive&lt;/a&gt;. When you submit to the comment address (&lt;tt&gt;comments-ppsai-initial-05may15@icann.org&lt;/tt&gt;) you receive a confirmation email with a link that needs to be followed and quite a clear statement that the comments are public, so I think that this is deliberate.&lt;/p&gt;
+
+&lt;p&gt;I was curious what the comments box on this sort of topic is full of so did a quick analysis. The comment period doesn't close until July 7&lt;sup&gt;th&lt;/sup&gt; so obviously I'm missing a couple of days worth of responses, but it was a two month comment period so that doesn't seem too bad.&lt;/p&gt;
+
+&lt;p&gt;When I checked there were 11,017 messages and 9,648 (87.6%) of them were strongly based on the &lt;a href=&quot;https://www.respectourprivacy.com/&quot;&gt;Respect Our Privacy&lt;/a&gt; form letter. Several hundred additional messages included wording from it so I think that campaign resulted in about 90% of messages. (And it's worth noting the the primary flow on that site is to call ICANN&amp;mdash;of course, I've no data on the volume of phone calls that resulted.)&lt;/p&gt;
+
+&lt;p&gt;Another campaign site, &lt;a href=&quot;https://www.savedomainprivacy.org/sign-the-petition/&quot;&gt;Save Domain Privacy&lt;/a&gt;, has a petition and quite a few messages included its wording.&lt;/p&gt;
+
+&lt;p&gt;I classified all such messages as “against” and wrote a quick program to manually review the remaining messages that weren't trivially classifiable by string matching against those template messages.&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Nine messages were so odd or confused that it's unclear what the writer believed.&lt;/li&gt;
+	&lt;li&gt;Three messages were asking questions and not expressing an opinion.&lt;/li&gt;
+	&lt;li&gt;Two messages were sufficiently equivocal that they didn't express a clear feeling in either direction.&lt;/li&gt;
+	&lt;li&gt;One message was commenting on a different section of the document.&lt;/li&gt;
+	&lt;li&gt;One message suggested that WHOIS privacy be available to all, but that it should have a significant (monetary) cost in order to discourage its use.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Many more messages were against and not based on either of the two template letters. That leaves 13 messages that expressed support for the proposal. (That's 0.12% for those who are counting, although I very much question how much meaning that number has.):&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Three messages suggested that private WHOIS registration was contrary to the openness of the Internet.&lt;/li&gt;
+	&lt;li&gt;Three messages believed that shutting down sites that infringe copyright, or sell counterfeit trademarked goods, was a compelling reason.&lt;/li&gt;
+	&lt;li&gt;Two writers believed that it was compelling, in general, to have contact details for websites. One of who claimed to be a security researcher and wanted CERTs to have access to full WHOIS details.&lt;/li&gt;
+	&lt;li&gt;Two messages suggested that it would hinder “cyber-bullies” and “pædophiles”, one of which described how hard it was to have a stalker's site shut down.&lt;/li&gt;
+	&lt;li&gt;One author believed that being able to contact site owners in the event of a domain-name dispute was a compelling reason.&lt;/li&gt;
+	&lt;li&gt;One message suggested that WHOIS privacy should be removed for all &lt;tt&gt;.com&lt;/tt&gt; sites, but no others.&lt;/li&gt;
+	&lt;li&gt;One commenter opined that the Internet is inherently hostile to privacy and thus those who want privacy should not register domains.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The comment period opened on May 5&lt;sup&gt;th&lt;/sup&gt;, but between then and June 22&lt;sup&gt;nd&lt;/sup&gt; there were only seven messages. However, the week of the 22&lt;sup&gt;nd&lt;/sup&gt; brought 10,015 messages. The the week of the 29&lt;sup&gt;th&lt;/sup&gt; brought 995 more. So I think it's clear that, without significant outside promotion of these topics, almost nobody would have noticed this proposal.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>AEADs: getting better at symmetric cryptography</title>
+   <link href="http://www.imperialviolet.org/2015/05/16/aeads.html"/>
+   <updated>2015-05-16T00:00:00-04:00</updated>
+   <id>http://www.imperialviolet.org/2015/05/16/aeads</id>
+   <content type="html">&lt;p&gt;I gave a talk a couple of weeks ago at the &lt;a href=&quot;http://yahoo.tumblr.com/post/114501068334/announcing-the-yahoo-trust-unconference&quot;&gt;Yahoo Unconference&lt;/a&gt;. The conference was at the end of a particually hard week for a bunch of reasons and I fear that the talk wasn't that great. (Afterwards I got home about 3pm and pretty much slept until the following morning.) This post is a, hopefully clearer, articulation of its contents.&lt;/p&gt;
+
+&lt;p&gt;I've been primarily working on getting Google products switched over to &lt;a href=&quot;https://www.imperialviolet.org/2014/06/20/boringssl.html&quot;&gt;BoringSSL&lt;/a&gt; for a little over a year now. (Chromium is done on many platforms and AOSP &lt;a href=&quot;https://plus.google.com/+AndroidDevelopers/posts/bLqbRJ5o5id&quot;&gt;switched recently&lt;/a&gt;.) This is neccessary work, but it doesn't exactly lend itself to talk material. So the talk was titled &amp;ldquo;Lessons Learnt from Questions&amp;rdquo;&amp;mdash;the idea being that smart developers at Google often ask lots of cryptography questions, and from those questions one can tell what is unclear in existing documentation. Points that are not obvious to smart, non-experts are thus good topics to talk about because it's likely that lots of people are missing them.&lt;/p&gt;
+
+&lt;p&gt;I was aiming for an hour but, due to a misunderstanding in the weeks prior, I thought that I had to cut it down to 20 minutes, so I ditched all but one question:&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;How do I encrypt lots of records given a per-user key?&amp;rdquo; &amp;mdash;Anonymous developer&lt;/p&gt;
+
+&lt;p&gt;This question is about applying symmetric cryptography, which is the originally motivation of all of cryptography. You would have thought that we would have figured it out by now, but &lt;i&gt;we totally haven't&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the 1990's it was common for cryptographers to produce block ciphers and hash functions, and then developers would be tasked with composing them. In the talk I stepped through the design of, and attacks on, the SSLv3/TLS CBC construction as a demonstration that plausible-sounding design features can lead to disaster, but I'm going to omit that here because it worked better live. (Phillip Rogaway tried to warn about these issues when SSL, IPSec, etc were being developed, but sadly the right people didn't listen to him.)
+
+&lt;p&gt;So, for quite a long time now, cryptographers have understood that block ciphers and hash functions are too low-level an abstraction and that the constructions themselves &lt;a href=&quot;http://cseweb.ucsd.edu/~mihir/papers/oem.html&quot;&gt;need to be studied&lt;/a&gt; and standardised. The result is called &lt;i&gt;authenticated encryption&lt;/i&gt; (AE), and let's ponder what it might look like.&lt;/p&gt;
+
+&lt;p&gt;Obviously an AE function must take some plaintext and, if it's symmetric encryption, it must take a key. We also assume that its going to take care of both &lt;i&gt;confidentiality&lt;/i&gt; and &lt;i&gt;authenticity&lt;/i&gt; for us, so not only will an attacker not be able to tell the plaintext from the ciphertext but, if the ciphertext is altered in any way, the decryption will fail cleanly. So let's experiment with a hypothetical SSH-like protocol that's trying to protect a series of key presses:&lt;/p&gt;
+
+&lt;p style=&quot;font-size: 12pt; margin-left: 1.5cm; border-left: 3px solid gray; padding-left: 1em; font-family: 'Inconsolata', monospace;&quot;&gt;AE(key, plaintext) &amp;rarr; ciphertext&lt;br&gt;&lt;br&gt;
+AE(key, &amp;lsquo;h&amp;rsquo;) &amp;rarr; α&lt;br&gt;
+AE(key, &amp;lsquo;e&amp;rsquo;) &amp;rarr; β&lt;br&gt;
+AE(key, &amp;lsquo;l&amp;rsquo;) &amp;rarr; γ&lt;br&gt;
+AE(key, &amp;lsquo;l&amp;rsquo;) &amp;rarr; γ&lt;br&gt;
+AE(key, &amp;lsquo;o&amp;rsquo;) &amp;rarr; δ&lt;/p&gt;
+
+&lt;p&gt;Oh no! The two l's in &amp;ldquo;hello&amp;rdquo; turned into the same ciphertext, so an attacker can see patterns in the input reflected in the ciphertext. That's pretty terrible; clearly we need our AE function to map the same plaintext to different ciphertexts. There's two ways that can happen: either the function is non-deterministic (i.e. it reads entropy internally as a hidden input), or we pass in some varying argument. Explicit is better than implicit so we choose the latter and add an argument called the nonce:&lt;/p&gt;
+
+&lt;p style=&quot;font-size: 12pt; margin-left: 1.5cm; border-left: 3px solid gray; padding-left: 1em; font-family: 'Inconsolata', monospace;&quot;&gt;AE(key, plaintext, nonce) &amp;rarr; ciphertext&lt;br&gt;&lt;br&gt;
+AE(key, &amp;lsquo;h&amp;rsquo;, n&lt;sub&gt;0&lt;/sub&gt;) &amp;rarr; (α, n&lt;sub&gt;0&lt;/sub&gt;)&lt;br&gt;
+AE(key, &amp;lsquo;e&amp;rsquo;, n&lt;sub&gt;1&lt;/sub&gt;) &amp;rarr; (β, n&lt;sub&gt;1&lt;/sub&gt;)&lt;br&gt;
+AE(key, &amp;lsquo;l&amp;rsquo;, n&lt;sub&gt;2&lt;/sub&gt;) &amp;rarr; (γ, n&lt;sub&gt;2&lt;/sub&gt;)&lt;br&gt;
+AE(key, &amp;lsquo;l&amp;rsquo;, n&lt;sub&gt;3&lt;/sub&gt;) &amp;rarr; (ɛ, n&lt;sub&gt;3&lt;/sub&gt;)&lt;br&gt;
+AE(key, &amp;lsquo;o&amp;rsquo;, n&lt;sub&gt;4&lt;/sub&gt;) &amp;rarr; (δ, n&lt;sub&gt;4&lt;/sub&gt;)&lt;/p&gt;
+
+&lt;p&gt;We assume that n&lt;sub&gt;0&amp;hellip;4&lt;/sub&gt; are all distinct and thus the two l's now get different ciphertexts and patterns in the plaintext have been eliminated. Note that (for now) we need to include the nonce value with the ciphertext because it'll be needed when decrypting.&lt;/p&gt;
+
+&lt;p&gt;(As an aside: if you've done anything with cryptography before you've probably come across the acronym &amp;ldquo;IV&amp;rdquo;, for initialisation vector. Although not completely standard, I differentiate an IV and an nonce thus: an IV needs to be &lt;i&gt;unpredictable&lt;/i&gt; while an nonce needs only to be &lt;i&gt;distinct&lt;/i&gt;. The values 0, 1, 2, &amp;hellip; are distinct, but they aren't unpredictable. For something like CBC mode, which needs an IV, using a counter would be unacceptable.)&lt;/p&gt;
+
+&lt;p&gt;We solved one problem but there's another thing that an evil attacker might do: reorder messages:&lt;/p&gt;
+
+&lt;table style=&quot;font-size: 12pt; margin-left: 1.5cm; border-left: 3px solid gray; padding-left: 1em; font-family: 'Inconsolata', monospace;&quot;&gt;
+	&lt;tr&gt;&lt;td&gt;AE(key, &amp;lsquo;h&amp;rsquo;, n&lt;sub&gt;0&lt;/sub&gt;) &amp;rarr; (α, n&lt;sub&gt;0&lt;/sub&gt;)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(γ, n&lt;sub&gt;2&lt;/sub&gt;)&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;AE(key, &amp;lsquo;e&amp;rsquo;, n&lt;sub&gt;1&lt;/sub&gt;) &amp;rarr; (β, n&lt;sub&gt;1&lt;/sub&gt;)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(δ, n&lt;sub&gt;4&lt;/sub&gt;)&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;AE(key, &amp;lsquo;l&amp;rsquo;, n&lt;sub&gt;2&lt;/sub&gt;) &amp;rarr; (γ, n&lt;sub&gt;2&lt;/sub&gt;)&lt;/td&gt;&lt;td style=&quot;font-family: serif&quot;&gt;&amp;hellip;untrusted network&amp;hellip;&lt;/td&gt;&lt;td&gt;(α, n&lt;sub&gt;0&lt;/sub&gt;)&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;AE(key, &amp;lsquo;l&amp;rsquo;, n&lt;sub&gt;3&lt;/sub&gt;) &amp;rarr; (ɛ, n&lt;sub&gt;3&lt;/sub&gt;)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(ɛ, n&lt;sub&gt;3&lt;/sub&gt;)&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;AE(key, &amp;lsquo;o&amp;rsquo;, n&lt;sub&gt;4&lt;/sub&gt;) &amp;rarr; (δ, n&lt;sub&gt;4&lt;/sub&gt;)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(β, n&lt;sub&gt;1&lt;/sub&gt;)&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;All the ciphertexts on the right are perfectly valid and coupled with a valid nonce, but they end up decrypting to &amp;ldquo;lohle&amp;rdquo;&amp;mdash;hardly what was intended.&lt;/p&gt;
+
+&lt;p&gt;There are two solutions to this. The first is to use an &lt;i&gt;implicit nonce&lt;/i&gt;: don't transmit the nonce, just use a counter for each direction. Now, if a message is out of order, the receiver will attempt to decrypt it with the wrong nonce and it'll fail to decrypt. That works perfectly well for transport protocols like SSH and TLS because it's easy to keep a counter in those situations, but sometimes the problem isn't quite so synchronous. For these cases, one could include a sequence number or other context in the plaintext and that works fine, but it's a waste of space if the receiver already knew the information and just wanted to confirm it.&lt;/p&gt;
+
+&lt;p&gt;This motivates a common extension to authenticated encryption called &lt;i&gt;authenticated encryption with associated data&lt;/i&gt; (AEAD). The &lt;i&gt;associated data&lt;/i&gt; is another argument, of arbitrary length, which must be equal at the encryption and decryption ends:&lt;/p&gt;
+
+&lt;p style=&quot;font-size: 12pt; margin-left: 1.5cm; border-left: 3px solid gray; padding-left: 1em; font-family: 'Inconsolata', monospace;&quot;&gt;AEAD(key, plaintext, nonce, ad) &amp;rarr; ciphertext&lt;br&gt;&lt;br&gt;
+AEAD(key, &amp;lsquo;h&amp;rsquo;, n&lt;sub&gt;0&lt;/sub&gt;, 0) &amp;rarr; (α, n&lt;sub&gt;0&lt;/sub&gt;)&lt;br&gt;
+AEAD(key, &amp;lsquo;e&amp;rsquo;, n&lt;sub&gt;1&lt;/sub&gt;, 1) &amp;rarr; (β, n&lt;sub&gt;1&lt;/sub&gt;)&lt;br&gt;
+AEAD(key, &amp;lsquo;l&amp;rsquo;, n&lt;sub&gt;2&lt;/sub&gt;, 2) &amp;rarr; (γ, n&lt;sub&gt;2&lt;/sub&gt;)&lt;br&gt;
+AEAD(key, &amp;lsquo;l&amp;rsquo;, n&lt;sub&gt;3&lt;/sub&gt;, 3) &amp;rarr; (ɛ, n&lt;sub&gt;3&lt;/sub&gt;)&lt;br&gt;
+AEAD(key, &amp;lsquo;o&amp;rsquo;, n&lt;sub&gt;4&lt;/sub&gt;, 4) &amp;rarr; (δ, n&lt;sub&gt;4&lt;/sub&gt;)&lt;/p&gt;
+
+&lt;p&gt;In this example the associated data happens to be a counter, but it could be anything. The associated data isn't included in the ciphertext, but it must be identical when decrypting otherwise the decryption will fail. In other protocols it could equally well be some context denoting, say, the first or last record. This is the second solution to the reordering problem.&lt;/p&gt;
+
+&lt;p&gt;The associated data might seem quite a lot like an nonce. They both need to be presented at encryption and decryption time and they must both match for decryption to succeed, so why do we bother having both? Mostly because the associated data is free-form: you can have as much or as little of it as you like and you can repeat it etc. The requirements of an nonce are much stricter, in fact if you remember only one thing from this please remember this, which I'm calling The Law of AEADs:&lt;/p&gt;
+
+&lt;p style=&quot;font-size: 1.3em;&quot;&gt;&lt;i&gt;Thou shall never reuse the same (key, nonce) pair, for all time. (With high probability.)&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;So, if you generate a random key and use it to encrypt a single message, it's ok to set the nonce to zero. If you generate a random key and encrypt a series of messages you must ensure that the nonce never repeats. A counter is one way to do this, but if you need to store that counter on disk then stop: the chances of you screwing up and reusing an nonce value are way too high in designs like that.&lt;/p&gt;
+
+&lt;p&gt;It would be nice if reusing an nonce just meant that the same plaintext would result in the same ciphertext. That's the least bad thing that an AEAD could do in that situation. However the reality is significantly worse: common AEADs tend to lose confidentiality of messages with a repeated nonce and authenticity tends to collaspe completely for all messages. (I.e. it's very bad.) We like these common AEADs because they're fast, but you &lt;i&gt;must&lt;/i&gt; have a solid story about nonce uniqueness. AEADs like AES-GCM and ChaCha20-Poly1305 fail in this fashion.&lt;/p&gt;
+
+&lt;p&gt;So what should you do when using a counter isn't trivially safe? One option is to generate the nonce at random and consider the probability of duplicates. AES-GCM takes a 96-bit nonce and NIST says that you can only encrypt 2&lt;sup&gt;32&lt;/sup&gt; messages under a single key if using random nonces. This is because if you throw 2&lt;sup&gt;32&lt;/sup&gt; balls at 2&lt;sup&gt;96&lt;/sup&gt; buckets then you have roughly a 2&lt;sup&gt;-33&lt;/sup&gt; chance of getting two in the same bucket and NIST drew the line there. That probability might seem either high or low to you. It's pretty small in absolute terms and, unlike a work factor, an attacker can't spend resources against it, but it's a very long way from the safety margins that we usually use in cryptography. So there are also functions like &lt;tt&gt;crypto_&amp;shy;secretbox_&amp;shy;xsalsa20&amp;shy;poly1305&lt;/tt&gt; (from &lt;a href=&quot;http://nacl.cr.yp.to/secretbox.html&quot;&gt;NaCl&lt;/a&gt;) that have a 192-bit nonce. The probabilities with random nonces are much more comforting at that size.&lt;/p&gt;
+
+&lt;p&gt;Another approach would be to use an AEAD that doesn't fail quite so catastrophically when an nonce is repeated. This is called an &lt;i&gt;nonce-misuse resistant&lt;/i&gt; AEAD and we're hitting the boundary of developed practice now. The &lt;a href=&quot;http://competitions.cr.yp.to/caesar.html&quot;&gt;CAESAR competition&lt;/a&gt; has several nonce-misuse resistant entries in it, although it's not scheduled to conclude until 2018. Closer to established primitives, Gueron and Lindell propose an &lt;a href=&quot;https://eprint.iacr.org/2015/102&quot;&gt;AES-GCM-SIV&lt;/a&gt; mode with a strong foundation (assuming that you trust AES-GCM) and good performance (assuming that you have good AES-GCM performance).&lt;/p&gt;
+
+&lt;h4&gt;AEADs with large plaintexts&lt;/h4&gt;
+
+&lt;p&gt;If you look at &lt;a href=&quot;http://doc.libsodium.org/secret-key_cryptography/authenticated_encryption.html&quot;&gt;AEAD&lt;/a&gt; &lt;a href=&quot;https://boringssl.googlesource.com/boringssl/+/master/include/openssl/aead.h&quot;&gt;APIs&lt;/a&gt; you'll generally notice that they take the entire plaintext or ciphertext at once. In other words, they aren't &amp;ldquo;streaming&amp;rdquo; APIs. This is not a mistake, rather it's the streaming APIs that are generally a mistake.&lt;/p&gt;
+
+&lt;p&gt;I've &lt;a href=&quot;https://www.imperialviolet.org/2014/06/27/streamingencryption.html&quot;&gt;complained&lt;/a&gt; about this in the past, so I'll be brief here. In short, old standards (e.g. PGP) will encrypt plaintexts of any length and then put an authenticator at the end. The likely outcome of such a design is that some implementations will stream out unauthenticated plaintext and only notice any problem when they get to the end of the ciphertext and try to check the authenticator. But by that time the damage has been done&amp;mdash;it doesn't take much searching to find people suggesting piping the output of &lt;kbd&gt;gpg&lt;/kbd&gt; to &lt;kbd&gt;tar&lt;/kbd&gt; or even a shell.&lt;/p&gt;
+
+&lt;p&gt;So, if streaming is required, large plaintexts should be chunked and each chunk should easily fit into a &amp;ldquo;one-shot&amp;rdquo; API like those linked to above. That prevents unauthenticated plaintext from being processed. However, there is no standard for this; it's another case where we've hit the borders of existing practice. Implementations need to construct the nonces and associated data so that the first chunk is known to be the first, so that each chunk is in order and so that truncation is always detectable.&lt;/p&gt;
+
+&lt;p&gt;Streaming decryption always runs the risk of an attacker truncating the ciphertext however. Designs must always be able to detect truncation, but it's very easy to imagine that the rest of a system doesn't handle it well. (For example, see the &lt;a href=&quot;https://secure-resumption.com/tlsauth.pdf&quot;&gt;Cookie Cutter attack&lt;/a&gt; against HTTPS.)&lt;/p&gt;
+
+&lt;p&gt;If streaming isn't essential then an &lt;i&gt;all-or-nothing transform&lt;/i&gt; would be ideal. But, again, there's no substantial standards or practice around this. Hopefully in ten years or so there will be clear answers for this and for large-plaintext constructions with AEADs (&lt;a href=&quot;https://tools.ietf.org/html/draft-mcgrew-aero-01&quot;&gt;AERO is a start&lt;/a&gt;). But, for now, even symmetric encryption isn't a &amp;ldquo;solved problem&amp;rdquo;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Why not DANE in browsers</title>
+   <link href="http://www.imperialviolet.org/2015/01/17/notdane.html"/>
+   <updated>2015-01-17T00:00:00-05:00</updated>
+   <id>http://www.imperialviolet.org/2015/01/17/notdane</id>
+   <content type="html">&lt;p&gt;Thomas Ptacek laid out a number of &lt;a href=&quot;http://sockpuppet.org/blog/2015/01/15/against-dnssec/&quot;&gt;arguments against DNSSEC&lt;/a&gt; recently (and in a &lt;a href=&quot;http://sockpuppet.org/stuff/dnssec-qa.html&quot;&gt;follow up&lt;/a&gt;). We don't fully agree on everything, but it did prompt me to write why, even if you assume DNSSEC, &lt;a href=&quot;https://tools.ietf.org/html/rfc6698&quot;&gt;DANE&lt;/a&gt; (the standard for speaking about the intersection of TLS and DNSSEC) is not a foregone conclusion in web browsers.&lt;/p&gt;
+
+&lt;p&gt;There are two ways that you might wish to use DANE in a web browser: either to block a certificate that would normally be considered valid, or to bless a certificate that would normally be rejected. The first, obviously, requires that DANE information always be obtained&amp;mdash;if a lookup failure was ignored, a network attacker with a bad certificate would just simulate a lookup failure. But requiring that browsers always obtain DANE information (or a proof of absence) is nearly implausible:&lt;/p&gt;
+
+&lt;p&gt;Some years ago now, Chrome did an experiment where we would lookup a TXT record that we knew existed when we knew the Internet connection was working. At the time, some 4&amp;ndash;5% of users couldn't lookup that record; we assume because the network wasn't transparent to non-standard DNS resource types. DANE records are going to be even more non-standard, are going to be larger and browsers would have to fetch lots of them because they'll need the DNSKEY/RRSIG chain up from the root. Even if DNSSEC record lookup worked flawlessly for everyone, we probably still wouldn't implement this aspect of DANE because each extra lookup is more latency and another chance for packet loss to cause an expensive timeout and retransmit.&lt;/p&gt;
+
+&lt;p&gt;Instead, for this we have &lt;a href=&quot;https://tools.ietf.org/html/draft-ietf-websec-key-pinning-21&quot;&gt;HPKP&lt;/a&gt;, which is a memory-based pinning solution using HTTP headers. We also have pre-loaded pinning in Chrome for larger or more obvious targets. Thomas Ptacek seems bullish on pinning but I'm much more lukewarm. HPKP is quite complex and no doubt someone will write a &amp;ldquo;supercookies&amp;rdquo; story about it at some point, as they &lt;a href=&quot;https://arstechnica.com/security/2015/01/browsing-in-privacy-mode-super-cookies-can-track-you-anyway/&quot;&gt;have for HSTS&lt;/a&gt;. Additionally, pinning is quite dangerous. Clients deciding that &amp;ldquo;pinning is good&amp;rdquo; have caused headaches at Google. It's also worth noting that &lt;a href=&quot;https://crypto.cat&quot;&gt;CryptoCat&lt;/a&gt; has committed pinning-suicide in Chrome at at the moment due to their CA having switched intermediates between renewals. They're waiting for the release of Chrome 41 to recover.&lt;/p&gt;
+
+&lt;p&gt;But what about the other side of DANE: blessing certificates that would otherwise be considered untrusted? In this case, DNSSEC can be seen as something like another CA. The same problems with looking up DNSSEC records apply, but are much less painful when you only need to depend on the lookup for sites that are using DANE certificates. Indeed, Chrome even &lt;a href=&quot;https://www.imperialviolet.org/2011/06/16/dnssecchrome.html&quot;&gt;supported&lt;/a&gt; something very like DANE for a while. In that case the DNSSEC records were contained in the certificate to avoid the latency and complexity of looking them up in the client. (DNSSEC records contains signatures so need not be transported over the DNS protocol.)&lt;/p&gt;
+
+&lt;p&gt;But support for that was removed because it was a bunch of parsing code outside of the sandbox, wasn't really being used and it conflicted with two long-term plans for the health of the HTTPS ecosystem: eliminating 1024-bit RSA and Certificate Transparency. The conflicts are probably the most important reasons for not wanting to renew the experiment.&lt;/p&gt;
+
+&lt;p&gt;The effort to remove 1024-bit RSA from HTTPS has been going for years and is, perhaps, nearing completion now. (That noise that you can hear is my colleague, Ryan Sleevi, crying softly.). There are still some 1024-bit root certificates, but they are &lt;a href=&quot;https://bugzilla.mozilla.org/show_bug.cgi?id=986019&quot;&gt;nearly gone&lt;/a&gt; from the Mozilla set. The amount of work involved is an order of magnitude greater than you expect because of the interactions of different X.509 validation libraries, intermediate chains and varying root stores on different platforms and versions.&lt;/p&gt;
+
+&lt;p&gt;DNSSEC, however, is littered with 1024-bit RSA. You literally can't avoid it because the root zone transits through a 1024-bit key. DNSSEC has them because of (I think) concerns about the size of responses and they are usually rotated every two or three months. The RFC &lt;a href=&quot;https://tools.ietf.org/html/rfc6781#section-3.4.2&quot;&gt;suggests&lt;/a&gt; that 1024-bit RSA is good for &amp;ldquo;most zones&amp;rdquo; until 2022. Dan Bernstein's paper on &lt;a href=&quot;http://cr.yp.to/factorization/batchnfs-20141109.pdf&quot;&gt;Batch NFS&lt;/a&gt; deals well with the question of whether that's wise.&lt;/p&gt;
+
+&lt;p&gt;Next, &lt;a href=&quot;http://www.certificate-transparency.org/&quot;&gt;Certificate Transparency&lt;/a&gt; is our effort to add strong, technical audits to the CA system by creating a trustworthy log of all valid certificates. CT logs only accept certificates from CA as an anti-spam measure but people can create DANE certificates for domains at will. This is far from an insurmountable problem, but it is a problem that would need to be solved and the CT team already have their hands full with the staged rollout of CT in Chrome.&lt;/p&gt;
+
+&lt;p&gt;The 1024-bit RSA problem isn't insurmountable either (although it's baked in much deeper), so it's possible that browsers might accept a DNSSEC signature chain in a certificate in the future, but it's a long way out.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The POODLE bites again</title>
+   <link href="http://www.imperialviolet.org/2014/12/08/poodleagain.html"/>
+   <updated>2014-12-08T00:00:00-05:00</updated>
+   <id>http://www.imperialviolet.org/2014/12/08/poodleagain</id>
+   <content type="html">&lt;p&gt;October's &lt;a href=&quot;https://www.imperialviolet.org/2014/10/14/poodle.html&quot;&gt;POODLE attack&lt;/a&gt; affected CBC-mode cipher suites in SSLv3 due to SSLv3's under-specification of the contents of the CBC padding bytes. Since SSLv3 didn't say what the padding bytes should be, implementations couldn't check them and that opened SSLv3 up to an oracle attack.&lt;/p&gt;
+
+&lt;p&gt;We're done pretty well at killing off SSLv3 in response to that. Chrome 39 (released Nov 18&lt;sup&gt;th&lt;/sup&gt;) removed fallback to SSLv3 and Chrome 40 &lt;a href=&quot;https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/Vnhy9aKM_l4&quot;&gt;is scheduled&lt;/a&gt; to remove SSLv3 completely. Firefox 34 (released Dec 1&lt;sup&gt;st&lt;/sup&gt;) has already &lt;a href=&quot;https://www.mozilla.org/en-US/firefox/34.0/releasenotes/&quot;&gt;removed SSLv3 support&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We're removing SSLv3 in favour of TLS because TLS fully specifies the contents of the padding bytes and thus stops the attack. However, TLS's padding is a &lt;i&gt;subset&lt;/i&gt; of SSLv3's padding so, technically, you could use an SSLv3 decoding function with TLS and it would still work fine. It wouldn't check the padding bytes but that wouldn't cause any problems in normal operation. However, if an SSLv3 decoding function was used with TLS, then the POODLE attack would work, even against TLS connections.&lt;/p&gt;
+
+&lt;p&gt;This was noted by, at least, Brian Smith on the TLS list ([&lt;a href=&quot;https://www.ietf.org/mail-archive/web/tls/current/msg14058.html&quot;&gt;1&lt;/a&gt;][&lt;a href=&quot;https://www.ietf.org/mail-archive/web/tls/current/msg14072.html&quot;&gt;2&lt;/a&gt;]) and I was sufficiently cynical to assume that there were probably more instances of this than the old versions of NSS that Brian cited, and so wrote a scanner for the issue.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, I found a number of major sites that had this problem. At least one of whom I had good enough contacts at to quickly find that they used an F5 device to terminate connections. I contacted F5 on October 21&lt;sup&gt;st&lt;/sup&gt; and they started working on a fix. Yngve Pettersen also &lt;a href=&quot;https://vivaldi.net/blogs/entry/not-out-of-the-woods-yet-there-are-more-poodles&quot;&gt;independently found&lt;/a&gt; this issue and contacted me about it around this time.&lt;/p&gt;
+
+&lt;p&gt;F5 reported that some of the affected sites weren't customers of theirs, which meant that there was (at least) a second vendor with the same issue. After more digging, I found that some A10 devices also have this problem. I emailed a number of contacts at A10 on October 30&lt;sup&gt;th&lt;/sup&gt; but sadly didn't get a reply from any of them. It wasn't until November 13&lt;sup&gt;th&lt;/sup&gt; that I found the right person at A10 to deal with this.&lt;/p&gt;
+
+&lt;p&gt;F5 and A10 have posted patches for their products (F5's are &lt;a href=&quot;https://support.f5.com/kb/en-us/solutions/public/15000/800/sol15882.html&quot;&gt;here&lt;/a&gt; and A10's are &lt;a href=&quot;https://www.a10networks.com/support-axseries/downloads/downloads.php&quot;&gt;here&lt;/a&gt; and they have an advisory &lt;a href=&quot;https://www.a10networks.com/support/advisories/A10-RapidResponse_CVE-2014-8730.pdf&quot;&gt;here&lt;/a&gt;). I'm not completely sure that I've found every affected vendor but, now that this issue is public, any other affected products should quickly come to light. (Citrix devices have an odd behaviour in this area in that they'll accept padding bytes that are all zeros, but not random padding. That's unexpected but I can't make an attack out of it.)&lt;/p&gt;
+
+&lt;p&gt;(&lt;b&gt;Update&lt;/b&gt;: since posting this, it appears that products from Fortinet, &lt;a href=&quot;http://tools.cisco.com/security/center/content/CiscoSecurityNotice/CVE-2014-8730&quot;&gt;Cisco&lt;/a&gt;, IBM (&lt;a href=&quot;http://www-01.ibm.com/support/docview.wss?uid=swg21692552&quot;&gt;WebSphere&lt;/a&gt;, &lt;a href=&quot;http://www-01.ibm.com/support/docview.wss?uid=swg21693142&quot;&gt;Domino&lt;/a&gt;, &lt;a href=&quot;http://www-01.ibm.com/support/docview.wss?uid=swg21692802&quot;&gt;Tivoli&lt;/a&gt;) and &lt;a href=&quot;http://kb.juniper.net/InfoCenter/index?page=content&amp;id=TSB16579&amp;actp=RSS&quot;&gt;Juniper&lt;/a&gt; may also be affected.)&lt;/p&gt;
+
+&lt;p&gt;Ivan Ristić has added a test for this issue to his excellent scanner at &lt;a href=&quot;https://www.ssllabs.com/ssltest/&quot;&gt;SSLLabs&lt;/a&gt;. Affected sites will have their grade set to F and will report &amp;ldquo;This server is vulnerable to the POODLE attack against TLS servers&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;This seems like a good moment to reiterate that &lt;i&gt;everything&lt;/i&gt; less than TLS 1.2 with an AEAD cipher suite is cryptographically broken. An IETF &lt;a href=&quot;https://datatracker.ietf.org/doc/draft-ietf-tls-prohibiting-rc4/&quot;&gt;draft to prohibit RC4&lt;/a&gt; is in Last Call at the moment but it would be wrong to believe that RC4 is uniquely bad. While RC4 is fundamentally broken and no implementation can save it, attacks against MtE-CBC ciphers have repeatedly been shown to be far more practical. Thankfully, TLS 1.2 support is &lt;a href=&quot;https://www.trustworthyinternet.org/ssl-pulse/&quot;&gt;about to hit&lt;/a&gt; 50% at the time of writing.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

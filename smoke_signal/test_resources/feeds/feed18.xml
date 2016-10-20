@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:admin="http://webns.net/mvcb/"
+>
+
+<channel rdf:about="http://arxiv.org/">
+<title>physics.pop-ph updates on arXiv.org</title>
+<link>http://arxiv.org/</link>
+<description rdf:parseType="Literal">Physics -- Popular Physics (physics.pop-ph) updates on the arXiv.org e-print archive</description>
+<dc:language>en-us</dc:language>
+<dc:date>2016-10-18T20:30:00-05:00</dc:date>
+<dc:publisher>help@arxiv.org</dc:publisher>
+<dc:subject>Physics -- Popular Physics</dc:subject>
+<syn:updateBase>1901-01-01T00:00+00:00</syn:updateBase>
+<syn:updateFrequency>1</syn:updateFrequency>
+<syn:updatePeriod>daily</syn:updatePeriod>
+<items>
+ <rdf:Seq>
+  <rdf:li rdf:resource="http://arxiv.org/abs/1610.05749" />
+  <rdf:li rdf:resource="http://arxiv.org/abs/1610.02296" />
+ </rdf:Seq>
+</items>
+<image rdf:resource="http://arxiv.org/icons/sfx.gif" />
+</channel>
+<image rdf:about="http://arxiv.org/icons/sfx.gif">
+<title>arXiv.org</title>
+<url>http://arxiv.org/icons/sfx.gif</url>
+<link>http://arxiv.org/</link>
+</image>
+<item rdf:about="http://arxiv.org/abs/1610.05749">
+<title>Galileo (1564-1642) and Kepler (1571-1630): the modern scientist and the mystic. (arXiv:1610.05749v1 [physics.hist-ph])</title>
+<link>http://arxiv.org/abs/1610.05749</link>
+<description rdf:parseType="Literal">&lt;p&gt;The art of advertising one&apos;s scientific achievements, of which Galileo was an
+early master, is a trademark of successful modern science. Dedicated believers
+and mystics of science, such as Kepler, are less popular. Yet, an alleged
+rigorous rationalist like Wolfgang Pauli found in his later troubled life a
+kinship to Kepler&apos;s &quot;archetypal ideas&quot;.
+&lt;/p&gt;
+</description>
+<dc:creator> &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Todorov_I/0/1/0/all/0/1&quot;&gt;Ivan Todorov&lt;/a&gt; (INRNE Sofia)</dc:creator>
+</item>
+<item rdf:about="http://arxiv.org/abs/1610.02296">
+<title>Binding Blocks: building the Universe one nucleus at the time. (arXiv:1610.02296v2 [physics.ed-ph] UPDATED)</title>
+<link>http://arxiv.org/abs/1610.02296</link>
+<description rdf:parseType="Literal">&lt;p&gt;We present a new teaching and outreach activity based around the construction
+of a three-dimensional chart of isotopes using LEGO$^{\circledR}$ bricks. The
+activity, \emph{Binding Blocks}, demonstrates nuclear and astrophysical
+processes through a seven-meter chart of all nuclear isotopes, built from over
+26,000 LEGO$^{\circledR}$ bricks. It integrates A-level and GCSE curricula
+across areas of nuclear physics, astrophysics, and chemistry, including:
+nuclear decays (through the colours in the chart); nuclear binding energy
+(through tower heights); production of chemical elements in the cosmos; fusion
+processes in stars and fusion energy on Earth; as well as links to medical
+physics, particularly diagnostics and radiotherapy.
+&lt;/p&gt;
+</description>
+<dc:creator> &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Diget_C/0/1/0/all/0/1&quot;&gt;C. Aa. Diget&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Pastore_A/0/1/0/all/0/1&quot;&gt;A. Pastore&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Leech_K/0/1/0/all/0/1&quot;&gt;K. Leech&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Haylett_T/0/1/0/all/0/1&quot;&gt;T. Haylett&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Lock_S/0/1/0/all/0/1&quot;&gt;S. Lock&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Sanders_T/0/1/0/all/0/1&quot;&gt;T. Sanders&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Shelley_M/0/1/0/all/0/1&quot;&gt;M. Shelley&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Willett_H/0/1/0/all/0/1&quot;&gt;H. V. Willett&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Keegans_J/0/1/0/all/0/1&quot;&gt;J. Keegans&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Sinclair_L/0/1/0/all/0/1&quot;&gt;L. Sinclair&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/physics/1/au:+Simpson_E/0/1/0/all/0/1&quot;&gt;E. C. Simpson&lt;/a&gt;</dc:creator>
+</item>
+</rdf:RDF>

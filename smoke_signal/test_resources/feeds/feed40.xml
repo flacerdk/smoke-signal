@@ -1,0 +1,749 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-DE" xml:lang="de-DE">
+  <head>
+    <meta name="stationcode" content="DLR" />
+    <meta name="category" content="none" />
+    <meta name="searchable" content="false" />
+    <meta name="broadcast" content="none" />
+    <title>Deutschlandradio - Startseite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon.ico" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-57x57.png" sizes="57x57" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-60x60.png" sizes="60x60" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-72x72.png" sizes="72x72" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-114x114.png" sizes="114x114" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-128x128.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-144x144.png" sizes="144x144" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-160x160.png" sizes="160x160" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-192x192.png" sizes="192x192" />
+    <link rel="icon" type="image/png" href="http://www.deutschlandradio.de/themes/dradio/icons/dlr/favicon-196x196.png" sizes="196x196" />
+    <meta name="date" content="2013-02-21T12:42:16+0200" />
+    <meta name="robots" content="index,follow,noarchive" />
+    <meta name="googlebot" content="noarchive" />
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="http://www.deutschlandradio.de/themes/dradio/css.php?files=reset.css,grid.css,text.css,global.css,dialogs.css,pageHeader.css,pageFooter.css,teaser.css,contentList.css,contentArticle.css,contentNews.css,contentPlaylist.css,contentSchedule.css,contentSitemap.css,startpage.css,calendar.css,comments.css,radioWidget.css,dlr.head.css,dlr.content.css,dlr.startpage.css,dlr.sidebar.css,dlr.listPage.css,dlr.detailPage.css,dlr.navigation.css,dlr.css&amp;21748" />
+    <link rel="stylesheet" type="text/css" media="print" href="http://www.deutschlandradio.de/themes/dradio/css.php?files=common.print.css,startpage.print.css,dlr.print.css&amp;21748" />
+<!--[if IE]><link rel="stylesheet" type="text/css" href="http://www.deutschlandradio.de/themes/dradio/ie.css?21748" media="screen, projection"/><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" type="text/css" href="http://www.deutschlandradio.de/themes/dradio/ie6.css?21748" media="screen, projection"/><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://www.deutschlandradio.de/themes/dradio/ie7.dlr.css?21748" media="screen, projection"/><![endif]-->
+<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://www.deutschlandradio.de/themes/dradio/ie8.css?21748" media="screen, projection"/><![endif]-->
+    <link rel="stylesheet" type="text/css" href="http://www.deutschlandradio.de/themes/dradio/print.css?21748" media="print" />
+    <script type="text/javascript">
+      var globalDynamicData = {
+        themePath: 'http://www.deutschlandradio.de/themes/dradio/',
+        texts: {
+          selectDate: 'Datum wählen',
+          or: 'oder',
+          more: 'Mehr …',
+          less: 'Weniger…'
+        },
+        systemTime: '2016-10-19 11:45:42',
+        systemTimeOffset: '+0200',
+        station: 'dlr'
+      };
+    </script>
+    <script type="text/javascript" src="http://www.deutschlandradio.de/themes/dradio/js.php?files=script/xtjwrm.js,script/jquery-1.7.1.min.js,script/jquery.cookie.js,script/jquery-ui-1.8.16.custom.min.js,script/jquery.paged-teaser-box.js,script/jquery.lazyRender.js,script/jquery.hoverIntent.minified.js,script/navigation.dlr.js,script/jquery.tools.min.withautoscroll.js,script/radioplayer/preloadCssImages.jQuery_v5.js,script/radioplayer/jquery.mkdrwr.widget.js,script/radioplayer/init.js,script/global.js,script/swfobject/swfobject.js,script/popup.js,script/html5player.js,script/comments.js,script/aod/jquery.mkdraod.interface.js&amp;21748"> </script>
+    <script type="text/javascript">
+<!--
+        if (!navigator.userAgent.match(/msie [6]/i)) {
+          $(function() {
+            if ( $('input.date').length > 0 ) {
+              $('input.date').datepicker('option', 'dayNames', ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']);
+              $('input.date').datepicker('option', 'dayNamesShort', ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam']);
+              $('input.date').datepicker('option', 'dayNamesMin', ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']);
+              $('input.date').datepicker('option', 'monthNames', ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']);
+              $('input.date').datepicker('option', 'monthNamesShort', ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']);
+            }
+          });
+        }
+      
+      //-->
+    </script>
+    <script type="text/javascript" src="https://script.ioam.de/iam.js"></script>
+  </head>
+  <body id="top" class="container_12 jsDisabled"><div class="hideNavigation"><ul><li><a href="#boxSearchWord">direkt zur Suche</a></li><li><a href="#pageContent">direkt zum Inhalt</a></li></ul></div><div id="pageKicker" class="grid_12"><div class="grid_8 omega"><ul class="dradioLinks">
+  <li class="first">
+    <a href="http://www.deutschlandfunk.de/" class="dlf" target="_self" title="Deutschlandfunk">Deutschlandfunk</a>
+   </li>
+  <li>
+    <a href="http://www.deutschlandradiokultur.de/" class="kultur" target="_self" title="Deutschlandradio Kultur">Deutschlandradio Kultur</a>
+   </li>
+  <li class="last">
+    <a href="http://www.dradiowissen.de/" class="wissen" target="_self" title="DRadio Wissen">DRadio Wissen</a>
+  </li>
+</ul></div><div class="clear"> </div></div><div id="pageHeader" class="grid_12"><div class="grid_5 alpha"><div class="metaNavigation currentDate">Mittwoch, 19. Oktober 2016</div><div class="metaNavigation currentTimeStep"><span class="zone">MESZ</span><span class="time">11:45 Uhr</span></div></div><div class="grid_3"><div class="metaNavigation"> </div></div><div class="grid_4 outputLinks"><div class="metaNavigation"><br /></div></div><div class="grid_2"><div id="loginBox" class="metaNavigation"></div></div><div class="prefix_8 grid_4 alpha omega"><div class="search">
+  <form action="text-und-audio-suche.287.de.html" method="get">
+    <input type="hidden" name="search[submit]" value="1"/>
+    <label for="boxSearchWord" class="auralOnly">Suche</label>
+    <input id="boxSearchWord" class="field" type="text" name="search[word]" value="" autocomplete="off"/>
+    <button type="submit">
+      <span class="hidden">start search</span>
+    </button>
+  </form>
+</div><script type="text/javascript">
+      var searchConfigData = {
+        core: ''
+      };
+    </script>
+</div><div class="grid_4 alpha logo"><a href="/" class="image" title="Deutschlandradio Logo, Link zur Startseite">
+  <img src="http://www.deutschlandradio.de/media/files/1/1a471d2a0586a7aec12cd3199d4b675fv2.png" alt="Deutschlandradio Logo"/>
+</a>
+</div><div class="clear"> </div></div><div id="pageSubHeader" class="grid_12"><div id="pageMainMenus"><div class="body">
+  <ul class="mainNavigation hasSocialMedia">
+<li><a href="#" class="dradioLink" target="_self" title="Programm">Programm</a>
+<ul>
+<li><a href="vor-und-rueckschau.427.de.html" class="dradioLink" target="_self" title="Vor- und Rückschau">Vor- und Rückschau</a></li>
+<li><a href="sendungen-a-z.283.de.html" class="dradioLink" target="_self" title="Sendungen A - Z">Sendungen A - Z</a></li>
+<li><a href="nachrichten.1668.de.html" class="dradioLink" target="_self" title="Nachrichten">Nachrichten</a></li>
+<li><a href="reihen-und-schwerpunkte.350.de.html" class="dradioLink" target="_self" title="Reihen und Schwerpunkte">Reihen und Schwerpunkte</a></li>
+<li><a href="rezensionen.220.de.html" class="dradioLink" target="_self" title="Rezensionen">Rezensionen</a></li>
+<li><a href="heute-neu.1411.de.html" class="dradioLink" target="_self" title="Heute neu">Heute neu</a></li>
+</ul>
+</li>
+<li><a href="#" class="dradioLink" target="_self" title="Hören">Hören</a>
+<ul>
+<li><a href="http://www.deutschlandfunk.de/hoeren.2055.de.html" class="dradioLink" target="_self">Beim Deutschlandfunk</a></li>
+<li><a href="http://www.deutschlandradiokultur.de/hoeren.2619.de.html" class="dradioLink" target="_self">Bei Deutschlandradio Kultur</a></li>
+<li><a href="http://dradiowissen.de/podcasts" class="dradioLink" target="_self">Bei DRadio Wissen</a></li>
+<li><a href="http://www.deutschlandradio.de/apps.2702.de.html" class="dradioLink" target="_self">Apps und Radioplayer</a></li>
+<li><a href="dokumente-und-debatten.237.de.html" class="dradioLink" title="Dokumente und Debatten" target="_self">Dokumente und Debatten</a></li>
+<li><a href="frequenzen.212.de.html" class="dradioLink" target="_self" title="Frequenzen">Frequenzen</a></li>
+</ul>
+</li>
+<li><a href="http://blogs.deutschlandradio.de/lab/" class="dradioLink" target="_blank">Deutschlandradio Lab</a></li>
+<li><a href="#" class="dradioLink" target="_self" title="Kontakt">Kontakt</a>
+<ul>
+<li><a href="hoererservice.359.de.html" class="dradioLink" target="_self" title="Hörerservice">Hörerservice</a></li>
+<li><a href="sendungen-mit-hoererbeteiligung.1671.de.html" class="dradioLink" target="_self" title="Sendungen mit Hörerbeteiligung">Sendungen mit Hörerbeteiligung</a></li>
+<li><a href="social-media.1423.de.html" class="dradioLink" target="_self" title="Social Media">Social Media</a></li>
+</ul>
+</li>
+<li><a href="#" class="dradioLink" target="_self" title="Service">Service</a>
+<ul>
+<li><a href="wetter.268.de.html" class="dradioLink" target="_self" title="Wetter">Wetter</a></li>
+<li><a href="seewetter.275.de.html" class="dradioLink" target="_self" title="Seewetter">Seewetter</a></li>
+<li><a href="verkehr.438.de.html" class="dradioLink" target="_self" title="Verkehr">Verkehr</a></li>
+<li><a href="veranstaltungen.449.de.html" class="dradioLink" target="_self" title="Veranstaltungen">Veranstaltungen</a></li>
+<li><a href="konzertreihen.224.de.html" class="dradioLink" target="_self" title="Konzertreihen">Konzertreihen</a></li>
+<li><a href="playlist.277.de.html" class="dradioLink" target="_self" title="Playlist">Playlist</a></li>
+<li><a href="http://srv.deutschlandradio.de/newsletter.276.de.html" class="dradioLink" target="_self" title="Newsletter">Newsletter</a></li>
+</ul>
+</li>
+<li><a href="wir-ueber-uns.2067.de.html" class="dradioLink" target="_self" title="Über uns">Wir über uns</a>
+<ul>
+<li><a href="wir-ueber-uns-aktuell.1956.de.html" class="dradioLink" target="_self">Wir über uns aktuell</a></li>
+<li><a href="programme.2080.de.html" class="dradioLink" target="_self">Programme</a></li>
+<li><a href="unternehmen.2068.de.html" class="dradioLink" target="_self">Unternehmen</a></li>
+<li><a href="presse.2079.de.html" class="dradioLink" target="_self">Presse</a></li>
+<li><a href="gremien.2070.de.html" class="dradioLink" target="_self">Gremien</a></li>
+<li><a href="transparenz.2082.de.html" class="dradioLink" target="_self">Transparenz</a></li>
+<li><a href="karriere.2108.de.html" class="dradioLink" target="_self">Ausbildung und Karriere</a></li>
+<li><a href="radiomacher.2087.de.html" class="dradioLink" target="_self">Radiomacher</a></li>
+</ul>
+</li>
+<li class="socialMedia noSub"><a href="social-media.1423.de.html" target="_blank" title="Social Media"><img src="http://www.deutschlandradio.de/media/files/c/cde77b3211a311e4c17c061bfdfed87fv1.jpg" class="dradioImage" style="width: 22px; height: 22px;" data-source="" alt="Google+-Logo" title="Google+-Logo"/></a></li>
+<li class="socialMedia noSub"><span class="dradioImage" style="width: 22px;"><a href="social-media.1423.de.html" target="_blank" title="Social Media" style="text-decoration:none"><img src="http://www.deutschlandradio.de/media/files/5/5cf631bc55748752eceaa8d6f1c328c5v1.jpg" class="dradioImage" style="width: 22px; height: 22px;" data-source="" alt="Twitter-Logo" title="Twitter-Logo"/></a></span></li>
+<li class="socialMedia noSub"><a href="social-media.1423.de.html" target="_blank" title="Social Media"><img src="http://www.deutschlandradio.de/media/files/e/e15c0405f8284e1c2e8acd451fed06bfv1.jpg" class="dradioImage" style="width: 22px; height: 22px;" data-source="" alt="Facebook-Logo" title="Facebook-Logo"/></a></li>
+</ul>
+</div>
+</div><div id="pageContent" class="hidePageContent"></div><script type="text/javascript">
+        $(function() {
+          $(".themeOfTheDay")
+            .append('\
+              <div class="footer">\
+                <div class="scrnav">\
+                  <a class="prev browse left">vorherige Themen</a>\
+                  <div class="navi"> </div>\
+                  <a class="next browse right">weitere Themen</a>\
+                </div>\
+              </div>\
+            ');
+          // dynamic size for scrollable pages
+          var max = Math.max.apply(Math, $(".scrollable").children().map(
+            function(){
+              return $(this).height();
+            }).get());
+          // initialize scrollable
+          $(".scrollable")
+            .scrollable({circular: true})
+            .navigator()
+            
+            .height(max);
+        });
+    </script><div class="themeOfTheDay">
+  <div class="body scrollable" id="scrollable">
+    <div class="topBorder"> </div>
+    <div class="items">
+      <div class="page"><div class="teaser teaser1"><div class="teaserImage"><a href="http://www.deutschlandfunk.de/putin-in-berlin-hier-sind-nirgendwo-mehr-wunder-zu-erwarten.694.de.html?dram:article_id=368927" class="image" title="Matthias Platzeck, Vorsitzender des Deutsch-Russischen Forums. (imago / Jens Jeske)" target="_self"><img src="http://www.deutschlandradio.de/media/thumbs/4/4c179f6328d7c39fe4b60676715c1b60v1_max_305x172_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Matthias Platzeck, Vorsitzender des Deutsch-Russischen Forums. (imago / Jens Jeske)" title="Matthias Platzeck, Vorsitzender des Deutsch-Russischen Forums. (imago / Jens Jeske)" width="305" height="172" style="width: 305px; height: 172px;"/></a></div><div class="teaserBody"><h2><span>Putin in Berlin</span><a href="http://www.deutschlandfunk.de/putin-in-berlin-hier-sind-nirgendwo-mehr-wunder-zu-erwarten.694.de.html?dram:article_id=368927" target="_self">"Hier sind nirgendwo mehr Wunder zu erwarten"</a></h2><p>Der Vorsitzende des Deutsch-Russischen Forums, Matthias Platzeck, rechnet nicht mit großen Fortschritten, wenn Bundeskanzlerin Angela Merkel heute Abend in Berlin mit Russlands Präsident Wladimir Putin über Syrien und die Ukraine spricht. Es werde nur Millimeter-Bewegungen nach vorne geben, sagte er im DLF.</p><p class="themelink"><a href="http://www.deutschlandfunk.de/putin-in-berlin-hier-sind-nirgendwo-mehr-wunder-zu-erwarten.694.de.html?dram:article_id=368927" target="_self"><span class="dlf">Deutschlandfunk</span> | <span class="dlf">Interview</span></a></p></div></div>
+<div class="teaser teaser3"><div class="teaserImage"><a href="http://www.deutschlandradiokultur.de/aus-den-feuilletons-das-buch-wird-bleiben.1059.de.html?dram:article_id=368935" class="image" title="Der Maler David Hockney, aufgenommen auf der Frankfurter Buchmesse 2016 (imago/Hoffmann)" target="_self"><img src="http://www.deutschlandradio.de/media/thumbs/4/4b3bf143d52f93a158ea3aaf764fc2c6v1_max_305x172_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Der Maler David Hockney, aufgenommen auf der Frankfurter Buchmesse 2016 (imago/Hoffmann)" title="Der Maler David Hockney, aufgenommen auf der Frankfurter Buchmesse 2016 (imago/Hoffmann)" width="305" height="172" style="width: 305px; height: 172px;"/></a></div><div class="teaserBody"><h2><span>Aus den Feuilletons</span><a href="http://www.deutschlandradiokultur.de/aus-den-feuilletons-das-buch-wird-bleiben.1059.de.html?dram:article_id=368935" target="_self">"Das Buch wird bleiben"</a></h2><p>Hauptredner auf der Pressekonferenz der Frankfurter Buchmesse war in diesem Jahr weder ein Autor noch ein Verleger, sondern ein Maler: David Hockney. Der gab sich im "FAZ"-Interview optimistisch. Das Buch werde uns auch in Zukunft erhalten bleiben.</p><p class="themelink"><a href="http://www.deutschlandradiokultur.de/aus-den-feuilletons-das-buch-wird-bleiben.1059.de.html?dram:article_id=368935" target="_self"><span class="drk">Deutschlandradio Kultur</span> | <span class="drk">Kulturpresseschau</span></a></p></div></div>
+<div class="teaser teaser5"><div class="teaserImage"><a href="http://www.deutschlandfunk.de/landung-der-exomars-sonde-ein-grosser-schritt-fuer-europa.1773.de.html?dram:article_id=368934" class="image" title="Bei der Abtrennung der Nutzlastverkleidung während der Startphase der ExoMars-Mission tritt der Spurengas-Orbiter und das Wok-förmige Lande-Modul Schiaparelli zum Vorschein (künstlerische Darstellung) (Esa/ATG medialab/dpa picture alliance)" target="_self"><img src="http://www.deutschlandradio.de/media/thumbs/b/b17a8b2b346bcc2b00a5f896694056c7v1_max_305x172_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Bei der Abtrennung der Nutzlastverkleidung während der Startphase der ExoMars-Mission tritt der Spurengas-Orbiter und das Wok-förmige Lande-Modul Schiaparelli zum Vorschein (künstlerische Darstellung) (Esa/ATG medialab/dpa picture alliance)" title="Bei der Abtrennung der Nutzlastverkleidung während der Startphase der ExoMars-Mission tritt der Spurengas-Orbiter und das Wok-förmige Lande-Modul Schiaparelli zum Vorschein (künstlerische Darstellung) (Esa/ATG medialab/dpa picture alliance)" width="305" height="172" style="width: 305px; height: 172px;"/></a></div><div class="teaserBody"><h2><span>Landung der ExoMars-Sonde</span><a href="http://www.deutschlandfunk.de/landung-der-exomars-sonde-ein-grosser-schritt-fuer-europa.1773.de.html?dram:article_id=368934" target="_self">Ein großer Schritt für Europa - hoffentlich</a></h2><p>Bisher ist noch keine europäische Sonde erfolgreich auf dem Mars gelandet. Heute Nachmittag will die europäische Weltraumagentur ESA es erneut versuchen: Nach sieben Monaten Reisezeit soll die Sonde ExoMars auf dem Roten Planeten aufsetzen.</p><p class="themelink"><a href="http://www.deutschlandfunk.de/landung-der-exomars-sonde-ein-grosser-schritt-fuer-europa.1773.de.html?dram:article_id=368934" target="_self"><span class="dlf">Deutschlandfunk</span> | <span class="dlf">Informationen am Morgen</span></a></p></div></div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="clear"> </div></div><div id="pageSubHeaderBottom" class="dlr"><div class="box grid_4" id="newsTeaserBox"><div class="newsTeaserBox">
+  <div class="heading">
+    <h1 class="active">Nachrichten</h1>
+    <div class="shadow"> </div>
+    <h1 class="activeFollowing">
+      <a href="http://www.deutschlandfunk.de/presseschau.266.de.html">Presseschau</a>
+    </h1>
+  </div>
+  <div class="newsTeaserPanel">
+    <div class="clear"> </div>
+    <div class="newsTeaserContent">
+      <div class="newsTeaserItem">
+        <h3 class="dlf">Nachrichten</h3>
+        <p><span class="headline">Razzia 
+          </span>Anhänger der "Reichsbürger" schießt auf Polizisten | <a href="http://www.deutschlandfunk.de/razzia-anhanger-der-reichsburger-schiesst-auf-polizisten.447.de.html?drn:news_id=668541">mehr</a></p>
+      </div>
+      <div class="newsTeaserItem">
+        <h3 class="drk">Kulturnachrichten</h3>
+        <p><span class="headline">Max Beckmann im Metropolitan Museum 
+          </span> | <a href="http://www.deutschlandradiokultur.de/max-beckmann-im-metropolitan-museum.265.de.html?drn:news_id=668536">mehr</a></p>
+      </div>
+      <div class="newsTeaserItem">
+        <h3 class="drw">Wissensnachrichten</h3>
+        <p><span class="headline">ExoMars 
+          </span>Sechs Minuten Daumen drücken | <a href="http://dradiowissen.de/nachrichten/exomars-sechs-minuten-daumen-druecken">mehr</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div><div class="box grid_8" id="radioWidgetBox"><script type="text/javascript">
+      if(window.addEventListener) {
+        window.addEventListener('unload', UnloadHandler, false);
+      }
+      function UnloadHandler() {
+      }
+      function popupAOD(url)
+      {
+        openPopup(url,'AOD',640,445,0);
+        return false;
+      }
+      var broadcastDataDlf = new Object();
+      var broadcastDataDrk = new Object();
+      var broadcastDataDrw = new Object();
+      
+      broadcastDataDlf.current_content = "Umwelt und Verbraucher".replace("&amp;", '\u0026');
+      broadcastDataDlf.current_time = "Seit 11:35 Uhr".replace("&amp;", '\u0026');
+      broadcastDataDlf.next_content = "Verbrauchertipp".replace("&amp;", '\u0026');
+      broadcastDataDlf.next_time = "Es folgt um 11:55 Uhr".replace("&amp;", '\u0026');
+
+      broadcastDataDrk.current_content = "Folk".replace("&amp;", '\u0026');
+      broadcastDataDrk.current_time = "Seit 11:35 Uhr".replace("&amp;", '\u0026');
+      broadcastDataDrk.next_content = "Nachrichten".replace("&amp;", '\u0026');
+      broadcastDataDrk.next_time = "Es folgt um 12:00 Uhr".replace("&amp;", '\u0026');
+
+      broadcastDataDrw.current_content = "Grünstreifen".replace("&amp;", '\u0026');
+      broadcastDataDrw.current_time = "Seit 10:00 Uhr".replace("&amp;", '\u0026');
+      broadcastDataDrw.next_content = "Update".replace("&amp;", '\u0026');
+      broadcastDataDrw.next_time = "Es folgt um 18:00 Uhr".replace("&amp;", '\u0026');
+    </script><script type="text/javascript">
+      $(document).ready(function() {
+        var aodLinks  = new Object();
+        aodLinks.dlfFlash = "javascript:$(window).mkdraod_interface('openAODwithStream', $(window).mkdraod_interface('consts').stream.MKDRAOD_STREAM_DEUTSCHLANDFUNK);return false;".replace("&amp;", '\u0026');
+        aodLinks.dlfMp3 = 'http://www.deutschlandradio.de/streaming/dlf.m3u'.replace("&amp;", '\u0026');
+        aodLinks.dlfOgg = 'http://www.deutschlandradio.de/index.508.de.html'.replace("&amp;", '\u0026');
+        aodLinks.dlfWma = ''.replace("&amp;", '\u0026');
+        aodLinks.drkFlash = "javascript:$(window).mkdraod_interface('openAODwithStream', $(window).mkdraod_interface('consts').stream.MKDRAOD_STREAM_DEUTSCHLANDRADIO_KULTUR);return false;".replace("&amp;", '\u0026');
+        aodLinks.drkMp3 = 'http://www.deutschlandradio.de/streaming/dkultur.m3u'.replace("&amp;", '\u0026');
+        aodLinks.drkOgg = 'http://www.deutschlandradio.de/index.508.de.html'.replace("&amp;", '\u0026');
+        aodLinks.drkWma = ''.replace("&amp;", '\u0026');
+        aodLinks.drwFlash = "javascript:$(window).mkdraod_interface('openAODwithStream', $(window).mkdraod_interface('consts').stream.MKDRAOD_STREAM_DRADIO_WISSEN);return false;".replace("&amp;", '\u0026');
+        aodLinks.drwMp3 = 'http://prelaunch.dradio.de/streaming/dradiowissen.m3u'.replace("&amp;", '\u0026');
+        aodLinks.drwOgg = 'http://prelaunch.dradio.de/index.508.de.html'.replace("&amp;", '\u0026');
+        aodLinks.drwWma = ''.replace("&amp;", '\u0026');
+        var onAirLinks = new Object();
+        onAirLinks.dlf = 'http://www.deutschlandfunk.de/jetzt-im-radio.1852.de.html';
+        onAirLinks.drk = 'http://www.deutschlandradiokultur.de/programmvorschau.282.de.html';
+        onAirLinks.drw = 'http://www.deutschlandradio.de/jetzt-im-radio.261.de.html';
+        var defaultStation = '';
+        
+          $('#mkdrwr_text_more > a').prop('href', null);
+          $('#mkdrwr_widget').mkdrwr_widget({
+            'blendInterval': 0,
+            'switchChannel': function(channel, type) {
+            },
+            'selectPodcast': function(channel) {
+            },
+            'selectRecorder': function(channel) {
+            },
+            'selectMediathek': function(channel) {
+            },
+            'selectMore': function(channel) {
+              switch(channel){
+                case 'funk':
+                  $('#mkdrwr_text_more > a').attr('href', onAirLinks.dlf);
+                  break;
+                case 'kultur':
+                  $('#mkdrwr_text_more > a').attr('href', onAirLinks.drk);
+                  break;
+                case 'wissen':
+                  $('#mkdrwr_text_more > a').attr('href', onAirLinks.drw);
+                  break;
+              }
+            },
+            'switchType': function(type, channel) {
+              switch (type) {
+                case 'flash':
+                  $('#mkdrwr_button_funk > a').attr('href', aodLinks.dlfFlash);
+                  $('#mkdrwr_button_kultur > a').attr('href', aodLinks.drkFlash);
+                  $('#mkdrwr_button_wissen > a').attr('href', aodLinks.drwFlash);
+                  $('#mkdrwr_button_funk > a').attr('onclick', 'javascript:popupAOD(\'' + aodLinks.dlfFlash + ' \');return false;');
+                  $('#mkdrwr_button_kultur > a').attr('onclick', 'javascript:popupAOD(\'' + aodLinks.drkFlash + ' \');return false;');
+                  $('#mkdrwr_button_wissen > a').attr('onclick', 'javascript:popupAOD(\'' + aodLinks.drwFlash + ' \');return false;');
+                  break;
+                case 'mp3':
+                  $('#mkdrwr_button_funk > a').attr('href', aodLinks.dlfMp3);
+                  $('#mkdrwr_button_kultur > a').attr('href', aodLinks.drkMp3);
+                  $('#mkdrwr_button_wissen > a').attr('href', aodLinks.drwMp3);
+                  $('#mkdrwr_button_funk > a').prop('onclick', null);
+                  $('#mkdrwr_button_kultur > a').prop('onclick', null);
+                  $('#mkdrwr_button_wissen > a').prop('onclick', null);
+                  break;
+                case 'ogg':
+                  $('#mkdrwr_button_funk > a').attr('href', aodLinks.dlfOgg);
+                  $('#mkdrwr_button_kultur > a').attr('href', aodLinks.drkOgg);
+                  $('#mkdrwr_button_wissen > a').attr('href', aodLinks.drwOgg);
+                  $('#mkdrwr_button_funk > a').prop('onclick', '');
+                  $('#mkdrwr_button_kultur > a').prop('onclick', '');
+                  $('#mkdrwr_button_wissen > a').prop('onclick', '');
+                  break;
+                case 'wmp':
+                  $('#mkdrwr_button_funk > a').attr('href', aodLinks.dlfWma);
+                  $('#mkdrwr_button_kultur > a').attr('href', aodLinks.drkWma);
+                  $('#mkdrwr_button_wissen > a').attr('href', aodLinks.drwWma);
+                  $('#mkdrwr_button_funk > a').prop('onclick', null);
+                  $('#mkdrwr_button_kultur > a').prop('onclick', null);
+                  $('#mkdrwr_button_wissen > a').prop('onclick', null);
+                  break;
+              }
+            }
+          });
+        
+        $('#mkdrwr_widget').mkdrwr_widget('setTextState', {
+          'funk':broadcastDataDlf
+        });
+        $('#mkdrwr_widget').mkdrwr_widget('setTextState', {
+          'kultur':broadcastDataDrk
+        });
+        $('#mkdrwr_widget').mkdrwr_widget('setTextState', {
+          'wissen':broadcastDataDrw
+        });
+        if(defaultStation != '') {
+          switch (defaultStation) {
+            case 'DLF':
+              $('#mkdrwr_widget').mkdrwr_widget('setButtonState', 'funk');
+              break;
+            case 'DRK':
+              $('#mkdrwr_widget').mkdrwr_widget('setButtonState', 'kultur');
+              break;
+            case 'DRW':
+              $('#mkdrwr_widget').mkdrwr_widget('setButtonState', 'wissen');
+              break;
+          }
+        }
+      });
+    </script><script>
+      $(window).mkdraod_interface({
+        baseURL: 'http://srv.deutschlandradio.de/themes/dradio/script/aod/index.html',
+      });
+    </script><div id="mkdrwr_widget">
+  <div class="mkdrwr_background_top">
+    <div class="mkdrwr_background_bottom">
+      <div id="mkdrwr_grid">
+        <div class="mkdrwr_button" id="mkdrwr_button_funk">
+          <a href="#" onclick="javascript:$(window).mkdraod_interface('openAODwithStream', $(window).mkdraod_interface('consts').stream.MKDRAOD_STREAM_DEUTSCHLANDFUNK);return false;" alt="Deutschlandfunk" title="Deutschlandfunk"> </a>
+        </div>
+        <div class="mkdrwr_button" id="mkdrwr_button_kultur">
+          <a href="#" onclick="javascript:$(window).mkdraod_interface('openAODwithStream', $(window).mkdraod_interface('consts').stream.MKDRAOD_STREAM_DEUTSCHLANDRADIO_KULTUR);return false;" alt="Deutschlandradio Kultur" title="Deutschlandradio Kultur"> </a>
+        </div>
+        <div class="mkdrwr_button" id="mkdrwr_button_wissen">
+          <a href="#" onclick="javascript:$(window).mkdraod_interface('openAODwithStream', $(window).mkdraod_interface('consts').stream.MKDRAOD_STREAM_DRADIO_WISSEN);return false;" alt="DRadio Wissen" title="DRadio Wissen"> </a>
+        </div>
+        <div class="mkdrwr_button" id="mkdrwr_button_podcast">
+          <a href="http://www.deutschlandradio.de/podcasts.226.de.html" title="Podcast"> </a>
+        </div>
+        <div class="mkdrwr_button" id="mkdrwr_button_recorder">
+          <a href="http://www.deutschlandradio.de/deutschlandradio-recorder.439.de.html" title="Recorder"> </a>
+        </div>
+        <div class="mkdrwr_button" id="mkdrwr_button_mediathek">
+          <a href="http://www.deutschlandradio.de/audio-archiv.260.de.html" title="Audios"> </a>
+        </div>
+        <div id="mkdrwr_box" class="mkdrwr_box_mode_funk">
+          <p id="mkdrwr_text_live_label">LIVE-STREAM HÖREN</p>
+          <p id="mkdrwr_text_program_current_time"/>
+          <p id="mkdrwr_text_program_current_content"/>
+          <p id="mkdrwr_text_program_next_time"/>
+          <p id="mkdrwr_text_program_next_content"/>
+          <p id="mkdrwr_text_more">
+            <a href="http://www.deutschlandradio.de/jetzt-im-radio.261.de.html" title="Jetzt im Radio">mehr</a>
+          </p>
+          <div id="mkdrwr_stream_type_box">
+            <a href="#" class="mkdrwr_active" id="mkdrwr_stream_type_flash" title="Mediathek">Mediathek</a>
+            <span class="mkdrwr_dot"> | </span>
+            <a href="#" class="" id="mkdrwr_stream_type_mp3" title="MP3">MP3</a>
+            <span class="mkdrwr_dot"> | </span>
+            <a href="#" class="" id="mkdrwr_stream_type_ogg" title="OGG">OGG</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div><script type="text/javascript"><!--
+          $(function(){
+            $("#mkdrwr_widget").height($("#newsTeaserBox").height());
+          });
+        --></script><div id="startpage" class="grid_12"><div id="zone4" class="grid_4 personalizationColumn alpha"><div id="portlet1361" class="box personalizationPortlet"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandfunk.de/" class="image" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/b/b73723dad9b0d11554c2f35aeb5ef8a7v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet1362" class="box personalizationPortlet" style="display: none;"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradiokultur.de/" class="image" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/8/8a6092a0c3f105b562436dc89e03491bv1_max_304x141_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="" width="304" height="141" style="width: 304px; height: 141px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet1363" class="box personalizationPortlet" style="display: none;"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.dradiowissen.de/" class="image" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/d/d3ad0770377ed7d9792061d4aac20da2v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2471" class="box personalizationPortlet"><h2 class="header"><span class="teaserBoxHeadline">Programmtipps</span></h2><div class="body">
+  <div class="teaserList pictureTeaserList">
+    <div class="pictureTeaser programTip">
+      <h3 class="wide program dlf">Deutschlandfunk</h3>
+      <h3 class="wide headline">
+        <a href="http://www.deutschlandfunk.de/ueberforderung-und-politikerverdruss-regieren-in-instabilen.2011.de.html?dram:article_id=368805"><small>Zur Diskussion | 19.10.2016 19:15 Uhr</small>Regieren in instabilen Zeiten</a>
+      </h3>
+      <a href="http://www.deutschlandfunk.de/ueberforderung-und-politikerverdruss-regieren-in-instabilen.2011.de.html?dram:article_id=368805" class="image" title="Generaldebatte im Bundestag am 07.09.2016 (picture alliance / dpa / Michael Kappeler)">
+        <img src="http://www.deutschlandradio.de/media/thumbs/d/d24600bdc4f41f754e8eeb37b5993defv1_max_144x81_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Generaldebatte im Bundestag am 07.09.2016 (picture alliance / dpa / Michael Kappeler)" title="Generaldebatte im Bundestag am 07.09.2016 (picture alliance / dpa / Michael Kappeler)" width="144" height="81" style="width: 144px; height: 81px;"/>
+      </a>
+      <p>Bankenkrise, Atomausstieg, Kriege in der Ukraine und Syrien, der Brexit und ein weltweit agierender Terrorismus. Und zwischen alldem hat Deutschland 800.000 Flüchtlinge aufgenommen. In Zeiten, in denen eine Krise die andere jagt, ist Politik eine Herausforderung.  <a href="http://www.deutschlandfunk.de/ueberforderung-und-politikerverdruss-regieren-in-instabilen.2011.de.html?dram:article_id=368805">Mehr</a></p>
+      <div class="clear"> </div>
+    </div>
+    <div class="pictureTeaser programTip">
+      <h3 class="wide program drk">Deutschlandradio Kultur</h3>
+      <h3 class="wide headline">
+        <a href="http://www.deutschlandradiokultur.de/steigt-die-schwarzarbeit-fluechtlinge-in-einer-schattenwelt.1001.de.html?dram:article_id=368929"><small>Länderreport | 19.10.2016 13:30 Uhr</small>Flüchtlinge in einer Schattenwelt</a>
+      </h3>
+      <a href="http://www.deutschlandradiokultur.de/steigt-die-schwarzarbeit-fluechtlinge-in-einer-schattenwelt.1001.de.html?dram:article_id=368929" class="image" title="Eine Hand in einem Arbeitshandschuh hält eine Ein-Euro-Münze. (dpa/picture-alliance/Karl-Josef Hildenbrand)">
+        <img src="http://www.deutschlandradio.de/media/thumbs/4/455527894f45be1ce41ed818b9aa4d07v1_max_144x81_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Eine Hand in einem Arbeitshandschuh hält eine Ein-Euro-Münze. (dpa/picture-alliance/Karl-Josef Hildenbrand)" title="Eine Hand in einem Arbeitshandschuh hält eine Ein-Euro-Münze. (dpa/picture-alliance/Karl-Josef Hildenbrand)" width="144" height="81" style="width: 144px; height: 81px;"/>
+      </a>
+      <p>Die Zeit drängt für viele Flüchtlinge. Sie wollen ihre Verwandten in der Heimat unterstützen. Aber was, wenn sie nicht schnell genug einen Job finden? Schwarzarbeit, zumindest zeitweilig, scheint für etliche eine Lösung.  <a href="http://www.deutschlandradiokultur.de/steigt-die-schwarzarbeit-fluechtlinge-in-einer-schattenwelt.1001.de.html?dram:article_id=368929">Mehr</a></p>
+      <div class="clear"> </div>
+    </div>
+  </div>
+  <div class="clear"> </div>
+</div>
+</div></div><div id="zone5" class="grid_4 personalizationColumn"><div id="portlet2468" class="box personalizationPortlet"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradiokultur.de/" class="image" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/8/8a6092a0c3f105b562436dc89e03491bv1_max_304x141_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="" width="304" height="141" style="width: 304px; height: 141px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2728" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="musikmesse-frankfurt.2673.de.html" target="">Musikmesse Frankfurt</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradio.de/musikmesse-frankfurt.2673.de.html" class="image" title="Ein Kunde steht vor einer Wand mit zahlreichen Gitarren. (picture alliance / dpa / Nicolas Armer)" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/a/aa86cafc234dc4ffe71d5046ad7b99e3v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Ein Kunde steht vor einer Wand mit zahlreichen Gitarren. (picture alliance / dpa / Nicolas Armer)" title="Ein Kunde steht vor einer Wand mit zahlreichen Gitarren. (picture alliance / dpa / Nicolas Armer)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2718" class="box personalizationPortlet" style="display: none;"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradio.de/miteinander-leben.2629.de.html" class="image" title="(Deutschlandradio/Bertelsmann)" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/e/e6bfa89eab3f121de3fb7f6c21a975eav1_max_304x171_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="(Deutschlandradio/Bertelsmann)" title="(Deutschlandradio/Bertelsmann)" width="304" height="171" style="width: 304px; height: 171px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2682" class="box personalizationPortlet" style="display: none;"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandfunk.de/abschaltung-mittelwelle.2571.de.html?dram:article_id=266956" class="image" title="Zwei Monteure auf einem Antennenmast (Deutschlandradio/Bettina Straub)" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/b/b095fe7142ae7984e7d6cf41fdfb6614v2_max_304x106_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Zwei Monteure auf einem Antennenmast (Deutschlandradio/Bettina Straub)" title="Zwei Monteure auf einem Antennenmast (Deutschlandradio/Bettina Straub)" width="304" height="106" style="width: 304px; height: 106px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2765" class="box personalizationPortlet"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://blogs.deutschlandfunk.de/berlinbruessel/formate-des-politischen-16/" class="image" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/b/bd35be568be86562943cb01ae6e33451v1_max_304x266_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="" width="304" height="266" style="width: 304px; height: 266px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2767" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="digitalradiotag-29-8.2782.de.html" target="">"DAB+. Mehr Radio."</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradio.de/digitalradiotag-29-8.2782.de.html" class="image" title="Zu sehen ist das Digitalradio-Logo" target="_blank">
+        <img src="http://www.deutschlandradio.de/media/files/5/5090484a5808824a32c09f9b062434cfv1.jpg" alt="Zu sehen ist das Digitalradio-Logo" title="Zu sehen ist das Digitalradio-Logo" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+    <div class="text">
+      <p>Deutschlandradio und ARD widmeten sich am 29. August mit einem Thementag dem Radio der Zukunft.</p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2476" class="box personalizationPortlet" style="display: none;"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradio.de/digitalradio.209.de.html" class="image" title="Zu sehen ist das Digitalradio-Logo" target="_blank">
+        <img src="http://www.deutschlandradio.de/media/files/5/5090484a5808824a32c09f9b062434cfv1.jpg" alt="Zu sehen ist das Digitalradio-Logo" title="Zu sehen ist das Digitalradio-Logo" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+    <div class="text">
+      <p>
+        <a href="http://www.deutschlandradio.de/digitalradio.209.de.html" class="dradioLink" target="_self"> </a>
+      </p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2475" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="" target="">App</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <div class="image">
+        <img src="http://www.deutschlandradio.de/media/thumbs/0/0a4ae2747653161216f014550f596575v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Zu sehen ist die iPhone-App zum Hören der Programme Deutschlandfunk, Deutschlandradio Kultur und DRadio Wissen (Deutschlandradio)" title="Zu sehen ist die iPhone-App zum Hören der Programme Deutschlandfunk, Deutschlandradio Kultur und DRadio Wissen (Deutschlandradio)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </div>
+    </div>
+    <div class="text">
+      <p>Unterstützte Systeme: <a href="https://itunes.apple.com/de/app/das-dradio/id439874065?mt=8" class="dradioLink" target="_blank">iOS</a> | <a href="https://play.google.com/store/apps/details?id=com.smartmobilefactory.deutschlandradio" class="dradioLink" target="_blank">Android</a></p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2784" class="box personalizationPortlet"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://dradiowissen.de/beitrag/alkoholsucht-wenn-der-vater-am-alkohol-zu-grunde-geht" class="image" title="Der Deutsche-Radiopreis-Award vor einem goldenen Hintergrund. (Deutscher Radiopreis)" target="_blank">
+        <img src="http://www.deutschlandradio.de/media/thumbs/e/e956388cab6ccd00621caa5abab3b116v1_max_304x171_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Der Deutsche-Radiopreis-Award vor einem goldenen Hintergrund. (Deutscher Radiopreis)" title="Der Deutsche-Radiopreis-Award vor einem goldenen Hintergrund. (Deutscher Radiopreis)" width="304" height="171" style="width: 304px; height: 171px;"/>
+      </a>
+    </div>
+    <div class="text">
+      <p><a href="http://dradiowissen.de/beitrag/alkoholsucht-wenn-der-vater-am-alkohol-zu-grunde-geht" class="dradioLink" target="_blank">"Danke. Ciao!" von Dominik Schottner</a> als "Beste Reportage" ausgezeichnet</p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2642" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="dokumente-und-debatten.237.de.html" target="">Dokumente und Debatten</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.deutschlandradio.de/dokumente-und-debatten.237.de.html" class="image" title="Ein Plakat mit dem Logo der Elektronikmesse IFA hängt am 27.08.2015 am Haupteingang des Messegeländes in Berlin. Die  Internationale Funkausstellung (IFA) findet vom 04. bis 09. September 2015 auf dem Messegelände statt. (picture alliance / dpa / Rainer Jensen)" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/5/544ed5ca1ef3efc09071d2048a82d4f4v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Ein Plakat mit dem Logo der Elektronikmesse IFA hängt am 27.08.2015 am Haupteingang des Messegeländes in Berlin. Die  Internationale Funkausstellung (IFA) findet vom 04. bis 09. September 2015 auf dem Messegelände statt. (picture alliance / dpa / Rainer Jensen)" title="Ein Plakat mit dem Logo der Elektronikmesse IFA hängt am 27.08.2015 am Haupteingang des Messegeländes in Berlin. Die  Internationale Funkausstellung (IFA) findet vom 04. bis 09. September 2015 auf dem Messegelände statt. (picture alliance / dpa / Rainer Jensen)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+    <div class="text">
+      <p>
+        <a href="http://www.deutschlandradio.de/dokumente-und-debatten.237.de.html" class="dradioLink" target="_self">Live-Stream mit IFA-Radio</a>
+      </p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet2684" class="box personalizationPortlet"><h2 class="header"><a href="" target="">Podcasts</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <div class="image">
+        <img src="http://www.deutschlandradio.de/media/thumbs/0/0f1261be8faa9bd5b3125311e73cea90v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Kopfhörer mit Smartphone (picture alliance / dpa / Daniel Bockwoldt)" title="Kopfhörer mit Smartphone (picture alliance / dpa / Daniel Bockwoldt)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </div>
+    </div>
+    <div class="text">
+      <p><a href="http://www.deutschlandfunk.de/podcast.346.de.html" class="dradioLink" target="_self">DLF</a> | <a href="http://www.deutschlandradiokultur.de/podcast.426.de.html" class="dradioLink" target="_self">DKultur</a> | <a href="http://dradiowissen.de/podcasts" class="dradioLink" target="_blank">DRadio Wissen</a></p>
+    </div>
+  </div>
+</div>
+</div></div><div id="zone6" class="grid_4 personalizationColumn omega dark"><div id="portlet1740" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="" target="">Podcasts</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <div class="image">
+        <img src="http://www.deutschlandradio.de/media/thumbs/0/0f1261be8faa9bd5b3125311e73cea90v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Kopfhörer mit Smartphone (picture alliance / dpa / Daniel Bockwoldt)" title="Kopfhörer mit Smartphone (picture alliance / dpa / Daniel Bockwoldt)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </div>
+    </div>
+    <div class="text">
+      <p><a href="http://www.deutschlandfunk.de/podcast.346.de.html" class="dradioLink" target="_self">DLF</a> | <a href="http://www.deutschlandradiokultur.de/podcast.426.de.html" class="dradioLink" target="_self">DKultur</a> | <a href="http://dradiowissen.de/podcasts" class="dradioLink" target="_blank">DRadio Wissen</a></p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet1368" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="dokumente-des-hoerfunkrats.2238.de.html" target="">Radio hören</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <div class="image">
+        <img src="http://www.deutschlandradio.de/media/thumbs/5/5c20fb5f6e7289d8187b415aee24d057v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Papierkram, den kaum jemand gerne macht: die Steuererklärung. (picture alliance / dpa / Hans Wiedl)" title="Papierkram, den kaum jemand gerne macht: die Steuererklärung. (picture alliance / dpa / Hans Wiedl)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </div>
+    </div>
+    <div class="text">
+      <p>
+        <a href="http://www.deutschlandradio.de/dokumente-des-hoerfunkrats.2238.de.html" class="dradioLink" target="_self">Dokumente und Pressemitteilungen</a>
+      </p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet1369" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="" target="">Audio-Archiv</a></h2><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <div class="image">
+        <img src="http://www.deutschlandradio.de/media/thumbs/6/67915e69dbd6f84f89579670911947d6v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Altes Radiogerät (picture alliance / dpa /Jens Kalaene)" title="Altes Radiogerät (picture alliance / dpa /Jens Kalaene)" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </div>
+    </div>
+    <div class="text">
+      <p><a href="http://www.deutschlandfunk.de/podcast.346.de.html" class="dradioLink" target="_self">Deutschlandfunk</a> | <a href="http://www.deutschlandradiokultur.de/podcast.426.de.html" class="dradioLink" target="_self">Deutschlandradio Kultur</a></p>
+    </div>
+  </div>
+</div>
+</div><div id="portlet476" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="playlist.277.de.html">Playlisten</a></h2></div><div id="portlet475" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="hilfeseiten.215.de.html">Unsere Hilfeseiten</a></h2></div><div id="portlet473" class="box personalizationPortlet" style="display: none;"><h2 class="header"><a href="https://srv.deutschlandradio.de/newsletter-uebersicht.516.de.html">Newsletter</a></h2></div><div id="portlet2469" class="box personalizationPortlet"><div class="body">
+  <div class="richtextWithImage">
+    <div class="image">
+      <a href="http://www.dradiowissen.de/" class="image" target="_self">
+        <img src="http://www.deutschlandradio.de/media/thumbs/d/d3ad0770377ed7d9792061d4aac20da2v1_mincrop_304x140_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="" width="304" height="140" style="width: 304px; height: 140px;"/>
+      </a>
+    </div>
+  </div>
+</div>
+</div><div id="portlet360" class="box personalizationPortlet configurable"><h2 class="header"><a href="ueber-uns.1956.de.html">Über uns</a></h2><div class="body">
+  <div class="teaserList pictureTeaserList">
+    <div class=" pictureTeaser" id="article-368566-679">
+      <h3 class="wide">
+        <a href="neue-sendereihe-im-radio-und-als-buch-typisch-deutsch.2174.de.html?dram:article_id=368566"><small>Neue Sendereihe im Radio – und als Buch</small>„Typisch deutsch?“ – Korrespondenten aus 30 Ländern und ihr Blick auf Deutschland und die Deutschen</a>
+      </h3>
+      <a href="neue-sendereihe-im-radio-und-als-buch-typisch-deutsch.2174.de.html?dram:article_id=368566" class="image" title="Gartenzwerge (picture alliance / dpa / Armin Weigel)">
+        <img src="http://www.deutschlandradio.de/media/thumbs/4/4bc19531a3ee363f1ba06665d88589d8v1_max_144x81_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="Gartenzwerge (picture alliance / dpa / Armin Weigel)" title="Gartenzwerge (picture alliance / dpa / Armin Weigel)" width="144" height="81" style="width: 144px; height: 81px;"/>
+      </a>
+      <p class="compact">Am 10. November startet mit "Typisch deutsch?" eine neue Sendereihe im Programm von Deutschlandradio Kultur. Jeden Donnerstag um 17.50 Uhr berichten Korrespondenten aus rund 30 Ländern über ihre Erfahrungen in Deutschland.</p>
+      <p class="bottomLink">
+        <a href="neue-sendereihe-im-radio-und-als-buch-typisch-deutsch.2174.de.html?dram:article_id=368566">
+          <span class="dlr">Pressemitteilungen</span>
+        </a>
+      </p>
+      <div class="clear"> </div>
+    </div>
+    <div class=" pictureTeaser" id="article-368177-679">
+      <h3 class="wide">
+        <a href="nachwuchsjournalisten-diskutierten-im-koelner-funkhaus.2174.de.html?dram:article_id=368177"><small>Nachwuchsjournalisten diskutierten im Kölner Funkhaus</small>Deutschlandradio-Programmdirektor plädiert für mehr Diversität in den Medien</a>
+      </h3>
+      <a href="nachwuchsjournalisten-diskutierten-im-koelner-funkhaus.2174.de.html?dram:article_id=368177" class="image" title="(Deutschlandradio/Jörg Stroisch)">
+        <img src="http://www.deutschlandradio.de/media/thumbs/2/2aede300fe98604e38f1111ed71dd887v1_max_144x95_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="(Deutschlandradio/Jörg Stroisch)" title="(Deutschlandradio/Jörg Stroisch)" width="144" height="95" style="width: 144px; height: 95px;"/>
+      </a>
+      <p class="compact">Bei einer Veranstaltung mit jungen Nachwuchsjournalistinnen und -journalisten im Funkhaus Köln hat Programmdirektor Andreas-Peter Weber mehr Diversität in den Medien eingefordert.</p>
+      <p class="bottomLink">
+        <a href="nachwuchsjournalisten-diskutierten-im-koelner-funkhaus.2174.de.html?dram:article_id=368177">
+          <span class="dlr">Pressemitteilungen</span>
+        </a>
+      </p>
+      <div class="clear"> </div>
+    </div>
+    <div class=" pictureTeaser pictureTeaserLast" id="article-367770-679">
+      <h3 class="wide">
+        <a href="der-deutschlandfunk-startet-online-videoprojekt.2174.de.html?dram:article_id=367770">Der Deutschlandfunk startet Online-Videoprojekt</a>
+      </h3>
+      <a href="der-deutschlandfunk-startet-online-videoprojekt.2174.de.html?dram:article_id=367770" class="image" title="US-Wahlkampf 2016: Hillary Clinton und Donald Trump kämpfen um das Amt. (picture / alliance / dpa / Collage Deutschlandradio)">
+        <img src="http://www.deutschlandradio.de/media/thumbs/8/8c0824146c02080b4b65e35806cfb814v1_max_144x81_b3535db83dc50e27c1bb1392364c95a2.jpg" alt="US-Wahlkampf 2016: Hillary Clinton und Donald Trump kämpfen um das Amt. (picture / alliance / dpa / Collage Deutschlandradio)" title="US-Wahlkampf 2016: Hillary Clinton und Donald Trump kämpfen um das Amt. (picture / alliance / dpa / Collage Deutschlandradio)" width="144" height="81" style="width: 144px; height: 81px;"/>
+      </a>
+      <p class="compact">Der Deutschlandfunk ergänzt seine Online-Angebote ab sofort durch ein Webvideo-Projekt.</p>
+      <p class="bottomLink">
+        <a href="der-deutschlandfunk-startet-online-videoprojekt.2174.de.html?dram:article_id=367770">
+          <span class="dlr">Pressemitteilungen</span>
+        </a>
+      </p>
+      <div class="clear"> </div>
+    </div>
+  </div>
+  <div class="clear"> </div>
+</div>
+</div></div><div class="clear"> </div></div><div class="clear"> </div><div class="container_12"><div id="pageFooter" class="grid_12"><div class="alpha footerBox grid_4"><p class="copyright">Deutschlandradio © 2009-2016</p><script type="text/javascript">
+      $('a[data-audio-src]').each(function() {
+        var attr = $(this).attr('href');
+        if (typeof attr === 'undefined' || attr === false) {
+          $(this).attr('href', '#');
+        }
+        $(this).click(function(event) {
+          event.preventDefault();
+        });
+      });
+    </script></div><div class="footerBox grid_2"><ul class="metaNavigation">
+  <li>
+    <a href="datenschutz.1828.de.html" title="Datenschutz">Datenschutz</a>
+  </li>
+  <li class="last">
+    <a href="hilfe.215.de.html" title="Hilfe">Hilfe</a>
+  </li>
+</ul>
+</div><div class="footerBox grid_2"><ul class="metaNavigation">
+  <li>
+    <a href="impressum.223.de.html" title="Impressum">Impressum</a>
+  </li>
+  <li>
+    <a href="kontakt.359.de.html" title="Kontakt">Kontakt</a>
+  </li>
+  <li class="last">
+    <a href="presse.2079.de.html" title="Presse">Presse</a>
+  </li>
+</ul>
+</div><div class="footerBox grid_4 omega"><p class="partnerLogos">
+<span><a href="http://www.deutschlandradio.de/kooperationspartner.243.de.html" title="Partner">Partner</a></span>
+<a href="http://www.ard.de/" target="_blank" title="ARD"><img src="http://www.deutschlandradio.de/media/files/0/0e1b99ef0886cfe066fe8b3057d50555v1.png" class="dradioImage" style="width: 60px; height: 26px;" alt="ARD Logo" data-source="" /></a>
+<a href="http://www.zdf.de/" target="_blank" title="ZDF"><img src="http://www.deutschlandradio.de/media/files/e/e546061a7bb64672b39afdf7182b173fv1.png" class="dradioImage" style="width: 40px; height: 26px;" alt="ZDF Logo" data-source="" /></a>
+<a href="http://www.phoenix.de/" target="_blank" title="Phoenix"><img src="http://www.deutschlandradio.de/media/files/b/b1c0b8d8d2a250132de8af6260c4c5a2v1.png" class="dradioImage" style="width: 43px; height: 26px;" alt="Phoenix Logo" data-source="" /></a>
+<a href="http://www.arte.tv/" target="_blank" title="arte"><img src="http://www.deutschlandradio.de/media/files/2/27b5e6178b79d27c413ca15c096b00dcv1.png" class="dradioImage" style="width: 57px; height: 26px;" alt="arte Logo" data-source="" /></a>
+<span style="margin:5px 0 0 63px"><a href="chronik-der-mauer.244.de.html" class="dradioLink" target="_blank">Chronik der Mauer</a></span>
+</p></div><div class="clear"> </div></div><div class="clear"> </div></div>
+<script type="text/javascript" id="ati">
+xtnv = document;
+xtsd = "http://logc279";
+xtsite = "537348";
+xtdmc = ".deutschlandradio.de";
+xt_pageID = "";
+xt_pageDate = "201610190000";
+xt_chap = "";
+xtn2 = "1";
+xtpage = "Startseite";
+ati_typ = "andere";
+      pub_datum = "2016-10-19";
+      xtcustom = {"typ":"andere","page_name":"Startseite","category1":"1","pub_datum":"2016-10-19","site_version":"desktop"};
+</script><script type="text/javascript">if(window.xtparam!=null){window.xtparam+="&pid="+xt_pageID+"&pchap="+xt_chap+"&pidt="+xt_pageDate;}else{window.xtparam="&pid="+xt_pageID+"&pchap="+xt_chap+"&pidt="+xt_pageDate;};</script><script type="text/javascript" src="http://www.deutschlandradio.de/themes/dradio/script/xtclicks.js"></script>
+<script type="text/javascript" src="/xtcore.js"></script>
+<noscript><img width="1" height="1" alt="" src="http://logc279.xiti.com/hit.xiti?s=537348&amp;pdidt=201610190000&amp;stc=%7B%22typ%22%3A%22andere%22%2C%22page_name%22%3A%22Startseite%22%2C%22category1%22%3A%221%22%2C%22pub_datum%22%3A%222016-10-19%22%2C%22site_version%22%3A%22desktop%22%7D" /></noscript>
+<!-- SZM VERSION="2.0" -->
+<script type="text/javascript">
+var iam_data = {
+  "st":"dradio",
+  "cp":"DLR-Home",
+  "sv":"ke",
+  "co":"www.deutschlandradio.de%2FDeutschlandradio"
+}
+if (typeof $.pjax === "undefined") {
+iom.c(iam_data, 1);
+}
+</script>
+<!-- /SZM -->
+</body>
+</html>

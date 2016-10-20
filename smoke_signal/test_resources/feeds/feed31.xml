@@ -1,0 +1,2028 @@
+<?xml version="1.0"?>
+<!-- name="generator" content="blosxom/2.0" -->
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">
+
+<rss version="0.91">
+  <channel>
+    <title>The Universe of Discourse   </title>
+    <link>http://blog.plover.com</link>
+    <description>The Universe of Discourse (Mark Dominus Blog)</description>
+    <language>en</language>
+
+  <item>
+    <title>Decomposing a function into its even and odd parts</title>
+    <link>http://blog.plover.com/2016/07/30#even-odd</link>
+    <description>&lt;p&gt;As I have mentioned before, I am not a sudden-flash-of-insight
+person. Every once in a while it happens, but usually my thinking style is to
+minutely examine a large mass of examples and then gradually
+synthesize some conclusion about them.  I am a  penetrating but slow
+thinker.  But there have been a few occasions in my life when the
+solution to a problem struck me suddenly out of the blue.&lt;/p&gt;
+
+&lt;p&gt;One such occasion was on the first day of my sophomore honors physics
+class in 1987.  This was one of the best classes I took in my college
+career.  It was given by Professor Stephen Nettel, and it was about
+resonance phenomena.  I love when a course has a single overarching
+theme and proceeds to examine it in detail; that is all too rare.  I
+deeply regret leaving my copy of the course notes in a restaurant in
+1995.&lt;/p&gt;
+
+&lt;p&gt;The course was very difficult,  But also very satisfying.  It was also
+somewhat hair-raising, because of Professor Nettel's habit of saying,
+all through the second half “Don't worry if it doesn't seem to make
+any sense, it will all come together for you during the final exam.”
+This was not reassuring.  But he was right!  It &lt;em&gt;did&lt;/em&gt; all come
+together during the final exam.&lt;/p&gt;
+
+&lt;p&gt;The exam had two sets of problems.  The problems on the left side of
+the exam paper concerned some mechanical system, I think a rod fixed
+at one end and free at the other, or something like that.  This set of
+problems asked us to calculate the resonant frequency of the rod, its
+rate of damping at various driving frequencies, and related matters.
+The right-hand problems were about an electrical system involving a
+resistor, capacitor, and inductor.  The questions were the same, and
+the answers were formally identical, differing only in the details: on
+the left, the answers involved length, mass and stiffness of the rod,
+and on the right, the resistance, capacitance, and inductance of the
+electrical components.  It was a brilliant exam, and I have never
+learned so much about a subject &lt;em&gt;during&lt;/em&gt; the final exam.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I digress.  After the first class, we were assigned homework.
+One of the problems was&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Show that every function is the sum of an even function and an odd
+function.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(Maybe I should explain that an even function is one which is
+symmetric across the &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24y%24&quot;&gt;-axis; formally it is a function &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%24&quot;&gt; for
+which &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%28x%29%20%3d%20f%28%2dx%29%24&quot;&gt; for every &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;.  For example, the function
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%5e2%2d4%24&quot;&gt;, shown below left.  An odd function is one which is
+symmetric under a half-turn about the origin; formally it satisfies
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%28x%29%20%3d%20%2df%28%2dx%29%24&quot;&gt; for all &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;. For example &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7bx%5e3%7d%7b20%7d%24&quot;&gt;, shown
+below right.)&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/even.png&quot;&gt;&amp;nbsp;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/odd.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I found this claim very surprising, and we had no idea how to solve
+it.  Well, not quite &lt;em&gt;no&lt;/em&gt; idea: I knew that functions could be expanded in
+&lt;a href=&quot;http://enwp.org/fourier_series&quot;&gt;Fourier series&lt;/a&gt;, as the sum of a sine
+series and a cosine series, and the sine part was odd while the cosine
+part was even.  But this seemed like a bigger hammer than was
+required, particularly since new sophomores were not expected to know
+about Fourier series.&lt;/p&gt;
+
+&lt;p&gt;I had the privilege to be in that class with
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Ron_Buckmire&quot;&gt;Ron Buckmire&lt;/a&gt;, and I
+remember we stood outside the class building in the autumn sunshine
+and discussed the problem. I might have been thinking that perhaps
+there was some way to replace the negative part of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%24&quot;&gt; with a
+reflected copy of the positive part to make an even function, and
+maybe that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%28x%29%20%2b%20f%28%2dx%29%24&quot;&gt; was always even, when I was hit from the
+blue with the solution:&lt;/p&gt;
+
+&lt;p&gt;$$ 
+\begin{align}
+f_e(x) &amp;amp; = \frac{f(x) + f(-x)}2 \text{ is even},\\
+f_o(x) &amp;amp; = \frac{f(x) - f(-x)}2 \text{ is odd, and}\\
+f(x) &amp;amp;= f_e(x) + f_o(x)
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;So that was that problem solved.  I don't remember the other three
+problems in that day's homework, but I have remembered that one ever
+since.&lt;/p&gt;
+
+&lt;p&gt;But for some reason, it didn't occur to me until today to think about
+what those functions actually looked like.  Of course, if &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%24&quot;&gt;
+itself is even, then &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_e%20%3d%20f%24&quot;&gt; and &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_o%20%3d%200%24&quot;&gt;, and similarly if
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%24&quot;&gt; is odd.  But most functions are neither even nor odd.&lt;/p&gt;
+
+&lt;p&gt;For example, consider the function &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%242%5ex%24&quot;&gt;, which is neither even nor
+odd.  Then we get &lt;/p&gt;
+
+&lt;p&gt;$$ 
+\begin{align}
+f_e(x) &amp;amp; = \frac{2^x + 2^{-x}}2\\
+f_o(x) &amp;amp; = \frac{2^x - 2^{-x}}2
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;The graph is below left.  The solid red line is &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%242%5ex%24&quot;&gt;, and the blue
+and purple dotted lines are &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_e%24&quot;&gt; and &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_o%24&quot;&gt;.  The red line is
+the sum of the blue and purple lines.  I thought this was very
+interesting-looking, but a little later I realized that I had already known
+what these graphs would look like, because &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%242%5ex%24&quot;&gt; is just like
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24e%5ex%24&quot;&gt;, and for &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24e%5ex%24&quot;&gt; the even and odd components are exactly the
+familiar &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ccosh%24&quot;&gt; and &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csinh%24&quot;&gt; functions.  (Below left, &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%242%5ex%24&quot;&gt;; below right,
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24e%5ex%24&quot;&gt;.)&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/exp2.png&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/exp.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I wasn't expecting polynomials to be more interesting, but they were.
+(Polynomials whose terms are all odd powers of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;, such as &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%5e%7b13%7d%20%2d%0a4x%5e5%20%2b%20x%24&quot;&gt;, are always odd functions,
+and similarly polynomials whose terms are all even powers of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt; are
+even functions.)  For example, consider &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%28x%2d1%29%5e2%24&quot;&gt;, which is neither
+even nor odd.  We don't even need the &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_e%24&quot;&gt; and &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_o%24&quot;&gt; formulas
+to separate this into even and odd parts: just expand &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%28x%2d1%29%5e2%24&quot;&gt; as
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%5e2%20%2d%202x%20%2b%201%24&quot;&gt; and separate it into odd and even powers, &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%2d2x%24&quot;&gt; and
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%5e2%20%2b%201%24&quot;&gt;:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/poly1.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Or we could do &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7b%28x%2d1%29%5e3%7d3%24&quot;&gt; similarly, expanding it as &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7bx%5e3%7d3%20%2d%20x%5e2%20%2b%0ax%20%2d%5cfrac13%24&quot;&gt; and separating this into &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%2dx%5e2%20%2d%5cfrac13%24&quot;&gt; and &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7bx%5e3%7d3%20%2b%20x%24&quot;&gt;:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/poly2.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I love looking at these and seeing how the  even blue line and the odd
+purple line conspire together to make whatever red line I want.&lt;/p&gt;
+
+&lt;p&gt;I kept wanting to try familiar simple functions, like &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1x%24&quot;&gt;, but
+many of these are either even or odd, and so are uninteresting for
+this application.  But you can make an even or an odd function into a
+neither-even-nor-odd function just by translating it horizontally,
+which you do by replacing &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt; with &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%2dc%24&quot;&gt;.  So the next function I
+tried was &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1%7bx%2b1%7d%24&quot;&gt;, which is the translation of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%0a1x%24&quot;&gt;. Here I got a surprise.  I knew that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1%7bx%2b1%7d%24&quot;&gt; was
+undefined at &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3d%2d1%24&quot;&gt;, so I graphed it only for &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3e%2d1%24&quot;&gt;.  But the
+even component is &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac12%5cleft%28%5cfrac1%7b1%2bx%7d%2b%5cfrac1%7b1%2dx%7d%5cright%29%24&quot;&gt;,
+which is undefined at both &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3d%2d1%24&quot;&gt; and at &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3d%2b1%24&quot;&gt;. Similarly the odd
+component is undefined at two points.  So the &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%20%3d%20f%5c_o%20%2b%20f%5c_e%24&quot;&gt;
+formula does not work quite correctly, failing to produce the correct
+value at &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3d1%24&quot;&gt;, even though &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%24&quot;&gt; is defined there.  In general, if
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%24&quot;&gt; is undefined at some &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3dc%24&quot;&gt;, then the decomposition into even
+and odd components fails at &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3d%2dc%24&quot;&gt; as well.  The limit $$\lim_{x\to
+-c} f(x) = \lim_{x\to -c} \left(f_o(x) + f_e(x)\right)$$ does hold, however.  The
+graph below shows the decomposition of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1%7bx%2b1%7d%24&quot;&gt;. &lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/hyper1.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Vertical translations
+are uninteresting: they leave &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_o%24&quot;&gt; unchanged and
+translate &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24f%5c_e%24&quot;&gt; by the same amount, as you can verify algebraically
+or just by thinking about it.&lt;/p&gt;
+
+&lt;p&gt;Following the same strategy  I tried a cosine wave.  The evenness of
+the cosine function is one of its principal properties, so I
+translated it and used &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ccos%20%28x%2b1%29%24&quot;&gt;.  The graph below is actually
+for &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%245%5ccos%28x%2b1%29%24&quot;&gt; to prevent the details from being too compressed:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/cosine.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This reminded me of the time I was fourteen and graphed &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csin%20x%20%2b%0a%5ccos%20x%24&quot;&gt; and was surprised to see that it was another perfect
+sinusoid.  But I realized that there was a simple way to understand
+this.  I already knew that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ccos%28x%20%2b%20y%29%20%3d%20%5csin%20x%5ccos%20y%20%2b%20%5csin%20y%20%5ccos%0ax%24&quot;&gt;. If you take &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24y%3d%5cfrac%5cpi4%24&quot;&gt; and multiply the whole thing by
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csqrt%202%24&quot;&gt;, you get $$\sqrt2\cos\left(x + \frac\pi4\right) =
+\sqrt2\sin x\cos\frac\pi4 + \sqrt2\cos x\sin\frac\pi4 = \sin x + \cos
+x$$ so that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csin%20x%20%2b%20%5ccos%20x%24&quot;&gt; is just a shifted, scaled cosine
+curve.  The decomposition of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ccos%28x%2b1%29%24&quot;&gt;  is even simpler because you
+can work forward instead of backward and find that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ccos%28x%2b1%29%20%3d%20%5csin%0ax%5ccos%201%20%2b%20%5ccos%20x%20%5csin%201%24&quot;&gt;, and the first term is odd while the second
+term is even, so that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ccos%28x%2b1%29%24&quot;&gt; decomposes as a sum of an even and
+an odd sinusoid as you see in the graph above.&lt;/p&gt;
+
+&lt;p&gt;Finally, I tried a
+&lt;a href=&quot;http://enwp.org/Poisson_distribution&quot;&gt;Poisson distribution&lt;/a&gt;, which is
+highly asymmetric.  The formula for the Poisson distribution is
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7b%5clambda%5exe%5e%5clambda%7d%7bx%21%7d%24&quot;&gt;, for some constant &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5clambda%24&quot;&gt;.  The
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%21%20%24&quot;&gt; in the denominator is only defined for non-negative integer
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;, but you can extend it to fractional and negative &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt; in the
+usual way by using &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cGamma%28x%2b1%29%24&quot;&gt; instead, where &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cGamma%24&quot;&gt; is the
+&lt;a href=&quot;http://enwp.org/Gamma_function&quot;&gt;Gamma function&lt;/a&gt;. The &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cGamma%24&quot;&gt;
+function is undefined at zero and negative integers, but fortunately
+what we need here is the
+&lt;a href=&quot;http://enwp.org/Gamma_function&quot;&gt;reciprocal gamma function&lt;/a&gt;
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1%7b%5cGamma%28x%29%7d%24&quot;&gt;, which is perfectly well-behaved.  The results
+are spectacular.  The graph below has &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5clambda%20%3d%200%2e8%24&quot;&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/math/even-odd/poisson.png&quot;&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The part of this with &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%5cge%200%24&quot;&gt; is the most interesting to me,
+because the Poisson distribution has a very distinctive shape, and
+once again I like seeing the blue and purple &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cGamma%24&quot;&gt; functions
+working together to make it.  I think it's just great how the red line
+goes gently to zero as &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;  increases, even though the even and the
+odd components are going wild.  (&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%21%20%24&quot;&gt; increases rapidly with &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;,
+so the reciprocal &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cGamma%24&quot;&gt;  function goes rapidly to zero.  But the
+even and odd components also have a &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1%7b%5cGamma%28%2dx%29%7d%24&quot;&gt; part, and
+this is what dominates the blue and purple lines when &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%20%3e4%24&quot;&gt;.)&lt;/p&gt;
+
+&lt;p&gt;On the &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%5clt%200%24&quot;&gt; side it has no meaning for me, and it's just wiggly
+lines.  It hadn't occurred to me before that you could extend the
+Poisson distribution function to negative &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%24&quot;&gt;, and I still can't
+imagine what it could mean, but I suppose why not.  Probably some
+statistician could explain to me what the Poisson distribution is 
+about when &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3c0%24&quot;&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can also consider the function &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csqrt%20x%24&quot;&gt;, which breaks down
+completely, because either &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csqrt%20x%24&quot;&gt; or &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5csqrt%7b%2dx%7d%24&quot;&gt; is undefined
+except when &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24x%3d0%24&quot;&gt;.  So the claim that &lt;em&gt;every&lt;/em&gt; function is the sum of
+an even and an odd function fails here too.  Except perhaps not!  You
+could probably consider the extension of the square root function to
+the complex plane, and take one of its branches, and I suppose it
+works out just fine. The geometric interpretation of evenness and
+oddness are very different, of course, and you can't really draw the
+graphs unless you have four-dimensional vision.&lt;/p&gt;
+
+&lt;p&gt;I have no particular point to make, except maybe that math is fun,
+even elementary math (or perhaps especially elementary math) and it's
+fun to see how it works out.&lt;/p&gt;
+
+&lt;p&gt;The beautiful graphs in this article were made with
+&lt;a href=&quot;https://www.desmos.com/&quot;&gt;Desmos&lt;/a&gt;.  I had dreaded having to illustrate
+my article with graphs from Gnuplot (ugh) or Wolfram|&amp;alpha; (double
+ugh) and was thrilled to find such a handsome alternative.&lt;/p&gt;
+
+&lt;p&gt;[ Addendum: I've just discovered that in Desmos you can include a parameter in the functions that it graphs, and attach the parameter to a slider.  So for example you can arrange to have it display &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%28x%2bk%29%5e3%24&quot;&gt; or &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24e%5e%7b%2d%28x%2bk%29%5e2%7d%24&quot;&gt;, with the value of &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24k%24&quot;&gt; controlled by the slider, and have the graph move left and right on the plane as you adjust the slider, with its even and odd parts changing in real time to match.&amp;nbsp;]&lt;/p&gt;
+
+&lt;p&gt;[ For example, check out &lt;a href=&quot;https://www.desmos.com/calculator/qc2tbh0xnv&quot;&gt;travelling Gaussians&lt;/a&gt; or &lt;a href=&quot;https://www.desmos.com/calculator/mvptcfvx7f&quot;&gt;varying sinusoid&lt;/a&gt;.&amp;nbsp;]&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>Controlling the KDE screen locking works now</title>
+    <link>http://blog.plover.com/2016/07/28#qdbus-2</link>
+    <description>&lt;p&gt;Yesterday
+&lt;a href=&quot;http://blog.plover.com/Unix/qdbus.html&quot;&gt;I wrote about how I was trying to control the KDE screenlocker's timeout from a shell script&lt;/a&gt;
+and all the fun stuff I learned along the way.  Then after I published
+the article I discovered that my solution didn't work.  But today I
+fixed it and it does work.&lt;/p&gt;
+
+&lt;h3&gt;What didn't work&lt;/h3&gt;
+
+&lt;p&gt;I had written this script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    timeout=&amp;#036;{1:-3600}
+    perl -i -lpe 's/^Enabled=.*/Enabled=False/' &amp;#036;HOME/.kde/share/config/kscreensaverrc
+    qdbus org.freedesktop.ScreenSaver /MainApplication  reparseConfiguration
+    sleep &amp;#036;timeout
+    perl -i -lpe 's/^Enabled=.*/Enabled=True/' &amp;#036;HOME/.kde/share/config/kscreensaverrc
+    qdbus org.freedesktop.ScreenSaver /MainApplication  reparseConfiguration
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The strategy was: use &lt;code&gt;perl&lt;/code&gt; to rewrite the screen locker's
+configuration file, and then use &lt;code&gt;qdbus&lt;/code&gt; to send a D-Bus message to
+the screen locker to order it to load the updated configuration.&lt;/p&gt;
+
+&lt;p&gt;This didn't work.  The System Settings app would see the changed
+configuration, and report what I expected, but the screen saver itself
+was still behaving according to the old configuration.  Maybe the
+&lt;code&gt;qdbus&lt;/code&gt; command was wrong or maybe the whole theory was bad.&lt;/p&gt;
+
+&lt;h3&gt;More &lt;code&gt;strace&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;For want of anything else to do (when all you have is a hammer…), I
+went back to using &lt;code&gt;strace&lt;/code&gt; to see what else I could dig up, and tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;strace -ff -o /tmp/ss/s /usr/bin/systemsettings
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which tells &lt;code&gt;strace&lt;/code&gt; to write separate files for each process or
+thread.
+I had a fantasy that  by splitting the trace for each process into a
+separate file, I might solve the mysterious problem of the missing
+string data. This didn't come true, unfortunately.&lt;/p&gt;
+
+&lt;p&gt;I then ran &lt;code&gt;tail -f&lt;/code&gt; on each of the output files, and used
+&lt;code&gt;systemsettings&lt;/code&gt; to update the screen locker configuration, looking to
+see which the of the trace files changed.  I didn't get too much out
+of this.  A great deal of the trace was concerned with X protocol
+traffic between the application and the display server.  But I did
+notice this portion, which I found extremely suggestive, even with the
+filenames missing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    3106  open(0x2bb57a8, O_RDWR|O_CREAT|O_CLOEXEC, 0666) = 18
+    3106  fcntl(18, F_SETFD, FD_CLOEXEC)    = 0
+    3106  chmod(0x2bb57a8, 0600)            = 0
+    3106  fstat(18, {...})                  = 0
+    3106  write(18, 0x2bb5838, 178)         = 178
+    3106  fstat(18, {...})                  = 0
+    3106  close(18)                         = 0
+    3106  rename(0x2bb5578, 0x2bb4e48)      = 0
+    3106  unlink(0x2b82848)                 = 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may recall that my theory was that when I click the “Apply” button
+in System Settings, it writes out a new version of
+&lt;code&gt;&amp;#036;HOME/.kde/share/config/kscreensaverrc&lt;/code&gt; and then orders the screen
+locker to reload the configuration.  Even with no filenames, this part
+of the trace looked to me like the replacement of the configuration
+file: a new file is created, then written, then closed, and then the
+&lt;code&gt;rename&lt;/code&gt; replaces the old file with the new one.  If I had been
+thinking about it a little harder, I might have thought to check if
+the return value of the &lt;code&gt;write&lt;/code&gt; call, 178 bytes, matched the length of
+the file.  (It does.) The &lt;code&gt;unlink&lt;/code&gt; at the end is deleting the
+semaphore file that System Settings created to prevent a second
+process from trying to update the same file at the same time.&lt;/p&gt;
+
+&lt;p&gt;Supposing that this was the trace of the configuration update, the
+next section should be the secret sauce that tells the screen locker
+to look at the new configuration file.  It looked like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;3106  sendmsg(5, 0x7ffcf37e53b0, MSG_NOSIGNAL) = 168
+3106  poll([?] 0x7ffcf37e5490, 1, 25000) = 1
+3106  recvmsg(5, 0x7ffcf37e5390, MSG_CMSG_CLOEXEC) = 90
+3106  recvmsg(5, 0x7ffcf37e5390, MSG_CMSG_CLOEXEC) = -1 EAGAIN (Resource temporarily unavailable)
+3106  sendmsg(5, 0x7ffcf37e5770, MSG_NOSIGNAL) = 278
+3106  sendmsg(5, 0x7ffcf37e5740, MSG_NOSIGNAL) = 128
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There is very little to go on here, but none of it is &lt;em&gt;inconsistent&lt;/em&gt;
+with the theory that this is the secret sauce, or even with the more
+advanced theory that it is the secret suace and that the secret sauce
+is a D-Bus request.  But without seeing the contents of the messages,
+I seemed to be at a dead end.&lt;/p&gt;
+
+&lt;h3&gt;Thrashing&lt;/h3&gt;
+
+&lt;p&gt;Browsing random pages about the KDE screen locker, I learned that the
+lock screen configuration component could be run separately from the
+rest of System Settings.  You use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;kcmshell4 --list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to get a list of available components, and then &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;kcmshell4 screensaver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to run the screensaver component.  I started running &lt;code&gt;strace&lt;/code&gt; on this
+command instead of on the entire System Settings app, with the idea
+that if nothing else, the trace would be smaller and perhaps simpler,
+and for some reason the missing strings appeared.  That suggestive
+block of code above turned out to be updating the configuration file, just
+as I had suspected:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;open(&quot;/home/mjd/.kde/share/config/kscreensaverrcQ13893.new&quot;, O_RDWR|O_CREAT|O_CLOEXEC, 0666) = 19
+fcntl(19, F_SETFD, FD_CLOEXEC)          = 0
+chmod(&quot;/home/mjd/.kde/share/config/kscreensaverrcQ13893.new&quot;, 0600) = 0
+fstat(19, {st_mode=S_IFREG|0600, st_size=0, ...}) = 0
+write(19, &quot;[ScreenSaver]\nActionBottomLeft=0\nActionBottomRight=0\nActionTopLeft=0\nActionTopRight=2\nEnabled=true\nLegacySaverEnabled=false\nPlasmaEnabled=false\nSaver=krandom.desktop\nTimeout=60\n&quot;, 177) = 177
+fstat(19, {st_mode=S_IFREG|0600, st_size=177, ...}) = 0
+close(19)                               = 0
+rename(&quot;/home/mjd/.kde/share/config/kscreensaverrcQ13893.new&quot;, &quot;/home/mjd/.kde/share/config/kscreensaverrc&quot;) = 0
+unlink(&quot;/home/mjd/.kde/share/config/kscreensaverrc.lock&quot;) = 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And the following secret sauce was revealed as:&lt;/p&gt;
+
+&lt;pre style=&quot;white-space: pre-wrap;&quot;&gt;
+    sendmsg(7, {msg_name(0)=NULL, msg_iov(2)=[{&quot;l\1\0\1\30\0\0\0\v\0\0\0\177\0\0\0\1\1o\0\25\0\0\0/org/freedesktop/DBus\0\0\0\6\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0\2\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0\3\1s\0\f\0\0\0GetNameOwner\0\0\0\0\10\1g\0\1s\0\0&quot;, 144}, {&quot;\23\0\0\0org.kde.screensaver\0&quot;, 24}], msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 168
+    sendmsg(7, {msg_name(0)=NULL, msg_iov(2)=[{&quot;l\1\1\1\206\0\0\0\f\0\0\0\177\0\0\0\1\1o\0\25\0\0\0/org/freedesktop/DBus\0\0\0\6\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0\2\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0\3\1s\0\10\0\0\0AddMatch\0\0\0\0\0\0\0\0\10\1g\0\1s\0\0&quot;, 144}, {&quot;\201\0\0\0type='signal',sender='org.freedesktop.DBus',interface='org.freedesktop.DBus',member='NameOwnerChanged',arg0='org.kde.screensaver'\0&quot;, 134}], msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 278
+    sendmsg(7, {msg_name(0)=NULL, msg_iov(2)=[{&quot;l\1\0\1\0\0\0\0\r\0\0\0j\0\0\0\1\1o\0\f\0\0\0/ScreenSaver\0\0\0\0\6\1s\0\23\0\0\0org.kde.screensaver\0\0\0\0\0\2\1s\0\23\0\0\0org.kde.screensaver\0\0\0\0\0\3\1s\0\t\0\0\0configure\0\0\0\0\0\0\0&quot;, 128}, {&quot;&quot;, 0}], msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 128
+    sendmsg(7, {msg_name(0)=NULL,
+    msg_iov(2)=[{&quot;l\1\1\1\206\0\0\0\16\0\0\0\177\0\0\0\1\1o\0\25\0\0\0/org/freedesktop/DBus\0\0\0\6\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0\2\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0\3\1s\0\v\0\0\0RemoveMatch\0\0\0\0\0\10\1g\0\1s\0\0&quot;,
+    144},
+    {&quot;\201\0\0\0type='signal',sender='org.freedesktop.DBus',interface='org.freedesktop.DBus',member='NameOwnerChanged',arg0='org.kde.screensaver'\0&quot;,
+    134}]
+&lt;/pre&gt;
+
+&lt;p&gt;(I had to tell give &lt;code&gt;strace&lt;/code&gt; the &lt;code&gt;-s 256&lt;/code&gt; flag to tell it not to
+truncate the string data to 32 characters.)&lt;/p&gt;
+
+&lt;h3&gt;Binary gibberish&lt;/h3&gt;
+
+&lt;p&gt;A lot of this is illegible, but it is clear, from the frequent
+mentions of &lt;code&gt;DBus&lt;/code&gt;, and from the names of D-Bus objects and methods,
+that this is is D-Bus requests, as theorized.  Much of it is binary
+gibberish that we can only read if we understand the D-Bus line
+protocol, but the object and method names are visible.  For example,
+consider this long string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;interface='org.freedesktop.DBus',member='NameOwnerChanged',arg0='org.kde.screensaver'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With &lt;code&gt;qdbus&lt;/code&gt; I could confirm that there was a service named
+&lt;code&gt;org.freedesktop.DBus&lt;/code&gt; with an object named &lt;code&gt;/&lt;/code&gt; that supported a
+&lt;code&gt;NameOwnerChanged&lt;/code&gt; method which expected three &lt;code&gt;QString&lt;/code&gt; arguments.
+Presumably the first of these was &lt;code&gt;org.kde.screensaver&lt;/code&gt; and the others
+are hiding in other the 134 characters that &lt;code&gt;strace&lt;/code&gt; didn't expand.
+So I may not understand the whole thing, but I could see that I was on
+the right track.&lt;/p&gt;
+
+&lt;p&gt;That third line was the key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sendmsg(7, {msg_name(0)=NULL,
+            msg_iov(2)=[{&quot;… /ScreenSaver … org.kde.screensaver … org.kde.screensaver … configure …&quot;, 128}, {&quot;&quot;, 0}],
+            msg_controllen=0,
+            msg_flags=0},
+        MSG_NOSIGNAL) = 128
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Huh, it seems to be asking the screensaver to configure itself.  Just
+like I thought it should.  But there was no &lt;code&gt;configure&lt;/code&gt; method, so what
+does that &lt;code&gt;configure&lt;/code&gt; refer to, and how can I do the same thing?&lt;/p&gt;
+
+&lt;p&gt;But &lt;code&gt;org.kde.screensaver&lt;/code&gt; was not quite the same path I had been using
+to talk to the screen locker—I had been using
+&lt;code&gt;org.freedesktop.ScreenSaver&lt;/code&gt;, so I had &lt;code&gt;qdbus&lt;/code&gt; list the methods at
+this new path, and there &lt;em&gt;was&lt;/em&gt; a &lt;code&gt;configure&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;When I tested &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;qdbus org.kde.screensaver /ScreenSaver configure
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I found that this made the screen locker take note of the updated
+configuration.  So, problem solved!&lt;/p&gt;
+
+&lt;p&gt;(As far as I can tell, &lt;code&gt;org.kde.screensaver&lt;/code&gt; and
+&lt;code&gt;org.freedesktop.ScreenSaver&lt;/code&gt; are completely identical.  They &lt;em&gt;each&lt;/em&gt;
+have a &lt;code&gt;configure&lt;/code&gt; method, but I had overlooked it—several times in a
+row—earlier when I had gone over the method catalog for
+&lt;code&gt;org.freedesktop.ScreenSaver&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;p&gt;The working script is almost identical to what I had yesterday:&lt;/p&gt;
+
+&lt;pre&gt;
+        timeout=${1:-3600}
+        perl -i -lpe 's/^Enabled=.*/Enabled=False/' $HOME/.kde/share/config/kscreensaverrc
+        qdbus org.freedesktop.ScreenSaver &lt;span class=&quot;emph&quot;&gt;/ScreenSaver configure&lt;/span&gt;
+        sleep $timeout
+        perl -i -lpe 's/^Enabled=.*/Enabled=True/' $HOME/.kde/share/config/kscreensaverrc
+        qdbus org.freedesktop.ScreenSaver &lt;span class=&quot;emph&quot;&gt;/ScreenSaver configure&lt;/span&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;That's not a bad way to fail, as failures go: I had a correct idea
+about what was going on, my plan about how to solve my problem would
+have worked, but I was tripped up by a trivium; I was calling
+&lt;code&gt;MainApplication.reparseConfiguration&lt;/code&gt; when I should have been calling
+&lt;code&gt;ScreenSaver.configure&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;What if I hadn't been able to get &lt;code&gt;strace&lt;/code&gt; to disgorge the internals
+of the D-Bus messages?  I think I would have gotten the answer anyway.
+One way to have gotten there would have been to notice the &lt;code&gt;configure&lt;/code&gt;
+method documented in the method catalog printed out by &lt;code&gt;qdbus&lt;/code&gt;.  I
+certainly looked at these catalogs enough times, and they are not very
+large.  I don't know why I never noticed it on my own.  But I might
+also have had the idea of spying on the network traffic through the
+D-Bus socket, which is under &lt;code&gt;/tmp&lt;/code&gt; somewhere.&lt;/p&gt;
+
+&lt;p&gt;I was also starting to tinker with &lt;code&gt;dbus-send&lt;/code&gt;, which is like &lt;code&gt;qdbus&lt;/code&gt;
+but more powerful, and can post signals, which I think &lt;code&gt;qdbus&lt;/code&gt; can't
+do, and with &lt;code&gt;gdbus&lt;/code&gt;, another D-Bus introspector.  I would have kept
+getting more familiar with these tools and this would have led
+somewhere useful.&lt;/p&gt;
+
+&lt;p&gt;Or had I taken just a little longer to solve this, I would have
+followed up on Sumana Harihareswara’s suggestion to look at
+&lt;a href=&quot;https://wiki.freedesktop.org/www/Software/Bustle/&quot;&gt;Bustle&lt;/a&gt;, which is
+a utility that logs and traces D-Bus requests.  It would certainly
+have solved my problem, because it makes perfectly clear that clicking
+that &lt;code&gt;apply&lt;/code&gt; button invoked the &lt;code&gt;configure&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;p align=center&gt;&lt;img src=&quot;http://pic.blog.plover.com/Unix/qdbus-2/bustle.png&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;I still wish I knew why &lt;code&gt;strace&lt;/code&gt; hadn't been able to print out those
+strings through. &lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>Controlling KDE screen locking from a shell script</title>
+    <link>http://blog.plover.com/2016/07/27#qdbus</link>
+    <description>&lt;p&gt;Lately I've started watching stuff on Netflix.  Every time I do this,
+the screen locker kicks in sixty seconds in, and I have to unlock it,
+pause the video, and adjust the system settings to turn off the
+automatic screen locker.  I can live with this.&lt;/p&gt;
+
+&lt;p&gt;But when the show is over, I often forget to re-enable the automatic
+screen locker, and that I can't live with.  So I wanted to write a
+shell script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  #!/bin/sh
+  auto-screen-locker disable
+  sleep 3600
+  auto-screen-locker enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then I'll run the script in the background before I start watching, or
+at least after the first time I unlock the screen, and if I forget to 
+re-enable the automatic locker, the script will do it for me.&lt;/p&gt;
+
+&lt;p&gt;The question is: &lt;strong&gt;how to write &lt;code&gt;auto-screen-locker&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3&gt;strace&lt;/h3&gt;
+
+&lt;p&gt;My first idea was: maybe there is actually an &lt;code&gt;auto-screen-locker&lt;/code&gt;
+command, or a system-settings command, or something like that, which
+was being run by the System Settings app when I adjusted the screen
+locker from System Settings, and all I needed to do was to find out
+what that command was and to run it myself.&lt;/p&gt;
+
+&lt;p&gt;So I tried running System Settings under &lt;code&gt;strace -f&lt;/code&gt; and then looking
+at the trace to see if it was &lt;code&gt;exec&lt;/code&gt;ing anything suggestive.&lt;/p&gt;
+
+&lt;p&gt;It wasn't, and the trace was 93,000 lines long and frighting.  Halfway
+through, it stopped recording filenames and started recording their
+string addresses instead, which meant I could see a lot of calls to
+&lt;code&gt;execve&lt;/code&gt; but not what was being execed.  I got sidetracked trying to
+understand why this had happened, and I never did figure it
+out—something to do with a call to &lt;code&gt;clone&lt;/code&gt;, which is like &lt;code&gt;fork&lt;/code&gt;, but
+different in a way I might understand once I read the man page.&lt;/p&gt;
+
+&lt;p&gt;The first thing the cloned process did was to call &lt;code&gt;set_robust_list&lt;/code&gt;,
+which I had never heard of, and when I looked for its man page I found
+to my surprise that there &lt;em&gt;was&lt;/em&gt; one.  It begins:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    NAME
+           get_robust_list, set_robust_list - get/set list of robust futexes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then I felt like an ass because, of course, &lt;em&gt;everyone&lt;/em&gt; knows all
+about the robust futex list, duh, how silly of me to have forgotten ha
+ha just kidding WTF is a futex?  Are the robust kind better than
+regular wimpy futexes?&lt;/p&gt;
+
+&lt;p&gt;It turns out that Ingo Molnár wrote &lt;a href=&quot;https://www.kernel.org/doc/Documentation/robust-futexes.txt&quot;&gt;a lovely explanation of robust
+futexes&lt;/a&gt;
+which are actually very interesting.  In all seriousness, do check it
+out.&lt;/p&gt;
+
+&lt;p&gt;I seem to have digressed.   This whole section can be summarized in
+one sentence:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code&gt;strace&lt;/code&gt; was no help and took me a long way down a wacky rabbit hole.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sorry, Julia!&lt;/p&gt;
+
+&lt;h3&gt;Stack Exchange&lt;/h3&gt;
+
+&lt;p&gt;The next thing I tried was Google search for &lt;code&gt;kde screen locker&lt;/code&gt;.  The
+second or third link I followed was to this StackExchange question,
+&lt;a href=&quot;http://askubuntu.com/questions/61339/what-is-the-screen-locking-mechanism-under-kde&quot;&gt;“What is the screen locking mechanism under
+KDE?&lt;/a&gt;
+It wasn't exactly what I was looking for but it was suggestive and
+pointed me in the right direction.  The crucial point in the answer
+was a mention of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I saw this, it was like a new section of my brain coming on line.
+So many things that had been obscure suddenly became clear.  Things I
+had wondered for years. Things like “What are these horrible&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   Object::connect: No such signal org::freedesktop::UPower::DeviceAdded(QDBusObjectPath)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;messages that KDE apps are always spewing into my terminal?”  But now
+the light was on.&lt;/p&gt;
+
+&lt;p&gt;KDE is built atop a toolkit called Qt, and Qt provides an interprocess
+communication mechanism called “D-Bus”.  The &lt;code&gt;qdbus&lt;/code&gt; command, which I
+had not seen before, is apparently for sending queries and commands on
+the D-Bus.  The arguments identify the recipient and the message you
+are sending.  If you know the secret name of the correct demon, and
+you send it the correct secret command, it will do your bidding.  (
+The mystery message above probably has something to do with the app
+using an invalid secret name as a D-Bus address.)&lt;/p&gt;
+
+&lt;p&gt;Often these sorts of address hierarchies work well in theory and then
+fail utterly because there is no way to learn the secret names.  The X
+Window System has always had a feature called “resources” by which
+almost every aspect of every application can be individually
+customized.  If you are running &lt;code&gt;xweasel&lt;/code&gt; and want just the frame of
+just the error panel of just the output window to be teal blue, you
+can do that… &lt;em&gt;if&lt;/em&gt; you can find out the secret names of the &lt;code&gt;xweasel&lt;/code&gt;
+program, its output window, its error panel, and its frame.  Then you
+combine these into a secret X resource name, incant a certain command
+to load the new resource setting into the X server, and the next time
+you run &lt;code&gt;xweasel&lt;/code&gt; the one frame, and only the one frame, will be blue.&lt;/p&gt;
+
+&lt;p&gt;In theory these secret names are documented somewhere, maybe.  In
+practice, they are not documented anywhere.  you can only extract them
+from the source, and not only from the source of &lt;code&gt;xweasel&lt;/code&gt; itself but
+from the source of the entire widget toolkit that &lt;code&gt;xweasel&lt;/code&gt; is linked
+with. Good luck, sucker.&lt;/p&gt;
+
+&lt;h3&gt;D-Bus has a directory&lt;/h3&gt;
+
+&lt;p&gt;However! The authors of Qt did &lt;em&gt;not&lt;/em&gt; forget to include a directory
+mechanism in D-Bus.  If you run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    qdbus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you get a list of all the addressable services, which you can grep for
+suggestive items, including &lt;code&gt;org.freedesktop.ScreenSaver&lt;/code&gt;.  Then if
+you run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    qdbus org.freedesktop.ScreenSaver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you get a list of all the objects provided by the
+&lt;code&gt;org.freedesktop.ScreenSaver&lt;/code&gt; service; there are only seven.  So you
+pick a likely-seeming one, say &lt;code&gt;/ScreenSaver&lt;/code&gt;, and run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    qdbus org.freedesktop.ScreenSaver /ScreenSaver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and get a list of all the methods that can be called on this object,
+and their argument types and return value types.  And you see for
+example&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    method void org.freedesktop.ScreenSaver.Lock()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and say “I wonder if that will lock the screen when I invoke it?”  And
+then you try it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it does.&lt;/p&gt;
+
+&lt;p&gt;That was the most important thing I learned today, that I can go
+wandering around in the &lt;code&gt;qdbus&lt;/code&gt; hierarchy looking for treasure.  I
+don't yet know exactly what I'll find, but I bet there's a lot of good stuff.&lt;/p&gt;
+
+&lt;p&gt;When I was first learning Unix I used to wander around in the
+filesystem looking at all the files, and I learned a lot that way
+also.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;“Hey, look at all the stuff in &lt;code&gt;/etc&lt;/code&gt;!  Huh, I wonder what's in
+&lt;code&gt;/etc/passwd&lt;/code&gt;?” &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Hey, &lt;code&gt;/etc/protocols&lt;/code&gt; has a catalog of protocol numbers. I wonder
+what that's for?”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Hey, there are a bunch of files in &lt;code&gt;/usr/spool/mail&lt;/code&gt; named after
+users and the one with my name has my mail in it!”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Hey, the manuals are all under &lt;code&gt;/usr/man&lt;/code&gt;.  I could grep them!”&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Later I learned (by browsing in &lt;code&gt;/usr/man/man7&lt;/code&gt;) that there was a
+&lt;code&gt;hier(7)&lt;/code&gt; man page that listed points of interest, including some I
+had overlooked.&lt;/p&gt;
+
+&lt;h3&gt;The right secret names&lt;/h3&gt;
+
+&lt;p&gt;Everything after this point was pure fun of the “what happens if I
+turn &lt;em&gt;this&lt;/em&gt; knob” variety. I tinkered around with the &lt;code&gt;/ScreenSaver&lt;/code&gt;
+methods a bit (there are twenty) but none of them seemed to be quite
+what I wanted.  There is a&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    method uint Inhibit(QString application_name, QString reason_for_inhibit)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;method which &lt;em&gt;someone&lt;/em&gt; should be calling, because that's evidently
+what you call if you are a program playing a video and you want to
+inhibit the screen locker.  But the unknown someone was delinquent and
+it wasn't what I needed for this problem.&lt;/p&gt;
+
+&lt;p&gt;Then I moved on to the &lt;code&gt;/MainApplication&lt;/code&gt; object and found&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    method void org.kde.KApplication.reparseConfiguration()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which wasn't quite what I was looking for either, but it might do: I
+could perhaps modify the configuration and then invoke this method. I
+dimly remembered that KDE keeps configuration files under
+&lt;code&gt;&amp;#036;HOME/.kde&lt;/code&gt;, so I &lt;code&gt;ls -la&lt;/code&gt;-ed that and quickly found
+&lt;code&gt;share/config/kscreensaverrc&lt;/code&gt;, which looked plausible from the
+outside, and more plausible when I saw what was in it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  Enabled=True
+  Timeout=60
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;among other things.  I hand-edited the file to change the &lt;code&gt;60&lt;/code&gt; to
+&lt;code&gt;243&lt;/code&gt;, ran&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    qdbus org.freedesktop.ScreenSaver /MainApplication reparseConfiguration
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and then opened up the System Settings app.  Sure enough, the System
+Settings app now reported that the lock timeout setting was “4
+minutes”.  And changing &lt;code&gt;Enabled=True&lt;/code&gt; to &lt;code&gt;Enabled=False&lt;/code&gt; and back
+made the System Settings app report that the locker was enabled or
+disabled.&lt;/p&gt;
+
+&lt;h3&gt;The answer&lt;/h3&gt;
+
+&lt;p&gt;So the script I wanted turned out to be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    timeout=&amp;#036;{1:-3600}
+    perl -i -lpe 's/^Enabled=.*/Enabled=False/' &amp;#036;HOME/.kde/share/config/kscreensaverrc
+    qdbus org.freedesktop.ScreenSaver /MainApplication  reparseConfiguration
+    sleep &amp;#036;timeout
+    perl -i -lpe 's/^Enabled=.*/Enabled=True/' &amp;#036;HOME/.kde/share/config/kscreensaverrc
+    qdbus org.freedesktop.ScreenSaver /MainApplication  reparseConfiguration
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Problem solved, but as so often happens, the journey was more
+important than the destination.&lt;/p&gt;
+
+&lt;p&gt;I am greatly looking forward to exploring the D-Bus hierarchy and
+sending all sorts of inappropriate messages to the wrong objects.&lt;/p&gt;
+
+&lt;p&gt;Just before he gets his ass kicked by Saruman, that insufferable
+know-it-all Gandalf says “He who breaks a thing to find out what it is
+has left the path of wisdom.”  If I had been Saruman, I would have
+kicked his ass at that point too.&lt;/p&gt;
+
+&lt;h3&gt;Addendum&lt;/h3&gt;
+
+&lt;p&gt;Right after I posted this, I started watching Netflix.  The screen
+locker cut in after sixty seconds.  “Aha!” I said.  “I'll run my new
+script!”&lt;/p&gt;
+
+&lt;p&gt;I did, and went back to watching.  Sixty seconds later, the screen
+locker cut in again.  My script doesn't work!  The System Settings app
+says the locker has been disabled, but it's mistaken.  Probably it's only
+reporting the contents of the configuration file that I edited, and
+the secret sauce is still missing. The System Settings app does
+something to update the state of the locker when I click that “Apply”
+button, and I thought that my &lt;code&gt;qdbus&lt;/code&gt; command was doing the same
+thing, but it seems that it isn't.&lt;/p&gt;
+
+&lt;p&gt;I'll figure this out, but maybe not today.  Good night all!&lt;/p&gt;
+
+&lt;p&gt;[ Addendum 20160728: &lt;a href=&quot;http://blog.plover.com/Unix/qdbus-2.html&quot;&gt;I figured it out the next day&lt;/a&gt;&amp;nbsp;]&lt;/p&gt;
+
+&lt;p&gt;[ Addendum 20160729: It has come to my attention that there is
+&lt;em&gt;actually&lt;/em&gt; a program called &lt;code&gt;xweasel&lt;/code&gt;. ]&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>A hack for getting the email address Git will use for a commit</title>
+    <link>http://blog.plover.com/2016/07/21#git-author-email</link>
+    <description>&lt;p&gt;Today I invented a pretty good hack.&lt;/p&gt;
+
+&lt;p&gt;Suppose I have branch &lt;code&gt;topic&lt;/code&gt; checked out.  It often happens that I want to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    git push origin topic:mjd/topic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which pushes the topic branch to the &lt;code&gt;origin&lt;/code&gt; repository, but on
+&lt;code&gt;origin&lt;/code&gt; it is named &lt;code&gt;mjd/topic&lt;/code&gt; instead of &lt;code&gt;topic&lt;/code&gt;.  This is a good
+practice when many people share the same repository. I wanted to write
+a program that would do this automatically.&lt;/p&gt;
+
+&lt;p&gt;So the question arose, how should the program figure out the &lt;code&gt;mjd&lt;/code&gt;
+part?  Almost any answer would be good here: use some selection of
+environment variables, the current username, a hard-wired default, and
+the local part of Git's &lt;code&gt;user.email&lt;/code&gt; configuration setting, in some
+order.  Getting &lt;code&gt;user.email&lt;/code&gt; is easy (&lt;code&gt;git config get user.email&lt;/code&gt;) but
+it might not be set and then you get nothing.  If you make a commit
+but have no &lt;code&gt;user.email&lt;/code&gt;, Git doesn't mind.  It invents an address
+somehow.  I decided that I would like my program to to do exactly what
+Git does when it makes a commit.&lt;/p&gt;
+
+&lt;p&gt;But what &lt;em&gt;does&lt;/em&gt; Git use for the committer's email address if there is
+no &lt;code&gt;user.email&lt;/code&gt; set?  This turns out to be complicated.  It consults
+several environment variables in some order, as I suggested before.
+(It is documented in
+&lt;a href=&quot;https://git-scm.com/docs/git-commit-tree&quot;&gt;&lt;code&gt;git-commit-tree&lt;/code&gt;&lt;/a&gt; if you
+are interested.)  I did not want to duplicate Git's complicated
+procedure, because it might change, and because duplicating code is a
+sin.  But there seemed to be no way to get Git to disgorge this value,
+short of actually making a commit and examining it.&lt;/p&gt;
+
+&lt;p&gt;So I wrote this command, which makes a commit and examines it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    git log -1 --format=%ce &amp;#036;(git-commit-tree HEAD^{tree} &amp;lt; /dev/null)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is extremely weird, but aside from that it seems to have no
+concrete drawbacks.  It is pure hack, but it is a hack that works
+flawlessly. &lt;/p&gt;
+
+&lt;p&gt;What is going on here?  First, the &lt;code&gt;&amp;#036;(…)&lt;/code&gt; part:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    git-commit-tree HEAD^{tree} &amp;lt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;git-commit-tree&lt;/code&gt; command is what &lt;code&gt;git-commit&lt;/code&gt; uses to actually
+create a commit.  It takes a tree object, reads a commit message from
+standard input, writes a new commit object, and prints its SHA1 hash
+on standard output.  Unlike &lt;code&gt;git-commit&lt;/code&gt;, it doesn't modify the index
+(&lt;code&gt;git-commit&lt;/code&gt; would use &lt;code&gt;git-write-tree&lt;/code&gt; to turn the index into a tree
+object) and it doesn't change any of the refs (&lt;code&gt;git-commit&lt;/code&gt; would
+update the &lt;code&gt;HEAD&lt;/code&gt; ref to point to the new commit.)  It just creates
+the commit.&lt;/p&gt;
+
+&lt;p&gt;Here we could use any tree, but the tree of the &lt;code&gt;HEAD&lt;/code&gt; commit is
+convenient, and &lt;code&gt;HEAD^{tree}&lt;/code&gt; is its name.  We supply an empty commit
+message from &lt;code&gt;/dev/null&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then the outer command runs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    git log -1 --format=%ce &amp;#036;(…)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;&amp;#036;(…)&lt;/code&gt; part is replaced by the SHA1 hash of the commit we just
+created with &lt;code&gt;git-commit-tree&lt;/code&gt;.  The &lt;code&gt;-1&lt;/code&gt; flag to &lt;code&gt;git-log&lt;/code&gt; gets the
+log information for just this one commit, and the &lt;code&gt;--format=%ce&lt;/code&gt; tells
+&lt;code&gt;git-log&lt;/code&gt; to print out just the committer's email address, whatever it
+is.&lt;/p&gt;
+
+&lt;p&gt;This is fast—nearly instantaneous—and cheap.  It doesn't change the
+state of the repository, except to write a new object, which typically
+takes up 125 bytes.  The new commit object is not attached to any refs
+and so will be garbage collected in due course.  You can do it in the
+middle of a rebase.  You can do it in the middle of a merge.  You can
+do it with a dirty index or a dirty working tree.  It always works.&lt;/p&gt;
+
+&lt;p&gt;(Well, not quite. It will fail if run in an empty repository, because
+there is no &lt;code&gt;HEAD^{tree}&lt;/code&gt; yet.  Probably there are some other
+similarly obscure failure modes.)&lt;/p&gt;
+
+&lt;p&gt;I called the shortcut &lt;code&gt;git-push&lt;/code&gt; program
+&lt;a href=&quot;https://github.com/mjdominus/git-util/blob/master/git-pusho&quot;&gt;&lt;code&gt;git-pusho&lt;/code&gt;&lt;/a&gt;
+but I dropped the email-address-finder into
+&lt;a href=&quot;https://github.com/mjdominus/git-util/blob/master/git-get#L139-L146&quot;&gt;&lt;code&gt;git-get&lt;/code&gt;&lt;/a&gt;,
+which is my storehouse of weird “How do I find out &lt;em&gt;X&lt;/em&gt;” tricks.&lt;/p&gt;
+
+&lt;p&gt;I wish my best work of the day  had been a little bit more
+significant, but I'll take what I can get.&lt;/p&gt;
+
+&lt;p&gt;[ Addendum:
+&lt;a href=&quot;https://twitter.com/shachaf/status/756069892667965441&quot;&gt;Twitter user @shachaf&lt;/a&gt; has reminded me that the right way to do this is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    git var GIT_COMMITTER_IDENT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which prints out something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    Mark Jason Dominus (陶敏修) &amp;lt;mjd@plover.com&amp;gt; 1469102546 -0400
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which you can then parse.  @shachaf also points out that a Stack
+Overflow discussion of this very question contains
+&lt;a href=&quot;http://stackoverflow.com/questions/34550249/how-to-get-the-commiter-info-that-git-will-use#comment56843030_34550249&quot;&gt;a comment suggesting the same weird hack&lt;/a&gt;!&amp;nbsp;]&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>Surprising reasons to use a syntax-coloring editor</title>
+    <link>http://blog.plover.com/2016/07/14#syntax-coloring-1998</link>
+    <description>&lt;p&gt;[ Danielle Sucher reminded me of &lt;a href=&quot;https://groups.google.com/d/msg/comp.lang.perl.misc/AccM8zEBUGg/g9dysO1vAXAJ&quot;&gt;this article I wrote in 1998&lt;/a&gt;, before I had a blog, and I thought I'd repatriate it here.
+It should be interesting as a historical artifact, if nothing else.
+Thanks Danielle!&amp;nbsp;]&lt;/p&gt;
+
+&lt;p&gt;I avoided syntax coloring for years, because it seemed like a pretty
+stupid idea, and when I tried it, I didn't see any benefit.  But
+recently I gave it another try, with Ilya Zakharevich's `cperl-mode'
+for Emacs.  I discovered that I liked it a lot, but for surprising
+reasons that I wasn't expecting.&lt;/p&gt;
+
+&lt;p&gt;I'm not trying to start an argument about whether syntax coloring is
+good or bad.  I've heard those arguments already and they bore me to
+death.  Also, I agree with most of the arguments about why syntax
+coloring is a bad idea.  So I'm not trying to argue one way or the
+other; I'm just relating my experiences with syntax coloring.  I used
+to be someone who didn't like it, but I changed my mind.&lt;/p&gt;
+
+&lt;p&gt;When people argue about whether syntax coloring is a good idea or not,
+they tend to pull out the same old arguments and dust them off.  The
+reasons I found for using syntax coloring were new to me; I'd never
+seen anyone mention them before.  So I thought maybe I'd post them here.&lt;/p&gt;
+
+&lt;p&gt;Syntax coloring is when the editor understands something about the
+syntax of your program and displays different language constructs in
+different fonts.  For example, &lt;code&gt;cperl-mode&lt;/code&gt; displays strings in
+reddish brown, comments in a sort of brick color, declared variables
+(in &lt;code&gt;my&lt;/code&gt;) in gold, builtin function names (&lt;code&gt;defined&lt;/code&gt;) in green,
+subroutine names in blue, labels in teal, and keywords (like &lt;code&gt;my&lt;/code&gt; and
+&lt;code&gt;foreach&lt;/code&gt;) in purple.&lt;/p&gt;
+
+&lt;p&gt;The first thing that I noticed about this was that it was easier to
+recognize what part of my program I was looking at, because each
+screenful of the program had its own color signature.  I found that I
+was having an easier time remembering where I was or finding that
+parts I was looking for when I scrolled around in the file.  I wasn't
+doing this consciously; I couldn't describe the color scheme any
+particular part of the program was, but having red, gold, and purple
+blotches all over made it easier to tell parts of the program apart.&lt;/p&gt;
+
+&lt;p&gt;The other surprise I got was that I was having more fun programming.
+I felt better about my programs, and at the end of the day, I felt
+better about the work I had done, just because I'd spent the day
+looking at a scoop of rainbow sherbet instead of black and white.  It
+was just more cheerful to work with varicolored text than monochrome
+text.  The reason I had never noticed this before was that the other
+coloring editors I used had ugly, drab color schemes.  Ilya's scheme
+won here by using many different hues.&lt;/p&gt;
+
+&lt;p&gt;I haven't found many of the other benefits that people say they get
+from syntax coloring.  For example, I can tell at a glance whether or
+not I failed to close a string properly—unless the editor has
+screwed up the syntax coloring, which it does often enough to ruin the
+benefit for me.  And the coloring also slows down the editor.  But the
+two benefits I've described more than outweigh the drawbacks for me.
+Syntax coloring isn't a huge win, but it's definitely a win.&lt;/p&gt;
+
+&lt;p&gt;If there's a lesson to learn from this, I guess it's that it can be
+valuable to revisit tools that you rejected, to see if you've changed
+your mind.  Nothing anyone said about it was persuasive to me, but
+when I tried it I found that there were reasons to do it that nobody
+had mentioned.  Of course, these reasons might not be compelling for
+anyone else.&lt;/p&gt;
+
+&lt;h3&gt;Addenda 2016&lt;/h3&gt;
+
+&lt;p&gt;Looking back on this from a distance of 18 years, I am struck by the
+following thoughts:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Syntax higlighting used to make the editor really slow.  You had to
+make a real commitment to using it or not. I had forgotten about
+that.  Another victory for Moore’s law!&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Programmers used to argue about it.  Apparently programmers will
+argue about &lt;em&gt;anything&lt;/em&gt;, no matter how ridiculous.  Well okay, this
+is not a new observation. Anyway, this argument is now
+finished. Whether people use it or not, they no longer find the
+need to argue about it.  This is a nice example that sometimes
+these ridiculous arguments eventually go away.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I don't remember why I said that syntax highlighting “seemed like a
+pretty stupid idea”, but I suspect that I was thinking that the
+wrong things get highlighted.  Highlighters usually highlight the
+language keywords, because they're easy to recognize.  But &lt;strong&gt;this
+is&lt;/strong&gt; like highlighting all &lt;strong&gt;the&lt;/strong&gt; generic filler words &lt;strong&gt;in a&lt;/strong&gt;
+natural language text.  &lt;strong&gt;The&lt;/strong&gt; words you want &lt;strong&gt;to&lt;/strong&gt; see &lt;strong&gt;are&lt;/strong&gt;
+exactly &lt;strong&gt;the&lt;/strong&gt; opposite of &lt;strong&gt;what is&lt;/strong&gt; typically highlighted.&lt;/p&gt;
+
+&lt;p&gt;Syntax highlighters should be highlighting the semantic content
+like expression boundaries, implied parentheses, boolean
+subexpressions, interpolated variables and other non-apparent
+semantic features.  I think there is probably a lot of interesting
+work to be done here.  Often you hear programmers say things like
+“Oh, I didn't see the that the trailing comma was actually a
+period.”  That, in my opinion, is the kind of thing the syntax
+highlighter should call out.  How often have you heard someone say
+“Oh, I didn't see that &lt;code&gt;while&lt;/code&gt; there”?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I have been misspelling “arguments” as “argmuents” for at least 18
+years.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+  </item>
+  <item>
+    <title>A simple but difficult arithmetic puzzle</title>
+    <link>http://blog.plover.com/2016/07/12#17-puzzle</link>
+    <description>&lt;p&gt;Lately my kids have been interested in puzzles of this type: You are
+given a sequence of four digits, say 1,2,3,4, and your job is to
+combine them with ordinary arithmetic operations (+, -, ×, and ÷) in any order to
+make a target number, typically 24.  For example, with 1,2,3,4, you
+can go with $$((1+2)+3)×4 = 24$$ or with $$4×((2×3)×1) = 24.$$&lt;/p&gt;
+
+&lt;p&gt;We were stumped trying to make 6,6,5,2 total 24, so I hacked up a
+solver; then we felt a little foolish when we saw the solutions,
+because it is not that hard.  But in the course of testing the solver,
+I found the most challenging puzzle of this type that I've ever seen.
+It is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Given 6,6,5,2, make 17.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There are no underhanded tricks.  For example, you may not concatenate
+2 and 5 to make 25; you may not say &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%246%c3%b76%3d1%24&quot;&gt; and &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%245%2b2%3d7%24&quot;&gt; and
+concatenate 1 and 7 to make &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%2417%24&quot;&gt;; you may not interpret the 17 as a
+base 12 numeral, etc.&lt;/p&gt;
+
+&lt;p&gt;I hope to write a longer article about solvers in the next week or so.&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>Addenda to recent articles 201607</title>
+    <link>http://blog.plover.com/2016/07/11#201607</link>
+    <description>&lt;p&gt;Here are some notes on posts from the last couple of months
+that I couldn't find better places for.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I wrote
+&lt;a href=&quot;http://blog.plover.com/tech/tmpdir.html&quot;&gt;a long article about tracking down a system bug&lt;/a&gt;.
+At some point I determined that the problem was related to Perl, and
+asked Frew Schmidt for advice.
+&lt;a href=&quot;https://blog.afoolishmanifesto.com/posts/investigation-into-why-perl-cant-read-from-TMPDIR/&quot;&gt;He wrote up the details of his own investigation&lt;/a&gt;,
+which pick up where mine ended.  Check it out.  I 100% endorse his
+lament about &lt;code&gt;ltrace&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There was
+&lt;a href=&quot;https://news.ycombinator.com/item?id=12019925&quot;&gt;a Hacker News discussion about that article&lt;/a&gt;.
+One participant asked a very pertinent question:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I read this, but seemed to skip over the part where he explains
+why this changed suddenly, when the behavior was documented?&lt;/p&gt;
+
+&lt;p&gt;What changed to make the perl become capable whereas previously it
+lacked the low port capability?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So far, we don't know!  Frew told me recently that he thinks the
+&lt;code&gt;TMPDIR&lt;/code&gt;-losing has been going on for months and that whatever
+precipitated my problem is something else.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In
+&lt;a href=&quot;http://blog.plover.com/calendar/Greek-clock.html&quot;&gt;my article on the Greek clock&lt;/a&gt;,
+I guessed a method for calculating the (approximate) maximum length
+of the day from the latitude: $$ A = 360 \text{ min}\cdot(1-\cos L).$$&lt;/p&gt;
+
+&lt;p&gt;Sean Santos of UCAR points out that this is inaccurate close to the
+poles.  For places like Philadelphia (40° latitude) it is pretty
+close, but it fails completely for locations north of the Arctic
+Circle.  M. Santos advises instead:&lt;/p&gt;
+
+&lt;p&gt;$$ A = 360 \text{ min}\cdot  \frac{2}{\pi}\cdot \sin^{-1}(\tan L\cdot
+\tan\epsilon)$$&lt;/p&gt;
+
+&lt;p&gt;where &amp;epsilon; is the axial tilt of the Earth,
+approximately 23.4°.  Observe that when &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24L%24&quot;&gt; is above the Arctic
+Circle (or below the Antarctic) we have
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5ctan%20L%20%5ccdot%20%5ctan%20%5cepsilon%20%3e%201%24&quot;&gt; (because
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac1%7b%5ctan%20x%7d%20%3d%20%5ctan%2890%5e%5ccirc%20%2d%20x%29%24&quot;&gt;)
+so the arcsine is undefined, and we get no answer.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+  </item>
+  <item>
+    <title>Don't tug on that, you never know what it might be attached to</title>
+    <link>http://blog.plover.com/2016/07/01#tmpdir</link>
+    <description>&lt;p&gt;This is a story about a very interesting bug that I tracked down
+yesterday.  It was causing a bad effect very far from where the bug
+actually was.&lt;/p&gt;
+
+&lt;h3&gt;emacsclient&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;emacs&lt;/code&gt; text editor comes with a separate utility, called
+&lt;code&gt;emacsclient&lt;/code&gt;, which can communicate with the main editor process and
+tell it to open files for editing.  You have your main &lt;code&gt;emacs&lt;/code&gt;
+running. Then somewhere else you run the command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     emacsclient some-files...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it sends the main &lt;code&gt;emacs&lt;/code&gt;  a message that you want to edit
+&lt;code&gt;some-files&lt;/code&gt;.  Emacs gets the message and pops up new windows for editing
+those files.  When you're done editing &lt;code&gt;some-files&lt;/code&gt; you tell Emacs, by
+typing &lt;code&gt;C-#&lt;/code&gt; or something, it
+it communicates back to &lt;code&gt;emacsclient&lt;/code&gt; that the editing is done, and
+&lt;code&gt;emacsclient&lt;/code&gt; exits.&lt;/p&gt;
+
+&lt;p&gt;This was more important in the olden days when Emacs was big and
+bloated and took a long time to start up.  (They used to joke that
+“Emacs” was an abbreviation for “Eight Megs And Constantly Swapping”.
+Eight megs!)  But even today it's still useful, say from shell scripts
+that need to run an editor.&lt;/p&gt;
+
+&lt;p&gt;Here's the reason I was running it.  I have a very nice shell script,
+called &lt;code&gt;also&lt;/code&gt;, that does something like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Interpret command-line arguments as patterns&lt;/li&gt;
+&lt;li&gt;Find files matching those patterns&lt;/li&gt;
+&lt;li&gt;Present a menu of the files&lt;/li&gt;
+&lt;li&gt;Wait for me to select files of interest&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;emacsclient&lt;/code&gt; on the selected files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is essentially a wrapper around
+&lt;a href=&quot;https://github.com/mjdominus/util/blob/master/bin/menupick&quot;&gt;&lt;code&gt;menupick&lt;/code&gt;&lt;/a&gt;,
+a menu-picking utility I wrote which has seen use as a component of
+several other tools.
+I can type &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    also Wizard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the shell and get a menu of the files related to the wizard, select
+the ones I actually want to edit, and they show up in Emacs.  This is
+more convenient than using Emacs itself to find and open them. I use
+it many times a day.&lt;/p&gt;
+
+&lt;p&gt;Or rather, I did until this week, when it suddenly stopped working.
+Everything ran fine until the execution of &lt;code&gt;emacsclient&lt;/code&gt;, which would
+fail, saying:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; emacsclient: can't find socket; have you started the server?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(A socket is a facility that enables interprocess communication, in
+this case between &lt;code&gt;emacs&lt;/code&gt; and &lt;code&gt;emacsclient&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;p&gt;This message is familiar.  It usually means that I have forgotten to
+tell Emacs to start listening for &lt;code&gt;emacsclient&lt;/code&gt;, by running &lt;code&gt;M-x
+server-start&lt;/code&gt;.  (I should have Emacs do this when it starts up, but I
+don't.  Why not?  I'm not sure.) So the first time it happened I went
+to Emacs and ran &lt;code&gt;M-x server-start&lt;/code&gt;.  Emacs announced that it had
+started the server, so I reran &lt;code&gt;also&lt;/code&gt;.  And the same thing happened.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; emacsclient: can't find socket; have you started the server?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Finding the socket&lt;/h3&gt;
+
+&lt;p&gt;So the first question is: why can't &lt;code&gt;emacsclient&lt;/code&gt; find the socket?
+And this resolves naturally into two subquestions: where is the
+socket, and where is &lt;code&gt;emacsclient&lt;/code&gt; looking?&lt;/p&gt;
+
+&lt;p&gt;The second one is easily answered; I ran &lt;code&gt;strace emacsclient&lt;/code&gt; (hi
+Julia!) and saw that the last interesting thing &lt;code&gt;emacsclient&lt;/code&gt; did
+before emitting the error message was&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    stat(&quot;/mnt/tmp/emacs2017/server&quot;, 0x7ffd90ec4d40) = -1 ENOENT (No such file or directory)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which means it's looking for the socket at &lt;code&gt;/mnt/tmp/emacs2017/server&lt;/code&gt;
+but didn't find it there.&lt;/p&gt;
+
+&lt;p&gt;The question of where Emacs actually put the socket file was a little
+trickier. I did not run Emacs under &lt;code&gt;strace&lt;/code&gt; because I felt sure that
+the output would be voluminous and it would be tedious to grovel over
+it.&lt;/p&gt;
+
+&lt;p&gt;I don't exactly remember now how I figured this out, but I think now
+that I probably made an educated guess, something like: &lt;code&gt;emacsclient&lt;/code&gt;
+is looking in &lt;code&gt;/mnt/tmp&lt;/code&gt;; this seems unusual.  I would expect the
+socket to be under &lt;code&gt;/tmp&lt;/code&gt;.  Maybe it &lt;em&gt;is&lt;/em&gt; under &lt;code&gt;/tmp&lt;/code&gt;?  So I looked
+under &lt;code&gt;/tmp&lt;/code&gt; and there it was, in &lt;code&gt;/tmp/emacs2017/server&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    srwx------ 1 mjd mjd 0 Jun 27 11:43 /tmp/emacs2017/server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(The &lt;code&gt;s&lt;/code&gt; at the beginning there means that the file is a “Unix-domain
+socket”.  A socket is an endpoint for interprocess communication.  The
+most familiar sort is a TCP socket, which has a TCP address, and which
+enables communication over the internet.  But since ancient times Unix
+has also supported Unix-domain sockets, which enable communication
+between two processes on the same machine.  Instead of TCP addresses,
+such sockets are addressed using paths in the filesystem, in this case
+&lt;code&gt;/tmp/emacs2017/server&lt;/code&gt;.  When the server creates such a socket, it
+appears in the filesystem as a special type of file, as here.)&lt;/p&gt;
+
+&lt;p&gt;I confirmed that this was the correct file by typing &lt;code&gt;M-x
+server-force-delete&lt;/code&gt; in Emacs; this immediately caused
+&lt;code&gt;/tmp/emacs2017/server&lt;/code&gt; to disappear.  Similarly &lt;code&gt;M-x server-start&lt;/code&gt;
+made it reappear.&lt;/p&gt;
+
+&lt;h3&gt;Why the disagreement?&lt;/h3&gt;
+
+&lt;p&gt;Now the question is: Why is &lt;code&gt;emacsclient&lt;/code&gt; looking for the socket under
+&lt;code&gt;/mnt/tmp&lt;/code&gt; when Emacs is putting it in &lt;code&gt;/tmp&lt;/code&gt;?  They used to
+rendezvous properly; what has gone wrong?  I recalled that there was
+some environment variable for controlling where temporary files are
+put, so I did&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;       env | grep mnt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to see if anything relevant turned up.  And sure enough there was:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;       TMPDIR=/mnt/tmp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When programs want to create tmporary&lt;!-- this typo is too good to
+correct --&gt; files and directories, they normally do it in &lt;code&gt;/tmp&lt;/code&gt;.  But
+if there is a &lt;code&gt;TMPDIR&lt;/code&gt; setting, they use that directory instead.  This
+explained why &lt;code&gt;emacsclient&lt;/code&gt; was looking for
+&lt;code&gt;/mnt/tmp/emacs2017/socket&lt;/code&gt;.  And the explanation for why Emacs itself
+was creating the socket in &lt;code&gt;/tmp&lt;/code&gt; seemed clear: Emacs was failing to
+honor the &lt;code&gt;TMPDIR&lt;/code&gt; setting.&lt;/p&gt;
+
+&lt;p&gt;With this clear explanation in hand, I began to report the bug in
+Emacs, using &lt;code&gt;M-x report-emacs-bug&lt;/code&gt;. (The folks in the &lt;code&gt;#emacs&lt;/code&gt; IRC
+channel on Freenode suggested this.  &lt;a href=&quot;http://blog.plover.com/prog/elisp.html&quot;&gt;I had a bad
+experience&lt;/a&gt; last time I tried
+&lt;code&gt;#emacs&lt;/code&gt;, and then people mocked me for even &lt;em&gt;trying&lt;/em&gt; to get useful
+information out of IRC.  But this time it went pretty well.)&lt;/p&gt;
+
+&lt;p&gt;Emacs popped up a buffer with full version information and invited me
+to write down the steps to reproduce the problem.  So I wrote down&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     % export TMPDIR=/mnt/tmp
+     % emacs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and as I did that I ran those commands in the shell.&lt;/p&gt;
+
+&lt;p&gt;Then I wrote&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     In Emacs:
+     M-x getenv TMPDIR
+     (emacs claims there is no such variable)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and I did that in Emacs also.  But instead of claiming there was no
+such variable, Emacs cheerfully informed me that the value of &lt;code&gt;TMPDIR&lt;/code&gt;
+was &lt;code&gt;/mnt/tmp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;(There is an important lesson here!  To submit a bug report, you find
+a minimal demonstration.  But then you also &lt;em&gt;try&lt;/em&gt; the minimal
+demonstration exactly as you reported it.  Because of what just
+happened!  Had I sent off that bug report, I would have wasted
+everyone else's time, and even worse, I would have looked like a
+fool.)&lt;/p&gt;
+
+&lt;p&gt;My minimal demonstration did not demonstrate.  Something else was
+going on.&lt;/p&gt;
+
+&lt;h3&gt;Why no &lt;code&gt;TMPDIR&lt;/code&gt;?&lt;/h3&gt;
+
+&lt;p&gt;This was a head-scratcher.  All I could think of was that
+&lt;code&gt;emacsclient&lt;/code&gt; and Emacs were somehow getting different environments,
+one with the &lt;code&gt;TMPDIR&lt;/code&gt; setting and one without.  Maybe I had run them
+from different shells, and only one of the shells had the setting?&lt;/p&gt;
+
+&lt;p&gt;I got on a sidetrack at this point to find out why &lt;code&gt;TMPDIR&lt;/code&gt; was set in
+the first place; I didn't think I had set it. I looked for it in
+&lt;code&gt;/etc/profile&lt;/code&gt;, which is the default Bash startup instructions, but it
+wasn't there.  But I also noticed an &lt;code&gt;/etc/profile.d&lt;/code&gt; which seemed
+relevant.  (I saw later that the &lt;code&gt;/etc/profile&lt;/code&gt; contained instructions
+to load everything under &lt;code&gt;/etc/profile.d&lt;/code&gt;.)  And when I grepped for
+&lt;code&gt;TMPDIR&lt;/code&gt; in the &lt;code&gt;profile.d&lt;/code&gt; files, I found that it was being set by
+&lt;code&gt;/etc/profile.d/ziprecruiter_environment.sh&lt;/code&gt;, which the sysadmins had
+installed.  So that mystery at least was cleared up.&lt;/p&gt;
+
+&lt;p&gt;That got me on a second sidetrack, looking through our Git history for
+recent changes involving &lt;code&gt;TMPDIR&lt;/code&gt;.  There weren't any, so that was a
+dead end.&lt;/p&gt;
+
+&lt;p&gt;I was still puzzled about why Emacs sometimes got the &lt;code&gt;TMPDIR&lt;/code&gt; setting
+and sometimes not.  That's when I realized that my original Emacs
+process, the one that had failed to rendezvous with &lt;code&gt;emacsclient&lt;/code&gt;,
+had not been started in the usual way.  Instead of simply running
+&lt;code&gt;emacs&lt;/code&gt;, I had run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    git re-edit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which invokes Git, which then runs&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    /home/mjd/bin/git-re-edit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which is a Perl program I wrote that does a bunch of stuff to figure
+out which files I was editing recently and then execs &lt;code&gt;emacs&lt;/code&gt; to edit
+them some more.  So there are several programs here that could be
+tampering with the environment and removing the &lt;code&gt;TMPDIR&lt;/code&gt; setting.&lt;/p&gt;
+
+&lt;p&gt;To more accurately point the finger of blame, I put some diagnostics
+into the &lt;code&gt;git-re-edit&lt;/code&gt; program to have it print out the value of
+&lt;code&gt;TMPDIR&lt;/code&gt;.  Indeed, &lt;code&gt;git-re-edit&lt;/code&gt; reported that &lt;code&gt;TMPDIR&lt;/code&gt; was unset.
+Clearly, the culprit was Git, which must have been removing &lt;code&gt;TMPDIR&lt;/code&gt;
+from the environment before invoking my Perl program.&lt;/p&gt;
+
+&lt;h3&gt;Who is stripping the environment?&lt;/h3&gt;
+
+&lt;p&gt;To confirm this conclusion, I created a tiny shell script,
+&lt;code&gt;/home/mjd/bin/git-env&lt;/code&gt;, which simply printed out the environment, and
+then I ran &lt;code&gt;git env&lt;/code&gt;, which tells Git to find &lt;code&gt;git-env&lt;/code&gt; and run it.
+If the environment it printed were to omit &lt;code&gt;TMPDIR&lt;/code&gt;, I would know Git
+was the culprit.  But &lt;code&gt;TMPDIR&lt;/code&gt; &lt;em&gt;was&lt;/em&gt; in the output.&lt;/p&gt;
+
+&lt;p&gt;So I created a Perl version of &lt;code&gt;git-env&lt;/code&gt;, called &lt;code&gt;git-perlenv&lt;/code&gt;, which
+did the same thing, and I ran it via &lt;code&gt;git perlenv&lt;/code&gt;.  And this time
+&lt;code&gt;TMPDIR&lt;/code&gt; was &lt;em&gt;not&lt;/em&gt; in the output. I ran diff on the outputs of &lt;code&gt;git
+env&lt;/code&gt; and &lt;code&gt;git perlenv&lt;/code&gt; and they were identical—except that &lt;code&gt;git
+perlenv&lt;/code&gt; was missing &lt;code&gt;TMPDIR&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So it was &lt;em&gt;Perl's&lt;/em&gt; fault!  And I verified this by running &lt;code&gt;perl
+/home/mjd/bin/git-re-edit&lt;/code&gt; directly, without involving Git at all.
+The diagnostics I had put in reported that &lt;code&gt;TMPDIR&lt;/code&gt; was unset.&lt;/p&gt;
+
+&lt;h3&gt;WTF Perl?&lt;/h3&gt;
+
+&lt;p&gt;At this point I tried getting rid of &lt;code&gt;get-re-edit&lt;/code&gt; itself, and ran the
+one-line program&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    perl -le 'print &amp;#036;ENV{TMPDIR}'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which simply runs Perl and tells it to print out the value of the
+&lt;code&gt;TMPDIR&lt;/code&gt; environment variable. It should print &lt;code&gt;/mnt/tmp&lt;/code&gt;, but instead
+it printed the empty string.  This is a smoking gun, and Perl no
+longer has anywhere to hide.&lt;/p&gt;
+
+&lt;p&gt;The mystery is not cleared up, however.  Why was Perl doing this?
+Surely not a bug; someone else would have noticed such an obvious bug
+sometime in the past 25 years.  And it only failed for &lt;code&gt;TMPDIR&lt;/code&gt;, not
+for other variables.  For example&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    FOO=bar perl -le 'print &amp;#036;ENV{FOO}'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;printed out &lt;code&gt;bar&lt;/code&gt; as one would expect.  This was weird: how could
+Perl's environment handling be broken for just the &lt;code&gt;TMPDIR&lt;/code&gt; variable?&lt;/p&gt;
+
+&lt;p&gt;At this point I got Rik Signes and Frew Schmidt to look at it with
+me.  They confirmed that the problem was not in Perl generally, but
+just in &lt;em&gt;this&lt;/em&gt; Perl.  Perl on &lt;em&gt;other&lt;/em&gt; systems did not display this
+behavior.  &lt;/p&gt;
+
+&lt;p&gt;I looked in the output of &lt;code&gt;perl -V&lt;/code&gt;, which says what version of Perl
+you are using and which patches have been applied, and wasted a lot of
+time looking into
+&lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2381&quot;&gt;CVE-2016-2381&lt;/a&gt;,
+which seemed relevant.  But it turned out to be a red herring.&lt;/p&gt;
+
+&lt;h3&gt;Working around the problem, 1.&lt;/h3&gt;
+
+&lt;p&gt;While all this was going on I was looking for a workaround.  Finding
+one is at least as important as actually tracking down the problem
+because ultimately I am paid to do something other than figure out why
+Perl is losing &lt;code&gt;TMPDIR&lt;/code&gt;.  Having a workaround in hand means that when
+I get sick and tired of looking into the underlying problem I can
+abandon it instantly instead of having to push onward.&lt;/p&gt;
+
+&lt;p&gt;The first workaround I found was to not use the Unix-domain socket.
+Emacs has an option to use a TCP socket instead, which is useful on
+systems that do not support Unix-domain sockets, such as non-Unix
+systems.  (I am told that some do still exist.)&lt;/p&gt;
+
+&lt;p&gt;You set the &lt;code&gt;server-use-tcp&lt;/code&gt; variable to a true value, and when you
+start the server, Emacs creates a TCP socket and writes a description
+of it into a “server file”, usually &lt;code&gt;~/.emacs.d/server/server&lt;/code&gt;.  Then
+when you run &lt;code&gt;emacsclient&lt;/code&gt; you  tell it to connect to the socket that
+is described in the file, with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    emacsclient --server-file=~/.emacs.d/server/server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or by setting the &lt;code&gt;EMACS_SERVER_FILE&lt;/code&gt; environment variable. I tried
+this, and it worked, once I figured out the thing about
+&lt;code&gt;server-use-tcp&lt;/code&gt; and what a “server file” was.  (I had misunderstood
+at first, and thought that “server file” meant the Unix-domain socket
+itself, and I tried to get &lt;code&gt;emacsclient&lt;/code&gt; to use the right one by
+setting &lt;code&gt;EMACS_SERVER_FILE&lt;/code&gt;, which didn't work at all.  The resulting
+error message was obscure enough to lead me to IRC to ask about it.)&lt;/p&gt;
+
+&lt;h3&gt;Working around the problem, 2.&lt;/h3&gt;
+
+&lt;p&gt;I spent quite a while looking for an environment variable analogous to
+&lt;code&gt;EMACS_SERVER_FILE&lt;/code&gt; to tell &lt;code&gt;emacsclient&lt;/code&gt; where the Unix-domain socket
+was.  But while there is a &lt;code&gt;--socket-name&lt;/code&gt; command-line argument to
+control this, there is inexplicably no environment variable.  I hacked
+my &lt;code&gt;also&lt;/code&gt; command (responsible for running &lt;code&gt;emacsclient&lt;/code&gt;) to look for
+an environment variable named &lt;code&gt;EMACS_SERVER_SOCKET&lt;/code&gt;, and to pass its
+value to &lt;code&gt;emacsclient --socket-name&lt;/code&gt; if there was one.  (It probably
+would have been better to write a wrapper for &lt;code&gt;emacsclient&lt;/code&gt;, but I
+didn't.)  Then I put&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    EMACS_SERVER_SOCKET=&amp;#036;TMPDIR/emacs&amp;#036;(id -u)/server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my Bash profile, which effectively solved the problem.  This set
+&lt;code&gt;EMACS_SERVER_SOCKET&lt;/code&gt; to &lt;code&gt;/mnt/tmp/emacs2017/server&lt;/code&gt; whenever I
+started a new shell.  When I ran &lt;code&gt;also&lt;/code&gt; it would notice the setting
+and pass it along to &lt;code&gt;emacsclient&lt;/code&gt; with &lt;code&gt;--socket-name&lt;/code&gt;, to tell
+&lt;code&gt;emacsclient&lt;/code&gt; to look in the right place.  Having set this up I could
+forget all about the original problem if I wanted to.&lt;/p&gt;
+
+&lt;h3&gt;But but but WHY?&lt;/h3&gt;
+
+&lt;p&gt;But why was Perl removing &lt;code&gt;TMPDIR&lt;/code&gt; from the environment?  I didn't
+figure out the answer to this; Frew took it to the &lt;code&gt;#p5p&lt;/code&gt; IRC channel
+on &lt;code&gt;perl.org&lt;/code&gt;, where the answer was eventually tracked down by Matthew
+Horsfall and Zefrem.&lt;/p&gt;
+
+&lt;p&gt;The answer turned out to be quite subtle.  One of the classic attacks
+that can be mounted against a process with elevated privileges is as
+follows.  Suppose you know that the program is going to write to a
+temporary file.  So you set &lt;code&gt;TMPDIR&lt;/code&gt; beforehand and trick it into
+writing in the wrong place, possibly overwriting or destroying
+something important.&lt;/p&gt;
+
+&lt;p&gt;When a program is loaded into a process, the dynamic loader does the
+loading.  To protect against this attack, the loader checks to see if
+the program it is going to run has elevated privileges, say because it
+is setuid, and if so it sanitizes the process’ environment to prevent
+the attack.  Among other things, it removes &lt;code&gt;TMPDIR&lt;/code&gt; from the
+environment.&lt;/p&gt;
+
+&lt;p&gt;I hadn't thought of exactly this, but I had thought of something like
+it:  If &lt;em&gt;Perl&lt;/em&gt; detects that it is running setuid, it enables 
+a secure mode which, among other things, sanitizes the environment.
+For example, it ignores the &lt;code&gt;PERL5LIB&lt;/code&gt; environment variable that
+normally tells it where to look for loadable modules, and instead
+loads modules only from a few compiled-in trustworthy directories.  I
+had checked early on to see if this was causing the &lt;code&gt;TMPDIR&lt;/code&gt; problem,
+but the &lt;code&gt;perl&lt;/code&gt; executable was not setuid and Perl was not running in
+secure mode.&lt;/p&gt;
+
+&lt;p&gt;But Linux supports a feature called “capabilities”, which is a sort of
+partial superuser privilege.  You can give a program &lt;em&gt;some&lt;/em&gt; of the
+superuser's capabilities without giving away the keys to the whole
+kingdom.  Our systems were configured to give &lt;code&gt;perl&lt;/code&gt; one extra
+capability, of binding to low-numbered TCP ports, which is normally
+permitted only to the superuser.  And when the dynamic loader ran
+&lt;code&gt;perl&lt;/code&gt;, it saw this additional capability and removed &lt;code&gt;TMPDIR&lt;/code&gt; from
+the environment for safety.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is why Emacs had the &lt;code&gt;TMPDIR&lt;/code&gt; setting when run from the command
+line, but not when run via &lt;code&gt;git-re-edit&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Until this came up, I had not even been aware that the “capabilities”
+feature existed.&lt;/p&gt;
+
+&lt;h3&gt;A red herring&lt;/h3&gt;
+
+&lt;p&gt;There was one more delightful confusion on the way to this happy
+ending.  When Frew found out that it was just the Perl on my
+development machine that was misbehaving, he tried logging into his
+own, nearly identical development machine to see if it misbehaved in
+the same way.  It did, but when he ran a system update to update Perl,
+the problem went away.  He told me this would fix the problem on my
+machine.  But I reported that I had updated my system a few hours
+before, so there was nothing to update!&lt;/p&gt;
+
+&lt;p&gt;The elevated capabilities theory explained this also.  When Frew
+updated his system, the new Perl was installed without the elevated
+capability feature, so the dynamic loader did not remove &lt;code&gt;TMPDIR&lt;/code&gt; from
+the environment.  &lt;/p&gt;
+
+&lt;p&gt;When I had updated my system earlier, the same thing happened.  But
+as soon as the update was complete, I reloaded my system configuration, which
+reinstated the capability setting.  Frew hadn't done this.&lt;/p&gt;
+
+&lt;h3&gt;Summary&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The system configuration gave &lt;code&gt;perl&lt;/code&gt; a special capability&lt;/li&gt;
+&lt;li&gt;so the dynamic loader sanitized its environment&lt;/li&gt;
+&lt;li&gt;so that when &lt;code&gt;perl&lt;/code&gt; ran &lt;code&gt;emacs&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;the Emacs process didn't have the &lt;code&gt;TMPDIR&lt;/code&gt; environment setting&lt;/li&gt;
+&lt;li&gt;which caused  Emacs to create its listening socket in the usual place&lt;/li&gt;
+&lt;li&gt;but because &lt;code&gt;emacsclient&lt;/code&gt; &lt;em&gt;did&lt;/em&gt; get the setting, it looked in the &lt;em&gt;wrong&lt;/em&gt; place&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;This computer stuff is amazingly complicated.  I don't know how anyone
+gets anything done.&lt;/p&gt;
+
+&lt;p&gt;[ Addendum 20160709: &lt;a href=&quot;https://blog.afoolishmanifesto.com/posts/investigation-into-why-perl-cant-read-from-TMPDIR/&quot;&gt;Frew Schmidt has written up the same
+incident&lt;/a&gt;,
+but covers different ground than I do.&amp;nbsp;]&lt;/p&gt;
+
+&lt;p&gt;[ Addendum 20160709: A Hacker News comment asks what changed to cause
+the problem?  Why was Perl losing &lt;code&gt;TMPDIR&lt;/code&gt; this week but not the week
+before?  Frew and I don't know!&amp;nbsp;]&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>The Greek clock</title>
+    <link>http://blog.plover.com/2016/06/22#Greek-clock</link>
+    <description>In former times, the day was divided into twenty-four hours, but they
+were not of equal length.  During the day, an hour was one-twelfth of
+the time from sunrise to sunset; during the night, it was one-twelfth
+of the time from sunset to sunrise.  So the daytime hours were all
+equal, and the nighttime hours were all equal, but the daytime hours
+were not equal to the nighttime hours, except on the equinoxes, or at
+the equator.  In the summer, the day hours were longer and the night
+hours shorter, and in the winter, vice versa.&lt;p&gt;
+
+Some years ago I suggested, as part of the Perl Quiz of the Week, that
+people write a &lt;tt&gt;greektime&lt;/tt&gt; program that printed out the time
+according to a clock that divided the hours in this way.  You can, of
+course, spend a lot of time and effort downloading and installing CPAN
+astronomical modules to calculate the time of sunrise and sunset, and
+reading manuals and doing a whole lot of stuff.  But if you are
+content with approximate times, you can use some delightful
+shortcuts.&lt;p&gt;
+
+First, let's establish what the problem is.  
+We're going to take the conventional time labels (&quot;12:35&quot; and so
+forth) and adjust them so that half of them take up the time from
+sunrise to sunset and the other half go from sunset to sunrise.  Some
+will be stretched, and some squeezed.  
+01:00 in this new system will no longer mean &quot;3600 seconds after
+midnight&quot;, but rather &quot;exactly 7/12 of the way between sunset and
+sunrise&quot;.    
+&lt;p&gt;
+
+To do this, we'll introduce a
+new daily calendar with the following labels:&lt;p&gt;
+
+&lt;table align=center&gt;
+&lt;tr&gt;
+&lt;td&gt;Midnight
+&lt;td&gt;Sunrise
+&lt;td&gt;Noon
+&lt;td&gt;Sunset
+&lt;td&gt;Midnight
+&lt;tr&gt;
+&lt;td&gt;00:00
+&lt;td&gt;06:00
+&lt;td&gt;12:00
+&lt;td&gt;18:00
+&lt;td&gt;24:00
+&lt;/table&gt;&lt;p&gt;
+
+We'll assume that noon (when the sun is directly overhead) occurs at
+12:00 and that midnight occurs at 00:00.  (Or 24:00, which is the same
+thing.)  This is pretty close to the truth anyway, although it
+is screwed up by such oddities as time zones and the like.&lt;p&gt;
+
+On the equinoxes, the sun rises around 06:00 and sets around 18:00,
+again ignoring time zones and the like.  (If you live at the edge of a
+time zone, especially a large one like U.S. Central Time, local civil
+noon does not occur at solar noon, so these calculations require
+adjustments.)  On the equinoxes the normal calendar corresponds to the
+Greek one, because the day and the night are each exactly twelve
+standard hours long.  (The day from 06:00 to 18:00, and the night from
+18:00 to 06:00 the following day.)
+In the winter, the sun rises later and sets earlier; in the
+summer it rises earlier and sets later.  So let's take 06:00 to be the
+label for the time of sunrise in the Greek clock all year round; 18:00
+is similarly the time of sunset in the Greek clock all year round.&lt;p&gt;
+
+With these conventions, it turns out that it's rather easy to
+calculate the approximate time of sunrise for any day of the year.
+You need two magic numbers, &lt;i&gt;A&lt;/i&gt; and &lt;i&gt;d&lt;/i&gt;.  The number
+&lt;i&gt;d&lt;/i&gt; is the number of days that have elapsed since the vernal
+equinox, which is around 19 March (or 19 September, if you live in the
+southern hemisphere.)  The number &lt;i&gt;A&lt;/i&gt; is a bit trickier, and I
+will return to it shortly.  &lt;p&gt;
+
+Once you have the two numbers, you just plug into the formula:&lt;p&gt;
+
+&lt;p align=center&gt;&lt;p align=center&gt;&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24%24%5ctext%7bSunrise%7d%20%3d%0a%5ctext%7b06%3a00%7d%20%2d%20A%20%5csin%20%7b2%5cpi%20d%5cover%20365%2e2422%7d%24%24&quot;&gt;&lt;/p&gt;&lt;/p&gt;
+
+The tricky part is the magic number &lt;i&gt;A&lt;/i&gt;; it depends on your
+latitude.  At the equator, it is 0.  And you can probably calculate it
+directly from the latitude, if you happen to know your latitude.  I do
+know my latitude (Philadelphia is conveniently located at almost
+exactly 40&amp;deg; N) but I failed observational astronomy classes twice,
+so I don't know how to do the necessary calculation.&lt;p&gt;
+
+(Actually it occurs to me now that &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24A%20%3d%20360%20%5ctext%7b%20min%7d%5ctimes%0a%281%2d%5ccos%20L%29%24&quot;&gt;, should work, where &lt;i&gt;L&lt;/i&gt; is the absolute
+latitude.    For the equator (&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24L%20%3d%2090%5e%5ccirc%24&quot;&gt;), this gives 0, as it should, and for
+Philadelphia it gives &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24360%5ctext%7b%20min%7d%5ccdot%20%281%2d%20%5ccos%2040%5e%5ccirc%29%20%5capprox%2084%2e22%5ctext%7b%20min%7d%24&quot;&gt;, which is just about right.)&lt;p&gt;
+
+However, there's another trick you can use even if you don't know your latitude.
+If you know the time of
+sunset on the summer solstice, you can calculate &lt;i&gt;A&lt;/i&gt; quite
+easily:&lt;p&gt;
+
+&lt;p align=center&gt;&lt;p align=center&gt;&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24%24A%20%3d%20%7b%5ctext%7b%0aSunset%20on%20summer%20solstice%7d%7d%20%2d%20%5ctext%7b18%3a00%7d%24%24&quot;&gt;&lt;/p&gt;&lt;/p&gt;
+
+Does that really help?  If it were October, it might not.  But the
+summer solstice is &lt;i&gt;today&lt;/i&gt;.  So all you have to do is to look out
+the window in the evening and notice when the sun seems to be going
+down.  Then plug the time into the formula.  (Or you can remember what
+happened yesterday, or wait until tomorrow; the time of sunset hardly
+changes at all this time of year, by only a few seconds per day.  Or you  could look at the
+front page of a daily newspaper, which will also tell you the time of
+sunset.)&lt;p&gt;
+
+The sun went down here around 20:30 today, but that is really 19:30
+because of 
+&lt;!-- &lt;img src=&quot;BLOGIMGLINK/Grawlix2-sm.png&quot; /&gt; 
+&lt;img src=&quot;BLOGIMGLINK/Grawlix-sm.png&quot; /&gt; --&gt;
+&lt;img src=&quot;http://pic.blog.plover.com/calendar/Greek-clock/Grawlix3-sm.png&quot; /&gt;
+daylight
+saving time, so we get &lt;i&gt;A&lt;/i&gt; = 19:30 -
+18:00 = 90 minutes, which happily agrees with the 84.22 we got earlier by a
+different method.  Then the time of sunrise in Philadelphia &lt;i&gt;d&lt;/i&gt;
+days after the vernal equinox is 
+
+$$\text{Sunrise} =
+\text{06:00} - 90\text{ min}\cdot \sin {2\pi d\over 365.2422}$$
+
+Today is June 21, which is (counts on fingers) about 31+30+31 = 92
+days after the vernal equinox which was around March 21.  So notice
+that the formula above involves &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24%5csin%7b2%5cpi%5ccdot%2092%5cover%20365%2e2422%7d%0a%5capprox%20%5csin%7b%5cfrac%5cpi%202%7d%20%3d%201%24&quot;&gt; because 92 is just about one-fourth of
+365.2422—that is, today is just about a quarter of a year after the
+vernal equinox.  So the formula says that sunrise ought to be about
+04:30, or, because of &lt;img src=&quot;http://pic.blog.plover.com/calendar/Greek-clock/Grawlix3-sm.png&quot; /&gt;
+daylight saving time, that's 05:30 local civil time.  This time of
+year the night is only 9 standard hours long, so the Greek nighttime
+hour is &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;cht=tx&amp;chl=%24%5cfrac9%7b12%7d%24&quot;&gt; standard hours long, or 45 minutes.  Right now
+it's 22:43 daylight time, which is 133 standard minutes past sundown,
+or just about 3 Greek nighttime hours.  So the Greek time is close to
+9 PM.  In another 2:15 standard hours another 3 Greek hours will have
+elapsed and it will be Greek midnight; this coincides with standard
+midnight, which is 01:00 local civil time because of &lt;img
+src=&quot;http://pic.blog.plover.com/calendar/Greek-clock/Grawlix3-sm.png&quot; /&gt; daylight saving.&lt;p&gt;
+
+Here's code for &lt;tt&gt;greektime&lt;/tt&gt; that you can run where you to find
+out the current Greek time.  I hereby place this program in the public
+domain.
+
+&lt;pre&gt;
+#!/usr/bin/perl
+#
+# Calculate local time in fictitious Greek clock
+# http://blog.plover.com/calendar/Greek-clock.html
+# Author: Mark Jason Dominus (mjd@plover.com)
+# This program is in the public domain.
+#
+
+my $PI = atan2(0, -1);
+
+use Getopt::Std;
+my %opt;
+getopts('l:s:', \%opt) or usage();
+my $A; 
+if ($opt{l} =~ /\d/) {
+  $A = 360 * 60 * (1-cos(radians($opt{l})));
+} elsif ($opt{s} =~ /:/) {
+  my ($hr, $mn) = split /:/, $opt{s};
+  $A = (($hr - 18) * 60 + $mn) * 60;
+} else {
+  usage();
+}
+
+my $time = time;
+my $days_since_equinox = ($time - 1047950185)/86400;
+my $days_per_year = 365.2422;
+
+my $sunrise_adj = $A * sin($days_since_equinox / $days_per_year 
+                                   * 2 * $PI );
+
+my $length_of_daytime   = 12 * 3600 + 2 * $sunrise_adj;
+my $length_of_nighttime = 12 * 3600 - 2 * $sunrise_adj;
+
+my $time_of_sunrise =  6 * 3600 - $sunrise_adj;
+my $time_of_sunset  = 18 * 3600 + $sunrise_adj;
+
+my ($gh, $gm) = time_to_greek($time);
+my ($h, $m) = (localtime($time))[2,1];
+
+printf &quot;Standard: %2d:%02d\n&quot;,  $h,  $m;
+printf &quot;   Greek: %2d:%02d\n&quot;, $gh, $gm;
+
+sub time_to_greek {
+  my ($epoch_time) = shift;
+  my $time_of_day;
+  { my ($h, $m, $s, $dst) = (localtime($epoch_time))[2,1,0,8];
+    $time_of_day = ($h-$dst) * 3600 + $m * 60 + $s;
+  }
+  my ($greek, $hour, $min);
+  if ($time_of_day &lt; $time_of_sunrise) {
+    # change early morning into night
+    $time_of_day += 24 * 3600;
+  }
+  if ($time_of_day &lt; $time_of_sunset) {
+    # day
+    my $diff = $time_of_day - $time_of_sunrise;
+    $greek = 6 + ($diff / $length_of_daytime) * 12;
+  } else {
+    # night
+    my $diff = $time_of_day - $time_of_sunset;
+    $greek = 18 + ($diff / $length_of_nighttime) * 12;
+  }
+
+  $hour = int($greek);
+  $min = int(60 * ($greek - $hour));
+  ($hour, $min);
+}
+
+sub radians {
+  my ($deg) = @_;
+  return $deg * 2 * $PI / 360;
+}
+
+sub usage {
+  print STDERR &quot;Usage: greektime [ -l latitude ] [ -s summer_solstice_sunset ]
+
+One of latitude or sunset time must be given.
+Latitude should be in degrees north of the equator.
+  (Negative for southern hemisphere)
+Sunset time should be given in the form '19:37' in local STANDARD time.
+  (Southern hemisphere should use the WINTER solstice.)
+&quot;;
+  exit 2;
+}
+
+&lt;/pre&gt;
+
+This article has been in the works since January of 2007, but I missed
+the deadline on 18 consecutive solstices.  The 19th time is the
+charm!&lt;p&gt;
+
+[ Addendum 20160711: Sean Santos has some &lt;a href=&quot;http://blog.plover.com/addenda/201607.html&quot;&gt;corrections to my formula for &lt;i&gt;A&lt;/i&gt;&lt;/a&gt;.&amp;nbsp;]</description>
+  </item>
+  <item>
+    <title>My Favorite NP-Complete Problem at !!Con 2016</title>
+    <link>http://blog.plover.com/2016/05/15#elmo</link>
+    <description>&lt;p&gt;Back in 2006 when this blog was new I observed that &lt;a href=&quot;http://blog.plover.com/CS/elmo.html&quot;&gt;the problem of
+planning &lt;em&gt;Elmo’s World&lt;/em&gt; video releases was
+NP-complete&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;This spring I turned the post into a talk, which I gave at &lt;a href=&quot;http://bangbangcon.com/&quot;&gt;!!Con
+2016&lt;/a&gt; last week.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://perl.plover.com/yak/Elmo/&quot;&gt;Talk materials are online&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p align=center&gt;&lt;img src=&quot;http://pic.blog.plover.com/talk/elmo/elmos-world-topics.png&quot;&gt;&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>Typewriters</title>
+    <link>http://blog.plover.com/2016/05/01#typewriter</link>
+    <description>&lt;p&gt;It will suprise nobody to learn that when I was a child, computers
+were almost unknown, but it may be more surprising that typewriters
+were unusual.&lt;/p&gt;
+
+&lt;p&gt;Probably the first typewriter I was familiar with was my grandmother’s
+IBM “Executive” model C.  At first I was not allowed to touch this
+fascinating device, because it was very fancy and expensive and my
+grandmother used it for her work as an editor of medical journals.&lt;/p&gt;
+
+&lt;p&gt;&lt;img align=&quot;right&quot; src=&quot;http://pic.blog.plover.com/tech/typewriter/typeface.jpg&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;The “Executive” was very advanced: it had &lt;em&gt;proportional spacing&lt;/em&gt;.  It
+had two space bars, for different widths of spaces.  Characters varied
+between two and five ticks wide, and my grandmother had typed up a
+little chart giving the width of each character in ticks, which she
+pasted to the top panel of the typewriter.  The font was sans-serif,
+and I remember being a little puzzled when I first noticed that the
+lowercase j had no hook: it looked just like the lowercase i, except
+longer.&lt;/p&gt;
+
+&lt;p&gt;The little chart was important, I later learned, when I became old
+enough to use the typewriter and was taught its mysteries.  Press only
+one key at a time, or the type bars will collide.  Don't use the
+(extremely satisfying) auto-repeat feature on the hyphen or
+underscore, or the platen might be damaged.  Don't touch any of the
+special controls; Grandma has them adjusted the way she wants.  (As a
+concession, I was allowed to use the “expand” switch, which could be
+easily switched off again.)&lt;/p&gt;
+
+&lt;p&gt;The little chart was part of the procedure for correcting errors.  You
+would backspace over the character you wanted to erase—each press of
+the backspace key would move the carriage back by one tick, and the
+chart told you how many times to press—and then place a slip of
+correction paper between the ribbon and the paper, and retype the
+character you wanted to erase.  The dark ribbon impression would go
+onto the front of the correction slip, which was always covered with a
+pleasing jumble of random letters, and the correction slip impression,
+in white, would exactly overprint the letter you wanted to erase.
+Except sometimes it didn't quite: the ribbon ink would have spread a
+bit, and the corrected version would be a ghostly white letter with a
+hair-thin black outline. Or if you were a small child, as I was, you
+would sometimes put the correction slip in backwards, and the white
+ink would be transferred uselessly to the back of the ribbon instead
+of to the paper.  Or you would select a partly-used portion of the
+slip and the missing bit of white ink would leave a fragment of the
+corrected letter on the page, like the broken-off leg of a dead bug.&lt;/p&gt;
+
+&lt;p&gt;Later I was introduced to the use of Liquid Paper (don't brush on a
+big glob, dot it on a bit at a time with the tip of the brush) and
+carbon paper, another thing you had to be careful not to put in
+backward, although if you did you got a wonderful result: the
+typewriter printed mirror images.&lt;/p&gt;
+
+&lt;p&gt;From typing alphabets, random letters, my name, and of course
+qwertyuiops I soon moved on to little poems, stories, and other
+miscellanea, and when my family saw that I was using the typewriter
+for writing, they presented me with one of my own, a Royal manual
+(model HHE maybe?)  with a two-color ribbon, and I was at last free to
+explore the mysteries of the TAB SET and TAB CLEAR buttons.  The front
+panel had a control for a &lt;em&gt;three&lt;/em&gt;-color ribbon, which forever remained
+an unattainable mystery.  Later I graduated to a Smith-Corona
+electric, on which I wrote my high school term papers.  The personal
+computer arrived while I was in high school, but available printers
+were either expensive or looked like crap.&lt;/p&gt;
+
+&lt;p&gt;When I was in first grade our classroom had acquired a cheap manual
+typewriter, which as I have said, was an unusual novelty, and I used
+it whenever I could.  I remember my teacher, Ms. Juanita Adams,
+complaining that I spent too much time on the typewriter.  “You should
+work more on your handwriting, Jason.  You might need to write
+something while you’re out on the street, and you won't just be able
+to pull a typewriter out of your pocket.”&lt;/p&gt;
+
+&lt;p&gt;She was wrong.&lt;/p&gt;
+</description>
+  </item>
+  <item>
+    <title>Steph Curry: fluke or breakthrough?</title>
+    <link>http://blog.plover.com/2016/04/24#sport-flukes</link>
+    <description>&lt;p&gt;[ Disclaimer: I know very little about basketball.  I think there's a
+good chance this article contains at least one basketball-related
+howler, but I'm too ignorant to know where it is.&amp;nbsp;]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/randal_olson/status/721728718792716289&quot;&gt;Randy Olson recently
+tweeted&lt;/a&gt; a
+link to &lt;a href=&quot;http://www.nytimes.com/interactive/2016/04/16/upshot/stephen-curry-golden-state-warriors-3-pointers.html&quot;&gt;a New York Times article about Steph Curry's new 3-point
+record&lt;/a&gt;.
+Here is Olson’s snapshot of a portion of the Times’ clever and
+attractive interactive chart:&lt;/p&gt;
+
+&lt;p&gt;&lt;p align=center&gt;&lt;img src=&quot;http://pic.blog.plover.com/games/sport-flukes/times-chart.jpg&quot;/&gt;&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;(Skip this paragraph if you know anything about basketball.  The
+object of the sport is to throw a ball through a “basket” suspended ten
+feet (3 meters) above the court. Normally a player's team is awarded
+two points for doing this.  But if the player is sufficiently far from
+the basket—the distance varies but is around 23 feet (7 meters)—three
+points are awarded instead.  Carry on!)&lt;/p&gt;
+
+&lt;p&gt;&lt;p style=&quot;float: right; text-align: center&quot;&gt;&lt;a href=&quot;http://pic.blog.plover.com/games/sport-flukes/StephCurry.jpg&quot;&gt;&lt;img align=&quot;right&quot;  src=&quot;http://pic.blog.plover.com/games/sport-flukes/StephCurry-th.jpg&quot; border=0&gt;&lt;/a&gt;&lt;br&gt;Stephen Curry&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;The chart demonstrates that Curry this year has shattered the
+single-season record for three-point field goals.  The previous
+record, set last year, is 286, also by Curry; the new record is 406.
+A comment by the authors of the chart says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The record is an outlier that defies most comparisons, but here is
+one: It is the equivalent of hitting 103 home runs in a Major League
+Baseball season.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(The current single-season home run record is 73, and
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7b406%7d%7b286%7d%c2%b773%20%5capprox%20103%24&quot;&gt;.)&lt;/p&gt;
+
+&lt;p&gt;I found this remark striking, because I &lt;em&gt;don't&lt;/em&gt; think the record is an
+outlier that defies most comparisons.  In fact, it doesn't even defy
+the comparison they make, to the baseball single-season home run
+record.&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear=&quot;right&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p style=&quot;float: right; text-align: center&quot;&gt;&lt;a href=&quot;http://pic.blog.plover.com/games/sport-flukes/BabeRuth.jpg&quot;&gt;&lt;img align=&quot;right&quot;
+src=&quot;http://pic.blog.plover.com/games/sport-flukes/BabeRuth-th.jpg&quot; border=0&gt;&lt;/a&gt;&lt;br&gt;Babe Ruth&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;In 1919, the record for home runs in a single season was 29, hit by
+Babe Ruth.  The 1920 record, also by Ruth, was 54.  To make the same
+comparison as the authors of the &lt;em&gt;Times&lt;/em&gt; article, that is the
+equivalent of hitting &lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7b54%7d%7b29%7d%c2%b773%20%5capprox%20136%24&quot;&gt; home runs in a
+Major League Baseball season.&lt;/p&gt;
+
+&lt;p&gt;No, far from being an outlier that defies most comparisons, I think
+what we're seeing here is something that has happened over and over in
+sport, a fundamental shift in the way they game is played; in short, a
+breakthrough.  In baseball, Ruth's 1920 season was the end of what is
+now known as the &lt;a href=&quot;https://en.wikipedia.org/wiki/Dead-ball_era&quot;&gt;dead-ball
+era&lt;/a&gt;.  The end of the
+dead-ball era was the caused by the confluence of several trends
+(shrinking ballparks), rule changes (the spitball), and one-off events
+(Ray Chapman, the Black Sox).  But an important cause was simply that
+Ruth realized that he could play the game in a better way by hitting a
+crapload of home runs.&lt;/p&gt;
+
+&lt;p&gt;The new record was the end of a sudden and sharp upward trend.  Prior
+to Ruth's 29 home runs in 1919, &lt;a href=&quot;http://www.baseball-reference.com/leaders/HR_progress.shtml&quot;&gt;the record had been
+27&lt;/a&gt;, a
+weird fluke set way back in 1887 when the rules were drastically
+different.  Typical single-season home run records in the intervening
+years were in the 11 to 16 range; the record exceeded 20 in only four
+of the intervening 25 years.&lt;/p&gt;
+
+&lt;p&gt;Ruth's innovation was promptly imitated.  In 1920, the #2 hitter hit
+19 home runs and the #10 hitter hit 11, typical numbers for the
+nineteen-teens.  By 1929, the #10 hitter hit 31 home runs, which would
+have been record-setting in 1919.  It was a different game.&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear=&quot;right&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p style=&quot;float: right; text-align: center&quot;&gt;&lt;a href=&quot;http://pic.blog.plover.com/games/sport-flukes/Kobayashi.jpg&quot;&gt;&lt;img align=&quot;right&quot;
+src=&quot;http://pic.blog.plover.com/games/sport-flukes/Kobayashi-th.jpg&quot; border=0&gt;&lt;/a&gt;&lt;br&gt;Takeru Kobayashi&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;For another example of a breakthrough, let's consider
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Nathan's_Hot_Dog_Eating_Contest#History&quot;&gt;competitive hot dog
+eating&lt;/a&gt;.
+Between 1980 and 1990, champion hot-dog eaters consumed between 9 and
+16 hot dogs in 10 minutes.  In 1991 the time was extended to 12
+minutes and Frank Dellarosa set a new record, 21½ hot dogs, which was
+not too far out of line with previous records, and which was
+repeatedly approached in the following decade: through 1999 five
+different champions ate between 19 and 24½ hot dogs in 12 minutes, in
+every year except 1993.&lt;/p&gt;
+
+&lt;p&gt;But in 2000 &lt;a href=&quot;https://en.wikipedia.org/wiki/Takeru_Kobayashi&quot;&gt;Takeru
+Kobayashi (小林 尊)&lt;/a&gt; changed the
+sport forever, eating an unbelievably disgusting 50 hot dogs in 12
+minutes.  (50.  Not a misprint.  Fifty.  Roman numeral Ⅼ.)  To make
+the Times’ comparison again, that is the equivalent of hitting
+&lt;img src=&quot;https://chart.googleapis.com/chart?chf=bg,s,00000000&amp;amp;cht=tx&amp;amp;chl=%24%5cfrac%7b50%7d%7b24%5cfrac12%7d%c2%b773%20%5capprox%20149%24&quot;&gt; home runs in a Major League Baseball
+season.&lt;/p&gt;
+
+&lt;p&gt;At that point it was a different game.  Did the record represent a
+fundamental shift in hot dog gobbling technique?  Yes.  Kobayashi won
+all five of the next five contests, eating between 44½ and 53¾ each
+time.  By 2005 the second- and third-place finishers were eating 35 or
+more hot dogs each; had they done this in 1995 they would have
+demolished the old records. A new generation of champions emerged,
+following Kobayashi's lead. The current record is 69 hot dogs in 10
+minutes.  The record-setters of the 1990s would not even be in
+contention in a modern hot dog eating contest.&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear=&quot;right&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p style=&quot;float: right; text-align: center&quot;&gt;&lt;a href=&quot;http://pic.blog.plover.com/games/sport-flukes/BobBeamon.jpg&quot;&gt;&lt;img align=&quot;right&quot;
+src=&quot;http://pic.blog.plover.com/games/sport-flukes/BobBeamon-th.jpg&quot; border=0&gt;&lt;/a&gt;&lt;br&gt;Bob Beamon&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;It is instructive to compare these breakthroughs with a different sort of
+astonishing sports record, the bizarre fluke. In 1967, the &lt;a href=&quot;https://en.wikipedia.org/wiki/Long_jump_world_record_progression&quot;&gt;world
+record distance for the long
+jump&lt;/a&gt;
+was 8.35 meters.  In 1968, Bob Beamon shattered this record, jumping
+8.90 meters.  To put this in perspective, consider that in one jump,
+Beamon advanced the record by 55 cm, the same amount that it had
+advanced (in 13 stages) between 1925 and 1967.&lt;/p&gt;
+
+&lt;p&gt;&lt;p align=center&gt;&lt;img src=&quot;http://pic.blog.plover.com/games/sport-flukes/LongJumpProgression.gif&quot;/&gt;&lt;br&gt;
+ &lt;b&gt;Progression of the world long jump record&lt;/b&gt;&lt;br&gt;
+ &lt;b&gt;The cliff at 1968 is Bob Beamon&lt;/b&gt;
+ &lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;Did Beamon's new record represent a fundamental shift in long jump
+technique?  No: Beamon never again jumped more than 8.22m.  Did other
+jumpers promptly imitate it?  No, Beamon's record was approached only
+a few times in the following quarter-century, and surpassed only once.
+Beamon had the benefit of high altitude, a tail wind, and fabulous
+luck.&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear=&quot;right&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p style=&quot;float: right; text-align: center&quot;&gt;&lt;a href=&quot;http://pic.blog.plover.com/games/sport-flukes/DiMaggio.jpg&quot;&gt;&lt;img align=&quot;right&quot;
+src=&quot;http://pic.blog.plover.com/games/sport-flukes/DiMaggio-th.jpg&quot; border=0&gt;&lt;/a&gt;&lt;br&gt;Joe DiMaggio&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;Another bizarre fluke is Joe DiMaggio's hitting streak: in the 1941
+baseball season, DiMaggio achieved hits in 56 consecutive games.  For
+extensive discussion of just how bizarre this is, see &lt;a href=&quot;http://www.nybooks.com/articles/1988/08/18/the-streak-of-streaks/&quot;&gt;The Streak of
+Streaks&lt;/a&gt;
+by Stephen J. Gould.  (“DiMaggio’s streak is the most extraordinary
+thing that ever happened in American sports.”)  Did DiMaggio’s hitting
+streak represent a fundamental shift in the way the game of baseball
+was played, toward high-average hitting?  Did other players promptly
+imitate it?
+&lt;a href=&quot;http://mlb.mlb.com/mlb/history/rare_feats/index.jsp?feature=hitting_streaks&quot;&gt;No&lt;/a&gt;.
+DiMaggio's streak has never been seriously challenged, and has been
+approached only a few times.  (The modern runner-up is Pete Rose, who hit in
+44 consecutive games in 1978.)  DiMaggio also had the benefit of
+fabulous luck.&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear=&quot;right&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Is Curry’s new record a fluke or a breakthrough?&lt;/p&gt;
+
+&lt;p&gt;I think what we're seeing in basketball is a breakthrough, a shift in
+the way the game is played analogous to the arrival of baseball’s home
+run era in the 1920s.  Unless the league tinkers with the rules to
+prevent it, we might expect the next generation of players to
+regularly lead the league with 300 or 400 three-point shots in a
+season.  Here's why I think so.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Curry's record wasn't unprecedented.  He's been setting three-point
+records for years.  (Compare Ruth’s 1920 home run record,
+foreshadowed in 1919.)  He's continuing a trend that he began years
+ago.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Curry’s record, unlike DiMaggio’s streak, does not appear to depend
+on fabulous luck.  His 402 field goals this year are on 886
+attempts, a 45.4% success rate. This is in line with his success
+rate every year since 2009; last year he had a 44.3% success rate.
+Curry didn't get lucky this year; he had 40% more field goals
+because he made almost 40% more attempts. There seems to be no
+reason to think he couldn't make the same number of attempts next
+year with equal success, if he wants to.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Does he want to?  Probably.  Curry’s new three-point strategy seems
+to be extremely effective.  &lt;a href=&quot;http://www.basketball-reference.com/players/c/curryst01.html&quot;&gt;In his previous three seasons he
+scored 1786, 1873, and 1900
+points&lt;/a&gt;;
+this season, he scored 2375, an increase of 475, three-quarters of
+which is due to his three-point field goals.  So we can suppose
+that he will continue to attempt a large number of three-point
+shots.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Is this something unique to Curry or is it something that other
+players might learn to emulate?  Curry’s three-point field goal
+rate is high, but not exceptionally so.  He's not the most accurate
+of all three-point shooters; &lt;a href=&quot;http://www.basketball-reference.com/leaders/fg3_pct_season.html&quot;&gt;he holds the 62nd–64th-highest season
+percentages&lt;/a&gt;
+for three-point success rate.  There are at least a few other
+players in the league who must have seen what Curry did and thought
+“I could do that”.  (&lt;a href=&quot;http://www.basketball-reference.com/players/k/korveky01.html&quot;&gt;Kyle
+Korver&lt;/a&gt;
+maybe?  I'm on very shaky ground; I don't even know how old he is.)
+Some of those players are going to give it a try, as are some we
+haven’t seen yet, and there seems to be no reason why some
+shouldn't succeed.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A number of things could sabotage this analysis.  For example, the
+league might take steps to reduce the number of three-point field
+goals, specifically in response to Curry’s new record, say by moving
+the three-point line farther from the basket.  But if nothing like
+that happens, I think it's likely that we'll see basketball enter a
+new era of higher offense with more three-point shots, and that future
+sport historians will look back on this season as a watershed.&lt;/p&gt;
+
+&lt;p&gt;[ Addendum 20160425: As I feared, my Korver suggestion was ridiculous.
+Thanks to the folks who explained why.  Reason #1: He is 35 years
+old.&amp;nbsp;]&lt;/p&gt;
+</description>
+  </item>
+  </channel>
+</rss>

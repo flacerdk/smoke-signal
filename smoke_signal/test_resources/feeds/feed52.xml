@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	 xmlns:nyt="http://www.nytimes.com/namespaces/rss/2.0" xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>Paul Krugman</title>
+	<atom:link href="http://krugman.blogs.nytimes.com/feed/" rel="self" type="application/rss+xml" />
+	<link>http://krugman.blogs.nytimes.com</link>
+	<description>New York Times Blog</description>
+	<lastBuildDate>Mon, 17 Oct 2016 14:05:54 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=4.2.9</generator>
+<image>
+	<url>https://static01.nyt.com/images/misc/NYT_logo_rss_250x40.png</url>
+	<title>NYT</title>
+	<link>http://www.nytimes.com</link>
+</image>
+	<item>
+		<title>Distrust of Data</title>
+		<link>http://krugman.blogs.nytimes.com/2016/10/17/distrust-of-data/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/10/17/distrust-of-data/#respond</comments>
+		<pubDate>Mon, 17 Oct 2016 14:05:54 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/10/17/distrust-of-data/</guid>
+		<description><![CDATA[It's the politics, stupid.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/10/17/distrust-of-data/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<media:content medium="image" url="https://static01.nyt.com/images/2016/10/17/opinion/101716krugman1/101716krugman1-thumbStandard.png" width="75" height="75"></media:content>
+	</item>
+		<item>
+		<title>Friday Night Music: I&#8217;m With Her Does Dylan</title>
+		<link>http://krugman.blogs.nytimes.com/2016/10/14/friday-night-music-im-with-her-does-dylan/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/10/14/friday-night-music-im-with-her-does-dylan/#respond</comments>
+		<pubDate>Sat, 15 Oct 2016 01:05:27 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/10/14/friday-night-music-im-with-her-does-dylan/</guid>
+		<description><![CDATA[A bit of harmony for a disharmonious time.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/10/14/friday-night-music-im-with-her-does-dylan/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Notes on Brexit and the Pound</title>
+		<link>http://krugman.blogs.nytimes.com/2016/10/11/notes-on-brexit-and-the-pound/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/10/11/notes-on-brexit-and-the-pound/#respond</comments>
+		<pubDate>Tue, 11 Oct 2016 12:35:56 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/10/11/notes-on-brexit-and-the-pound/</guid>
+		<description><![CDATA[A weaker pound is part of the adjustment, and should be accepted.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/10/11/notes-on-brexit-and-the-pound/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<media:content medium="image" url="https://static01.nyt.com/images/2016/10/11/opinion/101116krugman1/101116krugman1-thumbStandard.png" width="75" height="75"></media:content>
+	</item>
+		<item>
+		<title>The King of False Equivalence</title>
+		<link>http://krugman.blogs.nytimes.com/2016/10/04/the-king-of-false-equivalence/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/10/04/the-king-of-false-equivalence/#respond</comments>
+		<pubDate>Tue, 04 Oct 2016 07:06:44 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/10/04/the-king-of-false-equivalence/</guid>
+		<description><![CDATA[Ryan and Trump's fellowship of fraud.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/10/04/the-king-of-false-equivalence/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<media:content medium="image" url="https://static01.nyt.com/images/2016/10/04/opinion/100416krugman1/100416krugman1-thumbStandard.png" width="75" height="75"></media:content>
+	</item>
+		<item>
+		<title>A General Theory Of Austerity?</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/29/a-general-theory-of-austerity/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/29/a-general-theory-of-austerity/#respond</comments>
+		<pubDate>Thu, 29 Sep 2016 07:19:15 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/29/a-general-theory-of-austerity/</guid>
+		<description><![CDATA[Simon Wren-Lewis makes a good case.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/29/a-general-theory-of-austerity/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>VAT of Deplorables</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/28/vat-of-deplorables/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/28/vat-of-deplorables/#respond</comments>
+		<pubDate>Wed, 28 Sep 2016 07:27:00 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/28/vat-of-deplorables/</guid>
+		<description><![CDATA[Trump picks terrible advisers, too.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/28/vat-of-deplorables/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>How Did The Race Get Close?</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/27/how-did-the-race-get-close/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/27/how-did-the-race-get-close/#respond</comments>
+		<pubDate>Tue, 27 Sep 2016 17:19:12 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/27/how-did-the-race-get-close/</guid>
+		<description><![CDATA[The Goring of Clinton almost worked.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/27/how-did-the-race-get-close/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Trump On Trade</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/27/trump-on-trade/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/27/trump-on-trade/#respond</comments>
+		<pubDate>Tue, 27 Sep 2016 08:24:11 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/27/trump-on-trade/</guid>
+		<description><![CDATA[Loud, confident nonsense.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/27/trump-on-trade/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>The Falsity of False Equivalence</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/26/the-falsity-of-false-equivalence/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/26/the-falsity-of-false-equivalence/#respond</comments>
+		<pubDate>Mon, 26 Sep 2016 07:51:51 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/26/the-falsity-of-false-equivalence/</guid>
+		<description><![CDATA[It’s even worse than you think.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/26/the-falsity-of-false-equivalence/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>The Curious Confidence of Charlatans and Cranks</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/22/the-curious-confidence-of-charlatans-and-cranks/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/22/the-curious-confidence-of-charlatans-and-cranks/#respond</comments>
+		<pubDate>Thu, 22 Sep 2016 11:27:50 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/22/the-curious-confidence-of-charlatans-and-cranks/</guid>
+		<description><![CDATA[Knowing what just wasn't so.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/22/the-curious-confidence-of-charlatans-and-cranks/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>A Lie Too Far?</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/17/a-lie-too-far/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/17/a-lie-too-far/#respond</comments>
+		<pubDate>Sat, 17 Sep 2016 07:09:33 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/17/a-lie-too-far/</guid>
+		<description><![CDATA[The press seems to find its voice. But is it too late?]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/17/a-lie-too-far/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Why Are The Media Objectively Pro-Trump?</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/13/why-are-the-media-objectively-pro-trump/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/13/why-are-the-media-objectively-pro-trump/#respond</comments>
+		<pubDate>Tue, 13 Sep 2016 14:37:53 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/13/why-are-the-media-objectively-pro-trump/</guid>
+		<description><![CDATA[The cool kids gang up on the smart nerd.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/13/why-are-the-media-objectively-pro-trump/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Tobin Was Right (Implicitly Wonkish)</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/10/tobin-was-right-implicitly-wonkish/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/10/tobin-was-right-implicitly-wonkish/#respond</comments>
+		<pubDate>Sat, 10 Sep 2016 13:25:44 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/10/tobin-was-right-implicitly-wonkish/</guid>
+		<description><![CDATA[The great man, imaginary and real.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/10/tobin-was-right-implicitly-wonkish/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Friday Night Music: The Red Army Choir Sings &#8220;It&#8217;s A Long Way To Tipperary&#8221;</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/09/friday-night-music-the-red-army-choir-sings-its-a-long-way-to-tipperary/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/09/friday-night-music-the-red-army-choir-sings-its-a-long-way-to-tipperary/#respond</comments>
+		<pubDate>Fri, 09 Sep 2016 22:18:55 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/09/friday-night-music-the-red-army-choir-sings-its-a-long-way-to-tipperary/</guid>
+		<description><![CDATA[Because why not.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/09/friday-night-music-the-red-army-choir-sings-its-a-long-way-to-tipperary/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Is The Fever Finally Breaking?</title>
+		<link>http://krugman.blogs.nytimes.com/2016/09/09/is-the-fever-finally-breaking/</link>
+		<comments>http://krugman.blogs.nytimes.com/2016/09/09/is-the-fever-finally-breaking/#respond</comments>
+		<pubDate>Fri, 09 Sep 2016 17:02:11 +0000</pubDate>
+		<dc:creator><![CDATA[By Paul Krugman]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://krugman.blogs.nytimes.com/2016/09/09/is-the-fever-finally-breaking/</guid>
+		<description><![CDATA[Maybe Matt Lauer did us a favor.]]></description>
+		<wfw:commentRss>http://krugman.blogs.nytimes.com/2016/09/09/is-the-fever-finally-breaking/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

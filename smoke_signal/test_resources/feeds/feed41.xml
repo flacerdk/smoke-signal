@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8" ?>
+  <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LMU - Tonspur Forschung - LMU München</title>
+        <link>http://www.uni-muenchen.de/aktuelles/publikationen/tonspur/index.html</link>
+    <atom:link href="//www.uni-muenchen.de/funktionen/rss/tonspur.xml" rel="self" type="application/rss+xml" />
+    <description>Audio-Podcast über spannende Forschungsfragen </description>
+    <language>de-de</language>
+        <item>
+            <title>Gibt es die „ewige Liebe“ wie in Hollywood?</title>
+            <description>Professor Oliver Jahraus hat sich mit der Liebe in Film und Fernsehen beschäftigt, während Dr. Carolin Thönnissen sich in ihrer Forschung eher mit der realen Welt auseinandersetzt. </description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/happy_end/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/happy_end/index.html</link>
+            <pubDate>Thu, 12 Mar 2015 13:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/default/gibt-es-die--ewige-liebe--wi-hol-1_101192099.mp3" length="10485760" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Was macht zufrieden im Job?</title>
+            <description>Wirtschaftspsychologe Professor Felix Brodbeck und PD Dr. Silke Weisweiler, Leiterin des Center for Leadership and People Management an der LMU, wissen: Ohne einen guten Chef, ein gutes Betriebsklima und vor allem die nötige Wertschätzung von oben sind Mitarbeiter oft unzufrieden.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/jobzufriedenheit/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/jobzufriedenheit/index.html</link>
+            <pubDate>Mon, 26 Jan 2015 13:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/default/was-macht-zufrieden-im-job--1_99348693.mp3" length="13631488" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Stirbt das Buch aus?</title>
+            <description>Lesen wir bald nur noch am Bildschirm? LMU-Buchwissenschaftlerin Christine Haug und Wirtschaftswissenschaftler Thomas Hess über die Zukunft der E-Books und das Lesen in allen Lebenslagen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/ebook/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/ebook/index.html</link>
+            <pubDate>Fri, 12 Dec 2014 00:10:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/default/stirbt-das-buch-aus--1_98256161.mp3" length="9437184" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Oktoberfest: Hype und Heimat</title>
+            <description>Was macht den Erfolg der Wiesn aus? LMU-Kulturwissenschaftlerin Simone Egger und Wirtschaftswissenschaftler Manfred Schwaiger erklären in der neuen Tonspur Forschung den Ausnahmezustand Oktoberfest.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/oktoberfest/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/oktoberfest/index.html</link>
+            <pubDate>Fri, 26 Sep 2014 00:10:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/default/oktoberfest_94754294.mp3" length="13631488" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Fußball-WM: Wieso fasziniert uns Fußball?</title>
+            <description>Pünktlich zur Fußball-Weltmeisterschaft haben wir dafür 10 mögliche Antworten zusammengetragen. Mit tatkräftiger Unterstützung des Soziologen Prof. Armin Nassehi und des Kommunikationswissenschaftlers Prof. Christoph Neuberger. Was macht tatsächlich die Faszination aus? Taugen die hochbezahlten Athleten als neue Heldenfiguren? Und was passiert, wenn die Überväter der Branche wie Bayern-Chef Uli Hoeneß vom Sockel stürzen?</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/fussball_wm/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/fussball_wm/index.html</link>
+            <pubDate>Wed, 11 Jun 2014 00:10:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/default/fussball2_90017218.mp3" length="9437184" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Von Gerechtigkeit bis Klimawandel</title>
+            <description>Professor Markus Vogt beschäftigt sich mit den großen Fragen: Was ist gerecht? Wie können wir nachhaltig leben? Und: Gibt es eine christliche Zukunftsethik?</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/vogt_sozialethik/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/vogt_sozialethik/index.html</link>
+            <pubDate>Mon, 05 May 2014 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/1-01-christliche-sozialethik-on-ge_89912043.mp3" length="29360128" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Von Facebook-Apps bis Kim Dotcom</title>
+            <description>Professor Tobias Kretschmers Forschung beginnt meist im Internet - er erforscht unter anderem die Auswirkungen von Produktpiraterie.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/betriebswirtschaftslehre/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/betriebswirtschaftslehre/index.html</link>
+            <pubDate>Sun, 20 Apr 2014 00:10:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/1-01-betriebswirtschaftlehre-von-f_86980903.mp3" length="32505856" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Alte Geschichte: Gewalt in der Antike</title>
+            <description>Professor Martin Zimmermann erforscht seit zehn Jahren, wie in der Antike mit Gewalt umgegangen wurde. Außerdem ist er ein Spezialist auf dem Gebiet der Pergamon-Forschung.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/gewalt_antike/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/gewalt_antike/index.html</link>
+            <pubDate>Mon, 30 Sep 2013 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/antike-1_79845450.mp3" length="26214400" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Mathematische Philosophie: Von Rationalität und Fairness</title>
+            <description>Prof. Stephan Hartmann versucht, philosopische Fragestellungen mit mathematischen Methoden zu lösen.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/math_phil/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/math_phil/index.html</link>
+            <pubDate>Tue, 20 Aug 2013 00:10:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/1-01-mathematische-philosoph---von_84164837.mp3" length="32505856" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Sinologie: Die Kunde von China</title>
+            <description>Professor Hans van Ess ist fasziniert vom „Reich der Mitte“ - er erzählt uns von Chinas Religionen, von seinen Menschen, aber auch von seinen Problemen. Der LMU-Sinologe beschäftigt sich in seiner Forschung derzeit hauptsächlich mit der Geschichtsschreibung des Landes.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/sinologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/sinologie/index.html</link>
+            <pubDate>Tue, 20 Aug 2013 00:10:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/1-01-sinologie--die-kunde-vo-china_80906965.mp3" length="32505856" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Wissenschaftsgeschichte: Wie wurde die Photosynthese erforscht?</title>
+            <description>Professor Kärin Nickelsen hat sich den Pflanzen verschrieben - die studierte Biologin ist Expertin für Wissenschaftsgeschichte und hat sich sowohl mit der Erforschung der Photosynthese von 1840-1960 befasst als auch mit historischen Pflanzenzeichnungen.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wissenschaftsgeschichte/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wissenschaftsgeschichte/index.html</link>
+            <pubDate>Tue, 20 Aug 2013 00:10:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/wissenschaftsgeschichte_78370725.mp3" length="25165824" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Experimentelle Physik - DNA-Origami</title>
+            <description>Die Professoren Joachim Rädler und Tim Liedl beschäftigen sich am Institut für experimentelle Physik mit sogenannten Nanoagenzien. Unter anderem können sie aus DNA winzige Strukturen falten – das  ist für die Computertechnik interessant, vor allem aber auch für die Medizin.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/experimentelle_physik/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/experimentelle_physik/index.html</link>
+            <pubDate>Thu, 06 Jun 2013 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/experimentelle-physik_75617805.mp3" length="27262976" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Indologie: Die ältesten buddhistischen Handschriften</title>
+            <description>Prof. Jens-Uwe Hartmann, Stefan Baums und seine Mitarbeiter erforschen derzeit Fragmente, die in Afghanistan und Pakistan gefunden worden sind. Sie sind eine Sensation - es sind die ältesten buddhistischen Schriften, die es überhaupt gibt.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/indologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/indologie/index.html</link>
+            <pubDate>Thu, 04 Apr 2013 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/indologie_73479944.mp3" length="33554432" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Molekulare Pädiatrie: Die Heilung seltener Erkrankungen</title>
+            <description>Professor Ania Muntau und Dr. Soeren Gersting erforschen die Ursachen seltener Erkrankungen bei Kindern – und nach Therapiemöglichkeiten, die für ihre kleinen Patienten nicht zu spät kommen.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/paediatrie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/paediatrie/index.html</link>
+            <pubDate>Thu, 04 Apr 2013 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/1-01-molekulare-paediatrie---ungen_79400778.mp3" length="32505856" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Neuere deutsche Literatur: Was haben E.T.A. Hoffmann und Amy Winehouse gemeinsam?</title>
+            <description>Der Literaturwissenschaftler Professor Oliver Jahraus hat seinem Lehrstuhl den Zusatz &quot;...und Medien&quot; verpasst und beschäftigt sich derzeit unter anderem mit dem Phänomen der Fernsehserien.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/literatur/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/literatur/index.html</link>
+            <pubDate>Wed, 06 Feb 2013 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/literatur.mp3" length="11534336" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Politikwissenschaft: Wer regiert außer dem Staat?</title>
+            <description>Professor Bernhard Zangl erforscht, wie internationale Organisationen ihre politischen Ziele verwirklichen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wer_regiert/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wer_regiert/index.html</link>
+            <pubDate>Wed, 23 Jan 2013 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/wer_regiert.mp3" length="12582912" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Biochemie: Vom Ziel, Leukämie zu heilen</title>
+            <description>Professor Karl-Peter Hopfner untersucht im Genzentrum, wie unsere Zellen mit defekten Erbinformationen umgehen.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/biochemie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/biochemie/index.html</link>
+            <pubDate>Tue, 08 Jan 2013 00:10:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/1-01-biochemie--vom-ziel--le-e-z-1_83404351.mp3" length="24117248" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Theaterwissenschaft: Von Globalisierung bis Öffentlichkeit</title>
+            <description>Christopher Balme forscht unter anderem über &quot;Global Theater Histories&quot; und versucht herauszufinden, wie das westliche Theater in die Welt kam - und sich dort verbreitet hat.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/theaterwissenschaft/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/theaterwissenschaft/index.html</link>
+            <pubDate>Thu, 27 Dec 2012 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/theaterwissenschaft.mp3" length="29360128" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Mikrobiologie: Die Kommunikation der Bakterien</title>
+            <description>Prof. Dr. Kirsten Jung ist Mikrobiologin und beschäftigt sich mit der Kommunikation von Bakterien. Zudem ist sie sehr aktiv in der neuen Fachrichtung der &quot;Synthetischen Biologie&quot;.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/mikrobio_kommunikation/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/mikrobio_kommunikation/index.html</link>
+            <pubDate>Thu, 20 Sep 2012 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/mikrobio_kommunikation.mp3" length="38797312" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Jura: Krieg und Frieden</title>
+            <description>Ist die Völkergemeinschaft verpflichtet, in Syrien einzugreifen? Was wäre passiert, wenn Gaddafi nicht erschossen worden wäre? Das sind nur einige der Fragen, die der Völkerrechtler Professor Christian Walter untersucht. Außerdem beschäftigt er sich unter anderem auch mit dem Thema Staat und Religion - zum Beispiel, ob Menschen, die bei der Kirche angestellt sind, streiken dürfen.
+</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/jura/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/jura/index.html</link>
+            <pubDate>Tue, 26 Jun 2012 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/jura.mp3" length="42991616" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Empirische Wirtschaftsforschung: Wie wir unsere Entscheidungen treffen</title>
+            <description>Prof. Joachim Winter ist Volkswirtschaftler. Sein Hauptforschungsthema ist  das amerikanische Gesundheitssystem. Er untersucht aber auch, wie sich der Hunger bei Kindern im Zweiten Weltkrieg auf den sozioökonomischen Status im späteren Leben ausgewirkt hat. Oder wie das Wetter unsere Entscheidungen beeinflusst.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/entscheidung/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/entscheidung/index.html</link>
+            <pubDate>Thu, 03 May 2012 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/entscheidung.mp3" length="31457280" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Geographie: Wie lange reicht das Wasser noch?</title>
+            <description>Prof. Wolfram Mauser stellt die provokante These auf, dass uns das saubere Wasser auf der Erde nur noch 20 Jahre reicht, wenn wir so weitermachen. In seiner Forschung untersucht er zudem die regionalen Auswirkungen des Klimawandels auf Oberbayern, sowie die zukünftige Entwicklung der Donau.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wasser/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wasser/index.html</link>
+            <pubDate>Tue, 20 Mar 2012 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/wasser.mp3" length="36700160" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Zoologie: Ritter von Spix und seine Brasilienreise</title>
+            <description>Klaus Schönitzer, Biologe an der LMU und Hauptkonservator der Zoologischen Staatssammlung in München, hat die erste Biografie über Ritter von Spix geschrieben. Der Zoologe fuhr vor gut 200 Jahren nach Brasilien, um die dortige Tierwelt zu erforschen. Ein Abenteuer.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/spix/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/spix/index.html</link>
+            <pubDate>Tue, 06 Mar 2012 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/spix.mp3" length="18874368" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Filmwissenschaft: Von Stummfilm bis 3D</title>
+            <description>Juniorprofessorin Fabienne Liptay beschäftigt sich mit der ganzen Welt des Films, mit der Digitalität unserer Zeit, mit der Bildlichkeit und Erzählstruktur der Filme und mit den Menschen, die Filme machen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/stummfilm/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/stummfilm/index.html</link>
+            <pubDate>Tue, 06 Mar 2012 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/stummfilm.mp3" length="18874368" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Astrophysik - von der Entstehung der Sterne</title>
+            <description>Thomas Preibisch erforscht anhand des Carina-Nebels die Entstehung der Sterne. Und erhofft sich dadurch Rückschlüsse darauf, wie unsere Galaxis entstanden ist.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/astrophysik/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/astrophysik/index.html</link>
+            <pubDate>Fri, 16 Dec 2011 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/astrophysik.mp3" length="26214400" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Palliativmedizin: Sterben und sterben lassen?</title>
+            <description>In dieser Episode kommen zwei Professoren zu Wort, die sich mit dem Sterben beschäftigen. Ralf Jox geht es um ethische Fragen am Lebensende - sein aktuelles Buch trägt den Titel &quot;Sterben lassen&quot;. Monika Führer dagegen widmet ihr berufliches Leben schwer kranken Kindern und der Kinderpalliativmedizin.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/palliativ/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/palliativ/index.html</link>
+            <pubDate>Wed, 30 Nov 2011 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/palliativmedizin.mp3" length="46137344" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Lehrerbildung: Training für Schulprofis</title>
+            <description>Ewald Kiel und Joachim Kahlert erforschen, warum junge Menschen Lehrer werden möchten. Und sie versuchen an ihrem Institut dafür zu sorgen, dass sie erfolgreiche, gesunde Lehrer werden - und bleiben.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/lehrerbildung/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/lehrerbildung/index.html</link>
+            <pubDate>Sun, 31 Jul 2011 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/lehrerbildung.mp3" length="14680064" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Musikwissenschaft: Die Geschichte des Fagotts</title>
+            <description>Sebastian Werr hat sich bislang hauptsächlich mit der Oper beschäftigt. Nun hat der Musikwissenschaftler ein Buch zu einem ganz anderen Thema veröffentlicht: &quot;Die Geschichte des Fagotts&quot;.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/fagott/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/fagott/index.html</link>
+            <pubDate>Sun, 31 Jul 2011 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/fagott.mp3" length="14680064" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Religionswissenschaft: Zwischen Yoga und Dämonen</title>
+            <description>Das kleine Fach der Religionswissenschaft überrascht durch eine Vielfalt an Forschungsmöglichkeiten. Während Professor Michael von Brück seinen Schwerpunkt auf Buddhismus, Hinduismus und die Alltagsrituale der indischen Kulturen legt, spezialisiert sich Dr. Katharina Wilkens auf den Osten Afrikas und die dort auftretenden Geistheilungen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/religion/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/religion/index.html</link>
+            <pubDate>Tue, 28 Jun 2011 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/religion.mp3" length="27262976" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Neuroimmunologie - Der Kampf gegen die Multiple Sklerose</title>
+            <description>Prof. Martin Kerschensteiner kämpft seit Anfang der 90er-Jahre gegen die Multiple Sklerose. Nun ist ihm und seinem Team eine bahnbrechende Entdeckung gelungen, die positive Auswirkungen für die Therapie der Krankheit haben könnte</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/neuroimmunologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/neuroimmunologie/index.html</link>
+            <pubDate>Thu, 26 May 2011 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/neuroimmunologie.mp3" length="25165824" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Antike Liebeslyrik: Frühlingsgefühle bei den Griechen und Römern</title>
+            <description>Der LMU-Altphilologe Professor Niklas Holzberg beschäftigt sich mit möglichst wörtlichen Übersetzungen antiker Texte. So hat er zum Beispiel erst kürzlich eine fünfbändige Reihe zum Abschluss gebracht, in der er Aristophanes, Horaz, Ovid, Vergil und Catull auch einem modernen Publikum in Leben und Werk präsentieren möchte. Die Dichter der Antike nahmen nur selten ein Blatt vor den Mund. So wählt auch Holzberg klare Worte, wo es die Vorlage verlangt und überträgt den antiken Jargon in die heutige Zeit.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/liebeslyrik/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/liebeslyrik/index.html</link>
+            <pubDate>Thu, 28 Apr 2011 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/liebeslyrik.mp3" length="25165824" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Der Magnetsinn von Tieren und Bakterien</title>
+            <description>Michael Winklhofer und Stefan Eder erforschen den Magnetsinn der Regenbogenforelle. Dirk Schüler hat sich auf noch kleinere Wesen spezialisiert: Auf Bakterien, die sich ebenfalls durch einen ausgeklügelten Magnetsinn orientieren.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/magnetsinn/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/magnetsinn/index.html</link>
+            <pubDate>Thu, 31 Mar 2011 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/magnetsinn.mp3" length="20971520" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Gender Studies: Was unterscheidet Mann und Frau?</title>
+            <description>Prof. Paula-Irene Villa sucht den Zusammenhang zwischen Körper und Geschlecht. Sie geht dem Thema Schönheits-Operationen auf den Grund und beobachtet, wie Jugendliche sich verhalten. All das unter dem Dach der &quot;Gender Studies&quot;. Was genau sich dahinter verbirgt, erklärt die Wissenschaftlerin in dieser Folge der Tonspur Forschung.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/gender_studies/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/gender_studies/index.html</link>
+            <pubDate>Mon, 21 Feb 2011 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/gender_studies.mp3" length="19922944" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Das neue Osteuropazentrum</title>
+            <description>Martin Schulze Wessel erklärt, was es mit dem neu gegründeten &quot;Zentrum für Osteuropastudien&quot; auf sich hat. Marie-Janine Calic berichtet von ihrem neu erschienenen Buch, in dem sie die Geschichte Jugoslawiens im 20. Jahrhundert beschreibt.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/osteuropa/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/osteuropa/index.html</link>
+            <pubDate>Thu, 27 Jan 2011 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/osteuropa.mp3" length="13631488" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Das große Vergessen</title>
+            <description>700.000 Menschen leiden in Deutschland an Alzheimer. Das große Vergessen ist somit zu einer Volkskrankheit geworden. Mit steigender Lebenserwartung der Menschen werden in den kommenden Jahren noch mehr Patienten erkranken. Doch die Biologen um Professor Christian Haass sind der Krankheit auf der Spur. Sie erforschen an Zebrafischen, wie der Verfall des Gehirns entsteht − und wie er aufgehalten werden kann.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/vergessen/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/vergessen/index.html</link>
+            <pubDate>Tue, 07 Dec 2010 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/vergessen.mp3" length="22020096" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Biologie: Wasserflöhe im Stress</title>
+            <description>Christian Laforsch beobachtet Wasserflöhe und erforscht, wie diese in extremen Stress-Situationen reagieren. So konnte herausgefunden werden, dass die Tiere sich verändern, um sich vor Feinden zu schützen. Sie lassen sich beispielsweise eine Dornenkrone wachsen, um ungenießbar zu werden.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wasserfloehe/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/wasserfloehe/index.html</link>
+            <pubDate>Tue, 02 Nov 2010 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/wasserfloehe.mp3" length="19922944" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Psychologie: Mobbing in der Schule</title>
+            <description>500.000 Kinder sind in Deutschlands Schulen Mobbingopfer, so die Schätzung von Mechthild Schäfer und ihren Kollegen. Die Kinder sind hilflos − ebenso wie ihre Eltern. Die einzigen, die etwas gegen die verfahrene Situation und die ständigen Schikanen tun können, sind aber die Eltern, so die Psychologin.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/mobbing/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/mobbing/index.html</link>
+            <pubDate>Mon, 11 Oct 2010 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/mobbing.mp3" length="29360128" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Geologie: Hautnah bei Islands Vulkanen</title>
+            <description>Ulrich Münzer war sechs Wochen in Island und hat den Vulkan Eyjafjallajökull untersucht, nachdem dieser im März und April 2010 ausgebrochen war. Sein Ziel ist es, verlässliche Frühwarnsysteme zu entwickeln. Dazu gehört vor allem die Beobachtung von Vulkanen aus dem All - durch hochauflösende Radar-Satelliten.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/vulkane/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/vulkane/index.html</link>
+            <pubDate>Mon, 20 Sep 2010 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/vulkane.mp3" length="25165824" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Volkskunde: Von Reisen bis Migration</title>
+            <description>Johannes Moser ist Leiter des Instituts für Volkskunde und Europäische Ethnologie. Er gibt einen Überblick darüber, an was er und seine Kolleginnen und Kollegen an dem Institut gerade forschen − das reicht von &quot;Dingen auf Reisen&quot; bis zur Migration.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/volkskunde/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/volkskunde/index.html</link>
+            <pubDate>Fri, 30 Jul 2010 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/volkskunde.mp3" length="17825792" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Special: Die Geschichte der LMU</title>
+            <description>Wolfgang Smolka ist Leiter des Universitätsarchivs und als solcher Herr über die Geschichte der Universität. Er berichtet, wie die LMU entstanden ist und wie sie zu dem wurde, was sie heute ist.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/geschichte_lmu/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/geschichte_lmu/index.html</link>
+            <pubDate>Thu, 17 Jun 2010 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/geschichte_lmu.mp3" length="22020096" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Immunologie:  Die gesunde Körperabwehr</title>
+            <description>Thomas Brocker und Ludger Klein vom Institut für Immunologie erforschen, warum Krankheitserreger körpereigene Strukturen angreifen und wie sich derartige Entgleisungen der Immunabwehr verhindern lassen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/immunologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/immunologie/index.html</link>
+            <pubDate>Mon, 31 May 2010 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/immunologie.mp3" length="25165824" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Kommunikationswissenschaft: Darüber reden Internetnutzer</title>
+            <description>Der LMU-Kommunikationswissenschaftler Hans-Bernd Brosius untersucht, ob Diskussionsforen im Internet die öffentliche Meinungsbildung einer Gesellschaft abbilden können.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/kommunikation/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/kommunikation/index.html</link>
+            <pubDate>Wed, 28 Apr 2010 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/kommunikation.mp3" length="10485760" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Dialektologie: Von Denglisch bis Bayerisch</title>
+            <description>Anthony Rowley ist eigentlich Brite − lebt aber schon lange in Bayern. In der germanistischen Linguistik befasst er sich vor allem mit der bayerischen Mundart und gibt ein entsprechendes Wörterbuch heraus. Er kann erklären, wie sich bestimmte internationale Wörter in den Dialekt eingeschlichen haben − und was man daraus schließen kann.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/dialektologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/dialektologie/index.html</link>
+            <pubDate>Thu, 25 Mar 2010 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/dialektologie.mp3" length="25165824" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Neuroonkologie: Dem Krebs auf der Spur</title>
+            <description>Frank Winkler ist Leiter der Arbeitsgruppe für Experimentelle Neuro-Onkologie. Er erforscht, wie sich Krebs-Metastasen verbreiten − und wie sie ins Gehirn gelangen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/neuroonkologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/neuroonkologie/index.html</link>
+            <pubDate>Mon, 22 Feb 2010 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/neuroonkologie.mp3" length="15728640" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Special: Hinter den Kulissen von iTunes U</title>
+            <description>Wer steckt hinter der Tonspur Forschung? Annik Rubens hat mit Armin Rubner, Erik Keller und Kathrin Bilgeri über den LMU-Podcast gesprochen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/special/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/special/index.html</link>
+            <pubDate>Thu, 21 Jan 2010 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/special.mp3" length="15728640" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Medieninformatik: Der interaktive Tisch</title>
+            <description>Die Medieninformatiker Heinrich Hußmann und Andreas Butz erforschen Möglichkeiten, wie wir Nutzer leichter mit Computern und anderen digitalen Geräten umgehen können.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/medieninformatik/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/medieninformatik/index.html</link>
+            <pubDate>Thu, 21 Jan 2010 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/medieninformatik.mp3" length="29360128" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Paläontologie: Von Dinos und Riesenspermien</title>
+            <description>Bei den Paläontologen geht es zwar durchaus um Dinosaurier und den Urvogel Archaeopteryx, aber nicht nur: Renate Matzke-Karasz forscht am LMU-Department für Geo- und Umweltwissenschaften an Ostracoden, an winzig kleinen Muschelkrebsen, die sich seit über 100 Millionen Jahren über geheimnisvolle Riesenspermien fortpflanzen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/palaeonthologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/palaeonthologie/index.html</link>
+            <pubDate>Tue, 17 Nov 2009 00:00:00 +0100</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/palaeonthologie.mp3" length="30408704" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Chronobiologie: So tickt die innere Uhr</title>
+            <description>Unsere innere Uhr richtet sich nach dem Sonnenlicht und macht es uns daher gerne schwer, wenn jährlich zwei Mal die Zeit umgestellt wird oder wenn wir im Schichtdienst arbeiten müssen. Der Chronobiologe Till Roenneberg vom Institut für Medizinische Psychologie der LMU erklärt, welche Mechanismen unserer „inneren Uhr“ zugrunde liegen.</description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/chronobiologie/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/chronobiologie/index.html</link>
+            <pubDate>Mon, 19 Oct 2009 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/chronobiologie.mp3" length="27262976" type="audio/mpeg" />
+        </item>
+        <item>
+            <title>Einführung</title>
+            <description></description>
+            <guid>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/einfuehrung/index.html</guid>
+            <link>//www.uni-muenchen.de/aktuelles/publikationen/tonspur/archiv/einfuehrung/index.html</link>
+            <pubDate>Tue, 13 Oct 2009 00:00:00 +0200</pubDate>
+            <enclosure url="http://www.uni-muenchen.de/media-files/30zb-lmu-de/tonspur/einfuehrung.mp3" length="6291456" type="audio/mpeg" />
+        </item>
+  </channel>
+</rss>

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>Mind Hacks</title>
+	<atom:link href="https://mindhacks.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://mindhacks.com</link>
+	<description>Neuroscience and psychology news and views.</description>
+	<lastBuildDate>Mon, 17 Oct 2016 11:58:45 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+<cloud domain='mindhacks.com' port='80' path='/?rsscloud=notify' registerProcedure='' protocol='http-post' />
+<image>
+		<url>https://secure.gravatar.com/blavatar/e1a4389e311de66187044dee40297f7e?s=96&#038;d=https%3A%2F%2Fs2.wp.com%2Fi%2Fbuttonw-com.png</url>
+		<title>Mind Hacks</title>
+		<link>https://mindhacks.com</link>
+	</image>
+	<atom:link rel="search" type="application/opensearchdescription+xml" href="https://mindhacks.com/osd.xml" title="Mind Hacks" />
+	<atom:link rel='hub' href='https://mindhacks.com/?pushpress=hub'/>
+	<item>
+		<title>Do students know what&#8217;s good for them?</title>
+		<link>https://mindhacks.com/2016/10/10/do-students-know-whats-good-for-them/</link>
+		<comments>https://mindhacks.com/2016/10/10/do-students-know-whats-good-for-them/#respond</comments>
+		<pubDate>Mon, 10 Oct 2016 05:29:02 +0000</pubDate>
+		<dc:creator><![CDATA[tomstafford]]></dc:creator>
+				<category><![CDATA[Learning]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33735</guid>
+		<description><![CDATA[Of course they do, and of course they don&#8217;t. Putting a student at the centre of their own learning seems like fundamental pedagogy. The Constructivist approach to education emphasises the need for knowledge to reassembled in the mind of the learner, and the related impossibility of its direct transmission from the mind of the teacher. &#8230; <a href="https://mindhacks.com/2016/10/10/do-students-know-whats-good-for-them/" class="more-link">Continue reading<span class="screen-reader-text"> "Do students know what&#8217;s good for&#160;them?"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33735&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p>Of course they do, and of course they don&#8217;t.</p>
+<p>Putting a student at the centre of their own learning seems like fundamental pedagogy. The <a href="https://en.wikipedia.org/wiki/Constructivism_%28philosophy_of_education%29" target="_blank">Constructivist</a> approach to education emphasises the need for knowledge to reassembled in the mind of the learner, and the related impossibility of its direct transmission from the mind of the teacher. Believe this, and student input into how they learn must follow.</p>
+<p>At the same time, we know there is a deep neurobiological connection between the machinery of reward in our brain, and that of learning. Both functions seem to be entangled in the subcortical circuitry of a network known as the <a href="http://www.scholarpedia.org/article/Basal_ganglia" target="_blank">basal ganglia</a>. It’s perhaps not surprising that curiosity, which we all know personally to be a powerful motivator of learning, <a href="http://pss.sagepub.com/content/20/8/963.short" target="_blank">activates the same subcortical circuitry</a> involved in the pleasurable anticipation of reward. Further, <a href="http://www.sciencedirect.com/science/article/pii/S0896627314008046" target="_blank">curiosity enhances memory</a>, even for things you learn while your curiosity is aroused about something else.</p>
+<p>This neurobiological alignment of enjoyment and learning isn&#8217;t mere coincidence. When building learning algorithms for embedding in learning robots, the basic rules of learning from experience have to be <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4158798/" target="_blank">augmented with a drive to explore</a> – curiosity! – so that they don&#8217;t become stuck repeating suboptimal habits. Whether it is motivated by curiosity or other factors, exploration seems to support enhanced learning in a range of domains from <a href="http://www.tomstafford.staff.shef.ac.uk/?p=48" target="_blank">simple skills</a> to more <a href="http://science.sciencemag.org/content/348/6230/91" target="_blank">complex ideas</a>.</p>
+<p>Obviously we learn best when motivated, and when learning is fun, and allowing us to explore our curiosity is a way to allow both. However, putting the trajectory of their experience into students&#8217; hands can go awry.</p>
+<h2>False beliefs impede learning</h2>
+<p>One reason is false beliefs about how much we know, or how we learn best. Psychologists studying memory have long documented such metacognitive errors, which include overconfidence, and a <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3062901/" target="_blank">mistaken reliance on our familiarity</a> with a thing as a guide to how well we understand it, or how well we&#8217;ll be able to recall it when tested (recognition and recall are in fact <a href="http://www.bbc.com/future/story/20120209-why-names-and-faces-are-so-vexing" target="_blank">different cognitive processes</a>). Sure enough, when tested in <a href="http://link.springer.com/article/10.3758/BF03194055" target="_blank">experiments</a> people will over-rely on ineffective study strategies (like rereading, or reviewing the answers to questions, rather than testing their ability to <a href="http://science.sciencemag.org/content/319/5865/966.full" target="_blank">generate the answers from the questions</a>). Cramming is another ineffective study strategy, with experiment after experiment showing the benefit of spreading out your study rather than massing it all together. Obviously this requires being more organised, but my belief is that a metacognitive error supports students&#8217; over-reliance on cramming – cramming feels good, because, for a moment, you feel familiar with all the information. The problem is that this feel-good familiarity isn&#8217;t the kind of memory that will support recall in an exam, but immature learners often don&#8217;t realise the extent of that.</p>
+<p>In agreement with these findings from psychologists, education scholars have <a href="http://www.tandfonline.com/doi/pdf/10.1207/s15326985ep4102_1" target="_blank">reacted against</a> pure student-led or discovery learning, with <a href="http://psycnet.apa.org/?&amp;fa=main.doiLanding&amp;doi=10.1037/0003-066X.59.1.14" target="_blank">one review summarising the findings</a> from multiple distinct research programmes taking place over three decades: “In each case, guided discovery was more effective than pure discovery in helping students learn and transfer&#8221;.</p>
+<h2>The solution: balancing guided and discovery learning</h2>
+<p>This leaves us at a classic “middle way”, where pure student-led or teacher-led learning is ruled out. Some kind of guided exploration, structured study, or student choice in learning is obviously a necessity, but we&#8217;re not sure how much.</p>
+<p>There&#8217;s an exciting future for research which informs us what the right blend of guided and discovery learning is, and which students and topics suit which exact blend. One strand of this is to take the cognitive psychology experiments which demonstrate a benefit of active choice learning over passive instruction and to tweak them so that we can see when passive instruction can be used to jump-start or augment active choice learning. <a href="http://mindmodeling.org/cogsci2016/papers/0425/paper0425.pdf" target="_blank">One experiment</a> from Kyle MacDonald and Michael Frank of Stanford University used a highly abstract concept learning task in which participants use trial and error to figure out a categorisation of different shapes. <a href="http://psycnet.apa.org/journals/xge/143/1/94/" target="_blank">Previous research</a> had shown that people learned faster if they were allowed to choose their own examples to receive feedback on, but this latest iteration of the experiment from MacDonald and Frank showed that an initial session of passive learning, where the examples were chosen for the learner boosted performance even further. Presumably this effect is due to the scaffolding in the structure of the concept-space that the passive learning gives the learner. This, and myriad experiments, are possible to show when and how active learning and instructor-led learning can be blended.</p>
+<p>Education is about more than students learning the material on the syllabus. There is a meta-goal of producing students who are better able to learn for themselves. The same cognitive machinery in all of us might push us towards less effective strategies. The simple fact of being located within our own selfish consciousness means that even the best performers in the world need a coach to help them learn. But as we mature we can learn to better avoid pitfalls in our learning and evolve into better self-determining students. Ultimately the best education needs to keep its focus on that need to help each of us take on more and more responsibility for how we learn, whether that means submitting to others&#8217; choices or exploring things for ourselves – or, often, a bit of both.</p>
+<p><i>This post originally appeared on the NPJ <a href="https://npjscilearncommunity.nature.com/users/21128-tom-stafford/posts/12584-do-students-know-what-s-good-for-them">&#8216;Science of Learning&#8217; Community</a></i></p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33735/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33735/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33735&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/10/10/do-students-know-whats-good-for-them/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	
+		<media:content url="http://1.gravatar.com/avatar/7dd9602f405f761546c26fb04799e3da?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">tomstafford</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>The hidden history of war on terror torture</title>
+		<link>https://mindhacks.com/2016/10/09/the-hidden-history-of-war-on-terror-torture/</link>
+		<comments>https://mindhacks.com/2016/10/09/the-hidden-history-of-war-on-terror-torture/#respond</comments>
+		<pubDate>Sun, 09 Oct 2016 07:29:16 +0000</pubDate>
+		<dc:creator><![CDATA[vaughanbell]]></dc:creator>
+				<category><![CDATA[Remembering]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33716</guid>
+		<description><![CDATA[The Hidden Persuaders project has interviewed neuropsychologist Tim Shallice about his opposition to the British government&#8217;s use of &#8216;enhanced interrogation&#8217; in the Northern Ireland conflict of the 1970s &#8211; a practice eventually abandoned as torture. Shallice is little known to the wider public but is one of the most important and influential neuropsychologists of his &#8230; <a href="https://mindhacks.com/2016/10/09/the-hidden-history-of-war-on-terror-torture/" class="more-link">Continue reading<span class="screen-reader-text"> "The hidden history of war on terror&#160;torture"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33716&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><img src="https://mindhacksblog.files.wordpress.com/2016/10/interrogation.jpg?w=840" alt=""   class="alignright size-full wp-image-33725" />The <i>Hidden Persuaders</i> project has <a href="http://www.bbk.ac.uk/hiddenpersuaders/blog/prof-tim-shallice-on-interrogation-in-depth/">interviewed</a> neuropsychologist <a href="https://en.wikipedia.org/wiki/Tim_Shallice">Tim Shallice</a> about his opposition to the British government&#8217;s use of &#8216;enhanced interrogation&#8217; in the Northern Ireland conflict of the 1970s &#8211; a practice eventually abandoned as torture.</p>
+<p>Shallice is little known to the wider public but is one of the most important and influential neuropsychologists of his generation, having pioneered the systematic study of neurological problems as a window on typical cognitive function.</p>
+<p>One of his first papers was not on brain injury, however, it was an <a href="http://dx.doi.org/10.1016/0010-0277(72)90004-2">article</a> titled &#8216;Ulster depth interrogation techniques and their relation to sensory deprivation research&#8217; where he set out a cognitive basis for why the <a href="https://en.wikipedia.org/wiki/Five_techniques">&#8216;five techniques&#8217;</a> &#8211; wall-standing, hooding, white noise, sleep deprivation, and deprivation of food and drink &#8211; amounted to torture.</p>
+<p>Shallice traces a link between the use of these techniques and research on sensory deprivation &#8211; which was investigated both by regular scientists for reasons of scientific curiosity, and as we learned later, by intelligence services while trying to understand &#8216;brain washing&#8217;.</p>
+<p>The use of these techniques in Northern Ireland was subject to an official investigation and Shallice and other researchers testified to the Parker Committee which led Prime Minister Edward Heath to ban the practice.</p>
+<p>If those techniques sound eerily familiar, it is because they formed the basis of interrogation practices at Guantanamo Bay and other notorious sites in the &#8216;war on terror&#8217;.</p>
+<p>The <i>Hidden Persuaders</i> is a <a href="http://www.bbk.ac.uk/hiddenpersuaders/">research project</a> at Birkbeck, University of London, which is investigating the history of &#8216;brainwashing&#8217;. It traces the practice to its use by the British during the colonisation of Yemen, who seemed to have borrowed it off the KGB.</p>
+<p>And if you want to read about the modern day effects of the abusive techniques, <i>The New York Times</i> has just published a disturbing feature <a href="http://www.nytimes.com/2016/10/09/world/cia-torture-guantanamo-bay.html">article</a> about the long-term consequences of being tortured in Guantanamo and other &#8216;black sites&#8217; by following up many of the people subject to the brutal techniques.<br />
+&nbsp;</p>
+<p><a href="http://www.bbk.ac.uk/hiddenpersuaders/blog/prof-tim-shallice-on-interrogation-in-depth/">Link</a> to <i>Hidden Persuaders</i> interview with Tim Shallice.<br />
+<a href="http://www.nytimes.com/2016/10/09/world/cia-torture-guantanamo-bay.html">Link</a> to <i>NYT</i> on long-term legacy of war on terror torture.</p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33716/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33716/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33716&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/10/09/the-hidden-history-of-war-on-terror-torture/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	
+		<media:content url="http://2.gravatar.com/avatar/b09d235d89a28b64f084cd52d6aec9b4?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">vaughanbell</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2016/10/interrogation.jpg" medium="image" />
+	</item>
+		<item>
+		<title>Does ‘brain training’ work?</title>
+		<link>https://mindhacks.com/2016/10/03/does-brain-training-work/</link>
+		<comments>https://mindhacks.com/2016/10/03/does-brain-training-work/#comments</comments>
+		<pubDate>Mon, 03 Oct 2016 06:39:24 +0000</pubDate>
+		<dc:creator><![CDATA[tomstafford]]></dc:creator>
+				<category><![CDATA[Learning]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33713</guid>
+		<description><![CDATA[You’ve probably heard of “brain training exercises” – puzzles, tasks and drills which claim to keep you mentally agile. Maybe, especially if you’re an older person, you’ve even bought the book, or the app, in the hope of staving off mental decline. The idea of brain training has widespread currency, but is that due to &#8230; <a href="https://mindhacks.com/2016/10/03/does-brain-training-work/" class="more-link">Continue reading<span class="screen-reader-text"> "Does ‘brain training’&#160;work?"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33713&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p>You’ve probably heard of “brain training exercises” – puzzles, tasks and drills which claim to keep you mentally agile. Maybe, especially if you’re an older person, you’ve even bought the book, or the app, in the hope of staving off mental decline. The idea of brain training has widespread currency, but is that due to science, or empty marketing?</p>
+<p>Now a <a href="http://m.psi.sagepub.com/content/17/3/103">major new review, published in Psychology in the Public Interest</a>, sets out to systematically examine the evidence for brain training. The results should give you pause before spending any of your time and money on brain training, but they also highlight what happens when research and commerce become entangled.</p>
+<p>The review team, led by <a href="http://www.dansimons.com/">Dan Simons</a> of the University of Illinois, set out to inspect all the literature which brain training companies cited in their promotional material – in effect, taking them at their word, with the rationale that the best evidence in support of brain training exercises would be that cited by the companies promoting them.</p>
+<h2>The chairman says it works</h2>
+<p>A major finding of the review is the poverty of the supporting evidence for these supposedly scientific exercises. Simons’ team found that half of the brain training companies that promoted their products as being scientifically validated didn’t cite any peer-reviewed journal articles, relying instead on things like testimonials from scientists (including the company founders). Of the companies which did cite evidence for brain training, many cited general research on neuroplasticity, but nothing directly relevant to the effectiveness of what they promote.</p>
+<p>The key issue for claims around brain training is that practising these exercises will help you in general, or on unrelated tasks. Nobody doubts that practising a crossword will help you get better at crosswords, but will it improve your memory, your IQ or your ability to skim read email? Such effects are called transfer effects, and so called “far transfer” (transfer to a very different task than that trained) is the ultimate goal of brain training studies. What we know about transfer effect is reviewed in Simons’ paper.</p>
+<figure class="align-center "><img src="https://62e528761d0685343e1c-f3d1b99a743ffa4142d9d7f1978d9686.ssl.cf2.rackcdn.com/files/139991/width754/image-20161002-9475-12lwyyh.jpg" alt="" /></p>
+<figcaption><span class="caption">Doing puzzles make you, well, good at doing puzzles.</span><br />
+<span class="attribution"><a class="source" href="http://www.shutterstock.com/pic-335283932/stock-photo-an-elderly-woman-is-doing-crossword-puzzle-with-a-pencil-this-is-a-good-exercise-for-older-people-to-train-their-brains.html?src=8V_dvhU5-m4uqcKHsh3GMA-1-45">Jne Valokuvaus/Shutterstock.com</a></span></figcaption>
+</figure>
+<p>As well as trawling the company websites, the reviewers inspected a list provided by an industry group (<a href="http://www.cognitivetrainingdata.org/">Cognitive Training Data</a> of some 132 scientific papers claiming to support the efficacy of brain training. Of these, 106 reported new data (rather than being reviews themselves). Of those 106, 71 used a proper control group, so that the effects of the brain training could be isolated. Of those 71, only 49 had so called “active control” group, in which the control participants actually did something rather than being ignored by the the researchers. (An active control is important if you want to distinguish the benefit of your treatment from the benefits of expectation or responding to researchers’ attentions.) Of these 49, about half of the results came from just six studies.</p>
+<p>Overall, the reviewers conclude, no study which is cited in support of brain training products meets the gold standard for best research practises, and few even approached the standard of a good randomised control trial (although note their cut off for considering papers missed <a href="https://theconversation.com/at-last-a-gold-standard-study-on-brain-training-50210">this paper</a> from late last year).</p>
+<h2>A bit premature</h2>
+<p>The implications, they argue, are that claims for general benefits of brain training are premature. There’s excellent evidence for benefits of training specific to the task trained on, they conclude, less evidence for enhancement on closely related tasks and little evidence that brain training enhances performance on distantly related tasks or everyday cognitive performance.</p>
+<p>The flaws in the studies supporting the benefits of brain training aren’t unique to the study of brain training. Good research is hard and all studies have flaws. Assembling convincing evidence for a treatment takes years, with evidence required from multiple studies and from different types of studies. Indeed, it may yet be that some kind of cognitive training can be shown to have the general benefits that are hoped for from existing brain training exercises. What this review shows is not that brain training can’t work, merely that promotion of brain training exercises is – at the very least – premature based on the current scientific evidence.</p>
+<p>Yet in a 2014 survey of US adults, over 50% had heard of brain training exercises and showed some credence to their performance enhancing powers. Even the name “brain training”, the authors of the review admit, is a concession to marketing – this is how people know these exercises, despite their development having little to do with the brain directly.</p>
+<p>The widespread currency of brain training isn’t because of overwhelming evidence of benefits from neuroscience and psychological science, as the review shows, but it does rely on the appearance of being scientifically supported. The billion-dollar market in brain training is parasitic on the credibility of neuroscience and psychology. It also taps into our lazy desire to address complex problems with simple, purchasable, solutions (something written about at length by Ben Goldacre in his book <a href="http://www.badscience.net/">Bad Science</a>).</p>
+<p>The Simons review ends with recommendations for researchers into brain training, and for journalists reporting on the topic. My favourite was their emphasis that any treatment needs to be considered for its costs, as well as its benefits. By this standard there is no commercial brain training product which has been shown to have greater benefits than something you can do for free. Also important is the opportunity cost: what could you be doing in the time you invest in brain training? The reviewers deliberately decided to focus on brain training, so they didn’t cover the proven and widespread benefits of exercise for mental function, but I’m happy to tell you now that a brisk walk round the park with a friend is not only free, and not only more fun, but has <a href="http://www.nature.com/nrn/journal/v9/n1/abs/nrn2298.html">better scientific support</a> for its cognitive-enhancing powers than all the brain training products which are commercially available.</p>
+<p><img src="https://counter.theconversation.edu.au/content/66245/count.gif" alt="The Conversation" width="1" height="1" /></p>
+<p><a href="https://theconversation.com/profiles/tom-stafford-91781">Tom Stafford</a>, Lecturer in Psychology and Cognitive Science, <em><a href="http://theconversation.com/institutions/university-of-sheffield-1147">University of Sheffield</a></em></p>
+<p>This article was originally published on <a href="http://theconversation.com">The Conversation</a>. Read the <a href="https://theconversation.com/does-brain-training-work-66245">original article</a>.</p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33713/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33713/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33713&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/10/03/does-brain-training-work/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+	
+		<media:content url="http://1.gravatar.com/avatar/7dd9602f405f761546c26fb04799e3da?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">tomstafford</media:title>
+		</media:content>
+
+		<media:content url="http://62e528761d0685343e1c-f3d1b99a743ffa4142d9d7f1978d9686.ssl.cf2.rackcdn.com/files/139991/width754/image-20161002-9475-12lwyyh.jpg" medium="image" />
+
+		<media:content url="http://counter.theconversation.edu.au/content/66245/count.gif" medium="image">
+			<media:title type="html">The Conversation</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Hallucinating sleep researchers</title>
+		<link>https://mindhacks.com/2016/09/24/hallucinating-sleep-researchers/</link>
+		<comments>https://mindhacks.com/2016/09/24/hallucinating-sleep-researchers/#comments</comments>
+		<pubDate>Sat, 24 Sep 2016 14:08:22 +0000</pubDate>
+		<dc:creator><![CDATA[vaughanbell]]></dc:creator>
+				<category><![CDATA[Inside the Brain]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33699</guid>
+		<description><![CDATA[I just stumbled across a fascinating 2002 paper where pioneering sleep researcher Allan Hobson describes the effect of a precisely located stroke he suffered. It affected the medulla in his brain stem, important for regulating sleep, and caused total insomnia and a suppression of dreaming. In one fascinating section, Hobson describes the hallucinations he experienced, &#8230; <a href="https://mindhacks.com/2016/09/24/hallucinating-sleep-researchers/" class="more-link">Continue reading<span class="screen-reader-text"> "Hallucinating sleep researchers"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33699&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><img src="https://mindhacksblog.files.wordpress.com/2016/09/hobson.jpg?w=840" alt=""   class="alignleft size-full wp-image-33707" />I just stumbled across a fascinating 2002 <a href="http://dx.doi.org/10.1016/S1053-8100(02)00011-9">paper</a> where pioneering sleep researcher <a href="https://en.wikipedia.org/wiki/Allan_Hobson">Allan Hobson</a> describes the effect of a precisely located stroke he suffered. It affected the <a href="https://en.wikipedia.org/wiki/Medulla_oblongata">medulla</a> in his brain stem, important for regulating sleep, and caused total insomnia and a suppression of dreaming.</p>
+<p>In one fascinating section, Hobson describes the hallucinations he experienced, likely due to his inability to sleep or dream, which included disconnected body parts and a hallucinated <a href="https://en.wikipedia.org/wiki/Robert_Stickgold">Robert Stickgold</a> &#8211; another well known sleep researcher.</p>
+<blockquote><p>
+Between Days 1 and 10 I could visually perceive a vault over my supine body immediately upon closing my eyes. The vault resembled the bottom of a swimming pool but the gunitelike surface of the vault could be not only aqua, but also white or beige and, more rarely, engraved obsidian or of a gauzelike nature mixed with ice or glass crystals.</p>
+<p>There were three categories of formed imagery that appeared on these surfaces. In the first category of geologic forms the imagery tended to be protomorphic and crude but often gave way to the more elaborate structures of category two inanimate sculptural forms.</p>
+<p>The most amusing of these (which occurred on the fourth night) were enormous lucite telephone/computers. But there were also tables and tableaux in which the geologic forms sometimes took unusual and bizarre shapes. One that I recall is a TV-set-like representation of a tropical landscape.</p>
+<p>In category three, the most elaborate forms have human anatomical elements, including long swirling flesh, columns that metamorphosed into sphincters, nipples, and crotches, but these were never placed in real bodies.</p>
+<p>In fact whole body forms almost never emerged. Instead I saw profiles of faces and profiles of bodies which were often inextricably mixed with penises, noses, lips, eyebrows; torsos arose out of the sculptural columns of flesh and sank back into them again.</p>
+<p>The most fully realized human images include my wife, featuring her lower anatomy and (most amusingly) a Peter Pan-like Robert Stickgold and two fairies enjoying a bedtime story. While visual disturbances are quire common in Wallenberg&#8217;s syndrome, they have only been reported to occur in waking with eyes open.</p>
+<p>Blurring of vision (which I had), and the tendency of objects to appear to move called <a href="https://en.wikipedia.org/wiki/Oscillopsia">oscillopsia</a> (which I did not have), are attributed to the disturbed oculomotor and vestibular physiology.
+</p></blockquote>
+<p>&nbsp;</p>
+<p><a href="http://dx.doi.org/10.1016/S1053-8100(02)00011-9">Link</a> to locked report of Hobson&#8217;s stroke.</p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33699/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33699/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33699&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/09/24/hallucinating-sleep-researchers/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+	
+		<media:content url="http://2.gravatar.com/avatar/b09d235d89a28b64f084cd52d6aec9b4?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">vaughanbell</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2016/09/hobson.jpg" medium="image" />
+	</item>
+		<item>
+		<title>a literary case of the exploding head</title>
+		<link>https://mindhacks.com/2016/09/19/a-literary-case-of-the-exploding-head/</link>
+		<comments>https://mindhacks.com/2016/09/19/a-literary-case-of-the-exploding-head/#comments</comments>
+		<pubDate>Mon, 19 Sep 2016 18:02:00 +0000</pubDate>
+		<dc:creator><![CDATA[tomstafford]]></dc:creator>
+				<category><![CDATA[Inside the Brain]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33695</guid>
+		<description><![CDATA[One of the most commented-upon posts on this blog is this from 2009, &#8216;Exploding head syndrome&#8216;. The name stems from the 1920s, and describes an under-documented and mysterious condition in which the suffer experiences a viscerally loud explosion, as if occurring inside their own head. I&#8217;m reading V.S.Naipaul&#8217;s &#8220;The Enigma of Arrival&#8221;, and the autobiographical &#8230; <a href="https://mindhacks.com/2016/09/19/a-literary-case-of-the-exploding-head/" class="more-link">Continue reading<span class="screen-reader-text"> "a literary case of the exploding&#160;head"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33695&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><img class="alignright size-full wp-image-33696" src="https://mindhacksblog.files.wordpress.com/2016/09/e.jpg?w=840" alt="e"   />One of the most commented-upon posts on this blog is this from 2009, &#8216;<a href="https://mindhacks.com/2009/05/07/exploding-head-syndrome/">Exploding head syndrome</a>&#8216;. The name stems from the 1920s, and describes an under-documented and mysterious condition in which the suffer experiences a viscerally loud explosion, as if occurring inside their own head.</p>
+<p>I&#8217;m reading V.S.Naipaul&#8217;s &#8220;The Enigma of Arrival&#8221;, and the autobiographical main character experiences the same thing. Here we are on p93 of my edition of that novel:</p>
+<blockquote><p>In this dream there occurred always, at a critical moment in the dream narrative, what I can only describe as an explosion in my head. It was how every dream ended, with this explosion that threw me flat on my back, in the presence of people, in a street, a crowded room, or wherever, threw me into this degraded posture in the midst of standing people, threw me into the posture of sleep in which I found myself when I awakened. The explosion was so loud, so reverberating and slow in my head that I felt, with the part of my brain that miraculously could still think and draw conclusions, that I couldn’t possibly survive, that I was in fact dying, that the explosion this time, in this dream, regardless of the other dreams that had revealed themselves at the end as dreams, would kill, that I was consciously living through, or witnessing, my own death. And when I awoke my head felt queer, shaken up, exhausted; as though some discharge in my brain had in fact occurred.</p></blockquote>
+<p>The Enigma of Arrival on <a href="http://www.goodreads.com/book/show/5857.The_Enigma_of_Arrival">Goodreads</a><br />
+Vaughan&#8217;s 2009 post on <a href="https://mindhacks.com/2009/05/07/exploding-head-syndrome/">Exploding Head Syndrome</a><br />
+Wikipedia: <a href="https://en.wikipedia.org/wiki/Exploding_head_syndrome">Exploding head syndrome</a></p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33695/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33695/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33695&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/09/19/a-literary-case-of-the-exploding-head/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	
+		<media:content url="http://1.gravatar.com/avatar/7dd9602f405f761546c26fb04799e3da?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">tomstafford</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2016/09/e.jpg" medium="image">
+			<media:title type="html">e</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>How curiosity can save you from political tribalism</title>
+		<link>https://mindhacks.com/2016/09/19/how-curiosity-can-save-you-from-bias/</link>
+		<comments>https://mindhacks.com/2016/09/19/how-curiosity-can-save-you-from-bias/#respond</comments>
+		<pubDate>Mon, 19 Sep 2016 08:48:42 +0000</pubDate>
+		<dc:creator><![CDATA[tomstafford]]></dc:creator>
+				<category><![CDATA[Reasoning]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33692</guid>
+		<description><![CDATA[Neither intelligence nor education can stop you from forming prejudiced opinions – but an inquisitive attitude may help you make wiser judgements. Ask a left-wing Brit what they believe about the safety of nuclear power, and you can guess their answer. Ask a right-wing American about the risks posed by climate change, and you can &#8230; <a href="https://mindhacks.com/2016/09/19/how-curiosity-can-save-you-from-bias/" class="more-link">Continue reading<span class="screen-reader-text"> "How curiosity can save you from political&#160;tribalism"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33692&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><strong>Neither intelligence nor education can stop you from forming prejudiced opinions – but an inquisitive attitude may help you make wiser judgements.</strong></p>
+<p>Ask a left-wing Brit what they believe about the safety of nuclear power, and you can guess their answer. Ask a right-wing American about the risks posed by climate change, and you can also make a better guess than if you didn’t know their political affiliation. Issues like these feel like they should be informed by science, not our political tribes, but sadly, that’s not what happens.</p>
+<p>Psychology has long shown that education and intelligence won’t stop your politics from shaping your broader worldview, even if those beliefs do not match the hard evidence. Instead, your ability to weigh up the facts may depend on a less well-recognised trait – curiosity.</p>
+<p><strong>The political lens</strong></p>
+<p>There is now a mountain of evidence to show that politics doesn’t just help predict people’s views on some scientific issues; it also affects how they interpret new information. This is why it is a mistake to think that you can somehow ‘correct’ people’s views on an issue by giving them more facts, since study after study has shown that people have a tendency to <a href="http://psycnet.apa.org/journals/psp/37/11/2098/">selectively reject facts</a> that don’t fit with their existing views.</p>
+<p>This leads to the odd situation that people who are most extreme in their anti-science views – for example skeptics of the risks of climate change – are <a href="http://www.nature.com/nclimate/journal/v2/n10/full/nclimate1547.html">more scientifically informed than those who hold anti-science views but less strongly</a>.</p>
+<p>But smarter people shouldn’t be susceptible to prejudice swaying their opinions, right? Wrong. Other research shows that people with the <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2182588">most education, highest mathematical abilities, and the strongest tendencies to be reflective about their beliefs are the most likely to resist information which should contradict their prejudices</a>. This undermines the simplistic assumption that prejudices are the result of too much gut instinct and not enough deep thought. Rather, people who have the facility for deeper thought about an issue can use those cognitive powers to justify what they already believe and find reasons to dismiss apparently contrary evidence.</p>
+<p>It’s a messy picture, and at first looks like a depressing one for those who care about science and reason. A glimmer of hope can be found in <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2816803">new research from a collaborative team of philosophers, film-makers and psychologists led by Dan Kahan of Yale University</a>.</p>
+<p>Kahan and his team were interested in politically biased information processing, but also in studying the audience for scientific documentaries and using this research to help film-makers. They developed two scales. The first measured a person’s scientific background, a <a href="http://www.tandfonline.com/doi/abs/10.1080/13669877.2016.1148067">fairly standard set of questions asking about knowledge of basic scientific facts and methods, as well as quantitative judgement and reasoning</a>. The second scale was more innovative. The idea of this scale was to measure something related but independent – a person’s curiosity about scientific issues, not how much they already knew. This second scale was also innovative in how they measured scientific curiosity. As well as asking some questions, they also gave people choices about what material to read as part of a survey about reactions to news. If an individual chooses to read about science stories rather than sports or politics, their corresponding science curiosity score was marked up.</p>
+<p>Armed with their scales, the team then set out to see how they predicted people’s opinions on public issues which should be informed by science. With the scientific knowledge scale the results were depressingly predictable. The left-wing participants – liberal Democrats – tended to judge issues such as global warming or fracking as significant risks to human health, safety or prosperity. The right-wing participants – conservative Republicans – were less likely to judge the issues as significant risks. What’s more, the liberals with more scientific background were most concerned about the risks, while the conservatives with more scientific background were least concerned. That’s right – higher levels of scientific education results in a greater polarisation between the groups, not less.</p>
+<p>So much for scientific background, but scientific curiosity showed a different pattern. Differences between liberals and conservatives still remained – on average there was still a noticeable gap in their estimates of the risks – but their opinions were at least heading in the same direction. For fracking for example, more scientific curiosity was associated with more concern, for both liberals and conservatives.</p>
+<p>The team confirmed this using an experiment which gave participants a choice of science stories, either in line with their existing beliefs, or surprising to them. Those participants who were high in scientific curiosity defied the predictions and selected stories which contradicted their existing beliefs – this held true whether they were liberal or conservative.</p>
+<p>And, in case you are wondering, the results hold for issues in which political liberalism is associated with the anti-science beliefs, such as attitudes to GMO or vaccinations.</p>
+<p>So, curiosity might just save us from using science to confirm our identity as members of a political tribe. It also shows that to promote a greater understanding of public issues, it is as important for educators to try and convey their excitement about science and the pleasures of finding out stuff, as it is to teach people some basic curriculum of facts.</p>
+<p><em>This is my BBC Future column from last week. The original is <a href="http://www.bbc.com/future/story/20160907-how-curiosity-can-protect-the-mind-from-bias">here</a>. My ebook &#8216;For argument&#8217;s sake: evidence that reason can change minds&#8217; is </em><a href="http://www.amazon.com/dp/B010O1Z018"><em>out now</em></a></p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33692/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33692/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33692&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/09/19/how-curiosity-can-save-you-from-bias/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	
+		<media:content url="http://1.gravatar.com/avatar/7dd9602f405f761546c26fb04799e3da?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">tomstafford</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Making the personal, geospatial</title>
+		<link>https://mindhacks.com/2016/09/06/making-the-personal-geospatial/</link>
+		<comments>https://mindhacks.com/2016/09/06/making-the-personal-geospatial/#comments</comments>
+		<pubDate>Tue, 06 Sep 2016 18:37:07 +0000</pubDate>
+		<dc:creator><![CDATA[vaughanbell]]></dc:creator>
+				<category><![CDATA[Togetherness]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33674</guid>
+		<description><![CDATA[There is an old story in London, and it goes like this. Following extensive rioting, there is an impassioned debate about the state of society with some saying it shows moral decay while others claim it demonstrates the desperation of poverty. In 1886, London hosted one of its regular retellings when thousands of unemployed people &#8230; <a href="https://mindhacks.com/2016/09/06/making-the-personal-geospatial/" class="more-link">Continue reading<span class="screen-reader-text"> "Making the personal,&#160;geospatial"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33674&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><a href="https://www.flickr.com/photos/brizzlebornandbred/8987567612"><img src="https://mindhacksblog.files.wordpress.com/2016/09/2011riots.jpg?w=840" alt="CC licensed photo by Flickr user Paul Townsend. Click for origin."   class="alignright size-full wp-image-33681" /></a>There is an old story in London, and it goes like this. Following extensive rioting, there is an impassioned debate about the state of society with some saying it shows moral decay while others claim it demonstrates the desperation of poverty.</p>
+<p>In 1886, London hosted one of its regular <a href="http://www.tandfonline.com/doi/abs/10.1179/ldn.1999.24.2.34">retellings</a> when thousands of unemployed people trashed London’s West End during two days of violent disturbances.</p>
+<p>In the weeks of consternation that followed, the press stumbled on the work of wealthy ship owner <a href="https://en.wikipedia.org/wiki/Charles_Booth_(social_reformer)">Charles Booth</a> who had begun an unprecedented project – mapping poverty across the entire city.</p>
+<p>He started the project because he thought <a href="https://en.wikipedia.org/wiki/Henry_Hyndman">Henry Hyndman</a> was bullshitting.</p>
+<p>Hyndman, a rather too earnest social campaigner, claimed that 1 in 4 Londoners lived in poverty, a figure Booth scoffed at as a gross exaggeration.</p>
+<p>So Booth paid for an impressive team of researchers and sent to them out to interview officials who assessed families for compulsory schooling and he created a map, initially of the East End, and eventually as far west as Hammersmith, of every house and the social state of the families within it.</p>
+<p>Each dwelling was classified into seven gradations – from “Wealthy; upper middle and upper classes” to “Lowest class; vicious, semi-criminal”.  For the first time, deprivation could be seen etched into London’s social landscape.</p>
+<p>I suspect that the term &#8216;vicious&#8217; referred to its older meaning: &#8216;of given to vice&#8217;- rather than cruel. But what Booth created, for the first time and in exceptional detail, was a map of social environments.</p>
+<p>The <a href="http://booth.lse.ac.uk/cgi-bin/do.pl?sub=view_booth_and_barth&amp;args=531000,180400,6,large,5">map</a> is amazingly detailed. Literally, a house by house mapping of the whole of London.</p>
+<p>The results showed that Hyndman was indeed wrong, but not in the direction Booth assumed. He found 1 in 3 Londoners lived below the poverty line. </p>
+<p>If you know a bit about the capital today, you can see how many of the deprived areas from 1886 are still some of the most deprived in 2016. </p>
+<p>So I was fascinated when I read about a new <A href="http://science.sciencemag.org/content/353/6301/790">study</a> that allows poverty to be mapped from the air, using machine learning to analyse satellite images Nigeria, Tanzania, Uganda, Malawi, and Rwanda. </p>
+<p>But rather than pre-defining what counts as an image of a wealthy area (swimming pools perhaps?) compared to an impoverished one (unpaved roads maybe), they trained a neural network learn its own associations between image properties and income on an initial set of training data before trying it out on new data sets.</p>
+<p>The neural network could explain up to 75% of the variation in the local economy.</p>
+<p>Knowing both the extent and geography of poverty is massively important. It allows a macro view of something that manifests in very local ways, mapping it to street corners, housing blocks and small settlements.</p>
+<p>It makes the vast forces of the economy, personal.<br />
+&nbsp;</p>
+<p><a href="http://booth.lse.ac.uk/cgi-bin/do.pl?sub=view_booth_and_barth&amp;args=531000,180400,6,large,5">Link</a> to Booth&#8217;s poverty map.<br />
+<a href="http://www.sciencemag.org/news/2016/08/satellite-images-can-map-poverty">Link</a> to <i>Science</i> reporting of satellite mapping study.</p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33674/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33674/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33674&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/09/06/making-the-personal-geospatial/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+	
+		<media:content url="http://2.gravatar.com/avatar/b09d235d89a28b64f084cd52d6aec9b4?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">vaughanbell</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2016/09/2011riots.jpg" medium="image">
+			<media:title type="html">CC licensed photo by Flickr user Paul Townsend. Click for origin.</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>The science of urban paranoia</title>
+		<link>https://mindhacks.com/2016/07/15/the-science-of-urban-paranoia/</link>
+		<comments>https://mindhacks.com/2016/07/15/the-science-of-urban-paranoia/#comments</comments>
+		<pubDate>Fri, 15 Jul 2016 22:03:03 +0000</pubDate>
+		<dc:creator><![CDATA[vaughanbell]]></dc:creator>
+				<category><![CDATA[Togetherness]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33663</guid>
+		<description><![CDATA[I&#8217;ve got an article in The Atlantic on how paranoia and psychosis are more common in cities and why the quest to explain the &#8216;urban psychosis effect&#8217; is reshaping psychiatry. The more urban your neighbourhood, the higher the rate of diagnosed schizophrenia and you are more likely to experience what are broadly known as &#8216;non-affective &#8230; <a href="https://mindhacks.com/2016/07/15/the-science-of-urban-paranoia/" class="more-link">Continue reading<span class="screen-reader-text"> "The science of urban&#160;paranoia"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33663&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><a href="https://www.flickr.com/photos/01steven/4383458010/in/photolist-7Fmnmf-8DswUW-qiDRKw-agdmzg-bZzspj-9A9biy-rzcdGb-4H2KNp-8iFWjQ-dmggoa-8Asqx5-ewt3eP-rhBs1B-r15Wdw-5DPYcD-nyT7QB-8MFT3R-aDTixy-dT3UuU-gBsXcr-a9fWN9-9cRR1-6hySus-4ydqYB-6rpASX-CT39wz-4H2Kmp-auu4N2-5UNRin-azT6Vj-2dxBdY-rr5HTn-4WjxqW-dSqjyF-9GodB4-c7pazq-8mabxC-5S1N4g-8oxnmf-nne88j-8ouc5c-fhyfHT-kof1LS-kodsuZ-kof1EQ-i5SimX-fjbZyK-tFtYb-7FMfbf-4Wjx2W"><img src="https://mindhacksblog.files.wordpress.com/2016/07/hoodie.jpg?w=840" alt="CC Licensed Image by Flickr user 01steven. Click for source."   class="alignleft size-full wp-image-33668" /></a>I&#8217;ve got an <a href="http://www.theatlantic.com/health/archive/2016/07/the-enigma-of-urban-psychosis/491141/">article</a> in <i>The Atlantic</i> on how paranoia and psychosis are more common in cities and why the quest to explain the &#8216;urban psychosis effect&#8217; is reshaping psychiatry.</p>
+<p>The more urban your neighbourhood, the higher the rate of diagnosed schizophrenia and you are more likely to experience what are broadly known as &#8216;non-affective psychosis-psychoses&#8217; &#8211; that is, delusions, hallucinations, and paranoia not primarily caused by mood problems.</p>
+<p>This has led to a long and ongoing debate about why this is, with some arguing that it is an effect of city-living on the mind, while others arguing the association is better explained by a complex interaction between genetic risk factors and limited life chances.</p>
+<p>The article discusses the science behind exactly this debate, partly a judgement on the value of the city itself, and notes how it&#8217;s pushing psychiatry to re-examine how it deals with what is often euphemistically called &#8216;the environment&#8217;.<br />
+&nbsp;</p>
+<p><a href="http://www.theatlantic.com/health/archive/2016/07/the-enigma-of-urban-psychosis/491141/">Link</a> to &#8216;The Mystery of Urban Psychosis&#8217; in <i>The Atlantic</i>.</p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33663/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33663/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33663&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/07/15/the-science-of-urban-paranoia/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+	
+		<media:content url="http://2.gravatar.com/avatar/b09d235d89a28b64f084cd52d6aec9b4?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">vaughanbell</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2016/07/hoodie.jpg" medium="image">
+			<media:title type="html">CC Licensed Image by Flickr user 01steven. Click for source.</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>A podcast on drugs</title>
+		<link>https://mindhacks.com/2016/07/15/a-podcast-on-drugs/</link>
+		<comments>https://mindhacks.com/2016/07/15/a-podcast-on-drugs/#respond</comments>
+		<pubDate>Fri, 15 Jul 2016 17:48:55 +0000</pubDate>
+		<dc:creator><![CDATA[vaughanbell]]></dc:creator>
+				<category><![CDATA[Linkage]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33654</guid>
+		<description><![CDATA[If you&#8217;re a podcast addict, you could no worse than checking out Say Why to Drugs an excellent new show that covers the science behind a different recreational drug each week. The podcast is with psychologist and drugs researcher Suzi Gage and rhyme-smith Scroobius Pip, better known for his banging tunes. They make for a &#8230; <a href="https://mindhacks.com/2016/07/15/a-podcast-on-drugs/" class="more-link">Continue reading<span class="screen-reader-text"> "A podcast on&#160;drugs"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33654&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><img src="https://mindhacksblog.files.wordpress.com/2016/07/gage.jpg?w=840" alt=""   class="alignright size-full wp-image-33660" />If you&#8217;re a podcast addict, you could no worse than checking out <i><a href="https://www.acast.com/saywhytodrugs/">Say Why to Drugs</a></i> an excellent new show that covers the science behind a different recreational drug each week.</p>
+<p>The podcast is with psychologist and drugs researcher <a href="http://www.bris.ac.uk/expsych/people/suzanne-h-gage/">Suzi Gage</a> and rhyme-smith <a href="https://en.wikipedia.org/wiki/Scroobius_Pip">Scroobius Pip</a>, better known for his banging <a href="https://www.youtube.com/watch?v=CWrMGXwhFLk">tunes</a>.</p>
+<p>They make for a great partnership and they breakdown everything from the psychopharmacology of MDMA to the social impact of ketamine and do plenty of myth-busting along the way.</p>
+<p>Thoroughly listenable, good fun and great on the science, you can find it on acast and iTunes.<br />
+&nbsp;</p>
+<p><a href="https://itunes.apple.com/gb/podcast/say-why-to-drugs/id1114492774?mt=2">Link</a> to podcast on <i>ITunes</i><br />
+<a href="https://www.acast.com/saywhytodrugs/">Link</a> to podcast on <i>acast</i></p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33654/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33654/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33654&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/07/15/a-podcast-on-drugs/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	
+		<media:content url="http://2.gravatar.com/avatar/b09d235d89a28b64f084cd52d6aec9b4?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">vaughanbell</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2016/07/gage.jpg" medium="image" />
+	</item>
+		<item>
+		<title>Spike activity 24-06-2016</title>
+		<link>https://mindhacks.com/2016/06/25/spike-activity-24-06-2016/</link>
+		<comments>https://mindhacks.com/2016/06/25/spike-activity-24-06-2016/#comments</comments>
+		<pubDate>Sat, 25 Jun 2016 06:48:13 +0000</pubDate>
+		<dc:creator><![CDATA[vaughanbell]]></dc:creator>
+				<category><![CDATA[Linkage]]></category>
+
+		<guid isPermaLink="false">http://mindhacks.com/?p=33648</guid>
+		<description><![CDATA[Quick links from the past week in mind and brain news: Why do some children thrive in adult life despite a background of violence and neglect? Fascinating piece from Mosaic. Scientific American asks with the flood of neuroscience PhDs, where will all the neuroscientists go? Ask British neuroscientists, they&#8217;re probably weighing up their options right &#8230; <a href="https://mindhacks.com/2016/06/25/spike-activity-24-06-2016/" class="more-link">Continue reading<span class="screen-reader-text"> "Spike activity 24-06-2016"</span></a><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33648&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p>Quick links from the past week in mind and brain news:</p>
+<p><img class="alignleft size-full wp-image-13146" title="" src="https://mindhacksblog.files.wordpress.com/2010/08/spike.jpg?w=840" alt=""   /></p>
+<p>Why do some children <a href="http://mosaicscience.com/story/surviving-troubled-childhood-resilience-neglect-adversity">thrive</a> in adult life despite a background of violence and neglect? Fascinating piece from <i>Mosaic</i>.</p>
+<p><i>Scientific American</i> asks with the flood of neuroscience PhDs, where will all the <a href="http://blogs.scientificamerican.com/talking-back/where-will-all-the-new-neuroscientists-go/">neuroscientists</a> go? Ask British neuroscientists, they&#8217;re probably weighing up their options right now.</p>
+<p>Blobs and Pitfalls: Challenges for <a href="http://blogs.discovermagazine.com/neuroskeptic/2016/06/22/challenges-for-fmri/">fMRI</a> Research. <i>Neuroskeptic</i> covers one of a number of &#8216;rethinking fMRI research pieces&#8217; that has recently come out.</p>
+<p><i>Neurocritic</i> casts a skeptical over several new <a href="http://neurocritic.blogspot.nl/2016/06/in-oxytocin-we-trust.html">oxytocin</a> papers that have appeared.</p>
+<p>Was Dr. <a href="http://www.npr.org/sections/health-shots/2016/01/20/463603652/was-dr-asperger-a-nazi-the-question-still-haunts-autism">Asperger</a> A Nazi? The Question Still Haunts Autism. A complex question tackled over at <i>NPR</i>.</p>
+<p><i>Psychodiagnosticator</i> asks What do we talk about when we talk about <a href="https://psychodiagnosticator.blogspot.nl/2016/06/what-do-we-talk-about-when-we-talk.html">schizophrenia</a>? </p>
+<p>There&#8217;s a fascinating discussion on language and the <a href="https://thepsychologist.bps.org.uk/volume-29/july/content-minds">culture</a> of internal meaning over at <i>The Psychologist</i>.</p>
+<p><i>Invisibilia</i>, NPR&#8217;s people and cognitive science show, has just kicked off a <a href="http://www.npr.org/programs/invisibilia/">new series</a>.</p><br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/mindhacksblog.wordpress.com/33648/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/mindhacksblog.wordpress.com/33648/" /></a> <img alt="" border="0" src="https://pixel.wp.com/b.gif?host=mindhacks.com&#038;blog=7022593&#038;post=33648&#038;subd=mindhacksblog&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://mindhacks.com/2016/06/25/spike-activity-24-06-2016/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	
+		<media:content url="http://2.gravatar.com/avatar/b09d235d89a28b64f084cd52d6aec9b4?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">vaughanbell</media:title>
+		</media:content>
+
+		<media:content url="http://mindhacksblog.files.wordpress.com/2010/08/spike.jpg" medium="image" />
+	</item>
+	</channel>
+</rss>
