@@ -1,31 +1,42 @@
 import React from 'react';
-import EntryList from './entry_list.jsx';
-import { getRequest } from './ajax_wrapper.js';
+import { getRequest, postRequest } from './ajax_wrapper.js';
+import { Link } from 'react-router';
 
 var FeedList = React.createClass({
   getInitialState: function() {
-    return { entries: [] };
+    return { feeds: [] };
   },
 
-  handleFeedRefresh: function(feed) {
-    getRequest('/feeds/' + feed.id, function(entries) {
-      this.setState({entries: entries});
+  handleFeedListRefresh: function() {
+    getRequest("/feeds", function(feeds) {
+      this.setState({feeds: feeds});
+    }.bind(this));
+  },
+
+  componentDidMount: function() {
+    this.handleFeedListRefresh();
+  },
+
+  handleAddFeed: function(url) {
+    postRequest('/feeds', url, function(feed) {
+      var newFeeds = this.state.feeds.concat([feed]);
+      this.setState({feeds: newFeeds});
     }.bind(this));
   },
 
   render: function() {
-    var onClick = this.handleFeedRefresh;
-    var feeds = this.props.feeds.map(function(feed) {
+    var feeds = this.state.feeds.map(function(feed) {
+      var link = "/feeds/" + feed.id;
       return (
-        <li className="feed" onClick={onClick.bind(null, feed)} key={feed.id}>
-          <a className="feed" href="#">{feed.title}</a>
+        <li className="feed" key={feed.id}>
+          <Link className="feed" to={link}>{feed.title}</Link>
         </li>
       );
     });
     return (
       <div id="feeds">
         <ul className="feed_list">{feeds}</ul>
-        <EntryList entries={this.state.entries} />
+        {this.props.children}
       </div>
     );
   },

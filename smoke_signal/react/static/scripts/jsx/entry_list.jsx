@@ -1,8 +1,19 @@
 import React from 'react';
+import { getRequest } from './ajax_wrapper.js';
 
 var EntryList = React.createClass({
+  getInitialState: function() {
+    return { entries: [] };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    getRequest('/feeds/' + nextProps.params.id, function(entries) {
+      this.setState({entries: entries});
+    }.bind(this));
+  },
+
   render: function() {
-    var entries = this.props.entries.map(function(entry) {
+    var entries = this.state.entries.map(function(entry) {
       // Trusting that feedparser does proper sanitization here
       function createMarkup() { return { __html: entry.text } };
       return (
