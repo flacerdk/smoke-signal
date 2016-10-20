@@ -8,7 +8,7 @@ var FeedList = React.createClass({
   },
 
   handleFeedListRefresh: function() {
-    getRequest("/feeds", function(feeds) {
+    getRequest("/feeds/", function(feeds) {
       this.setState({feeds: feeds});
     }.bind(this));
   },
