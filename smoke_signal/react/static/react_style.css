@@ -4,13 +4,10 @@ div {
     border: 0px none;
 }
 
-#feeds {
+.feed_list {
     float: left;
     max-width: 200px;
     background-color: #F0F0F0;
-}
-
-#feeds ul {
     margin: 0;
     padding: 0;
 }
