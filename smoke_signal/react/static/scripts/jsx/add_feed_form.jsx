@@ -1,35 +1,35 @@
 import React from 'react';
 
 var AddFeedForm = React.createClass({
-    getInitialState: function() {
-        return { url: '' }
-    },
+  getInitialState: function() {
+    return { url: '' }
+  },
 
-    handleUrlChange: function(event) {
-        this.setState({url: event.target.value})
-    },
+  handleUrlChange: function(event) {
+    this.setState({url: event.target.value})
+  },
 
-    handleSubmit: function(event) {
-        event.preventDefault();
-        var url = this.state.url.trim();
-        if (!url) {
-            return;
-        }
-        this.props.onAddFeed({url: url});
-        this.setState({url: ''});
-    },
+  handleSubmit: function(event) {
+    event.preventDefault();
+    var url = this.state.url.trim();
+    if (!url) {
+      return;
+    }
+    this.props.onAddFeed({url: url});
+    this.setState({url: ''});
+  },
 
-    render: function() {
-        return (
-            <form className="add_feed_form" onSubmit={this.handleSubmit}>
-                <input type="text"
-                       placeholder="URL..."
-                       value={this.state.url}
-                       onChange={this.handleUrlChange} />
-                <input type="submit" value="Add feed"/>
-            </form>
-        );
-    },
+  render: function() {
+    return (
+      <form className="add_feed_form" onSubmit={this.handleSubmit}>
+        <input type="text"
+               placeholder="URL..."
+               value={this.state.url}
+               onChange={this.handleUrlChange} />
+        <input type="submit" value="Add feed"/>
+      </form>
+    );
+  },
 
 });
 
