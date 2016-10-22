@@ -9,7 +9,7 @@ var FeedPage = React.createClass({
   render: function() {
     return (
       <div id="feed_page">
-        <AddFeedForm onAddFeed={this.handleAddFeed} />
+        <AddFeedForm />
         {this.props.children}
       </div>
     );

@@ -1,10 +1,11 @@
 import React from 'react';
-import { getRequest, postRequest } from './ajax_wrapper.js';
+import { getRequest, postJSONRequest } from './ajax_wrapper.js';
 import { Link } from 'react-router';
+import { Events } from './event_system.js';
 
 var FeedList = React.createClass({
   getInitialState: function() {
-    return { feeds: [] };
+    return { feeds: [], eventId: 0 };
   },
 
   handleFeedListRefresh: function() {
@@ -15,10 +16,16 @@ var FeedList = React.createClass({
 
   componentDidMount: function() {
     this.handleFeedListRefresh();
+    var id = Events.subscribe("add_feed", this.handleAddFeed);
+    this.setState({eventId: id});
   },
 
-  handleAddFeed: function(url) {
-    postRequest('/feeds', url, function(feed) {
+  componentWillUnmount: function() {
+    Events.unsubscribe(eventId);
+  },
+
+  handleAddFeed: function(event) {
+    postJSONRequest('/feeds/', {'url': event.url}, function(feed) {
       var newFeeds = this.state.feeds.concat([feed]);
       this.setState({feeds: newFeeds});
     }.bind(this));

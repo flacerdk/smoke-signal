@@ -1,4 +1,5 @@
 import React from 'react';
+import { Events } from './event_system.js';
 
 var AddFeedForm = React.createClass({
   getInitialState: function() {
@@ -15,7 +16,7 @@ var AddFeedForm = React.createClass({
     if (!url) {
       return;
     }
-    this.props.onAddFeed({url: url});
+    Events.notify("add_feed", {url: url});
     this.setState({url: ''});
   },
 

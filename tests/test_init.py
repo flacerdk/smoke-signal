@@ -32,7 +32,8 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert resp.status_code == 404
 
     def add_feed(self, url):
-        return self.app.post('/feeds/', data=dict(url=url))
+        return self.app.post('/feeds/', data=json.dumps({'url': url}),
+                             content_type='application/json')
 
     def test_add_invalid_feed(self):
         resp = self.add_feed("http://example.com")

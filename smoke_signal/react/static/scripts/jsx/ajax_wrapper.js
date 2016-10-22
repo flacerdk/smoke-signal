@@ -15,11 +15,11 @@ function getRequest(url, callback) {
   request.send();
 };
 
-function postRequest(url, data, callback) {
+function postJSONRequest(url, data, callback) {
   var request = new XMLHttpRequest();
   request.open('POST', url, true);
   request.setRequestHeader('Content-Type',
-                           'application/x-www-form-urlencoded; charset=UTF-8');
+                           'application/json; charset=UTF-8');
   request.onload = function() {
     if (request.status >= 200 && request.status < 400) {
       var data = JSON.parse(request.responseText);
@@ -31,10 +31,10 @@ function postRequest(url, data, callback) {
   request.onerror = function() {
     console.error(url);
   };
-  request.send(data);
+  request.send(JSON.stringify(data));
 }
 
 module.exports = {
   getRequest,
-  postRequest
+  postJSONRequest
 };

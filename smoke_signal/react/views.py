@@ -17,7 +17,7 @@ def show_feeds_with_react():
 @react.route('/feeds/', methods=['GET', 'POST'])
 def get_feed_list():
     if request.method == 'POST':
-        return add_feed()
+        return add_feed(request)
     else:
         resp = helpers.feed_list()
         return resp
@@ -28,9 +28,11 @@ def get_feed(feed_id):
     return helpers.refresh_feed(feed_id)
 
 
-def add_feed():
+def add_feed(request):
+    if not request.is_json:
+        raise BadRequest
     try:
-        resp = helpers.add_feed(request.form['url'])
+        resp = helpers.add_feed(request.get_json()["url"])
         return resp
     except KeyError:
         raise BadRequest
