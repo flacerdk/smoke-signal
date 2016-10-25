@@ -1,3 +1,6 @@
+# Miscellaneous functions to interact with the database and parse fetched
+# feeds. In the future, these will likely be split into different files.
+
 import feedparser
 from smoke_signal.database.models import Entry, Feed
 from werkzeug.exceptions import NotFound

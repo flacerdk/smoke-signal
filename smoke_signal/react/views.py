@@ -28,6 +28,8 @@ def get_feed(feed_id):
     return helpers.refresh_feed(feed_id)
 
 
+# Assumes request is sending JSON data with a "url" entry. Returns 400
+# otherwise
 def add_feed(request):
     if not request.is_json:
         raise BadRequest
