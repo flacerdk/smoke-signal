@@ -1,37 +1,22 @@
+import fetch from 'whatwg-fetch';
+
 module.exports = {
   getRequest: (url, callback) => {
-    let request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.onload = () => {
-      if (request.status >= 200 && request.status < 400) {
-        const data = JSON.parse(request.responseText);
-        callback(data);
-      } else {
-        console.error(url, request.responseText);
-      }
-    };
-    request.onerror = () => {
-      console.error(url);
-    };
-    request.send();
+    fetch(url)
+      .then(response => { return callback(response.json()); })
+      .catch(ex => { console.log('GET request failed', ex); });
   },
 
   postJSONRequest: (url, data, callback) => {
-    let request = new XMLHttpRequest();
-    request.open('POST', url, true);
-    request.setRequestHeader('Content-Type',
-                             'application/json; charset=UTF-8');
-    request.onload = () => {
-      if (request.status >= 200 && request.status < 400) {
-        const data = JSON.parse(request.responseText);
-        callback(data);
-      } else {
-        console.error(url, request.responseText);
-      }
-    };
-    request.onerror = () => {
-      console.error(url);
-    };
-    request.send(JSON.stringify(data));
+    fetch(url, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => { return callback(response.json()); })
+      .catch(ex => { console.log('POST request failed', ex); });
   }
 };
