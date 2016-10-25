@@ -1,19 +1,24 @@
 import React from 'react';
 import { getRequest } from './ajax_wrapper.js';
 
-var EntryList = React.createClass({
-  getInitialState: function() {
-    return { entries: [] };
-  },
+export default class EntryList extends React.Component {
+  constructor() {
+    super();
 
-  componentWillReceiveProps: function(nextProps) {
-    getRequest('/feeds/' + nextProps.params.id, function(entries) {
+    this.state = {
+      entries: [],
+    };
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    getRequest('/feeds/' + nextProps.params.id, (entries => {
       this.setState({entries: entries});
-    }.bind(this));
-  },
+    }).bind(this));
+  }
 
-  render: function() {
-    var entries = this.state.entries.map(function(entry) {
+  render() {
+    const entries = this.state.entries.map(entry => {
       // Trusting that feedparser does proper sanitization here
       function createMarkup() { return { __html: entry.text } };
       return (
@@ -29,6 +34,4 @@ var EntryList = React.createClass({
       </div>
     );
   }
-});
-
-module.exports = EntryList;
+}

@@ -1,13 +1,12 @@
 // Global event system (based on <https://gist.github.com/zpao/8344371>)
 
-var Events = (function() {
-  var event_map = {};
+let Events = (() => {
+  let event_map = {};
   // TODO: this is a very crude way of managing lifecycle. Should improve it
   // later.
-  var id = 0;
-
+  let id = 0;
   return {
-    subscribe: function(name, cb) {
+    subscribe: (name, cb) => {
       if (!event_map[name]) {
         event_map[name] = [];
       }
@@ -16,18 +15,18 @@ var Events = (function() {
       return id;
     },
 
-    notify: function(name, data) {
+    notify: (name, data) => {
       if (!event_map[name]) {
         return;
       }
 
-      event_map[name].forEach(function(item) {
+      event_map[name].forEach(item => {
         item.cb(data);
       });
     },
 
-    unsubscribe: function(name, id) {
-      var indexToRemove = event_map.findIndex(function(item) {
+    unsubscribe: (name, id) => {
+      const indexToRemove = event_map.findIndex(item => {
         return item.id == id;
       });
       delete event_map[name][indexToRemove];

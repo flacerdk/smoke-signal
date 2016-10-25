@@ -3,37 +3,45 @@ import { getRequest, postJSONRequest } from './ajax_wrapper.js';
 import { Link } from 'react-router';
 import { Events } from './event_system.js';
 
-var FeedList = React.createClass({
-  getInitialState: function() {
-    return { feeds: [], eventId: 0 };
-  },
+export default class FeedList extends React.Component {
+  constructor() {
+    super();
 
-  handleFeedListRefresh: function() {
-    getRequest("/feeds/", function(feeds) {
+    this.state = {
+      feeds: [],
+      eventId: 0,
+    }
+
+    this.handleFeedListRefresh = this.handleFeedListRefresh.bind(this);
+    this.handleAddFeed = this.handleAddFeed.bind(this);
+  }
+
+  handleFeedListRefresh() {
+    getRequest("/feeds/", (feeds => {
       this.setState({feeds: feeds});
-    }.bind(this));
-  },
+    }).bind(this));
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.handleFeedListRefresh();
-    var id = Events.subscribe("add_feed", this.handleAddFeed);
+    const id = Events.subscribe("add_feed", this.handleAddFeed);
     this.setState({eventId: id});
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     Events.unsubscribe(eventId);
-  },
+  }
 
-  handleAddFeed: function(event) {
-    postJSONRequest('/feeds/', {'url': event.url}, function(feed) {
-      var newFeeds = this.state.feeds.concat([feed]);
+  handleAddFeed(event) {
+    postJSONRequest('/feeds/', {'url': event.url}, (feed => {
+      const newFeeds = this.state.feeds.concat([feed]);
       this.setState({feeds: newFeeds});
-    }.bind(this));
-  },
+    }).bind(this));
+  }
 
-  render: function() {
-    var feeds = this.state.feeds.map(function(feed) {
-      var link = "/feeds/" + feed.id;
+  render() {
+    const feeds = this.state.feeds.map(feed => {
+      const link = "/feeds/" + feed.id;
       return (
         <li className="feed" key={feed.id}>
           <Link className="feed" to={link}>{feed.title}</Link>
@@ -46,7 +54,5 @@ var FeedList = React.createClass({
         {this.props.children}
       </div>
     );
-  },
-});
-
-module.exports = FeedList;
+  }
+}

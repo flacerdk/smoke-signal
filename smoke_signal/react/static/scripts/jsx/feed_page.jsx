@@ -5,8 +5,8 @@ import FeedList from './feed_list.jsx';
 import EntryList from './entry_list.jsx';
 import { IndexRedirect, Route, Router, hashHistory } from 'react-router';
 
-var FeedPage = React.createClass({
-  render: function() {
+class FeedPage extends React.Component {
+  render() {
     return (
       <div id="feed_page">
         <AddFeedForm />
@@ -14,7 +14,7 @@ var FeedPage = React.createClass({
       </div>
     );
   }
-});
+}
 
 ReactDOM.render((
   <Router history={hashHistory}>

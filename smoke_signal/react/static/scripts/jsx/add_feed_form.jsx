@@ -1,26 +1,34 @@
 import React from 'react';
 import { Events } from './event_system.js';
 
-var AddFeedForm = React.createClass({
-  getInitialState: function() {
-    return { url: '' }
-  },
+export default class AddFeedForm extends React.Component {
+  constructor() {
+    super();
 
-  handleUrlChange: function(event) {
+    this.state = {
+      url: '',
+    };
+
+    this.handleUrlChange = this.handleUrlChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+  handleUrlChange(event) {
     this.setState({url: event.target.value})
-  },
+  }
 
-  handleSubmit: function(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    var url = this.state.url.trim();
+    const url = this.state.url.trim();
     if (!url) {
       return;
     }
     Events.notify("add_feed", {url: url});
     this.setState({url: ''});
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <form className="add_feed_form" onSubmit={this.handleSubmit}>
         <input type="text"
@@ -30,8 +38,5 @@ var AddFeedForm = React.createClass({
         <input type="submit" value="Add feed"/>
       </form>
     );
-  },
-
-});
-
-module.exports = AddFeedForm;
+  }
+}
