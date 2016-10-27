@@ -12,9 +12,11 @@ export default class EntryList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    getRequest('/feeds/' + nextProps.params.id, (entries => {
-      this.setState({entries: entries});
-    }).bind(this));
+    getRequest('/feeds/' + nextProps.params.id)
+      .then(entries => {
+          this.setState({entries: entries});
+        })
+      .catch(ex => console.log("Couldn't load feed: " + ex.message));
   }
 
   render() {

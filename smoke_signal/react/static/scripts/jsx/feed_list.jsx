@@ -1,7 +1,7 @@
 import React from 'react';
-import { getRequest, postJSONRequest } from './ajax_wrapper.js';
 import { Link } from 'react-router';
 import { Events } from './event_system.js';
+import { getRequest, postJSONRequest } from './ajax_wrapper.js';
 
 export default class FeedList extends React.Component {
   constructor() {
@@ -17,9 +17,11 @@ export default class FeedList extends React.Component {
   }
 
   handleFeedListRefresh() {
-    getRequest("/feeds/", (feeds => {
-      this.setState({feeds: feeds});
-    }).bind(this));
+    getRequest("/feeds/")
+      .then(feeds => {
+        this.setState({feeds: feeds});
+      })
+      .catch(ex => console.log("Couldn't load feed list: " + ex.message));
   }
 
   componentDidMount() {
@@ -33,10 +35,12 @@ export default class FeedList extends React.Component {
   }
 
   handleAddFeed(event) {
-    postJSONRequest('/feeds/', {'url': event.url}, (feed => {
-      const newFeeds = this.state.feeds.concat([feed]);
-      this.setState({feeds: newFeeds});
-    }).bind(this));
+    postJSONRequest("/feeds/", {"url": event.url})
+      .then(feed => {
+        const newFeeds = this.state.feeds.concat([feed]);
+        this.setState({feeds: newFeeds});
+      })
+      .catch(ex => console.log("Couldn't add feed: " + ex.message));
   }
 
   render() {

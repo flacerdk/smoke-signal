@@ -1,14 +1,18 @@
-import fetch from 'whatwg-fetch';
+import 'whatwg-fetch';
 
 module.exports = {
-  getRequest: (url, callback) => {
-    fetch(url)
-      .then(response => { return callback(response.json()); })
-      .catch(ex => { console.log('GET request failed', ex); });
+  getRequest: (url) => {
+    return fetch(url).then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    });
   },
 
-  postJSONRequest: (url, data, callback) => {
-    fetch(url, {
+  postJSONRequest: (url, data) => {
+    return fetch(url, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -16,7 +20,12 @@ module.exports = {
       },
       body: JSON.stringify(data)
     })
-      .then(response => { return callback(response.json()); })
-      .catch(ex => { console.log('POST request failed', ex); });
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error(response.statusText);
+        }
+      });
   }
 };
