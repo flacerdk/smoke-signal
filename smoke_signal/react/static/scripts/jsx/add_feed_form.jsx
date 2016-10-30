@@ -1,17 +1,15 @@
 import React from 'react';
-import { Events } from './event_system.js';
 
 export default class AddFeedForm extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      url: '',
-    };
+      url: ''
+    }
 
     this.handleUrlChange = this.handleUrlChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleUrlChange(event) {
@@ -24,8 +22,8 @@ export default class AddFeedForm extends React.Component {
     if (!url) {
       return;
     }
-    Events.notify("add_feed", {url: url});
     this.setState({url: ''});
+    this.props.onSubmit(url);
   }
 
   render() {
