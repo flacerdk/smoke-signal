@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AddFeedForm extends React.Component {
+export default class AddFeedForm extends React.Component {  
   constructor() {
     super();
 
@@ -37,4 +37,8 @@ export default class AddFeedForm extends React.Component {
       </form>
     );
   }
+}
+
+AddFeedForm.propTypes = {
+  onSubmit: React.PropTypes.func
 }

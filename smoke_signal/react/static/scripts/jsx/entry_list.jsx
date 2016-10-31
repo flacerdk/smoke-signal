@@ -1,6 +1,5 @@
-import Entry from './entry.jsx';
-import React from 'react';
-import { getRequest } from './ajax_wrapper.js';
+import Entry from './entry.jsx'
+import React from 'react'
 
 export default class EntryList extends React.Component {
   render() {
@@ -19,4 +18,12 @@ export default class EntryList extends React.Component {
       </div>
     );
   }
+}
+
+EntryList.propTypes = {
+  entries: React.PropTypes.array
+}
+
+EntryList.defaultProps = {
+  entries: []
 }

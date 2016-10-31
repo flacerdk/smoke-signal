@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default class FeedList extends React.Component {
   render() {
@@ -18,4 +18,9 @@ export default class FeedList extends React.Component {
       </div>
     );
   }
+}
+
+FeedList.propTypes = {
+  feeds: React.PropTypes.array,
+  onClick: React.PropTypes.func
 }

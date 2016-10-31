@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import AddFeedForm from './add_feed_form.jsx';
-import FeedList from './feed_list.jsx';
-import EntryList from './entry_list.jsx';
-import { getRequest, postJSONRequest } from './ajax_wrapper'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import AddFeedForm from './add_feed_form.jsx'
+import FeedList from './feed_list.jsx'
+import EntryList from './entry_list.jsx'
+import { getRequest, postJSONRequest } from './ajax_wrapper.js'
 
 class FeedPage extends React.Component {
   constructor() {
