@@ -1,6 +1,6 @@
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'smoke_signal/react/static/scripts/jsx');
+var BUILD_DIR = path.resolve(__dirname, 'js');
 var APP_DIR = path.resolve(__dirname, 'smoke_signal/react/static/scripts');
 
 var config = {
