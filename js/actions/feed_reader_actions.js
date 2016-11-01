@@ -1,6 +1,6 @@
 import ActionTypes from '../constants/feed_reader_constants.js'
 import ActionDispatcher from '../dispatcher/action_dispatcher.js'
-import WebAPIUtils from '../utils/ajax_wrapper.js'
+import WebAPIUtils from '../utils/web_api_utils.js'
 
 module.exports = {
   addFeed: (url) => {

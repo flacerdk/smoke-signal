@@ -5,7 +5,6 @@ import ActionTypes from '../constants/feed_reader_constants.js'
 const CHANGE_EVENT = 'FeedStore.CHANGE_EVENT'
 
 let _feeds = {}
-let _activeFeedId;
 
 let _addFeed = (feed) => {
   if (!_feeds[feed.id]) {

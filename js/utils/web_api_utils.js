@@ -30,19 +30,16 @@ let postJSONRequest = (url, data) => {
 
 let addFeed = (url) => {
   return postJSONRequest("/feeds/", {"url": url})
-    .then(feed => feed)
     .catch(ex => console.log("Couldn't add feed: " + ex.message))
 }
 
 let refreshFeedList = () => {
   return getRequest("/feeds/")
-    .then(feeds => feeds)
     .catch(ex => console.log("Couldn't load feed list: " + ex.message))
 }
 
 let fetchFeedEntries = (feedId) => {
   return getRequest('/feeds/' + feedId)
-    .then(entries => entries)
     .catch(ex => console.log("Couldn't load feed: " + ex.message))
 }
 
