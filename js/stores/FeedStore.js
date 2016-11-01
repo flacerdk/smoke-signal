@@ -13,22 +13,6 @@ let _addFeed = (feed) => {
   }
 }
 
-let _refreshFeedEntries = (feedId, newEntries) => {
-  if (!_feeds[feedId]) {
-    return;
-  }
-  _feeds[feedId].entries = newEntries;
-  _activeFeedId = feedId;
-}
-
-let _getActiveFeedEntries = () => {
-  if (_activeFeedId) {
-    return _feeds[_activeFeedId].entries
-  } else {
-    return []
-  }
-}
-
 class FeedStore extends EventEmitter {
   constructor() {
     super();
@@ -39,11 +23,6 @@ class FeedStore extends EventEmitter {
       switch (action.type) {
       case ActionTypes.ADD_FEED:
         _addFeed(action.feed);
-        this.emit(CHANGE_EVENT);
-        break;
-      case ActionTypes.FETCH_FEED_ENTRIES:
-        _refreshFeedEntries(action.feedId, action.entries);
-        _getActiveFeedEntries();
         this.emit(CHANGE_EVENT);
         break;
       case ActionTypes.REFRESH_FEED_LIST:
@@ -68,10 +47,6 @@ class FeedStore extends EventEmitter {
   getAllFeeds() {
     const feeds = Object.keys(_feeds).map(id => _feeds[id]);
     return feeds
-  }
-
-  getActiveFeedEntries() {
-    return _getActiveFeedEntries()
   }
 }
 

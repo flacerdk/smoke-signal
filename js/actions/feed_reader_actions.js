@@ -25,7 +25,6 @@ module.exports = {
     WebAPIUtils.fetchFeedEntries(feedId).then(entries => {
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
-        feedId: feedId,
         entries: entries
       })
     })
