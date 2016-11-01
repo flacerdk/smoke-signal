@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AddFeedForm extends React.Component {  
+export default class AddFeedForm extends React.Component {
   constructor() {
     super();
 
@@ -22,7 +22,7 @@ export default class AddFeedForm extends React.Component {
     if (!url) {
       return;
     }
-    this.setState({url: ''});
+  -  this.setState({url: ''});
     this.props.onSubmit(url);
   }
 

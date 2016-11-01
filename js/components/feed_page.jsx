@@ -8,7 +8,7 @@ import EntryStore from '../stores/EntryStore.js'
 let getStateFromStores = () => {
   return {
     feeds: FeedStore.getAllFeeds(),
-    entries: EntryStore.getAllEntries()
+    entries: EntryStore.getActiveEntries()
   }
 }
 

@@ -3,7 +3,7 @@ import ActionDispatcher from '../dispatcher/action_dispatcher.js'
 import WebAPIUtils from '../utils/web_api_utils.js'
 
 module.exports = {
-  addFeed: (url) => {
+  addFeed: url => {
     WebAPIUtils.addFeed(url).then(new_feed => {
       ActionDispatcher.dispatch({
         type: ActionTypes.ADD_FEED,
@@ -21,12 +21,19 @@ module.exports = {
     })
   },
 
-  fetchFeedEntries: (feedId) => {
+  fetchFeedEntries: feedId => {
     WebAPIUtils.fetchFeedEntries(feedId).then(entries => {
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
         entries: entries
       })
+    })
+  },
+
+  scroll: offset => {
+    ActionDispatcher.dispatch({
+      type: ActionTypes.SCROLL_ENTRY_LIST,
+      offset: offset
     })
   }
 }
