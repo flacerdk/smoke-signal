@@ -1,11 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import AddFeedForm from './add_feed_form.jsx'
 import FeedList from './feed_list.jsx'
 import EntryList from './entry_list.jsx'
-import { getRequest, postJSONRequest } from './ajax_wrapper.js'
+import { getRequest, postJSONRequest } from '../utils/ajax_wrapper.js'
 
-class FeedPage extends React.Component {
+export default class FeedPage extends React.Component {
   constructor() {
     super();
 
@@ -55,8 +54,4 @@ class FeedPage extends React.Component {
   }
 }
 
-ReactDOM.render((
-    <FeedPage />
-  ), document.getElementById('container')
-);
 
