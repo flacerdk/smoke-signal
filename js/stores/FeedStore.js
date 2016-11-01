@@ -21,7 +21,7 @@ class FeedStore extends EventEmitter {
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
       case ActionTypes.ADD_FEED:
-        _addFeed(action.feed);
+        _addFeed(action.new_feed);
         this.emit(CHANGE_EVENT);
         break;
       case ActionTypes.REFRESH_FEED_LIST:

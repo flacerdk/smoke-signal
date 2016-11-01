@@ -37,7 +37,7 @@ export default class FeedPage extends React.Component {
   render() {
     return (
       <div id="feed_page">
-        <AddFeedForm onSubmit={this.handleAddFeed}/>
+        <AddFeedForm />
         <FeedList feeds={this.state.feeds} />
         <EntryList entries={this.state.entries} />
       </div>
