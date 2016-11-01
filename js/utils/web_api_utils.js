@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-let getRequest = (url) => {
+let _getRequest = (url) => {
     return fetch(url).then(response => {
       if (response.ok) {
         return response.json();
@@ -10,7 +10,7 @@ let getRequest = (url) => {
     });
 }
 
-let postJSONRequest = (url, data) => {
+let _postJSONRequest = (url, data) => {
     return fetch(url, {
       method: 'post',
       headers: {
@@ -29,18 +29,15 @@ let postJSONRequest = (url, data) => {
 }
 
 let addFeed = (url) => {
-  return postJSONRequest("/feeds/", {"url": url})
-    .catch(ex => console.log("Couldn't add feed: " + ex.message))
+  return _postJSONRequest("/feeds/", {"url": url})
 }
 
 let refreshFeedList = () => {
-  return getRequest("/feeds/")
-    .catch(ex => console.log("Couldn't load feed list: " + ex.message))
+  return _getRequest("/feeds/")
 }
 
 let fetchFeedEntries = (feedId) => {
-  return getRequest('/feeds/' + feedId)
-    .catch(ex => console.log("Couldn't load feed: " + ex.message))
+  return _getRequest('/feeds/' + feedId)
 }
 
 module.exports = {

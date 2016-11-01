@@ -1,4 +1,5 @@
 import React from 'react';
+import FeedReaderActions from '../actions/feed_reader_actions.js'
 
 export default class AddFeedForm extends React.Component {
   constructor() {
@@ -22,8 +23,8 @@ export default class AddFeedForm extends React.Component {
     if (!url) {
       return;
     }
-  -  this.setState({url: ''});
-    this.props.onSubmit(url);
+    this.setState({url: ''});
+    FeedReaderActions.addFeed(url);
   }
 
   render() {
