@@ -14,10 +14,10 @@ let getStateFromStores = () => {
 
 export default class FeedPage extends React.Component {
   constructor() {
-    super();
+    super()
 
-    this.state = getStateFromStores();
-    this._onChange = this._onChange.bind(this);
+    this.state = getStateFromStores()
+    this._onChange = this._onChange.bind(this)
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ export default class FeedPage extends React.Component {
   }
 
   _onChange() {
-    this.setState(getStateFromStores());
+    this.setState(getStateFromStores())
   }
 
   render() {
@@ -41,7 +41,7 @@ export default class FeedPage extends React.Component {
         <FeedList feeds={this.state.feeds} />
         <EntryList entries={this.state.entries} />
       </div>
-    );
+    )
   }
 }
 

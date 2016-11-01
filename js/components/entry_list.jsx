@@ -10,13 +10,13 @@ export default class EntryList extends React.Component {
               url={entry.url}
               text={entry.text}
               key={entry.entry_id} />
-      );
-    });
+      )
+    })
     return (
       <div id="entries">
         {entries}
       </div>
-    );
+    )
   }
 }
 

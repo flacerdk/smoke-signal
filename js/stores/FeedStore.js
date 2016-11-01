@@ -14,21 +14,21 @@ let _addFeed = (feed) => {
 
 class FeedStore extends EventEmitter {
   constructor() {
-    super();
+    super()
 
-    this.addChangeListener = this.addChangeListener.bind(this);
-    this.removeChangeListener = this.removeChangeListener.bind(this);
+    this.addChangeListener = this.addChangeListener.bind(this)
+    this.removeChangeListener = this.removeChangeListener.bind(this)
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
       case ActionTypes.ADD_FEED:
-        _addFeed(action.new_feed);
-        this.emit(CHANGE_EVENT);
-        break;
+        _addFeed(action.new_feed)
+        this.emit(CHANGE_EVENT)
+        break
       case ActionTypes.REFRESH_FEED_LIST:
-        _feeds = {};
-        action.feeds.map((feed) => _addFeed(feed));
-        this.emit(CHANGE_EVENT);
-        break;
+        _feeds = {}
+        action.feeds.map((feed) => _addFeed(feed))
+        this.emit(CHANGE_EVENT)
+        break
       default:
         // no op
       }
@@ -44,7 +44,7 @@ class FeedStore extends EventEmitter {
   }
 
   getAllFeeds() {
-    const feeds = Object.keys(_feeds).map(id => _feeds[id]);
+    const feeds = Object.keys(_feeds).map(id => _feeds[id])
     return feeds
   }
 }

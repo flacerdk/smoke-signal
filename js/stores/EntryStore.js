@@ -5,36 +5,36 @@ import ActionTypes from '../constants/feed_reader_constants.js'
 const CHANGE_EVENT = 'EntryStore.CHANGE_EVENT'
 
 let _entries = []
-let firstActiveEntryIndex = 0;
+let firstActiveEntryIndex = 0
 
 let _addEntry = entry => {
   _entries.push(entry)
 }
 
-let _refreshFeedEntries = (newEntries) => {
-  _entries = [];
-  newEntries.map(_addEntry);
+let _refreshFeedEntries = newEntries => {
+  _entries = []
+  newEntries.map(_addEntry)
 }
 
 class EntryStore extends EventEmitter {
   constructor() {
-    super();
+    super()
 
-    this.addChangeListener = this.addChangeListener.bind(this);
-    this.removeChangeListener = this.removeChangeListener.bind(this);
+    this.addChangeListener = this.addChangeListener.bind(this)
+    this.removeChangeListener = this.removeChangeListener.bind(this)
     this.dispatchToken = ActionDispatcher.register(action => {
       switch (action.type) {
       case ActionTypes.FETCH_FEED_ENTRIES:
-        _refreshFeedEntries(action.entries);
-        this.emit(CHANGE_EVENT);
-        break;
+        _refreshFeedEntries(action.entries)
+        this.emit(CHANGE_EVENT)
+        break
       case ActionTypes.SCROLL_ENTRY_LIST:
-        firstActiveEntryIndex += action.offset;
+        firstActiveEntryIndex += action.offset
         if (firstActiveEntryIndex < 0) {
-          firstActiveEntryIndex = 0;
+          firstActiveEntryIndex = 0
         }
-        this.emit(CHANGE_EVENT);
-        break;
+        this.emit(CHANGE_EVENT)
+        break
       default:
         // no op
       }

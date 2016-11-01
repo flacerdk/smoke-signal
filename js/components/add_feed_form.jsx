@@ -3,14 +3,14 @@ import FeedReaderActions from '../actions/feed_reader_actions.js'
 
 export default class AddFeedForm extends React.Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       url: ''
     }
 
-    this.handleUrlChange = this.handleUrlChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUrlChange = this.handleUrlChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleUrlChange(event) {
@@ -18,13 +18,13 @@ export default class AddFeedForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    const url = this.state.url.trim();
+    event.preventDefault()
+    const url = this.state.url.trim()
     if (!url) {
-      return;
+      return
     }
-    this.setState({url: ''});
-    FeedReaderActions.addFeed(url);
+    this.setState({url: ''})
+    FeedReaderActions.addFeed(url)
   }
 
   render() {
@@ -36,7 +36,7 @@ export default class AddFeedForm extends React.Component {
                onChange={this.handleUrlChange} />
         <input type="submit" value="Add feed"/>
       </form>
-    );
+    )
   }
 }
 

@@ -1,13 +1,13 @@
-import 'whatwg-fetch';
+import 'whatwg-fetch'
 
 let _getRequest = (url) => {
     return fetch(url).then(response => {
       if (response.ok) {
-        return response.json();
+        return response.json()
       } else {
-        throw Error(response.statusText);
+        throw Error(response.statusText)
       }
-    });
+    })
 }
 
 let _postJSONRequest = (url, data) => {
@@ -21,11 +21,11 @@ let _postJSONRequest = (url, data) => {
     })
       .then(response => {
         if (response.ok) {
-          return response.json();
+          return response.json()
         } else {
-          throw Error(response.statusText);
+          throw Error(response.statusText)
         }
-      });
+      })
 }
 
 let addFeed = (url) => {
