@@ -1,7 +1,19 @@
-import Entry from './entry.jsx'
 import React from 'react'
+import Mousetrap from 'mousetrap'
+import Entry from './entry.jsx'
+import FeedReaderActions from '../actions/feed_reader_actions.js'
 
 export default class EntryList extends React.Component {
+  componentDidMount() {
+    Mousetrap.bind('j', () => FeedReaderActions.scroll(1))
+    Mousetrap.bind('k', () => FeedReaderActions.scroll(-1))
+  }
+
+  componentWillUnmount() {
+    Mousetrap.unbind('j')
+    Mousetrap.unbind('k')
+  }
+
   render() {
     const entries = this.props.entries.map((entry, index) => {
       if (index >= this.props.firstActiveEntry) {
