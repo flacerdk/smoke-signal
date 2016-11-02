@@ -27,4 +27,5 @@ export default class FeedList extends React.Component {
 
 FeedList.propTypes = {
   feeds: React.PropTypes.array,
+  onClick: React.PropTypes.func
 }

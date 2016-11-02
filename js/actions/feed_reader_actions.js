@@ -25,6 +25,7 @@ module.exports = {
     WebAPIUtils.fetchFeedEntries(feedId).then(entries => {
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
+        feedId: feedId,
         entries: entries
       })
     }, ex => console.log("Couldn't load feed: " + ex.message))
@@ -35,5 +36,14 @@ module.exports = {
       type: ActionTypes.CHANGE_ACTIVE_ENTRY,
       offset: offset
     })
+  },
+
+  markEntryAsRead: (feedId, entryId) => {
+    WebAPIUtils.markEntryAsRead(feedId, entryId).then((entry) => {
+      ActionDispatcher.dispatch({
+        type: ActionTypes.MARK_ENTRY_AS_READ,
+        entry: entry
+      })
+    }, ex => console.log("Couldn't update entry: " + ex.message))
   }
 }

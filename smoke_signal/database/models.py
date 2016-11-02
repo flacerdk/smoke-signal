@@ -48,4 +48,5 @@ class Entry(Base):
 
     def serialize(self):
         return {'title': self.title, 'text': self.text,
-                'url': self.url, 'entry_id': self.id}
+                'url': self.url, 'entry_id': self.id,
+                'read': self.read}

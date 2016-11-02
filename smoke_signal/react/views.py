@@ -38,3 +38,8 @@ def add_feed(request):
         return resp
     except KeyError:
         raise BadRequest
+
+
+@react.route('/feeds/<int:feed_id>/read/<int:entry_id>', methods=['POST'])
+def mark_entry_as_read(feed_id, entry_id):
+    return helpers.mark_entry_as_read(feed_id, entry_id)

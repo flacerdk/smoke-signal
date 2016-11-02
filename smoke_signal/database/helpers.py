@@ -81,3 +81,13 @@ def jsonify(obj):
     else:
         js = json.dumps(obj.serialize())
     return js
+
+
+def mark_entry_as_read(feed_id, entry_id):
+    query = g.db.query(Entry).filter_by(id=entry_id, feed_id=feed_id)
+    if len(query.all()) == 1:
+        query.update({Entry.read: True})
+        g.db.commit()
+        return jsonify(query.one())
+    else:
+        raise NotFound

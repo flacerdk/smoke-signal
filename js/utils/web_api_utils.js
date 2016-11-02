@@ -40,8 +40,13 @@ let fetchFeedEntries = (feedId) => {
   return _getRequest('/feeds/' + feedId)
 }
 
+let markEntryAsRead = (feedId, entryId) => {
+  return _postJSONRequest("/feeds/" + feedId + "/read/" + entryId)
+}
+
 module.exports = {
   addFeed,
   refreshFeedList,
-  fetchFeedEntries
+  fetchFeedEntries,
+  markEntryAsRead
 }

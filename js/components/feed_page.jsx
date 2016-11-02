@@ -9,7 +9,8 @@ let getStateFromStores = () => {
   return {
     feeds: FeedStore.feeds,
     entries: EntryStore.entries,
-    firstActiveEntry: EntryStore.activeEntryIndex
+    activeEntryIndex: EntryStore.activeEntryIndex,
+    activeFeedId: EntryStore.activeFeedId
   }
 }
 
@@ -40,7 +41,9 @@ export default class FeedPage extends React.Component {
       <div id="feed_page">
         <AddFeedForm />
         <FeedList feeds={this.state.feeds} />
-        <EntryList entries={this.state.entries} firstActiveEntry={this.state.firstActiveEntry}/>
+        <EntryList entries={this.state.entries}
+                   activeFeedId={this.state.activeFeedId}
+                   activeEntryIndex={this.state.activeEntryIndex} />
       </div>
     )
   }
