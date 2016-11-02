@@ -41,22 +41,18 @@ class EntryStore extends EventEmitter {
     return this._entries
   }
 
+  set entries(newEntries) {
+    this._entries = []
+    this._activeEntryIndex = 0
+    newEntries.forEach(entry => this._entries.push(entry))
+  }
+
   get activeEntryIndex() {
     return this._activeEntryIndex
   }
 
   set activeEntryIndex(newIndex) {
     this._activeEntryIndex = newIndex >= 0 ? newIndex : this._activeEntryIndex
-  }
-
-  _addEntry(entry) {
-    this._entries.push(entry)
-  }
-
-  set entries(newEntries) {
-    this._entries = []
-    this._activeEntryIndex = 0
-    newEntries.map(this._addEntry)
   }
 }
 
