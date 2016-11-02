@@ -32,7 +32,7 @@ module.exports = {
 
   scroll: offset => {
     ActionDispatcher.dispatch({
-      type: ActionTypes.SCROLL_ENTRY_LIST,
+      type: ActionTypes.CHANGE_ACTIVE_ENTRY,
       offset: offset
     })
   }

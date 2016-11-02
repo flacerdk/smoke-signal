@@ -4,36 +4,23 @@ import ActionTypes from '../constants/feed_reader_constants.js'
 
 const CHANGE_EVENT = 'EntryStore.CHANGE_EVENT'
 
-let _entries = []
-
-let _addEntry = entry => {
-  _entries.push(entry)
-}
-
-let _refreshFeedEntries = newEntries => {
-  _entries = []
-  newEntries.map(_addEntry)
-}
-
 class EntryStore extends EventEmitter {
   constructor() {
     super()
 
-    this.firstActiveEntry = 0
-    this.getFirstActiveEntry = this.getFirstActiveEntry.bind(this)
+    this._entries = []
+    this._activeEntryIndex = 0
+    this._addEntry = this._addEntry.bind(this)
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
     this.dispatchToken = ActionDispatcher.register(action => {
       switch (action.type) {
       case ActionTypes.FETCH_FEED_ENTRIES:
-        _refreshFeedEntries(action.entries)
+        this._entries = action.entries
         this.emit(CHANGE_EVENT)
         break
-      case ActionTypes.SCROLL_ENTRY_LIST:
-        this.firstActiveEntry += action.offset
-        if (this.firstActiveEntry < 0) {
-          this.firstActiveEntry = 0
-        }
+      case ActionTypes.CHANGE_ACTIVE_ENTRY:
+        this.activeEntryIndex += action.offset
         this.emit(CHANGE_EVENT)
         break
       default:
@@ -50,12 +37,25 @@ class EntryStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT, cb)
   }
 
-  getAllEntries() {
-    return _entries
+  get entries() {
+    return this._entries
   }
 
-  getFirstActiveEntry() {
-    return this.firstActiveEntry
+  get activeEntryIndex() {
+    return this._activeEntryIndex
+  }
+
+  set activeEntryIndex(newIndex) {
+    this._activeEntryIndex = newIndex >= 0 ? newIndex : this._activeEntryIndex
+  }
+
+  _addEntry(entry) {
+    this._entries.push(entry)
+  }
+
+  set entries(newEntries) {
+    this._entries = []
+    newEntries.map(this._addEntry)
   }
 }
 

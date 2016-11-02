@@ -4,29 +4,22 @@ import ActionTypes from '../constants/feed_reader_constants.js'
 
 const CHANGE_EVENT = 'FeedStore.CHANGE_EVENT'
 
-let _feeds = {}
-
-let _addFeed = (feed) => {
-  if (!_feeds[feed.id]) {
-    _feeds[feed.id] = feed
-  }
-}
-
 class FeedStore extends EventEmitter {
   constructor() {
     super()
 
+    this._feeds = {}
+    this._addFeed = this._addFeed.bind(this)
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
-    this.dispatchToken = ActionDispatcher.register((action) => {
+    this.dispatchToken = ActionDispatcher.register(action => {
       switch (action.type) {
       case ActionTypes.ADD_FEED:
-        _addFeed(action.new_feed)
+        this._addFeed(action.new_feed)
         this.emit(CHANGE_EVENT)
         break
       case ActionTypes.REFRESH_FEED_LIST:
-        _feeds = {}
-        action.feeds.map((feed) => _addFeed(feed))
+        this.feeds = action.feeds
         this.emit(CHANGE_EVENT)
         break
       default:
@@ -43,9 +36,20 @@ class FeedStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT, cb)
   }
 
-  getAllFeeds() {
-    const feeds = Object.keys(_feeds).map(id => _feeds[id])
+  _addFeed(feed) {
+    if (!this._feeds[feed.id]) {
+      this._feeds[feed.id] = feed
+    }
+  }
+
+  get feeds() {
+    const feeds = Object.keys(this._feeds).map(id => this._feeds[id])
     return feeds
+  }
+
+  set feeds(newFeeds) {
+    this._feeds = {}
+    newFeeds.map(feed => this._addFeed(feed))
   }
 }
 
