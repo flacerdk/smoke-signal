@@ -1,6 +1,6 @@
-import ActionTypes from '../constants/feed_reader_constants.js'
-import ActionDispatcher from '../dispatcher/action_dispatcher.js'
-import WebAPIUtils from '../utils/web_api_utils.js'
+import ActionTypes from '../constants/feed_reader_constants'
+import ActionDispatcher from '../dispatcher/action_dispatcher'
+import WebAPIUtils from '../utils/web_api_utils'
 
 module.exports = {
   addFeed: url => {

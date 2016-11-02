@@ -1,9 +1,9 @@
 import React from 'react'
-import AddFeedForm from './add_feed_form.jsx'
-import FeedList from './feed_list.jsx'
-import EntryList from './entry_list.jsx'
-import FeedStore from '../stores/FeedStore.js'
-import EntryStore from '../stores/EntryStore.js'
+import AddFeedForm from './add_feed_form'
+import FeedList from './feed_list'
+import EntryList from './entry_list'
+import FeedStore from '../stores/FeedStore'
+import EntryStore from '../stores/EntryStore'
 
 let getStateFromStores = () => {
   return {
