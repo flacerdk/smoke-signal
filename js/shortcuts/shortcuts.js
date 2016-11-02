@@ -1,11 +1,7 @@
 import FeedReaderActions from '../actions/feed_reader_actions.js'
+import Mousetrap from 'mousetrap'
 
-module.exports = {
-  bindShortcuts: event => {
-    if (event.key == 'j') {
-      FeedReaderActions.scroll(1)
-    } else if (event.key == 'k') {
-      FeedReaderActions.scroll(-1)
-    }
-  }
+export default function() {
+  Mousetrap.bind('j', () => FeedReaderActions.scroll(1))
+  Mousetrap.bind('k', () => FeedReaderActions.scroll(-1))
 }
