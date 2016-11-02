@@ -5,7 +5,6 @@ import ActionTypes from '../constants/feed_reader_constants.js'
 const CHANGE_EVENT = 'EntryStore.CHANGE_EVENT'
 
 let _entries = []
-let firstActiveEntryIndex = 0
 
 let _addEntry = entry => {
   _entries.push(entry)
@@ -20,6 +19,8 @@ class EntryStore extends EventEmitter {
   constructor() {
     super()
 
+    this.firstActiveEntry = 0
+    this.getFirstActiveEntry = this.getFirstActiveEntry.bind(this)
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
     this.dispatchToken = ActionDispatcher.register(action => {
@@ -29,9 +30,9 @@ class EntryStore extends EventEmitter {
         this.emit(CHANGE_EVENT)
         break
       case ActionTypes.SCROLL_ENTRY_LIST:
-        firstActiveEntryIndex += action.offset
-        if (firstActiveEntryIndex < 0) {
-          firstActiveEntryIndex = 0
+        this.firstActiveEntry += action.offset
+        if (this.firstActiveEntry < 0) {
+          this.firstActiveEntry = 0
         }
         this.emit(CHANGE_EVENT)
         break
@@ -53,8 +54,8 @@ class EntryStore extends EventEmitter {
     return _entries
   }
 
-  getActiveEntries() {
-    return _entries.filter((entry, index) => index >= firstActiveEntryIndex)
+  getFirstActiveEntry() {
+    return this.firstActiveEntry
   }
 }
 

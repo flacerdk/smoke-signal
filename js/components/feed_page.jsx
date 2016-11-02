@@ -8,7 +8,8 @@ import EntryStore from '../stores/EntryStore.js'
 let getStateFromStores = () => {
   return {
     feeds: FeedStore.getAllFeeds(),
-    entries: EntryStore.getActiveEntries()
+    entries: EntryStore.getAllEntries(),
+    firstActiveEntry: EntryStore.getFirstActiveEntry()
   }
 }
 
@@ -39,10 +40,8 @@ export default class FeedPage extends React.Component {
       <div id="feed_page">
         <AddFeedForm />
         <FeedList feeds={this.state.feeds} />
-        <EntryList entries={this.state.entries} />
+        <EntryList entries={this.state.entries} firstActiveEntry={this.state.firstActiveEntry}/>
       </div>
     )
   }
 }
-
-
