@@ -14,23 +14,23 @@ class EntryStore extends EventEmitter {
     this._updateEntry = this._updateEntry.bind(this)
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
-    this.dispatchToken = ActionDispatcher.register(action => {
+    this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
-      case ActionTypes.FETCH_FEED_ENTRIES:
-        this.activeFeedId = action.feedId
-        this.entries = action.entries
-        this.emit(CHANGE_EVENT)
-        break
-      case ActionTypes.CHANGE_ACTIVE_ENTRY:
-        this.activeEntryIndex += action.offset
-        this.emit(CHANGE_EVENT)
-        break
-      case ActionTypes.MARK_ENTRY_AS_READ:
-        this._updateEntry(action.entry)
-        this.emit(CHANGE_EVENT)
-        break
-      default:
-        // no op
+        case ActionTypes.FETCH_FEED_ENTRIES:
+          this.activeFeedId = action.feedId
+          this.entries = action.entries
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.CHANGE_ACTIVE_ENTRY:
+          this.activeEntryIndex += action.offset
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.MARK_ENTRY_AS_READ:
+          this._updateEntry(action.entry)
+          this.emit(CHANGE_EVENT)
+          break
+        default:
+          // no op
       }
     })
   }
@@ -50,7 +50,10 @@ class EntryStore extends EventEmitter {
   set entries(newEntries) {
     this._entries = {}
     this._activeEntryIndex = 0
-    newEntries.forEach(entry => this._entries[entry.entry_id] = entry)
+    newEntries.forEach((entry) => {
+      this._entries[entry.entry_id] = entry
+      return false
+    })
   }
 
   get activeEntryIndex() {

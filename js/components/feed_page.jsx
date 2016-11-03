@@ -5,14 +5,12 @@ import EntryList from './entry_list'
 import FeedStore from '../stores/FeedStore'
 import EntryStore from '../stores/EntryStore'
 
-let getStateFromStores = () => {
-  return {
-    feeds: FeedStore.feeds,
-    entries: EntryStore.entries,
-    activeEntryIndex: EntryStore.activeEntryIndex,
-    activeFeedId: EntryStore.activeFeedId
-  }
-}
+const getStateFromStores = () => ({
+  feeds: FeedStore.feeds,
+  entries: EntryStore.entries,
+  activeEntryIndex: EntryStore.activeEntryIndex,
+  activeFeedId: EntryStore.activeFeedId,
+})
 
 export default class FeedPage extends React.Component {
   constructor() {
@@ -41,9 +39,11 @@ export default class FeedPage extends React.Component {
       <div id="feed_page">
         <AddFeedForm />
         <FeedList feeds={this.state.feeds} />
-        <EntryList entries={this.state.entries}
-                   activeFeedId={this.state.activeFeedId}
-                   activeEntryIndex={this.state.activeEntryIndex} />
+        <EntryList
+          entries={this.state.entries}
+          activeFeedId={this.state.activeFeedId}
+          activeEntryIndex={this.state.activeEntryIndex}
+        />
       </div>
     )
   }

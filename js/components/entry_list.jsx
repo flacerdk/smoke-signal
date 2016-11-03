@@ -1,6 +1,6 @@
 import React from 'react'
 import Mousetrap from 'mousetrap'
-import Entry from './entry.jsx'
+import Entry from './entry'
 import FeedReaderActions from '../actions/feed_reader_actions'
 
 export default class EntryList extends React.Component {
@@ -29,17 +29,9 @@ export default class EntryList extends React.Component {
   }
 
   render() {
-    const entries = this.props.entries.map((entry, index) => {
-      if (index >= this.props.activeEntryIndex) {
-        return (
-          <Entry
-              title={entry.title}
-              url={entry.url}
-              text={entry.text}
-              key={entry.entry_id} />
-        )
-      }
-    })
+    const entries = this.props.entries
+      .filter((entry, index) => index >= this.props.activeEntryIndex)
+      .map(entry => (<Entry entry={entry} key={entry.entry_id} />))
     return (
       <div id="entries">
         {entries}
@@ -49,13 +41,13 @@ export default class EntryList extends React.Component {
 }
 
 EntryList.propTypes = {
-  entries: React.PropTypes.array,
+  entries: React.PropTypes.arrayOf(React.PropTypes.object),
   activeEntryIndex: React.PropTypes.number,
-  activeFeedId: React.PropTypes.number
+  activeFeedId: React.PropTypes.number,
 }
 
 EntryList.defaultProps = {
   entries: [],
   activeEntryIndex: 0,
-  activeFeedId: 0
+  activeFeedId: 0,
 }

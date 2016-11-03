@@ -1,52 +1,38 @@
-import 'whatwg-fetch'
+import fetch from 'isomorphic-fetch'
 
-let _getRequest = (url) => {
-    return fetch(url).then(response => {
-      if (response.ok) {
-        return response.json()
-      } else {
-        throw Error(response.statusText)
-      }
-    })
-}
-
-let _postJSONRequest = (url, data) => {
-    return fetch(url, {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
+const _getRequest = url =>
+      fetch(url).then((response) => {
         if (response.ok) {
           return response.json()
-        } else {
-          throw Error(response.statusText)
-        }
+        } throw Error(response.statusText)
       })
-}
 
-let addFeed = (url) => {
-  return _postJSONRequest("/feeds/", {"url": url})
-}
+const _postJSONRequest = (url, data) =>
+      fetch(url, {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+  .then((response) => {
+    if (response.ok) {
+      return response.json()
+    } throw Error(response.statusText)
+  })
 
-let refreshFeedList = () => {
-  return _getRequest("/feeds/")
-}
+const addFeed = url => _postJSONRequest('/feeds/', { url })
 
-let fetchFeedEntries = (feedId) => {
-  return _getRequest('/feeds/' + feedId)
-}
+const refreshFeedList = () => _getRequest('/feeds/')
 
-let markEntryAsRead = (feedId, entryId) => {
-  return _postJSONRequest("/feeds/" + feedId + "/read/" + entryId)
-}
+const fetchFeedEntries = feedId => _getRequest(`/feeds/${feedId}`)
+
+const markEntryAsRead = (feedId, entryId) => _postJSONRequest(`/feeds/${feedId}/read/${entryId}`)
 
 module.exports = {
   addFeed,
   refreshFeedList,
   fetchFeedEntries,
-  markEntryAsRead
+  markEntryAsRead,
 }

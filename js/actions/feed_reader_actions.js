@@ -3,47 +3,43 @@ import ActionDispatcher from '../dispatcher/action_dispatcher'
 import WebAPIUtils from '../utils/web_api_utils'
 
 module.exports = {
-  addFeed: url => {
-    WebAPIUtils.addFeed(url).then(new_feed => {
+  addFeed: url =>
+    WebAPIUtils.addFeed(url).then(newFeed => (
       ActionDispatcher.dispatch({
         type: ActionTypes.ADD_FEED,
-        new_feed: new_feed
+        newFeed,
       })
-    }, ex => console.log("Couldn't add feed: " + ex.message))
-  },
+    ), ex => console.log(`Couldn't add feed: ${ex.message}`)),
 
   refreshFeedList: () => {
-    WebAPIUtils.refreshFeedList().then(feeds => {
+    WebAPIUtils.refreshFeedList().then(feeds => (
       ActionDispatcher.dispatch({
         type: ActionTypes.REFRESH_FEED_LIST,
-        feeds: feeds
+        feeds,
       })
-    }, ex => console.log("Couldn't load feed list: " + ex.message))
+    ), ex => console.log(`Couldn't load feed list: ${ex.message}`))
   },
 
-  fetchFeedEntries: feedId => {
-    WebAPIUtils.fetchFeedEntries(feedId).then(entries => {
+  fetchFeedEntries: feedId =>
+    WebAPIUtils.fetchFeedEntries(feedId).then(entries => (
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
-        feedId: feedId,
-        entries: entries
+        feedId,
+        entries,
       })
-    }, ex => console.log("Couldn't load feed: " + ex.message))
-  },
+    ), ex => console.log(`Couldn't load feed: ${ex.message}`)),
 
-  scroll: offset => {
+  scroll: offset =>
     ActionDispatcher.dispatch({
       type: ActionTypes.CHANGE_ACTIVE_ENTRY,
-      offset: offset
-    })
-  },
+      offset,
+    }),
 
-  markEntryAsRead: (feedId, entryId) => {
-    WebAPIUtils.markEntryAsRead(feedId, entryId).then((entry) => {
+  markEntryAsRead: (feedId, entryId) =>
+    WebAPIUtils.markEntryAsRead(feedId, entryId).then(entry => (
       ActionDispatcher.dispatch({
         type: ActionTypes.MARK_ENTRY_AS_READ,
-        entry: entry
+        entry,
       })
-    }, ex => console.log("Couldn't update entry: " + ex.message))
-  }
+    ), ex => console.log(`Couldn't update entry: ${ex.message}`)),
 }

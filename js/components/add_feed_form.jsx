@@ -6,7 +6,7 @@ export default class AddFeedForm extends React.Component {
     super()
 
     this.state = {
-      url: ''
+      url: '',
     }
 
     this.handleUrlChange = this.handleUrlChange.bind(this)
@@ -14,7 +14,7 @@ export default class AddFeedForm extends React.Component {
   }
 
   handleUrlChange(event) {
-    this.setState({url: event.target.value})
+    this.setState({ url: event.target.value })
   }
 
   handleSubmit(event) {
@@ -23,23 +23,25 @@ export default class AddFeedForm extends React.Component {
     if (!url) {
       return
     }
-    this.setState({url: ''})
+    this.setState({ url: '' })
     FeedReaderActions.addFeed(url)
   }
 
   render() {
     return (
       <form className="add_feed_form" onSubmit={this.handleSubmit}>
-        <input type="text"
-               placeholder="URL..."
-               value={this.state.url}
-               onChange={this.handleUrlChange} />
-        <input type="submit" value="Add feed"/>
+        <input
+          type="text"
+          placeholder="URL..."
+          value={this.state.url}
+          onChange={this.handleUrlChange}
+        />
+        <input type="submit" value="Add feed" />
       </form>
     )
   }
 }
 
 AddFeedForm.propTypes = {
-  onSubmit: React.PropTypes.func
+  onSubmit: React.PropTypes.func,
 }

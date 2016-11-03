@@ -12,18 +12,18 @@ class FeedStore extends EventEmitter {
     this._addFeed = this._addFeed.bind(this)
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
-    this.dispatchToken = ActionDispatcher.register(action => {
+    this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
-      case ActionTypes.ADD_FEED:
-        this._addFeed(action.new_feed)
-        this.emit(CHANGE_EVENT)
-        break
-      case ActionTypes.REFRESH_FEED_LIST:
-        this.feeds = action.feeds
-        this.emit(CHANGE_EVENT)
-        break
-      default:
-        // no op
+        case ActionTypes.ADD_FEED:
+          this._addFeed(action.newFeed)
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.REFRESH_FEED_LIST:
+          this.feeds = action.feeds
+          this.emit(CHANGE_EVENT)
+          break
+        default:
+          // no op
       }
     })
   }
