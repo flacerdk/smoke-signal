@@ -11,18 +11,23 @@ class EntryStore extends EventEmitter {
     this._entries = {}
     this._activeFeedId = 0
     this._activeEntryIndex = 0
+
+    this._setEntries = this._setEntries.bind(this)
+    this._setActiveEntryIndex = this._setActiveEntryIndex.bind(this)
+    this._setActiveFeedId = this._setActiveFeedId.bind(this)
     this._updateEntry = this._updateEntry.bind(this)
+
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
         case ActionTypes.FETCH_FEED_ENTRIES:
-          this.activeFeedId = action.feedId
-          this.entries = action.entries
+          this._setActiveFeedId(action.feedId)
+          this._setEntries(action.entries)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.CHANGE_ACTIVE_ENTRY:
-          this.activeEntryIndex += action.offset
+          this._setActiveEntryIndex(this._activeEntryIndex + action.offset)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.MARK_ENTRY_AS_READ:
@@ -47,7 +52,7 @@ class EntryStore extends EventEmitter {
     return Object.values(this._entries)
   }
 
-  set entries(newEntries) {
+  _setEntries(newEntries) {
     this._entries = {}
     this._activeEntryIndex = 0
     newEntries.forEach((entry) => {
@@ -60,7 +65,7 @@ class EntryStore extends EventEmitter {
     return this._activeEntryIndex
   }
 
-  set activeEntryIndex(newIndex) {
+  _setActiveEntryIndex(newIndex) {
     this._activeEntryIndex = newIndex >= 0 ? newIndex : this._activeEntryIndex
   }
 
@@ -68,7 +73,7 @@ class EntryStore extends EventEmitter {
     return this._activeFeedId
   }
 
-  set activeFeedId(newIndex) {
+  _setActiveFeedId(newIndex) {
     this._activeFeedId = newIndex >= 0 ? newIndex : this._activeFeedId
   }
 

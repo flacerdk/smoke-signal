@@ -19,7 +19,7 @@ class FeedStore extends EventEmitter {
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.REFRESH_FEED_LIST:
-          this.feeds = action.feeds
+          this._setFeeds(action.feeds)
           this.emit(CHANGE_EVENT)
           break
         default:
@@ -47,7 +47,7 @@ class FeedStore extends EventEmitter {
     return feeds
   }
 
-  set feeds(newFeeds) {
+  _setFeeds(newFeeds) {
     this._feeds = {}
     newFeeds.map(feed => this._addFeed(feed))
   }
