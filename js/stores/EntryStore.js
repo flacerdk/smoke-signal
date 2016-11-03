@@ -1,6 +1,6 @@
 import EventEmitter from 'events'
-import ActionDispatcher from '../dispatcher/action_dispatcher'
-import ActionTypes from '../constants/feed_reader_constants'
+import ActionDispatcher from '../dispatcher/ActionDispatcher'
+import ActionTypes from '../constants/FeedReaderConstants'
 
 const CHANGE_EVENT = 'EntryStore.CHANGE_EVENT'
 

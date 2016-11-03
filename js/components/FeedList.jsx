@@ -1,5 +1,5 @@
 import React from 'react'
-import FeedReaderActions from '../actions/feed_reader_actions'
+import FeedReaderActions from '../actions/FeedReaderActions'
 
 const handleFeedClicked = feedId => FeedReaderActions.fetchFeedEntries(feedId)
 

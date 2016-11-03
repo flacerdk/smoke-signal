@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FeedPage from './components/feed_page'
-import FeedReaderActions from './actions/feed_reader_actions'
+import FeedPage from './components/FeedPage'
+import FeedReaderActions from './actions/FeedReaderActions'
 
 FeedReaderActions.refreshFeedList()
 

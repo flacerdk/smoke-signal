@@ -1,7 +1,7 @@
 import React from 'react'
 import Mousetrap from 'mousetrap'
-import Entry from './entry'
-import FeedReaderActions from '../actions/feed_reader_actions'
+import Entry from './Entry'
+import FeedReaderActions from '../actions/FeedReaderActions'
 
 export default class EntryList extends React.Component {
   constructor() {

@@ -1,7 +1,7 @@
 import React from 'react'
-import AddFeedForm from './add_feed_form'
-import FeedList from './feed_list'
-import EntryList from './entry_list'
+import AddFeedForm from './AddFeedForm'
+import FeedList from './FeedList'
+import EntryList from './EntryList'
 import FeedStore from '../stores/FeedStore'
 import EntryStore from '../stores/EntryStore'
 
