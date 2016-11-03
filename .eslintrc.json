@@ -1,11 +1,13 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "rules": {
     "no-console": 0,
     "semi": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "global-require": 0
   },
   "plugins": [
     "react"
