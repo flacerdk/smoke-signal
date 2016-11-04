@@ -77,22 +77,26 @@ class SmokeSignalTestCase(unittest.TestCase):
         entry = entry_list[0]
         assert entry["feed_id"] is not None
         assert entry["entry_id"] is not None
-        resp = self.app.post("/feeds/{}/read/{}".format(entry["feed_id"],
-                                                        entry["entry_id"]))
+        resp = self.app.post("/feeds/{}/{}".format(entry["feed_id"],
+                                                   entry["entry_id"]),
+                             data=json.dumps({"read": True}),
+                             content_type="application/json")
         assert resp.status_code == 200
         entry = get_json(resp)
         assert entry["read"]
 
-    def _change_entry_status(self, new_status):
+    def _change_entry_status(self, read):
         entry_list = get_json(self._get_entries_response())
         entry = entry_list[0]
-        resp = self.app.post("/feeds/{}/{}/{}".format(entry["feed_id"],
-                                                      new_status,
-                                                      entry["entry_id"]))
+        resp = self.app.post(
+            "/feeds/{}/{}".format(entry["feed_id"],
+                                  entry["entry_id"]),
+            data=json.dumps({"read": read}),
+            content_type="application/json")
         return get_json(resp)
 
     def test_read_entries(self):
-        read_entry = self._change_entry_status("read")
+        read_entry = self._change_entry_status(read=True)
         resp = self.app.get("/feeds/{}/read".format(read_entry["feed_id"]))
         read_entry_list = get_json(resp)
         assert read_entry in read_entry_list
@@ -101,7 +105,7 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert read_entry not in unread_entry_list
 
     def test_unread_entries(self):
-        unread_entry = self._change_entry_status("unread")
+        unread_entry = self._change_entry_status(read=False)
         resp = self.app.get("/feeds/{}/unread".format(unread_entry["feed_id"]))
         unread_entry_list = get_json(resp)
         assert unread_entry in unread_entry_list

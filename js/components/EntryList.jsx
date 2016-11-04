@@ -13,9 +13,13 @@ export default class EntryList extends React.Component {
   componentDidMount() {
     Mousetrap.bind('j', () => FeedReaderActions.scroll(1))
     Mousetrap.bind('k', () => FeedReaderActions.scroll(-1))
-    Mousetrap.bind('m', () =>
-      FeedReaderActions.markEntryAsRead(this.props.activeFeedId,
-      this._getEntryId(this.props.activeEntryIndex)))
+    Mousetrap.bind('m', () => {
+      const entry = this.props.entries[this.props.activeEntryIndex]
+      const newReadStatus = !entry.read
+      FeedReaderActions.changeEntryReadStatus(
+        this.props.activeFeedId,
+        entry.entry_id, newReadStatus)
+    })
   }
 
   componentWillUnmount() {

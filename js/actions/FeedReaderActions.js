@@ -35,8 +35,9 @@ module.exports = {
       offset,
     }),
 
-  markEntryAsRead: (feedId, entryId) =>
-    WebAPIUtils.markEntryAsRead(feedId, entryId).then(entry => (
+  changeEntryReadStatus: (feedId, entryId, newReadStatus) =>
+    WebAPIUtils.changeEntryReadStatus(feedId, entryId, newReadStatus)
+    .then(entry => (
       ActionDispatcher.dispatch({
         type: ActionTypes.MARK_ENTRY_AS_READ,
         entry,

@@ -28,11 +28,13 @@ const refreshFeedList = () => _getRequest('/feeds/')
 
 const fetchFeedEntries = feedId => _getRequest(`/feeds/${feedId}`)
 
-const markEntryAsRead = (feedId, entryId) => _postJSONRequest(`/feeds/${feedId}/read/${entryId}`)
+const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
+      _postJSONRequest(`/feeds/${feedId}/${entryId}`,
+                       { read: newReadStatus })
 
 module.exports = {
   addFeed,
   refreshFeedList,
   fetchFeedEntries,
-  markEntryAsRead,
+  changeEntryReadStatus,
 }

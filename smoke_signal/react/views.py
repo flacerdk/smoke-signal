@@ -40,14 +40,16 @@ def add_feed(request):
         raise BadRequest
 
 
-@react.route('/feeds/<int:feed_id>/read/<int:entry_id>', methods=['POST'])
-def mark_entry_as_read(feed_id, entry_id):
-    return helpers.toggle_entry_read_status(feed_id, entry_id, read=True)
-
-
-@react.route('/feeds/<int:feed_id>/unread/<int:entry_id>', methods=['POST'])
-def mark_entry_as_unread(feed_id, entry_id):
-    return helpers.toggle_entry_read_status(feed_id, entry_id, read=False)
+@react.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['POST'])
+def change_entry_status(feed_id, entry_id):
+    if not request.is_json:
+        raise BadRequest
+    try:
+        new_read_status = request.get_json()["read"]
+        return helpers.toggle_entry_read_status(feed_id, entry_id,
+                                                read=new_read_status)
+    except KeyError:
+        raise BadRequest
 
 
 @react.route('/feeds/<int:feed_id>/read', methods=['GET'])
