@@ -24,3 +24,5 @@ const FeedList = (props) => {
 FeedList.propTypes = {
   feeds: React.PropTypes.arrayOf(React.PropTypes.object),
 }
+
+module.exports = FeedList
