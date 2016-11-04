@@ -83,18 +83,32 @@ class SmokeSignalTestCase(unittest.TestCase):
         entry = get_json(resp)
         assert entry["read"]
 
-    def _get_read_entry(self):
+    def _change_entry_status(self, new_status):
         entry_list = get_json(self._get_entries_response())
         entry = entry_list[0]
-        resp = self.app.post("/feeds/{}/read/{}".format(entry["feed_id"],
-                                                        entry["entry_id"]))
+        resp = self.app.post("/feeds/{}/{}/{}".format(entry["feed_id"],
+                                                      new_status,
+                                                      entry["entry_id"]))
         return get_json(resp)
 
     def test_read_entries(self):
-        read_entry = self._get_read_entry()
-        resp = self.app.get("/feeds/{}".format(read_entry["feed_id"]))
-        entry_list = get_json(resp)
-        assert read_entry in entry_list
+        read_entry = self._change_entry_status("read")
+        resp = self.app.get("/feeds/{}/read".format(read_entry["feed_id"]))
+        read_entry_list = get_json(resp)
+        assert read_entry in read_entry_list
+        resp = self.app.get("/feeds/{}/unread".format(read_entry["feed_id"]))
+        unread_entry_list = get_json(resp)
+        assert read_entry not in unread_entry_list
+
+    def test_unread_entries(self):
+        unread_entry = self._change_entry_status("unread")
+        resp = self.app.get("/feeds/{}/unread".format(unread_entry["feed_id"]))
+        unread_entry_list = get_json(resp)
+        assert unread_entry in unread_entry_list
+        resp = self.app.get("/feeds/{}/read".format(unread_entry["feed_id"]))
+        read_entry_list = get_json(resp)
+        assert unread_entry not in read_entry_list
+
 
 if __name__ == "__main__":
     unittest.main()
