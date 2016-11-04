@@ -2,7 +2,7 @@ jest.enableAutomock()
 jest.dontMock('../FeedStore')
 
 describe('FeedStore', () => {
-  const ActionTypes = require('../../constants/feed_reader_constants.js')
+  const ActionTypes = require('../../constants/FeedReaderConstants')
 
   let ActionDispatcher
   let FeedStore
@@ -34,7 +34,7 @@ describe('FeedStore', () => {
   }
 
   beforeEach(() => {
-    ActionDispatcher = require('../../dispatcher/action_dispatcher.js')
+    ActionDispatcher = require('../../dispatcher/ActionDispatcher')
     FeedStore = require('../FeedStore.js')
 
     callback = ActionDispatcher.register.mock.calls[0][0]
