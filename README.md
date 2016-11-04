@@ -18,7 +18,7 @@ feeds. There's a sample at `sample.opml`.
 
 ## Tests
 
-Tests can be run with `python -m unittest.test_init`.
+Tests can be run with `python -m tests.test_server_methods`.
 
 ## TODO
 
