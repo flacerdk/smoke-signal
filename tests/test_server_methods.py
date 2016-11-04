@@ -29,44 +29,51 @@ class SmokeSignalTestCase(unittest.TestCase):
         resp = self.app.get('/')
         assert resp.status_code == 200
 
-    def test_empty_feedlist(self):
+    def test_empty_feed_list(self):
         resp = self.app.get('/feeds/')
         assert resp.status_code == 204
         resp = self.app.get('/feeds/1')
         assert resp.status_code == 404
 
-    def add_feed(self, url):
+    def _add_feed(self, url):
         return self.app.post('/feeds/', data=json.dumps({'url': url}),
                              content_type='application/json')
 
+    def _get_valid_feed(self):
+        resp = self._add_feed(SAMPLE_RSS)
+        return get_json(resp)
+
     def test_add_invalid_feed(self):
-        resp = self.add_feed("http://example.com")
+        resp = self._add_feed("http://example.com")
         assert resp.status_code == 404
 
     def test_add_valid_feed(self):
-        resp = self.add_feed(SAMPLE_RSS)
-        assert resp.status_code == 200
-        data = get_json(resp)
+        data = self._get_valid_feed()
         assert data["url"] == SAMPLE_RSS
         return data
 
     def test_add_and_get_feed_list(self):
-        feed = self.test_add_valid_feed()
+        feed = self._get_valid_feed()
         resp = self.app.get("/feeds/")
         assert resp.status_code == 200
         feed_list = get_json(resp)
         assert feed in feed_list
 
+    def _get_entries_response(self):
+        feed = self._get_valid_feed()
+        return self.app.get("/feeds/{}".format(feed["id"]))
+
     def test_add_and_get_feed(self):
-        feed = self.test_add_valid_feed()
-        resp = self.app.get("/feeds/{}".format(feed["id"]))
+        resp = self._get_entries_response()
         assert resp.status_code == 200
+
+    def test_add_feed_and_get_entries(self):
+        resp = self._get_entries_response()
         entry_list = get_json(resp)
         assert entry_list != []
-        return entry_list
 
     def test_mark_entry_as_read(self):
-        entry_list = self.test_add_and_get_feed()
+        entry_list = get_json(self._get_entries_response())
         entry = entry_list[0]
         assert entry["feed_id"] is not None
         assert entry["entry_id"] is not None
@@ -75,6 +82,19 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert resp.status_code == 200
         entry = get_json(resp)
         assert entry["read"]
+
+    def _get_read_entry(self):
+        entry_list = get_json(self._get_entries_response())
+        entry = entry_list[0]
+        resp = self.app.post("/feeds/{}/read/{}".format(entry["feed_id"],
+                                                        entry["entry_id"]))
+        return get_json(resp)
+
+    def test_read_entries(self):
+        read_entry = self._get_read_entry()
+        resp = self.app.get("/feeds/{}".format(read_entry["feed_id"]))
+        entry_list = get_json(resp)
+        assert read_entry in entry_list
 
 if __name__ == "__main__":
     unittest.main()
