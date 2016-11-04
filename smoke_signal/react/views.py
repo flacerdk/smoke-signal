@@ -43,3 +43,13 @@ def add_feed(request):
 @react.route('/feeds/<int:feed_id>/read/<int:entry_id>', methods=['POST'])
 def mark_entry_as_read(feed_id, entry_id):
     return helpers.mark_entry_as_read(feed_id, entry_id)
+
+
+@react.route('/feeds/<int:feed_id>/read', methods=['GET'])
+def get_read_entries(feed_id):
+    return helpers.get_entries(feed_id=feed_id, read=True)
+
+
+@react.route('/feeds/<int:feed_id>/unread', methods=['GET'])
+def get_unread_entries(feed_id):
+    return helpers.get_entries(feed_id=feed_id, read=False)

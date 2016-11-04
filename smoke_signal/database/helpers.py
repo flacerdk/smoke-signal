@@ -27,10 +27,9 @@ def get_feed(feed_id):
         raise NotFound
 
 
-def get_feed_entries(feed_id):
-    feed = get_feed(feed_id)
-    entries = g.db.query(Entry).filter_by(feed_id=feed.id).all()
-    return entries
+def get_entries(**kwargs):
+    entries = g.db.query(Entry).filter_by(**kwargs).all()
+    return jsonify(entries)
 
 
 def parse_entries(feed):
@@ -71,8 +70,7 @@ def refresh_feed(feed_id):
         if query.all() == []:
             g.db.add(e)
     g.db.commit()
-    updated_entries = get_feed_entries(feed.id)
-    return jsonify(updated_entries)
+    return get_entries(feed_id=feed.id)
 
 
 def jsonify(obj):
