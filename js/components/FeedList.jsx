@@ -9,7 +9,7 @@ const FeedList = (props) => {
     const onClick = handleFeedClicked.bind(null, feed.id)
     return (
       <li className="feed" key={feed.id}>
-        <a className="feed" href={link} onClick={onClick}>{feed.title}</a>
+        <a className="feed" href={link} onClick={onClick}>{feed.title} ({feed.unread})</a>
       </li>
     )
   })

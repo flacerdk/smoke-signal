@@ -3,20 +3,28 @@
 
 import feedparser
 from smoke_signal.database.models import Entry, Feed
+from sqlalchemy import func, cast, Integer
 from werkzeug.exceptions import NotFound
 from flask import g, Response
 import json
 
 
+# Returns the feed list, along with a count of unread entries.
 def feed_list():
-    feeds = g.db.query(Feed).all()
-    if feeds == []:
+    query = g.db.query(Feed.id, Feed.title, Feed.url,
+                       func.count(Entry.read) -
+                       func.sum(cast(Entry.read, Integer))).\
+            join(Feed.entries).\
+            group_by(Feed.id).all()
+    if query == []:
         resp = []
         status_code = 204
     else:
-        resp = jsonify(feeds)
+        feeds = [dict(zip(["id", "title", "url", "unread"], feed))
+                 for feed in query]
+        resp = json.dumps(feeds)
         status_code = 200
-    return Response(resp, status=status_code, mimetype='application/json')
+    return Response(resp, status=status_code, mimetype="application/json")
 
 
 def get_feed(feed_id):
