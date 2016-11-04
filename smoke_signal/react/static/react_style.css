@@ -36,7 +36,14 @@ div {
 
 .entry {
     margin-bottom: 10px;
+}
+
+.unread {
     background-color: #F0F0F0;
+}
+
+.read {
+    background-color: #FFFFFF;
 }
 
 .entry_title {
