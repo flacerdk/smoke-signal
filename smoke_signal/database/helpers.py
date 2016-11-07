@@ -14,7 +14,7 @@ def feed_list():
     query = g.db.query(Feed.id, Feed.title, Feed.url,
                        func.count(Entry.read) -
                        func.sum(cast(Entry.read, Integer))).\
-            join(Feed.entries).\
+            outerjoin(Feed.entries).\
             group_by(Feed.id).all()
     if query == []:
         resp = []
