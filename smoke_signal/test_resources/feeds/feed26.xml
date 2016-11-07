@@ -1,6 +1,0 @@
-<br />
-<b>Warning</b>:  include_once(/home/cameron1/sintitulocomic.com/wp-content/plugins/akismet/akismet.php): failed to open stream: Permission denied in <b>/home/cameron1/sintitulocomic.com/wp-settings.php</b> on line <b>197</b><br />
-<br />
-<b>Warning</b>:  include_once(): Failed opening '/home/cameron1/sintitulocomic.com/wp-content/plugins/akismet/akismet.php' for inclusion (include_path='.:/usr/local/lib/php:/usr/local/php5/lib/pear') in <b>/home/cameron1/sintitulocomic.com/wp-settings.php</b> on line <b>197</b><br />
-<br />
-<b>Warning</b>:  Cannot modify header information - headers already sent by (output started at /home/cameron1/sintitulocomic.com/wp-settings.php:197) in <b>/home/cameron1/sintitulocomic.com/wp-includes/pluggable.php</b> on line <b>875</b><br />

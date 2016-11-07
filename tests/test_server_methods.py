@@ -2,11 +2,9 @@ import codecs
 import json
 import os
 from smoke_signal import app, init_db
+from utils.generate_feed import sample_feed
 import unittest
 import tempfile
-
-SAMPLE_RSS = "file://" + app.root_path + "/test_resources/sample_rss.xml"
-
 
 def get_json(response):
     return json.loads(codecs.decode(response.get_data(), 'utf-8'))
@@ -20,10 +18,19 @@ class SmokeSignalTestCase(unittest.TestCase):
         self.app = app.test_client()
         with app.app_context():
             init_db()
+        self.feed_fd, self.feed_path = tempfile.mkstemp()
+        sample_rss = sample_feed("Test feed", 5)
 
     def tearDown(self):
         os.close(self.db_fd)
         os.unlink(self.db_path)
+        os.close(self.feed_fd)
+        os.unlink(self.feed_path)
+
+    def _generate_sample_rss(self, title, num_items):
+        feed = sample_feed(title, num_items)
+        with open(self.feed_path, 'w') as f:
+            f.write(feed)
 
     def test_alive(self):
         resp = self.app.get('/')
@@ -40,7 +47,8 @@ class SmokeSignalTestCase(unittest.TestCase):
                              content_type='application/json')
 
     def _get_valid_feed(self):
-        resp = self._add_feed(SAMPLE_RSS)
+        self._generate_sample_rss("Test feed", 5)
+        resp = self._add_feed("file://" + self.feed_path)
         return get_json(resp)
 
     def test_add_invalid_feed(self):
@@ -49,7 +57,7 @@ class SmokeSignalTestCase(unittest.TestCase):
 
     def test_add_valid_feed(self):
         data = self._get_valid_feed()
-        assert data["url"] == SAMPLE_RSS
+        assert data["url"] == "file://" + self.feed_path
         return data
 
     def test_add_and_get_feed_list(self):
@@ -57,7 +65,7 @@ class SmokeSignalTestCase(unittest.TestCase):
         resp = self.app.get("/feeds/")
         assert resp.status_code == 200
         feed_list = get_json(resp)
-        assert feed in feed_list
+        assert any(all(feed[k] == f[k] for k in feed.keys()) for f in feed_list)
 
     def _get_entries_response(self):
         feed = self._get_valid_feed()
