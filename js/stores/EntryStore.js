@@ -49,7 +49,7 @@ class EntryStore extends EventEmitter {
   }
 
   get entries() {
-    return Object.values(this._entries)
+    return Object.keys(this._entries).map(i => this._entries[i])
   }
 
   _setEntries(newEntries) {
