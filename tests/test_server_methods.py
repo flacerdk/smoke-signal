@@ -6,6 +6,7 @@ from utils.generate_feed import sample_feed
 import unittest
 import tempfile
 
+
 def get_json(response):
     return json.loads(codecs.decode(response.get_data(), 'utf-8'))
 
@@ -19,7 +20,6 @@ class SmokeSignalTestCase(unittest.TestCase):
         with app.app_context():
             init_db()
         self.feed_fd, self.feed_path = tempfile.mkstemp()
-        sample_rss = sample_feed("Test feed", 5)
 
     def tearDown(self):
         os.close(self.db_fd)
@@ -57,6 +57,7 @@ class SmokeSignalTestCase(unittest.TestCase):
 
     def test_add_valid_feed(self):
         data = self._get_valid_feed()
+        assert data["title"] == "Test feed"
         assert data["url"] == "file://" + self.feed_path
         return data
 
@@ -65,7 +66,8 @@ class SmokeSignalTestCase(unittest.TestCase):
         resp = self.app.get("/feeds/")
         assert resp.status_code == 200
         feed_list = get_json(resp)
-        assert any(all(feed[k] == f[k] for k in feed.keys()) for f in feed_list)
+        assert any(all(feed[k] == f[k] for k in feed.keys())
+                   for f in feed_list)
 
     def _get_entries_response(self):
         feed = self._get_valid_feed()
