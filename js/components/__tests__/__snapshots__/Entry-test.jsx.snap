@@ -1,0 +1,33 @@
+exports[`Entry has read class when read 1`] = `
+<div
+  className="entry read">
+  <a
+    className="entry_title"
+    href="http://example.com/test_url">
+    Test title
+  </a>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "Test text",
+      }
+    } />
+</div>
+`;
+
+exports[`Entry has unread class when unread 1`] = `
+<div
+  className="entry unread">
+  <a
+    className="entry_title"
+    href="http://example.com/test_url">
+    Test title
+  </a>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "Test text",
+      }
+    } />
+</div>
+`;
