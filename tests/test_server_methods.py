@@ -2,7 +2,7 @@ import codecs
 import json
 import os
 from smoke_signal import app, init_db
-from utils.generate_feed import sample_feed
+from utils.generate_feed import SampleFeed
 import unittest
 import tempfile
 
@@ -28,9 +28,11 @@ class SmokeSignalTestCase(unittest.TestCase):
         os.unlink(self.feed_path)
 
     def _generate_sample_rss(self, title, num_items):
-        feed = sample_feed(title, num_items)
+        feed = SampleFeed(title)
+        for i in range(num_items):
+            feed.add_item()
         with open(self.feed_path, 'w') as f:
-            f.write(feed)
+            f.write(feed.__str__())
 
     def test_alive(self):
         resp = self.app.get('/')
