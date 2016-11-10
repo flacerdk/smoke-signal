@@ -35,7 +35,14 @@ export default class EntryList extends React.Component {
   render() {
     const entries = this.props.entries
       .filter((entry, index) => index >= this.props.activeEntryIndex)
-      .map(entry => (<Entry entry={entry} key={entry.entry_id} />))
+      .map(entry => (
+        <Entry
+          text={entry.text}
+          read={entry.read}
+          url={entry.url}
+          title={entry.title}
+          key={entry.entry_id}
+        />))
     return (
       <div id="entries">
         {entries}
