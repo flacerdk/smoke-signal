@@ -1,6 +1,8 @@
 import sqlalchemy as sql
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
+from time import mktime
 
 Base = declarative_base()
 
@@ -33,14 +35,19 @@ class Entry(Base):
     text = sql.Column(sql.String, nullable=False)
     url = sql.Column(sql.String, nullable=False)
     read = sql.Column(sql.Boolean, nullable=False)
+    pub_date = sql.Column(sql.DateTime, nullable=False)
     feed_id = sql.Column(sql.Integer, sql.ForeignKey('feed.id'))
 
-    def __init__(self, title, guid, url, text, feed_id):
+    def __init__(self, title, guid, url, text, feed_id, pub_date=None):
         self.title = title
         self.guid = guid
         self.text = text
         self.url = url
         self.read = False
+        if pub_date is None:
+            self.pub_date = datetime.fromtimestamp(0)
+        else:
+            self.pub_date = datetime.fromtimestamp(mktime(pub_date))
         self.feed_id = feed_id
 
     def __unicode__(self):
@@ -49,4 +56,5 @@ class Entry(Base):
     def serialize(self):
         return {'title': self.title, 'text': self.text,
                 'url': self.url, 'entry_id': self.id,
-                'feed_id': self.feed_id, 'read': self.read}
+                'feed_id': self.feed_id, 'read': self.read,
+                'pub_date': self.pub_date.isoformat()}

@@ -51,7 +51,8 @@ def create_db_entry(feed_entry, feed_id):
     guid = feed_entry.get('id', 'No ID')
     summary = feed_entry.get('summary', title)
     link = feed_entry.get('link', '/page_not_found.html')
-    entry = Entry(title, guid, link, summary, feed_id)
+    pub_date = feed_entry.get('published_parsed', None)
+    entry = Entry(title, guid, link, summary, feed_id, pub_date=pub_date)
     return entry
 
 
