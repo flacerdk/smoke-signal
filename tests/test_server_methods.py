@@ -67,7 +67,9 @@ class SmokeSignalTestCase(unittest.TestCase):
         feed = self._get_valid_feed()
         resp = self.app.get("/feeds/")
         assert resp.status_code == 200
-        feed_list = get_json(resp)
+        parsed_json = get_json(resp)
+        assert "_embedded" in parsed_json
+        feed_list = parsed_json["_embedded"]["feeds"]
         assert any(all(feed[k] == f[k] for k in feed.keys())
                    for f in feed_list)
 
@@ -85,7 +87,9 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert entry_list != []
 
     def test_mark_entry_as_read(self):
-        entry_list = get_json(self._get_entries_response())
+        parsed_json = get_json(self._get_entries_response())
+        assert "_embedded" in parsed_json
+        entry_list = parsed_json["_embedded"]["entries"]
         entry = entry_list[0]
         assert entry["feed_id"] is not None
         assert entry["entry_id"] is not None
@@ -98,7 +102,7 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert entry["read"]
 
     def _change_entry_status(self, read):
-        entry_list = get_json(self._get_entries_response())
+        entry_list = get_json(self._get_entries_response())["_embedded"]["entries"]
         entry = entry_list[0]
         resp = self.app.post(
             "/feeds/{}/{}".format(entry["feed_id"],
@@ -110,19 +114,19 @@ class SmokeSignalTestCase(unittest.TestCase):
     def test_read_entries(self):
         read_entry = self._change_entry_status(read=True)
         resp = self.app.get("/feeds/{}/read".format(read_entry["feed_id"]))
-        read_entry_list = get_json(resp)
+        read_entry_list = get_json(resp)["_embedded"]["entries"]
         assert read_entry in read_entry_list
         resp = self.app.get("/feeds/{}/unread".format(read_entry["feed_id"]))
-        unread_entry_list = get_json(resp)
+        unread_entry_list = get_json(resp)["_embedded"]["entries"]
         assert read_entry not in unread_entry_list
 
     def test_unread_entries(self):
         unread_entry = self._change_entry_status(read=False)
         resp = self.app.get("/feeds/{}/unread".format(unread_entry["feed_id"]))
-        unread_entry_list = get_json(resp)
+        unread_entry_list = get_json(resp)["_embedded"]["entries"]
         assert unread_entry in unread_entry_list
         resp = self.app.get("/feeds/{}/read".format(unread_entry["feed_id"]))
-        read_entry_list = get_json(resp)
+        read_entry_list = get_json(resp)["_embedded"]["entries"]
         assert unread_entry not in read_entry_list
 
 

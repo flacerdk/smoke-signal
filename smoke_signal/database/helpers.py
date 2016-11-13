@@ -38,6 +38,10 @@ def query_feed_by_id(feed_id):
     return g.db.query(Feed).filter_by(id=feed_id).one()
 
 
+def query_entry_by_id(feed_id, entry_id):
+    return g.db.query(Entry).filter_by(id=entry_id, feed_id=feed_id).one()
+
+
 def query_entries_filtered_by(**kwargs):
     return g.db.query(Entry).filter_by(**kwargs)
 

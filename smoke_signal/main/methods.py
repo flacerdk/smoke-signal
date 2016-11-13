@@ -18,14 +18,20 @@ def jsonify(obj):
 
 
 def get_all_feeds():
+    response = {}
+    response["_links"] = {"self": {"href": "/feeds/"},
+                          "find": {"href": "/feeds{?id}",
+                                   "templated": True}}
     feeds = helpers.feed_list()
     if feeds == []:
-        response = []
         status_code = 204
     else:
-        response = json.dumps(feeds)
+        for feed in feeds:
+            feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
+        response["_embedded"] = {"feeds": feeds}
         status_code = 200
-    return Response(response, status=status_code, mimetype="application/json")
+    return Response(json.dumps(response), status=status_code,
+                    mimetype="application/json")
 
 
 def post_feed(url):
@@ -33,24 +39,42 @@ def post_feed(url):
     if parsed == {}:
         raise NotFound
     title = parsed.get("title", "No title")
-    feed = helpers.add_feed(title, url)
-    js = jsonify(feed)
-    location = {"Location": "/feeds/{}".format(feed.serialize()["id"])}
-    resp = Response(js, status=200, mimetype="application/json",
-                    headers=location)
-    return resp
+    feed = helpers.add_feed(title, url).serialize()
+    feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
+    return Response(json.dumps(feed), status=200, mimetype="application/json")
 
 
 def get_entries(feed_id, **kwargs):
-    return jsonify(helpers.query_entries_filtered_by(feed_id=feed_id,
-                                                     **kwargs).all())
+    response = {}
+    response["_links"] = {"self": {"href": "/feeds/{}".format(feed_id)}}
+    entries = [e.serialize()
+               for e in helpers.query_entries_filtered_by(feed_id=feed_id,
+                                                          **kwargs).all()]
+    for entry in entries:
+        entry["_links"] = {
+            "self": {
+                "href": "/feeds/{}/{}".format(entry["entry_id"],
+                                              entry["feed_id"])
+            }
+        }
+    response["_embedded"] = {"entries": entries}
+    return Response(json.dumps(response), mimetype="application/json")
+
+
+def get_entry(feed_id, entry_id):
+    entry = helpers.query_entry_by_id(feed_id, entry_id)
+    response = entry.serialize()
+    response["_links"] = {
+        "self": {"href": "/feeds/{}/{}".format(feed_id, entry_id)}
+    }
+    return Response(json.dumps(response), mimetype="application/json")
 
 
 def refresh_feed(feed_id):
     try:
         feed = helpers.query_feed_by_id(feed_id)
-        entries = helpers.add_entries(feed_id, parse_entries(feed))
-        return jsonify(entries)
+        helpers.add_entries(feed_id, parse_entries(feed))
+        return get_entries(feed_id)
     except NoResultFound:
         raise NotFound
 
@@ -63,7 +87,7 @@ def parse_entries(feed):
 
 def toggle_read_status(feed_id, entry_id, read):
     try:
-        entry = helpers.toggle_entry_read_status(feed_id, entry_id, read=read)
-        return jsonify(entry)
+        helpers.toggle_entry_read_status(feed_id, entry_id, read=read)
+        return get_entry(feed_id, entry_id)
     except NoResultFound:
         raise NotFound
