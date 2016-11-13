@@ -41,7 +41,7 @@ class SmokeSignalTestCase(unittest.TestCase):
     def test_empty_feed_list(self):
         resp = self.app.get('/feeds/')
         assert resp.status_code == 204
-        resp = self.app.get('/feeds/1')
+        resp = self.app.get('/feeds/1/entries')
         assert resp.status_code == 404
 
     def _add_feed(self, url):
@@ -73,9 +73,13 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert any(all(feed[k] == f[k] for k in feed.keys())
                    for f in feed_list)
 
+    def _refresh_feed(self, feed):
+        return self.app.post("/feeds/{}".format(feed["id"]))
+
     def _get_entries_response(self):
         feed = self._get_valid_feed()
-        return self.app.get("/feeds/{}".format(feed["id"]))
+        self._refresh_feed(feed)
+        return self.app.get("/feeds/{}/entries".format(feed["id"]))
 
     def test_add_and_get_feed(self):
         resp = self._get_entries_response()
@@ -93,8 +97,8 @@ class SmokeSignalTestCase(unittest.TestCase):
         entry = entry_list[0]
         assert entry["feed_id"] is not None
         assert entry["entry_id"] is not None
-        resp = self.app.post("/feeds/{}/{}".format(entry["feed_id"],
-                                                   entry["entry_id"]),
+        resp = self.app.post("/feeds/{}/entries/{}".format(entry["feed_id"],
+                                                           entry["entry_id"]),
                              data=json.dumps({"read": True}),
                              content_type="application/json")
         assert resp.status_code == 200
@@ -105,29 +109,28 @@ class SmokeSignalTestCase(unittest.TestCase):
         entry_list = get_json(self._get_entries_response())["_embedded"]["entries"]
         entry = entry_list[0]
         resp = self.app.post(
-            "/feeds/{}/{}".format(entry["feed_id"],
-                                  entry["entry_id"]),
+            "/feeds/{}/entries/{}".format(entry["feed_id"],
+                                          entry["entry_id"]),
             data=json.dumps({"read": read}),
             content_type="application/json")
         return get_json(resp)
 
     def test_read_entries(self):
         read_entry = self._change_entry_status(read=True)
-        resp = self.app.get("/feeds/{}/read".format(read_entry["feed_id"]))
+        resp = self.app.get("/feeds/{}/entries/read".format(read_entry["feed_id"]))
         read_entry_list = get_json(resp)["_embedded"]["entries"]
         assert read_entry in read_entry_list
-        resp = self.app.get("/feeds/{}/unread".format(read_entry["feed_id"]))
+        resp = self.app.get("/feeds/{}/entries/unread".format(read_entry["feed_id"]))
         unread_entry_list = get_json(resp)["_embedded"]["entries"]
         assert read_entry not in unread_entry_list
 
     def test_unread_entries(self):
         unread_entry = self._change_entry_status(read=False)
-        resp = self.app.get("/feeds/{}/unread".format(unread_entry["feed_id"]))
+        resp = self.app.get("/feeds/{}/entries/unread".format(unread_entry["feed_id"]))
         unread_entry_list = get_json(resp)["_embedded"]["entries"]
         assert unread_entry in unread_entry_list
-        resp = self.app.get("/feeds/{}/read".format(unread_entry["feed_id"]))
-        read_entry_list = get_json(resp)["_embedded"]["entries"]
-        assert unread_entry not in read_entry_list
+        resp = self.app.get("/feeds/{}/entries/read".format(unread_entry["feed_id"]))
+        assert resp.status_code == 204
 
 
 if __name__ == "__main__":

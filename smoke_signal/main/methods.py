@@ -9,14 +9,6 @@ from sqlalchemy.orm.exc import NoResultFound
 from smoke_signal.database import helpers
 
 
-def jsonify(obj):
-    if hasattr(obj, "__iter__"):
-        js = json.dumps([item.serialize() for item in obj])
-    else:
-        js = json.dumps(obj.serialize())
-    return js
-
-
 def get_all_feeds():
     response = {}
     response["_links"] = {"self": {"href": "/feeds/"},
@@ -41,31 +33,40 @@ def post_feed(url):
     title = parsed.get("title", "No title")
     feed = helpers.add_feed(title, url).serialize()
     feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
-    return Response(json.dumps(feed), status=200, mimetype="application/json")
+    return Response(json.dumps(feed), mimetype="application/json")
 
 
 def get_entries(feed_id, **kwargs):
+    try:
+        helpers.query_feed_by_id(feed_id)
+    except NoResultFound:
+        raise NotFound
     response = {}
-    response["_links"] = {"self": {"href": "/feeds/{}".format(feed_id)}}
-    entries = [e.serialize()
-               for e in helpers.query_entries_filtered_by(feed_id=feed_id,
-                                                          **kwargs).all()]
-    for entry in entries:
-        entry["_links"] = {
-            "self": {
-                "href": "/feeds/{}/{}".format(entry["entry_id"],
-                                              entry["feed_id"])
+    response["_links"] = {"self":
+                          {"href": "/feeds/{}/entries".format(feed_id)}}
+    query = helpers.query_entries_filtered_by(feed_id=feed_id, **kwargs).all()
+    if query == []:
+        status_code = 204
+    else:
+        status_code = 200
+        entries = [e.serialize() for e in query]
+        for entry in entries:
+            entry["_links"] = {
+                "self": {
+                    "href": "/feeds/{}/entries/{}".format(entry["entry_id"],
+                                                          entry["feed_id"])
+                }
             }
-        }
-    response["_embedded"] = {"entries": entries}
-    return Response(json.dumps(response), mimetype="application/json")
+        response["_embedded"] = {"entries": entries}
+    return Response(json.dumps(response), status=status_code,
+                    mimetype="application/json")
 
 
 def get_entry(feed_id, entry_id):
     entry = helpers.query_entry_by_id(feed_id, entry_id)
     response = entry.serialize()
     response["_links"] = {
-        "self": {"href": "/feeds/{}/{}".format(feed_id, entry_id)}
+        "self": {"href": "/feeds/{}/entries/{}".format(feed_id, entry_id)}
     }
     return Response(json.dumps(response), mimetype="application/json")
 

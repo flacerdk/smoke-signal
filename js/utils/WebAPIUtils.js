@@ -28,12 +28,15 @@ const refreshFeedList = () =>
       _getRequest('/feeds/')
       .then(response => response["_embedded"]["feeds"])
 
+const refreshFeed = () =>
+      _postJSONRequest(`/feeds/${feedId}`)
+
 const fetchFeedEntries = feedId =>
-      _getRequest(`/feeds/${feedId}`)
+      _getRequest(`/feeds/${feedId}/entries`)
       .then(response => response["_embedded"]["entries"])
 
 const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
-      _postJSONRequest(`/feeds/${feedId}/${entryId}`,
+      _postJSONRequest(`/feeds/${feedId}/entries/${entryId}`,
                        { read: newReadStatus })
 
 module.exports = {
