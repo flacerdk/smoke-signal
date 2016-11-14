@@ -20,6 +20,15 @@ module.exports = {
     ), ex => console.log(`Couldn't load feed list: ${ex.message}`))
   },
 
+  refreshFeed: feedId =>
+    WebAPIUtils.refreshFeed(feedId).then(entries => (
+      ActionDispatcher.dispatch({
+        type: ActionTypes.FETCH_FEED_ENTRIES,
+        feedId,
+        entries,
+      })
+    ), ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
+
   fetchFeedEntries: feedId =>
     WebAPIUtils.fetchFeedEntries(feedId).then(entries => (
       ActionDispatcher.dispatch({

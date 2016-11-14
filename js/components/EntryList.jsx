@@ -20,12 +20,16 @@ export default class EntryList extends React.Component {
         this.props.activeFeedId,
         entry.entry_id, newReadStatus)
     })
+    Mousetrap.bind('r', () => {
+      FeedReaderActions.refreshFeed(this.props.activeFeedId)
+    })
   }
 
   componentWillUnmount() {
     Mousetrap.unbind('j')
     Mousetrap.unbind('k')
     Mousetrap.unbind('m')
+    Mousetrap.unbind('r')
   }
 
   _getEntryId(index) {

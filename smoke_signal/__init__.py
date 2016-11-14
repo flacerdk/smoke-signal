@@ -11,9 +11,10 @@ app.register_blueprint(main)
 
 
 @app.before_request
-def init_db():
+def init_db(create=False):
     engine = create_engine(app.config["DATABASE_PATH"])
-    if not engine.dialect.has_table(engine.connect(), "feed"):
+    if create or not engine.dialect.has_table(engine.connect(), "feed"):
+        Base.metadata.drop_all(engine)
         Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     g.db = Session()
