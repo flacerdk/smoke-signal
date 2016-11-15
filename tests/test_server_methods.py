@@ -40,7 +40,9 @@ class SmokeSignalTestCase(unittest.TestCase):
 
     def test_empty_feed_list(self):
         resp = self.app.get('/feeds/')
-        assert resp.status_code == 204
+        assert resp.status_code == 200
+        feeds = get_json(resp)["_embedded"]["feeds"]
+        assert feeds == []
         resp = self.app.get('/feeds/1/entries')
         assert resp.status_code == 404
 
@@ -130,7 +132,9 @@ class SmokeSignalTestCase(unittest.TestCase):
         unread_entry_list = get_json(resp)["_embedded"]["entries"]
         assert unread_entry in unread_entry_list
         resp = self.app.get("/feeds/{}/entries/read".format(unread_entry["feed_id"]))
-        assert resp.status_code == 204
+        assert resp.status_code == 200
+        read_entry_list = get_json(resp)["_embedded"]["entries"]
+        assert unread_entry not in read_entry_list
 
 
 if __name__ == "__main__":

@@ -15,15 +15,10 @@ def get_all_feeds():
                           "find": {"href": "/feeds{?id}",
                                    "templated": True}}
     feeds = helpers.feed_list()
-    if feeds == []:
-        status_code = 204
-    else:
-        for feed in feeds:
-            feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
-        response["_embedded"] = {"feeds": feeds}
-        status_code = 200
-    return Response(json.dumps(response), status=status_code,
-                    mimetype="application/json")
+    for feed in feeds:
+        feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
+    response["_embedded"] = {"feeds": feeds}
+    return Response(json.dumps(response), mimetype="application/json")
 
 
 def post_feed(url):
@@ -45,20 +40,16 @@ def get_entries(feed_id, **kwargs):
     response["_links"] = {"self":
                           {"href": "/feeds/{}/entries".format(feed_id)}}
     query = helpers.query_entries_filtered_by(feed_id=feed_id, **kwargs).all()
-    if query == []:
-        status_code = 204
-    else:
-        status_code = 200
-        entries = [e.serialize() for e in query]
-        for entry in entries:
-            entry["_links"] = {
-                "self": {
-                    "href": "/feeds/{}/entries/{}".format(entry["feed_id"],
-                                                          entry["id"])
-                }
+    entries = [e.serialize() for e in query]
+    for entry in entries:
+        entry["_links"] = {
+            "self": {
+                "href": "/feeds/{}/entries/{}".format(entry["feed_id"],
+                                                      entry["id"])
             }
-        response["_embedded"] = {"entries": entries}
-    return Response(json.dumps(response), status=status_code,
+        }
+    response["_embedded"] = {"entries": entries}
+    return Response(json.dumps(response),
                     mimetype="application/json")
 
 

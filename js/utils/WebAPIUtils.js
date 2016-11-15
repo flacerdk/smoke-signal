@@ -34,33 +34,15 @@ const addFeed = url => _postJSONRequest('/feeds/', { url })
 
 const refreshFeedList = () =>
       _getRequest('/feeds/')
-      .then((response) => {
-        if (("_embedded") in response) {
-          return response["_embedded"]["feeds"]
-        } else {
-          return []
-        }
-      })
+      .then(response => response["_embedded"]["feeds"])
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)
-      .then((response) => {
-        if (("_embedded") in response) {
-          return response["_embedded"]["entries"]
-        } else {
-          return []
-        }
-      })
+      .then(response => response["_embedded"]["entries"])
 
 const fetchFeedEntries = feedId =>
       _getRequest(`/feeds/${feedId}/entries`)
-      .then((response) => {
-        if (("_embedded") in response) {
-          return response["_embedded"]["entries"]
-        } else {
-          return []
-        }
-      })
+      .then(response => response["_embedded"]["entries"])
 
 const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
       _postJSONRequest(`/feeds/${feedId}/entries/${entryId}`,
