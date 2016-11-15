@@ -55,6 +55,6 @@ class Entry(Base):
 
     def serialize(self):
         return {'title': self.title, 'text': self.text,
-                'url': self.url, 'entry_id': self.id,
+                'url': self.url, 'id': self.id,
                 'feed_id': self.feed_id, 'read': self.read,
                 'pub_date': self.pub_date.isoformat()}

@@ -96,9 +96,9 @@ class SmokeSignalTestCase(unittest.TestCase):
         entry_list = parsed_json["_embedded"]["entries"]
         entry = entry_list[0]
         assert entry["feed_id"] is not None
-        assert entry["entry_id"] is not None
+        assert entry["id"] is not None
         resp = self.app.post("/feeds/{}/entries/{}".format(entry["feed_id"],
-                                                           entry["entry_id"]),
+                                                           entry["id"]),
                              data=json.dumps({"read": True}),
                              content_type="application/json")
         assert resp.status_code == 200
@@ -110,7 +110,7 @@ class SmokeSignalTestCase(unittest.TestCase):
         entry = entry_list[0]
         resp = self.app.post(
             "/feeds/{}/entries/{}".format(entry["feed_id"],
-                                          entry["entry_id"]),
+                                          entry["id"]),
             data=json.dumps({"read": read}),
             content_type="application/json")
         return get_json(resp)

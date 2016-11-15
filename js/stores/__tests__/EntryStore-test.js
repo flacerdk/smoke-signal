@@ -13,7 +13,7 @@ describe('EntryStore', () => {
     feedId: 1,
     entries: [
       {
-        entry_id: 1,
+        id: 1,
         title: 'Test title',
         url: 'http://example.com/test_url',
         text: 'Test text',
@@ -41,7 +41,7 @@ describe('EntryStore', () => {
     callback(actionFetchFeedEntries)
     const entries = EntryStore.entries
     expect(entries.length).toBe(1)
-    expect(entries[0].entry_id).toEqual(1)
+    expect(entries[0].id).toEqual(1)
     expect(entries[0].title).toEqual('Test title')
     expect(entries[0].url).toEqual('http://example.com/test_url')
     expect(entries[0].text).toEqual('Test text')

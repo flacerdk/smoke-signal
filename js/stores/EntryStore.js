@@ -56,7 +56,7 @@ class EntryStore extends EventEmitter {
     this._entries = {}
     this._activeEntryIndex = 0
     newEntries.forEach((entry) => {
-      this._entries[entry.entry_id] = entry
+      this._entries[entry.id] = entry
       return false
     })
   }
@@ -78,8 +78,8 @@ class EntryStore extends EventEmitter {
   }
 
   _updateEntry(newEntry) {
-    if (newEntry.entry_id) {
-      this._entries[newEntry.entry_id] = newEntry
+    if (newEntry.id) {
+      this._entries[newEntry.id] = newEntry
     }
   }
 }

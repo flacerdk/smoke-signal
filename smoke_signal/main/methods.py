@@ -54,7 +54,7 @@ def get_entries(feed_id, **kwargs):
             entry["_links"] = {
                 "self": {
                     "href": "/feeds/{}/entries/{}".format(entry["feed_id"],
-                                                          entry["entry_id"])
+                                                          entry["id"])
                 }
             }
         response["_embedded"] = {"entries": entries}

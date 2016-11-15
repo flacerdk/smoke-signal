@@ -18,7 +18,7 @@ export default class EntryList extends React.Component {
       const newReadStatus = !entry.read
       FeedReaderActions.changeEntryReadStatus(
         this.props.activeFeedId,
-        entry.entry_id, newReadStatus)
+        entry.id, newReadStatus)
     })
     Mousetrap.bind('r', () => {
       FeedReaderActions.refreshFeed(this.props.activeFeedId)
@@ -33,7 +33,7 @@ export default class EntryList extends React.Component {
   }
 
   _getEntryId(index) {
-    return this.props.entries[index].entry_id
+    return this.props.entries[index].id
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class EntryList extends React.Component {
           read={entry.read}
           url={entry.url}
           title={entry.title}
-          key={entry.entry_id}
+          key={entry.id}
         />))
     return (
       <div id="entries">
