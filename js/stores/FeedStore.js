@@ -53,4 +53,4 @@ class FeedStore extends EventEmitter {
   }
 }
 
-module.exports = new FeedStore()
+module.exports = FeedStore

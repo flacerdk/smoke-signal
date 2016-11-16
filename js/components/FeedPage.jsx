@@ -5,33 +5,39 @@ import EntryList from './EntryList'
 import FeedStore from '../stores/FeedStore'
 import EntryStore from '../stores/EntryStore'
 
-const getStateFromStores = () => ({
-  feeds: FeedStore.feeds,
-  entries: EntryStore.entries,
-  activeEntryIndex: EntryStore.activeEntryIndex,
-  activeFeedId: EntryStore.activeFeedId,
-})
-
 export default class FeedPage extends React.Component {
   constructor() {
     super()
 
-    this.state = getStateFromStores()
+    this._feedStore = new FeedStore()
+    this._entryStore = new EntryStore()
+
+    this.getStateFromStores = this.getStateFromStores.bind(this)
+    this.state = this.getStateFromStores()
     this._onChange = this._onChange.bind(this)
   }
 
   componentDidMount() {
-    FeedStore.addChangeListener(this._onChange)
-    EntryStore.addChangeListener(this._onChange)
+    this._feedStore.addChangeListener(this._onChange)
+    this._entryStore.addChangeListener(this._onChange)
   }
 
   componentWillUnmount() {
-    FeedStore.removeChangeListener(this._onChange)
-    EntryStore.removeChangeListener(this._onChange)
+    this._feedStore.removeChangeListener(this._onChange)
+    this._entryStore.removeChangeListener(this._onChange)
+  }
+
+  getStateFromStores() {
+    return {
+      feeds: this._feedStore.feeds,
+      entries: this._entryStore.entries,
+      activeEntryIndex: this._entryStore.activeEntryIndex,
+      activeFeedId: this._entryStore.activeFeedId,
+    }
   }
 
   _onChange() {
-    this.setState(getStateFromStores())
+    this.setState(this.getStateFromStores())
   }
 
   render() {

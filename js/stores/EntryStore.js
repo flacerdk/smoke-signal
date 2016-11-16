@@ -19,6 +19,7 @@ class EntryStore extends EventEmitter {
 
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
+
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
         case ActionTypes.FETCH_FEED_ENTRIES:
@@ -84,4 +85,4 @@ class EntryStore extends EventEmitter {
   }
 }
 
-module.exports = new EntryStore()
+module.exports = EntryStore
