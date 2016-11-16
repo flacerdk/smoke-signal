@@ -1,13 +1,13 @@
 import fetch from 'isomorphic-fetch'
 
+const SERVER = 'http://127.0.0.1:5000'
+
 const _getRequest = url =>
       fetch(url).then((response) => {
         if (response.ok) {
-          if (response.status == 200) {
+          if (response.status === 200) {
             return response.json()
-          } else {
-            return []
-          }
+          } return []
         } throw Error(response.statusText)
       })
 
@@ -22,30 +22,28 @@ const _postJSONRequest = (url, data) =>
       })
       .then((response) => {
         if (response.ok) {
-          if (response.status == 200) {
+          if (response.status === 200) {
             return response.json()
-          } else {
-            return []
-          }
+          } return []
         } throw Error(response.statusText)
       })
 
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
 const refreshFeedList = () =>
-      _getRequest('/feeds/')
-      .then(response => response["_embedded"]["feeds"])
+      _getRequest(`${SERVER}/feeds/`)
+      .then(response => response._embedded.feeds)
 
 const refreshFeed = feedId =>
-      _postJSONRequest(`/feeds/${feedId}`)
-      .then(response => response["_embedded"]["entries"])
+      _postJSONRequest(`${SERVER}/feeds/${feedId}`)
+      .then(response => response._embedded.entries)
 
 const fetchFeedEntries = feedId =>
-      _getRequest(`/feeds/${feedId}/entries`)
-      .then(response => response["_embedded"]["entries"])
+      _getRequest(`${SERVER}/feeds/${feedId}/entries`)
+      .then(response => response._embedded.entries)
 
 const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
-      _postJSONRequest(`/feeds/${feedId}/entries/${entryId}`,
+      _postJSONRequest(`${SERVER}/feeds/${feedId}/entries/${entryId}`,
                        { read: newReadStatus })
 
 module.exports = {
