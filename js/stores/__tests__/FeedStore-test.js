@@ -1,12 +1,12 @@
-jest.enableAutomock()
-jest.dontMock('../FeedStore')
+'use strict'
 
-describe('FeedStore', () => {
+const expect = require('chai').expect
+const sinon = require('sinon')
+
+describe('FeedStore', function() {
   const ActionTypes = require('../../constants/FeedReaderConstants')
-
-  let ActionDispatcher
-  let FeedStore
-  let callback
+  const ActionDispatcher = require('../../dispatcher/ActionDispatcher')
+  const FeedStore = require('../FeedStore')
 
   const actionAddFeed = {
     type: ActionTypes.ADD_FEED,
@@ -33,41 +33,48 @@ describe('FeedStore', () => {
     ],
   }
 
-  beforeEach(() => {
-    ActionDispatcher = require('../../dispatcher/ActionDispatcher')
-    FeedStore = require('../FeedStore.js')
+  let spy
+  let callback
+  let feedStore
 
-    callback = ActionDispatcher.register.mock.calls[0][0]
+  beforeEach(function() {
+    spy = sinon.spy(ActionDispatcher, 'register')
+    feedStore = new FeedStore()
+    callback = ActionDispatcher.register.getCall(0).args[0]
   })
 
-  it('registers a callback with the dispatcher', () => {
-    expect(ActionDispatcher.register.mock.calls.length).toBe(1)
+  afterEach(function() {
+    ActionDispatcher.register.restore()
   })
 
-  it('initializes with no feeds', () => {
-    const feeds = FeedStore.feeds
-    expect(feeds).toEqual([])
+  it('registers a callback with the dispatcher', function() {
+    sinon.assert.calledOnce(spy)
   })
 
-  it('adds a feed', () => {
+  it('initializes with no feeds', function() {
+    const feeds = feedStore.feeds
+    expect(feeds).to.be.empty
+  })
+
+  it('adds a feed', function() {
     callback(actionAddFeed)
-    const feeds = FeedStore.feeds
-    expect(feeds.length).toBe(1)
-    expect(feeds[0].id).toEqual(1)
-    expect(feeds[0].title).toEqual('Test title')
-    expect(feeds[0].url).toEqual('http://example.com/test_url')
+    const feeds = feedStore.feeds
+    expect(feeds.length).to.equal(1)
+    expect(feeds[0].id).to.equal(1)
+    expect(feeds[0].title).to.equal('Test title')
+    expect(feeds[0].url).to.equal('http://example.com/test_url')
   })
 
   it('refreshes the feed list', () => {
     callback(actionRefreshFeedList)
-    const feeds = FeedStore.feeds
-    expect(feeds.length).toBe(2)
+    const feeds = feedStore.feeds
+    expect(feeds.length).to.equal(2)
 
-    expect(feeds[0].id).toEqual(1)
-    expect(feeds[0].title).toEqual('Test title 1')
-    expect(feeds[0].url).toEqual('http://example.com/test_url_1')
-    expect(feeds[1].id).toEqual(2)
-    expect(feeds[1].title).toEqual('Test title 2')
-    expect(feeds[1].url).toEqual('http://example.com/test_url_2')
+    expect(feeds[0].id).to.equal(1)
+    expect(feeds[0].title).to.equal('Test title 1')
+    expect(feeds[0].url).to.equal('http://example.com/test_url_1')
+    expect(feeds[1].id).to.equal(2)
+    expect(feeds[1].title).to.equal('Test title 2')
+    expect(feeds[1].url).to.equal('http://example.com/test_url_2')
   })
 })

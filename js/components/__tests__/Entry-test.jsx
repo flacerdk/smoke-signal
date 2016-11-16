@@ -1,30 +1,32 @@
 import React from 'react'
-import Entry from '../Entry'
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
+import { expect } from 'chai'
 
-describe('Entry', () => {
-  it('has read class when read', () => {
-    const component = renderer.create(
+import Entry from '../Entry'
+
+describe('<Entry />', function() {
+  it('has read class when read', function() {
+    const wrapper = shallow(
       <Entry
         text="Test text"
         title="Test title"
         url="http://example.com/test_url"
         read
-      />
-    )
-    const tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+      />)
+    expect(wrapper.find('div.read')).to.have.length(1)
+    expect(wrapper.find('div.unread')).to.have.length(0)
   })
 
-  it('has unread class when unread', () => {
-    const component = renderer.create(
+  it('has unread class when unread', function() {
+    const wrapper = shallow(
       <Entry
         text="Test text"
         title="Test title"
         url="http://example.com/test_url"
-      />
-    )
-    const tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+        unread
+      />)
+    expect(wrapper.find('div.unread')).to.have.length(1)
+    expect(wrapper.find('div.read')).to.have.length(0)
   })
+
 })

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha --compilers js:babel-core/register $(find js -name '*-test.js' -or -name '*-test.jsx')"
   },
   "author": "",
   "license": "ISC",
@@ -13,8 +13,11 @@
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
-    "jest-cli": "^16.0.2",
-    "react-test-renderer": "^15.3.2"
+    "chai": "^3.5.0",
+    "enzyme": "^2.6.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6"
   },
   "dependencies": {
     "es6-promise": "^4.0.5",

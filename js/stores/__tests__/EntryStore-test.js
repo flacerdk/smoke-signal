@@ -1,12 +1,12 @@
-jest.enableAutomock()
-jest.dontMock('../EntryStore')
+'use strict'
 
-describe('EntryStore', () => {
+const expect = require('chai').expect
+const sinon = require('sinon')
+
+describe('EntryStore', function() {
+  const ActionDispatcher = require('../../dispatcher/ActionDispatcher')
+  const EntryStore = require('../EntryStore')
   const ActionTypes = require('../../constants/FeedReaderConstants')
-
-  let ActionDispatcher
-  let EntryStore
-  let callback
 
   const actionFetchFeedEntries = {
     type: ActionTypes.FETCH_FEED_ENTRIES,
@@ -21,29 +21,37 @@ describe('EntryStore', () => {
     ],
   }
 
-  beforeEach(() => {
-    ActionDispatcher = require('../../dispatcher/ActionDispatcher')
-    EntryStore = require('../EntryStore.js')
+  let spy
+  let callback
+  let entryStore
 
-    callback = ActionDispatcher.register.mock.calls[0][0]
+  beforeEach(function() {
+    spy = sinon.spy(ActionDispatcher, 'register')
+    entryStore = new EntryStore()
+    callback = ActionDispatcher.register.getCall(0).args[0]
   })
 
-  it('registers a callback with the dispatcher', () => {
-    expect(ActionDispatcher.register.mock.calls.length).toBe(1)
+  afterEach(function() {
+    ActionDispatcher.register.restore()
   })
 
-  it('initializes with no entries', () => {
-    const entries = EntryStore.entries
-    expect(entries).toEqual([])
+  it('registers a callback with the dispatcher', function() {
+    sinon.assert.calledOnce(spy)
+  })
+  
+
+  it('initializes with no entries', function() {
+    const entries = entryStore.entries
+    expect(entries).to.be.empty
   })
 
-  it('fetches a feed\'s entries', () => {
+  it('fetches a feed\'s entries', function() {
     callback(actionFetchFeedEntries)
-    const entries = EntryStore.entries
-    expect(entries.length).toBe(1)
-    expect(entries[0].id).toEqual(1)
-    expect(entries[0].title).toEqual('Test title')
-    expect(entries[0].url).toEqual('http://example.com/test_url')
-    expect(entries[0].text).toEqual('Test text')
+    const entries = entryStore.entries
+    expect(entries.length).to.equal(1)
+    expect(entries[0].id).to.equal(1)
+    expect(entries[0].title).to.equal('Test title')
+    expect(entries[0].url).to.equal('http://example.com/test_url')
+    expect(entries[0].text).to.equal('Test text')
   })
 })
