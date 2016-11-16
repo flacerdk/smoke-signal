@@ -34,6 +34,35 @@ class SmokeSignalTestCase(unittest.TestCase):
         with open(self.feed_path, 'w') as f:
             f.write(feed.__str__())
 
+    def _add_feed(self, url):
+        return self.app.post('/feeds/', data=json.dumps({'url': url}),
+                             content_type='application/json')
+
+    def _get_valid_feed(self):
+        self._generate_sample_rss("Test feed", 5)
+        resp = self._add_feed("file://" + self.feed_path)
+        return get_json(resp)
+
+    def _refresh_feed(self, feed, add_entries=False):
+        if add_entries:
+            self._generate_sample_rss("Test feed", 10)
+        return self.app.post("/feeds/{}".format(feed["id"]))
+
+    def _get_entries_response(self):
+        feed = self._get_valid_feed()
+        self._refresh_feed(feed)
+        return self.app.get("/feeds/{}/entries".format(feed["id"]))
+
+    def _change_entry_status(self, read):
+        entry_list = get_json(self._get_entries_response())["_embedded"]["entries"]
+        entry = entry_list[0]
+        resp = self.app.post(
+            "/feeds/{}/entries/{}".format(entry["feed_id"],
+                                          entry["id"]),
+            data=json.dumps({"read": read}),
+            content_type="application/json")
+        return get_json(resp)
+
     def test_alive(self):
         resp = self.app.get('/')
         assert resp.status_code == 200
@@ -45,15 +74,6 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert feeds == []
         resp = self.app.get('/feeds/1/entries')
         assert resp.status_code == 404
-
-    def _add_feed(self, url):
-        return self.app.post('/feeds/', data=json.dumps({'url': url}),
-                             content_type='application/json')
-
-    def _get_valid_feed(self):
-        self._generate_sample_rss("Test feed", 5)
-        resp = self._add_feed("file://" + self.feed_path)
-        return get_json(resp)
 
     def test_add_invalid_feed(self):
         resp = self._add_feed("http://example.com")
@@ -75,14 +95,6 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert any(all(feed[k] == f[k] for k in feed.keys())
                    for f in feed_list)
 
-    def _refresh_feed(self, feed):
-        return self.app.post("/feeds/{}".format(feed["id"]))
-
-    def _get_entries_response(self):
-        feed = self._get_valid_feed()
-        self._refresh_feed(feed)
-        return self.app.get("/feeds/{}/entries".format(feed["id"]))
-
     def test_add_and_get_feed(self):
         resp = self._get_entries_response()
         assert resp.status_code == 200
@@ -91,6 +103,16 @@ class SmokeSignalTestCase(unittest.TestCase):
         resp = self._get_entries_response()
         entry_list = get_json(resp)
         assert entry_list != []
+
+    def test_refresh_feed(self):
+        feed = self._get_valid_feed()
+        self._refresh_feed(feed, add_entries=True)
+        resp = self.app.get("/feeds/{}/entries".format(feed["id"]))
+        assert resp.status_code == 200
+        entry_list = get_json(resp)
+        assert "_embedded" in entry_list
+        entries = entry_list["_embedded"]["entries"]
+        assert len(entries) == 10
 
     def test_mark_entry_as_read(self):
         parsed_json = get_json(self._get_entries_response())
@@ -106,16 +128,6 @@ class SmokeSignalTestCase(unittest.TestCase):
         assert resp.status_code == 200
         entry = get_json(resp)
         assert entry["read"]
-
-    def _change_entry_status(self, read):
-        entry_list = get_json(self._get_entries_response())["_embedded"]["entries"]
-        entry = entry_list[0]
-        resp = self.app.post(
-            "/feeds/{}/entries/{}".format(entry["feed_id"],
-                                          entry["id"]),
-            data=json.dumps({"read": read}),
-            content_type="application/json")
-        return get_json(resp)
 
     def test_read_entries(self):
         read_entry = self._change_entry_status(read=True)
