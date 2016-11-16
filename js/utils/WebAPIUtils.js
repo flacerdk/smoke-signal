@@ -1,6 +1,4 @@
-import fetch from 'isomorphic-fetch'
-
-const SERVER = 'http://127.0.0.1:5000'
+import 'isomorphic-fetch'
 
 const _getRequest = url =>
       fetch(url).then((response) => {
@@ -31,19 +29,19 @@ const _postJSONRequest = (url, data) =>
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
 const refreshFeedList = () =>
-      _getRequest(`${SERVER}/feeds/`)
+      _getRequest('/feeds/')
       .then(response => response._embedded.feeds)
 
 const refreshFeed = feedId =>
-      _postJSONRequest(`${SERVER}/feeds/${feedId}`)
+      _postJSONRequest(`/feeds/${feedId}`)
       .then(response => response._embedded.entries)
 
 const fetchFeedEntries = feedId =>
-      _getRequest(`${SERVER}/feeds/${feedId}/entries`)
+      _getRequest(`/feeds/${feedId}/entries`)
       .then(response => response._embedded.entries)
 
 const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
-      _postJSONRequest(`${SERVER}/feeds/${feedId}/entries/${entryId}`,
+      _postJSONRequest(`/feeds/${feedId}/entries/${entryId}`,
                        { read: newReadStatus })
 
 module.exports = {
