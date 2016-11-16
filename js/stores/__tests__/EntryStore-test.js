@@ -1,9 +1,9 @@
-'use strict'
+import chai from 'chai'
+import sinon from 'sinon'
 
-const expect = require('chai').expect
-const sinon = require('sinon')
+chai.should()
 
-describe('EntryStore', function() {
+describe('EntryStore', function () {
   const ActionDispatcher = require('../../dispatcher/ActionDispatcher')
   const EntryStore = require('../EntryStore')
   const ActionTypes = require('../../constants/FeedReaderConstants')
@@ -25,33 +25,32 @@ describe('EntryStore', function() {
   let callback
   let entryStore
 
-  beforeEach(function() {
+  beforeEach(function () {
     spy = sinon.spy(ActionDispatcher, 'register')
     entryStore = new EntryStore()
     callback = ActionDispatcher.register.getCall(0).args[0]
   })
 
-  afterEach(function() {
+  afterEach(function () {
     ActionDispatcher.register.restore()
   })
 
-  it('registers a callback with the dispatcher', function() {
+  it('registers a callback with the dispatcher', function () {
     sinon.assert.calledOnce(spy)
   })
-  
 
-  it('initializes with no entries', function() {
+  it('initializes with no entries', function () {
     const entries = entryStore.entries
-    expect(entries).to.be.empty
+    return entries.should.be.empty
   })
 
-  it('fetches a feed\'s entries', function() {
+  it('fetches a feed\'s entries', function () {
     callback(actionFetchFeedEntries)
     const entries = entryStore.entries
-    expect(entries.length).to.equal(1)
-    expect(entries[0].id).to.equal(1)
-    expect(entries[0].title).to.equal('Test title')
-    expect(entries[0].url).to.equal('http://example.com/test_url')
-    expect(entries[0].text).to.equal('Test text')
+    entries.length.should.equal(1)
+    entries[0].id.should.equal(1)
+    entries[0].title.should.equal('Test title')
+    entries[0].url.should.to.equal('http://example.com/test_url')
+    entries[0].text.should.to.equal('Test text')
   })
 })

@@ -1,11 +1,13 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { expect } from 'chai'
+import chai from 'chai'
 
 import Entry from '../Entry'
 
-describe('<Entry />', function() {
-  it('has read class when read', function() {
+chai.should()
+
+describe('<Entry />', function () {
+  it('has read class when read', function () {
     const wrapper = shallow(
       <Entry
         text="Test text"
@@ -13,11 +15,11 @@ describe('<Entry />', function() {
         url="http://example.com/test_url"
         read
       />)
-    expect(wrapper.find('div.read')).to.have.length(1)
-    expect(wrapper.find('div.unread')).to.have.length(0)
+    wrapper.find('div.read').should.have.length(1)
+    wrapper.find('div.unread').should.have.length(0)
   })
 
-  it('has unread class when unread', function() {
+  it('has unread class when unread', function () {
     const wrapper = shallow(
       <Entry
         text="Test text"
@@ -25,8 +27,8 @@ describe('<Entry />', function() {
         url="http://example.com/test_url"
         unread
       />)
-    expect(wrapper.find('div.unread')).to.have.length(1)
-    expect(wrapper.find('div.read')).to.have.length(0)
+    wrapper.find('div.unread').should.have.length(1)
+    wrapper.find('div.read').should.have.length(0)
   })
 
 })
