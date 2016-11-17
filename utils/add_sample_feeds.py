@@ -41,7 +41,7 @@ def add_feeds_to_db(option="add"):
 
 def usage():
     return """Usage:
-        add_sample_feeds <action> <number of feeds <number of entries per feed>
+        add_sample_feeds <action> <number of feeds> <number of entries per feed>
         where <action> is either create or add"""
 
 

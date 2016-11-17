@@ -1,10 +1,12 @@
 import codecs
 import json
 import os
+import unittest
+from urllib.parse import urlparse
+import tempfile
+
 from smoke_signal import app, init_db
 from utils.generate_feed import SampleFeed
-import unittest
-import tempfile
 
 
 def get_json(response):
@@ -19,33 +21,46 @@ class SmokeSignalTestCase(unittest.TestCase):
         self.app = app.test_client()
         with app.app_context():
             init_db()
-        self.feed_fd, self.feed_path = tempfile.mkstemp()
+        self.feed_files = []
 
     def tearDown(self):
         os.close(self.db_fd)
         os.unlink(self.db_path)
-        os.close(self.feed_fd)
-        os.unlink(self.feed_path)
+        for (fd, path) in self.feed_files:
+            os.close(fd)
+            os.unlink(path)
 
-    def _generate_sample_rss(self, title, num_items):
+    def _generate_sample_rss(self, title, num_entries):
         feed = SampleFeed(title)
-        for i in range(num_items):
+        for i in range(num_entries):
             feed.add_item()
-        with open(self.feed_path, 'w') as f:
+        feed_fd, feed_path = tempfile.mkstemp()
+        self.feed_files.append((feed_fd, feed_path))
+        with open(feed_path, 'w') as f:
             f.write(feed.__str__())
+        return feed_fd, feed_path
 
     def _add_feed(self, url):
         return self.app.post('/feeds/', data=json.dumps({'url': url}),
                              content_type='application/json')
 
     def _get_valid_feed(self):
-        self._generate_sample_rss("Test feed", 5)
-        resp = self._add_feed("file://" + self.feed_path)
+        feed_fd, feed_path = self._generate_sample_rss("Test feed", 5)
+        resp = self._add_feed("file://" + feed_path)
         return get_json(resp)
+
+    def _add_entries(self, feed, num_entries):
+        title = feed["title"]
+        feed_path = urlparse(feed["url"]).path
+        new_feed = SampleFeed(title)
+        for i in range(num_entries):
+            new_feed.add_item()
+        with open(feed_path, 'w') as f:
+            f.write(new_feed.__str__())
 
     def _refresh_feed(self, feed, add_entries=False):
         if add_entries:
-            self._generate_sample_rss("Test feed", 10)
+            self._add_entries(feed, 10)
         return self.app.post("/feeds/{}".format(feed["id"]))
 
     def _get_entries_response(self):
@@ -81,8 +96,9 @@ class SmokeSignalTestCase(unittest.TestCase):
 
     def test_add_valid_feed(self):
         data = self._get_valid_feed()
+        feed_path = self.feed_files[-1][1]
         assert data["title"] == "Test feed"
-        assert data["url"] == "file://" + self.feed_path
+        assert data["url"] == "file://" + feed_path
         return data
 
     def test_add_and_get_feed_list(self):
@@ -150,4 +166,5 @@ class SmokeSignalTestCase(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(SmokeSignalTestCase)
+    unittest.TextTestRunner(verbosity=2).run(suite)
