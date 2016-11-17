@@ -30,7 +30,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean enim nunc, aliqu
 
 
 class SampleFeed:
-    def __init__(self, title):
+    def __init__(self, title, num_items):
         self.title = title
         link = "http://example.com/{}".format(title)
         description = LOREM_IPSUM
@@ -38,6 +38,8 @@ class SampleFeed:
                                            description=description)
         self.footer = RSS_20_FOOTER
         self.items = []
+        for i in range(num_items):
+            self.add_item()
 
     def add_item(self):
         i = len(self.items) + 1
@@ -55,3 +57,7 @@ class SampleFeed:
         items = list(self.items)
         items.reverse()
         return self.header + "\n".join(items) + self.footer
+
+    def write_to_file(self, path):
+        with open(path, "w") as f:
+            f.write(self.__str__())

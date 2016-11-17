@@ -27,27 +27,27 @@ def feed_list():
             raise BadRequest
 
 
-@main.route('/feeds/<int:feed_id>', methods=['POST'])
+@main.route('/feeds/<int:feed_id>', methods=['GET', 'POST'])
 def refresh_feed(feed_id):
-    return methods.refresh_feed(feed_id)
+    if request.method == 'GET':
+        return load_feed(feed_id, "all")
+    else:
+        return methods.refresh_feed(feed_id)
 
 
-@main.route('/feeds/<int:feed_id>/entries', methods=['GET'])
-def all_entries(feed_id):
-    return methods.get_entries(feed_id)
+@main.route('/feeds/<int:feed_id>/<predicate>', methods=['GET'])
+def load_feed(feed_id, predicate):
+    if predicate not in ["all", "read", "unread"]:
+        raise BadRequest
+    return methods.get_entries(predicate=predicate, feed_id=feed_id)
 
 
-@main.route('/feeds/<int:feed_id>/entries/read', methods=['GET'])
-def all_read_entries(feed_id):
-    return methods.get_entries(feed_id, read=True)
+@main.route('/feeds/<predicate>', methods=['GET'])
+def all_read_entries(predicate):
+    return methods.get_entries(predicate=predicate)
 
 
-@main.route('/feeds/<int:feed_id>/entries/unread', methods=['GET'])
-def unread_entries(feed_id):
-    return methods.get_entries(feed_id, read=False)
-
-
-@main.route('/feeds/<int:feed_id>/entries/<int:entry_id>', methods=['POST'])
+@main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['POST'])
 def change_entry_status(feed_id, entry_id):
     if not request.is_json:
         raise BadRequest

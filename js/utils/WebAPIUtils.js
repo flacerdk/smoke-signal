@@ -37,11 +37,11 @@ const refreshFeed = feedId =>
       .then(response => response._embedded.entries)
 
 const fetchFeedEntries = feedId =>
-      _getRequest(`/feeds/${feedId}/entries`)
+      _getRequest(`/feeds/${feedId}/all`)
       .then(response => response._embedded.entries)
 
 const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
-      _postJSONRequest(`/feeds/${feedId}/entries/${entryId}`,
+      _postJSONRequest(`/feeds/${feedId}/${entryId}`,
                        { read: newReadStatus })
 
 module.exports = {

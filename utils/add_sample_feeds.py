@@ -17,9 +17,7 @@ def create_sample_feed_files(num_feeds, num_items, option="add"):
         rmtree(FEEDS_DIR)
     makedirs(FEEDS_DIR, exist_ok=True)
     for i in range(num_feeds):
-        feed = SampleFeed("Test feed {}".format(i))
-        for j in range(num_items):
-            feed.add_item()
+        feed = SampleFeed("Test feed {}".format(i), num_items)
         filename = FEEDS_DIR + "feed{}.xml".format(i)
         with open(filename, "w+") as f:
             f.write(feed.__str__())
