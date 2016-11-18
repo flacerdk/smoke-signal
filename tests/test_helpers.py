@@ -21,8 +21,8 @@ def add_feed(app, url):
                     content_type="application/json")
 
 
-def get_valid_feed(test_app, feed_path):
-    feed_path = generate_sample_rss("Test feed", feed_path, 5)
+def get_valid_feed(test_app, feed_path, num_entries):
+    feed_path = generate_sample_rss("Test feed", feed_path, num_entries)
     resp = add_feed(test_app, "file://" + feed_path)
     return get_json(resp)
 
@@ -34,14 +34,13 @@ def add_entries(feed, num_entries):
     new_feed.write_to_file(feed_path)
 
 
-def refresh_feed(app, feed, add=False):
-    if add:
-        add_entries(feed, 10)
+def refresh_feed(app, feed, num_entries):
+    add_entries(feed, num_entries)
     return app.post("/feeds/{}".format(feed["id"]))
 
 
 def get_entries_response(app, feed):
-    refresh_feed(app, feed)
+    app.post("/feeds/{}".format(feed["id"]))
     return app.get("/feeds/{}".format(feed["id"]))
 
 
