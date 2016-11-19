@@ -1,3 +1,4 @@
+import json
 import os
 import unittest
 import tempfile
@@ -36,10 +37,6 @@ class InitTestCase(unittest.TestCase):
         resp = self.app.get('/feeds/1')
         assert resp.status_code == 404
 
-    def test_add_invalid_feed(self):
-        resp = test_helpers.add_feed(self.app, "http://example.com")
-        assert resp.status_code == 404
-
 
 class MethodsTestCase(unittest.TestCase):
     def setUp(self):
@@ -67,6 +64,10 @@ class MethodsTestCase(unittest.TestCase):
                                           num_entries)
         self.feeds.append((feed, feed_path))
         return feed, feed_path
+
+    def test_add_feed_not_json(self):
+        resp = self.app.post("/feeds/")
+        assert resp.status_code == 400
 
     def test_add_valid_feed(self):
         assert self.feed["title"] == "Test feed 1"
@@ -97,6 +98,10 @@ class MethodsTestCase(unittest.TestCase):
         assert "_embedded" in entry_list
         entries = entry_list["_embedded"]["entries"]
         assert len(entries) == 10
+
+    def test_refresh_feed_nonexistent(self):
+        resp = self.app.post("/feeds/0")
+        assert resp.status_code == 404
 
     def test_mark_entry_as_read(self):
         resp = test_helpers.get_entries_response(self.app, self.feed)
@@ -205,6 +210,23 @@ class MethodsTestCase(unittest.TestCase):
         assert resp.status_code == 200
         unread_entry_list = test_helpers.get_json(resp)["_embedded"]["entries"]
         assert read_entry not in unread_entry_list
+
+    def test_feed_invalid_predicate(self):
+        resp = self.app.get("/feeds/1/invalid")
+        assert resp.status_code == 400
+
+    def test_invalid_predicate(self):
+        resp = self.app.get("/feeds/invalid")
+        assert resp.status_code == 400
+
+    def test_change_entry_status_not_json(self):
+        resp = self.app.post("/feeds/1/1")
+        assert resp.status_code == 400
+
+    def test_change_entry_status_invalid_predicate(self):
+        resp = self.app.post("/feeds/1/1", data=json.dumps({"invalid": True}),
+                             content_type="application/json")
+        assert resp.status_code == 400
 
 if __name__ == "__main__":
     test_cases = (InitTestCase, MethodsTestCase)
