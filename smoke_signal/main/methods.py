@@ -2,7 +2,7 @@
 
 import feedparser
 from flask import Response, g
-from werkzeug.exceptions import NotFound, BadRequest
+from werkzeug.exceptions import NotFound, BadRequest, Unauthorized
 import json
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -124,4 +124,4 @@ def try_login(name, password):
     try:
         return g.db.query(User).filter_by(name=name, password=password).one()
     except NoResultFound:
-        raise BadRequest
+        raise Unauthorized

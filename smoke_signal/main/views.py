@@ -1,6 +1,6 @@
-from flask import render_template, Blueprint, request, flash, redirect
+from flask import render_template, Blueprint, request, redirect
 from flask_login import login_required, login_user
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, Unauthorized
 from smoke_signal.main import methods
 from smoke_signal.login import LoginForm
 
@@ -20,12 +20,15 @@ def feeds():
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    error = None
     if form.validate_on_submit():
-        user = methods.try_login(form.name.data, form.password.data)
-        login_user(user)
-        flash("Logged in!")
-        return redirect("/")
-    return render_template("login.html", form=form)
+        try:
+            user = methods.try_login(form.name.data, form.password.data)
+            login_user(user)
+            return redirect("/")
+        except Unauthorized:
+            error = "Wrong name or password"
+    return render_template("login.html", form=form, error=error)
 
 
 @main.route('/feeds/', methods=['GET', 'POST'])
