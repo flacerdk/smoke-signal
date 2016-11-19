@@ -1,7 +1,9 @@
 import 'isomorphic-fetch'
 
 const _getRequest = url =>
-      fetch(url).then((response) => {
+      fetch(url, {
+        credentials: 'include',
+      }).then((response) => {
         if (response.ok) {
           if (response.status === 200) {
             return response.json()
@@ -17,6 +19,7 @@ const _postJSONRequest = (url, data) =>
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        credentials: 'include',
       })
       .then((response) => {
         if (response.ok) {

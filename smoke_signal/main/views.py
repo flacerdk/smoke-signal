@@ -26,6 +26,7 @@ def login():
 
 
 @main.route('/')
+@login_required
 def index():
     feeds = methods.get_all_feeds()
     return render_template('main.html', feeds=feeds)
