@@ -19,21 +19,21 @@ def login():
             user = methods.try_login(form.name.data, form.password.data)
             login_user(user)
             next_ = request.args.get("next")
-            return redirect(next_ or url_for("main.feeds"))
+            return redirect(next_ or url_for("main.index"))
         except Unauthorized:
             error = "Wrong name or password"
     return render_template("login.html", form=form, error=error)
 
 
 @main.route('/')
-def feeds():
+def index():
     feeds = methods.get_all_feeds()
     return render_template('main.html', feeds=feeds)
 
 
 @main.route('/feeds/', methods=['GET', 'POST'])
 @login_required
-def feed_list():
+def all_feeds():
     if request.method == 'GET':
         return methods.get_all_feeds()
     if not request.is_json:
@@ -46,15 +46,15 @@ def feed_list():
 
 @main.route('/feeds/<int:feed_id>', methods=['GET', 'POST'])
 @login_required
-def refresh_feed(feed_id):
+def feed(feed_id):
     if request.method == 'GET':
-        return load_feed(feed_id, "all")
+        return all_feed_entries(feed_id, "all")
     return methods.refresh_feed(feed_id)
 
 
 @main.route('/feeds/<int:feed_id>/<predicate>', methods=['GET'])
 @login_required
-def load_feed(feed_id, predicate):
+def all_feed_entries(feed_id, predicate):
     if predicate not in ["all", "read", "unread", "marked"]:
         raise BadRequest
     return methods.get_entries(predicate=predicate, feed_id=feed_id)
@@ -62,13 +62,13 @@ def load_feed(feed_id, predicate):
 
 @main.route('/feeds/<predicate>', methods=['GET'])
 @login_required
-def all_read_entries(predicate):
+def all_entries(predicate):
     return methods.get_entries(predicate=predicate)
 
 
 @main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['GET', 'POST'])
 @login_required
-def change_entry_status(feed_id, entry_id):
+def entry(feed_id, entry_id):
     if request.method == 'GET':
         return methods.get_entry(feed_id, entry_id)
     if not request.is_json:
