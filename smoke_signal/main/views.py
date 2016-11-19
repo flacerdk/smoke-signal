@@ -1,6 +1,8 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, request, flash, redirect
+from flask_login import login_required, login_user
 from werkzeug.exceptions import BadRequest
 from smoke_signal.main import methods
+from smoke_signal.login import LoginForm
 
 main = Blueprint("main", __name__,
                  template_folder="templates",
@@ -9,9 +11,21 @@ main = Blueprint("main", __name__,
 
 
 @main.route('/')
+@login_required
 def feeds():
     feeds = methods.get_all_feeds()
     return render_template('main.html', feeds=feeds)
+
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = methods.try_login(form.name.data, form.password.data)
+        login_user(user)
+        flash("Logged in!")
+        return redirect("/")
+    return render_template("login.html", form=form)
 
 
 @main.route('/feeds/', methods=['GET', 'POST'])

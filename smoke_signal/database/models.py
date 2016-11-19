@@ -61,3 +61,33 @@ class Entry(Base):
                 'feed_id': self.feed_id, 'read': self.read,
                 'marked': self.marked,
                 'pub_date': self.pub_date.isoformat()}
+
+
+class User(Base):
+    __tablename__ = "user"
+
+    id = sql.Column(sql.Integer, primary_key=True)
+    name = sql.Column(sql.String, nullable=False)
+    password = sql.Column(sql.String, nullable=False)
+
+    def __init__(self, name, password):
+        self.name = name
+        self.password = password
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return str(self.id)
+
+    def __repr__(self):
+        return '<User {}>'.format(self.name)
