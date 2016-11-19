@@ -3,7 +3,7 @@ import os
 import unittest
 import tempfile
 
-from smoke_signal import app, init_db
+from smoke_signal import app, init_app
 from . import test_helpers
 
 
@@ -11,8 +11,9 @@ def setup_db():
     db_fd, db_path = tempfile.mkstemp()
     app.config['DATABASE_PATH'] = 'sqlite:///' + db_path
     app.config['TESTING'] = True
+    app.config['LOGIN_DISABLED'] = True
     with app.app_context():
-        init_db()
+        init_app()
     return db_fd, db_path
 
 

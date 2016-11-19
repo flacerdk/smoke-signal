@@ -11,6 +11,16 @@ app.config.from_object("config")
 app.config.from_pyfile("config.py")
 app.register_blueprint(main)
 
+login_manager = LoginManager()
+login_manager.login_view = "main.login"
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return g.db.query(User).get(int(user_id))
+
+app.login_manager = None
+
 
 @app.before_first_request
 def init_app():
@@ -20,6 +30,9 @@ def init_app():
     g.db.add(user)
     g.db.commit()
     g.user = current_user
+    if app.login_manager is None:
+        app.login_manager = login_manager
+        app.login_manager.init_app(app)
 
 
 @app.before_request
@@ -37,13 +50,3 @@ def shutdown_session(exception=None):
     db = getattr(g, 'db', None)
     if db is not None:
         g.db.close()
-
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "main.login"
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return g.db.query(User).get(int(user_id))

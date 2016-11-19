@@ -10,13 +10,6 @@ main = Blueprint("main", __name__,
                  static_url_path="/main/static")
 
 
-@main.route('/')
-@login_required
-def feeds():
-    feeds = methods.get_all_feeds()
-    return render_template('main.html', feeds=feeds)
-
-
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -31,7 +24,15 @@ def login():
     return render_template("login.html", form=form, error=error)
 
 
+@main.route('/')
+@login_required
+def feeds():
+    feeds = methods.get_all_feeds()
+    return render_template('main.html', feeds=feeds)
+
+
 @main.route('/feeds/', methods=['GET', 'POST'])
+@login_required
 def feed_list():
     if request.method == 'GET':
         return methods.get_all_feeds()
@@ -44,6 +45,7 @@ def feed_list():
 
 
 @main.route('/feeds/<int:feed_id>', methods=['GET', 'POST'])
+@login_required
 def refresh_feed(feed_id):
     if request.method == 'GET':
         return load_feed(feed_id, "all")
@@ -51,6 +53,7 @@ def refresh_feed(feed_id):
 
 
 @main.route('/feeds/<int:feed_id>/<predicate>', methods=['GET'])
+@login_required
 def load_feed(feed_id, predicate):
     if predicate not in ["all", "read", "unread", "marked"]:
         raise BadRequest
@@ -58,11 +61,13 @@ def load_feed(feed_id, predicate):
 
 
 @main.route('/feeds/<predicate>', methods=['GET'])
+@login_required
 def all_read_entries(predicate):
     return methods.get_entries(predicate=predicate)
 
 
 @main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['GET', 'POST'])
+@login_required
 def change_entry_status(feed_id, entry_id):
     if request.method == 'GET':
         return methods.get_entry(feed_id, entry_id)
