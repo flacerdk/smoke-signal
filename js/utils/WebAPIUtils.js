@@ -47,10 +47,15 @@ const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
       _postJSONRequest(`/feeds/${feedId}/${entryId}`,
                        { read: newReadStatus })
 
+const fetchEntries = (predicate) =>
+      _getRequest(`/feeds/${predicate}`)
+      .then(response => response._embedded.entries)
+
 module.exports = {
   addFeed,
   refreshFeedList,
   refreshFeed,
   fetchFeedEntries,
   changeEntryReadStatus,
+  fetchEntries,
 }

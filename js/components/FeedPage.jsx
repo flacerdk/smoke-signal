@@ -1,6 +1,6 @@
 import React from 'react'
 import AddFeedForm from './AddFeedForm'
-import FeedList from './FeedList'
+import Sidebar from './Sidebar'
 import EntryList from './EntryList'
 import FeedStore from '../stores/FeedStore'
 import EntryStore from '../stores/EntryStore'
@@ -44,7 +44,7 @@ export default class FeedPage extends React.Component {
     return (
       <div id="feed_page">
         <AddFeedForm />
-        <FeedList feeds={this.state.feeds} />
+        <Sidebar feeds={this.state.feeds} />
         <EntryList
           entries={this.state.entries}
           activeFeedId={this.state.activeFeedId}

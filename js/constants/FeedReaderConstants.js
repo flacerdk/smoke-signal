@@ -4,4 +4,5 @@ module.exports = {
   FETCH_FEED_ENTRIES: 'FeedReaderConstants.FETCH_FEED_ENTRIES',
   CHANGE_ACTIVE_ENTRY: 'FeedReaderConstants.CHANGE_ACTIVE_ENTRY',
   MARK_ENTRY_AS_READ: 'FeedReaderConstants.MARK_ENTRY_AS_READ',
+  FETCH_ENTRIES: 'FeedReaderConstants.FETCH_ENTRIES',
 }

@@ -52,4 +52,12 @@ module.exports = {
         entry,
       })
     ), ex => console.log(`Couldn't update entry: ${ex.message}`)),
+
+  fetchEntries: predicate =>
+    WebAPIUtils.fetchEntries(predicate).then(entries => (
+      ActionDispatcher.dispatch({
+        type: ActionTypes.FETCH_ENTRIES,
+        entries,
+      })
+    ), ex => console.log(`Couldn't load feed: ${ex.message}`)),
 }

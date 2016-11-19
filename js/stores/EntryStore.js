@@ -35,6 +35,11 @@ class EntryStore extends EventEmitter {
           this._updateEntry(action.entry)
           this.emit(CHANGE_EVENT)
           break
+        case ActionTypes.FETCH_ENTRIES:
+          this._setActiveFeedId(0)
+          this._setEntries(action.entries)
+          this.emit(CHANGE_EVENT)
+          break
         default:
           // no op
       }
