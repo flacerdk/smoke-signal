@@ -35,6 +35,7 @@ class Entry(Base):
     text = sql.Column(sql.String, nullable=False)
     url = sql.Column(sql.String, nullable=False)
     read = sql.Column(sql.Boolean, nullable=False)
+    marked = sql.Column(sql.Boolean, nullable=False)
     pub_date = sql.Column(sql.DateTime, nullable=False)
     feed_id = sql.Column(sql.Integer, sql.ForeignKey('feed.id'))
 
@@ -44,6 +45,7 @@ class Entry(Base):
         self.text = text
         self.url = url
         self.read = False
+        self.marked = False
         if pub_date is None:
             self.pub_date = datetime.fromtimestamp(0)
         else:
@@ -57,4 +59,5 @@ class Entry(Base):
         return {'title': self.title, 'text': self.text,
                 'url': self.url, 'id': self.id,
                 'feed_id': self.feed_id, 'read': self.read,
+                'marked': self.marked,
                 'pub_date': self.pub_date.isoformat()}

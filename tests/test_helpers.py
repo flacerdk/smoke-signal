@@ -9,7 +9,7 @@ def get_json(response):
     return json.loads(codecs.decode(response.get_data(), "utf-8"))
 
 
-def generate_sample_rss(title, feed_path, num_entries):
+def create_mock_rss(title, feed_path, num_entries):
     feed = SampleFeed(title, num_entries)
     feed.write_to_file(feed_path)
     return feed_path
@@ -21,8 +21,8 @@ def add_feed(app, url):
                     content_type="application/json")
 
 
-def get_valid_feed(test_app, feed_path, num_entries):
-    feed_path = generate_sample_rss("Test feed", feed_path, num_entries)
+def add_mock_feed(test_app, title, feed_path, num_entries):
+    feed_path = create_mock_rss(title, feed_path, num_entries)
     resp = add_feed(test_app, "file://" + feed_path)
     return get_json(resp)
 
@@ -44,13 +44,17 @@ def get_entries_response(app, feed):
     return app.get("/feeds/{}".format(feed["id"]))
 
 
-def change_entry_status(app, feed, read):
+def change_first_entry(app, feed, data):
     parsed_json = get_json(get_entries_response(app, feed))
     entry_list = parsed_json["_embedded"]["entries"]
     entry = entry_list[0]
+    return get_json(change_entry_status(app, entry, data))
+
+
+def change_entry_status(app, entry, data):
     resp = app.post(
         "/feeds/{}/{}".format(entry["feed_id"],
                               entry["id"]),
-        data=json.dumps({"read": read}),
+        data=json.dumps(data),
         content_type="application/json")
-    return get_json(resp)
+    return resp

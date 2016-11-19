@@ -18,26 +18,24 @@ def feeds():
 def feed_list():
     if request.method == 'GET':
         return methods.get_all_feeds()
-    else:
-        if not request.is_json:
-            raise BadRequest
-        try:
-            return methods.post_feed(request.get_json()["url"])
-        except KeyError:
-            raise BadRequest
+    if not request.is_json:
+        raise BadRequest
+    try:
+        return methods.post_feed(request.get_json()["url"])
+    except KeyError:
+        raise BadRequest
 
 
 @main.route('/feeds/<int:feed_id>', methods=['GET', 'POST'])
 def refresh_feed(feed_id):
     if request.method == 'GET':
         return load_feed(feed_id, "all")
-    else:
-        return methods.refresh_feed(feed_id)
+    return methods.refresh_feed(feed_id)
 
 
 @main.route('/feeds/<int:feed_id>/<predicate>', methods=['GET'])
 def load_feed(feed_id, predicate):
-    if predicate not in ["all", "read", "unread"]:
+    if predicate not in ["all", "read", "unread", "marked"]:
         raise BadRequest
     return methods.get_entries(predicate=predicate, feed_id=feed_id)
 
@@ -47,13 +45,12 @@ def all_read_entries(predicate):
     return methods.get_entries(predicate=predicate)
 
 
-@main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['POST'])
+@main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['GET', 'POST'])
 def change_entry_status(feed_id, entry_id):
+    if request.method == 'GET':
+        return methods.get_entry(feed_id, entry_id)
     if not request.is_json:
         raise BadRequest
-    try:
-        new_read_status = request.get_json()["read"]
-        return methods.toggle_read_status(feed_id, entry_id,
-                                          read=new_read_status)
-    except KeyError:
-        raise BadRequest
+    data = request.get_json()
+    return methods.toggle_status(feed_id, entry_id,
+                                 data)

@@ -56,14 +56,8 @@ def create_db_entry(feed_entry, feed_id):
     return entry
 
 
-# If read=True, force new read status to be True, and likewise for read=False.
-def toggle_entry_read_status(feed_id, entry_id, read=None):
+def update_entry_status(feed_id, entry_id, data):
     query = query_entries_filtered_by(id=entry_id, feed_id=feed_id)
-    row = query.one()
-    if read is not None:
-        new_read_status = read
-    else:
-        new_read_status = not row[0].read
-    query.update({Entry.read: new_read_status})
+    query.update(data)
     g.db.commit()
     return query.one()

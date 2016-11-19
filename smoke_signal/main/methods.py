@@ -16,7 +16,14 @@ def get_all_feeds():
                                    "templated": True}}
     feeds = helpers.feed_list()
     for feed in feeds:
-        feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
+        href = "/feeds/{}".format(feed["id"])
+        feed["_links"] = {
+            "self": {"href": href},
+            "find": {
+                "href": "{}{{?id}}".format(href),
+                "templated": True
+            }
+        }
     response["_embedded"] = {"feeds": feeds}
     return Response(json.dumps(response), mimetype="application/json")
 
@@ -27,8 +34,17 @@ def post_feed(url):
         raise NotFound
     title = parsed.get("title", "No title")
     feed = helpers.add_feed(title, url).serialize()
-    feed["_links"] = {"self": {"href": "/feeds/{}".format(feed["id"])}}
-    return Response(json.dumps(feed), mimetype="application/json")
+    href = "/feeds/{}".format(feed["id"])
+    feed["_links"] = {
+        "self": {"href": href},
+        "find": {
+            "href": "{}{{?id}}".format(href),
+            "templated": True
+        }
+    }
+    headers = {"location": href}
+    return Response(json.dumps(feed), mimetype="application/json",
+                    headers=headers)
 
 
 def get_entries(predicate="all", **kwargs):
@@ -50,6 +66,8 @@ def get_entries(predicate="all", **kwargs):
         query = helpers.query_entries_filtered_by(read=True, **kwargs)
     elif predicate == "unread":
         query = helpers.query_entries_filtered_by(read=False, **kwargs)
+    elif predicate == "marked":
+        query = helpers.query_entries_filtered_by(marked=True, **kwargs)
     else:
         raise BadRequest
     entries = [e.serialize() for e in query]
@@ -89,9 +107,13 @@ def parse_entries(feed):
     return entries
 
 
-def toggle_read_status(feed_id, entry_id, read):
+def toggle_status(feed_id, entry_id, data):
+    if "read" not in data and "marked" not in data:
+        raise BadRequest
+    data = {p: data[p] for p in ["read", "marked"] if p in data}
     try:
-        helpers.toggle_entry_read_status(feed_id, entry_id, read=read)
+        helpers.update_entry_status(feed_id, entry_id,
+                                    data)
         return get_entry(feed_id, entry_id)
     except NoResultFound:
         raise NotFound
