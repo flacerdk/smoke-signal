@@ -75,6 +75,13 @@ def get_entry(feed_id, entry_id):
     return Response(json.dumps(response), mimetype="application/json")
 
 
+def refresh_all_feeds():
+    feeds = helpers.feed_list()
+    for feed in feeds:
+        helpers.add_entries(feed["id"], parse_entries(feed))
+    return get_all_feeds()
+
+
 def refresh_feed(feed_id):
     try:
         feed = helpers.query_feed_by_id(feed_id)

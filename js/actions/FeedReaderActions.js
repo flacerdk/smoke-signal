@@ -11,13 +11,22 @@ module.exports = {
       })
     ), ex => console.log(`Couldn't add feed: ${ex.message}`)),
 
-  refreshFeedList: () => {
-    WebAPIUtils.refreshFeedList().then(feeds => (
+  getFeedList: () => {
+    WebAPIUtils.getFeedList().then(feeds => (
       ActionDispatcher.dispatch({
         type: ActionTypes.REFRESH_FEED_LIST,
         feeds,
       })
     ), ex => console.log(`Couldn't load feed list: ${ex.message}`))
+  },
+
+  refreshAllFeeds: () => {
+    WebAPIUtils.refreshAllFeeds().then(feeds => (
+      ActionDispatcher.dispatch({
+        type: ActionTypes.REFRESH_FEED_LIST,
+        feeds,
+      })
+    ), ex => console.log(`Couldn't refresh feeds: ${ex.message}`))
   },
 
   refreshFeed: feedId =>
