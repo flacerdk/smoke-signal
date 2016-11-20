@@ -2,9 +2,10 @@
 
 import feedparser
 from flask import Response, g
-from werkzeug.exceptions import NotFound, BadRequest, Unauthorized
 import json
 from sqlalchemy.orm.exc import NoResultFound
+from werkzeug.exceptions import NotFound, BadRequest, Unauthorized
+from werkzeug.security import check_password_hash
 
 from smoke_signal.database import helpers
 from smoke_signal.database.models import User
@@ -111,6 +112,9 @@ def toggle_status(feed_id, entry_id, data):
 
 def try_login(name, password):
     try:
-        return g.db.query(User).filter_by(name=name, password=password).one()
+        user = g.db.query(User).filter(User.name == name).one()
+        if check_password_hash(user.password, password):
+            return user
+        raise Unauthorized
     except NoResultFound:
         raise Unauthorized

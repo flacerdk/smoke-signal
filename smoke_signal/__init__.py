@@ -2,6 +2,7 @@ from flask import Flask, g
 from flask_login import current_user, LoginManager
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from werkzeug.security import generate_password_hash
 
 from smoke_signal.database.models import Base, User
 from .main.views import main
@@ -26,7 +27,8 @@ app.login_manager = None
 def init_app():
     init_db(create=False)
     g.db.query(User).delete()
-    user = User(app.config["USER_NAME"], app.config["PASSWORD"])
+    password = generate_password_hash(app.config["PASSWORD"])
+    user = User(app.config["USER_NAME"], password)
     g.db.add(user)
     g.db.commit()
     g.user = current_user
