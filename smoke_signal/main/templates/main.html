@@ -1,5 +1,6 @@
 <!doctype html>
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Feeds</title>
   <link rel=stylesheet type=text/css href="{{ url_for('.static', filename='style.css') }}">
 </head>

@@ -1,4 +1,5 @@
 from flask import Flask, g
+from flask_wtf.csrf import CsrfProtect
 from flask_login import current_user, LoginManager
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -11,6 +12,9 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
 app.config.from_pyfile("config.py")
 app.register_blueprint(main)
+
+csrf = CsrfProtect()
+csrf.init_app(app)
 
 login_manager = LoginManager()
 login_manager.login_view = "main.login"

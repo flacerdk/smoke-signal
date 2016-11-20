@@ -1,8 +1,10 @@
 import 'isomorphic-fetch'
 
+const csrfToken = document.head.querySelector('[name=csrf-token]').content
+
 const _getRequest = url =>
       fetch(url, {
-        credentials: 'include',
+        credentials: 'same-origin',
       }).then((response) => {
         if (response.ok) {
           if (response.status === 200) {
@@ -17,9 +19,10 @@ const _postJSONRequest = (url, data) =>
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
         },
         body: JSON.stringify(data),
-        credentials: 'include',
+        credentials: 'same-origin',
       })
       .then((response) => {
         if (response.ok) {
