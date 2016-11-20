@@ -7,13 +7,17 @@ from flask import g
 
 # Returns the feed list, along with a count of unread entries.
 def feed_list():
-    query = g.db.query(Feed.id, Feed.title, Feed.url,
+    query = g.db.query(Feed,
                        func.count(Entry.read) -
                        func.sum(cast(Entry.read, Integer))).\
             outerjoin(Feed.entries).\
             group_by(Feed.id)
-    feeds = [dict(zip(["id", "title", "url", "unread"], feed))
-             for feed in query.all()]
+    feeds = []
+    for row in query.all():
+        feed = row[0].serialize()
+        if row[1] is not None:
+            feed["unread"] = row[1]
+        feeds.append(feed)
     return feeds
 
 
@@ -21,7 +25,7 @@ def add_feed(title, url):
     feed = Feed(title, url)
     g.db.add(feed)
     g.db.commit()
-    return feed
+    return query_feed_by_id(feed.id)
 
 
 def add_entries(feed_id, entries):
@@ -35,7 +39,16 @@ def add_entries(feed_id, entries):
 
 
 def query_feed_by_id(feed_id):
-    return g.db.query(Feed).filter_by(id=feed_id).one()
+    row = g.db.query(Feed,
+                     func.count(Entry.read) -
+                     func.sum(cast(Entry.read, Integer))).\
+            outerjoin(Feed.entries).\
+            group_by(Feed.id).\
+            filter(Feed.id == feed_id).one()
+    feed = row[0].serialize()
+    if row[1] is not None:
+        feed["unread"] = row[1]
+    return feed
 
 
 def query_entry_by_id(feed_id, entry_id):

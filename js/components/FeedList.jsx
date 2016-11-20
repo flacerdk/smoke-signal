@@ -8,7 +8,8 @@ const FeedList = (props) => {
     const link = `#/feeds/${feed.id}`
     const onClick = handleFeedClicked.bind(null, feed.id)
     let unread = '';
-    if (feed.unread != null && feed.unread > 0) {
+    if (typeof feed.unread !== 'undefined' &&
+        feed.unread != null && feed.unread > 0) {
       unread = `(${feed.unread})`
     }
     return (

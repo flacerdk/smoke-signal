@@ -22,6 +22,10 @@ class FeedStore extends EventEmitter {
           this._setFeeds(action.feeds)
           this.emit(CHANGE_EVENT)
           break
+        case ActionTypes.REFRESH_FEED:
+          this._setFeed(action.feed)
+          this.emit(CHANGE_EVENT)
+          break
         default:
           // no op
       }
@@ -40,6 +44,10 @@ class FeedStore extends EventEmitter {
     if (!this._feeds[feed.id]) {
       this._feeds[feed.id] = feed
     }
+  }
+
+  _setFeed(feed) {
+    this._feeds[feed.id] = feed
   }
 
   get feeds() {

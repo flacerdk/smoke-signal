@@ -37,7 +37,7 @@ const refreshFeedList = () =>
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)
-      .then(response => response._embedded.entries)
+      .then(response => response)
 
 const fetchFeedEntries = feedId =>
       _getRequest(`/feeds/${feedId}/all`)

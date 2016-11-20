@@ -21,13 +21,19 @@ module.exports = {
   },
 
   refreshFeed: feedId =>
-    WebAPIUtils.refreshFeed(feedId).then(entries => (
+    WebAPIUtils.refreshFeed(feedId).then((response) => {
+      const feed = response
+      const entries = response._embedded.entries
+      ActionDispatcher.dispatch({
+        type: ActionTypes.REFRESH_FEED,
+        feed,
+      })
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
         feedId,
         entries,
       })
-    ), ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
+    }, ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
 
   fetchFeedEntries: feedId =>
     WebAPIUtils.fetchFeedEntries(feedId).then(entries => (

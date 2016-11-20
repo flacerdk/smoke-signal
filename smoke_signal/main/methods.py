@@ -34,7 +34,7 @@ def post_feed(url):
     if parsed == {}:
         raise NotFound
     title = parsed.get("title", "No title")
-    feed = helpers.add_feed(title, url).serialize()
+    feed = helpers.add_feed(title, url)
     href = "/feeds/{}".format(feed["id"])
     feed["_links"] = {
         "self": {"href": href},
@@ -49,16 +49,17 @@ def post_feed(url):
 
 
 def get_entries(predicate="all", **kwargs):
-    response = {}
     if "feed_id" in kwargs.keys():
         try:
-            feed_id = helpers.query_feed_by_id(kwargs["feed_id"]).id
+            response = helpers.query_feed_by_id(kwargs["feed_id"])
+            feed_id = response["id"]
             response["_links"] = {"self":
                                   {"href": "/feeds/{}/{}".format(feed_id,
                                                                  predicate)}}
         except NoResultFound:
             raise NotFound
     else:
+        response = {}
         response["_links"] = {"self":
                               {"href": "/feeds/{}".format(predicate)}}
     if predicate == "all":
@@ -103,8 +104,8 @@ def refresh_feed(feed_id):
 
 
 def parse_entries(feed):
-    parsed = feedparser.parse(feed.url)
-    entries = [helpers.create_db_entry(e, feed.id) for e in parsed.entries]
+    parsed = feedparser.parse(feed["url"])
+    entries = [helpers.create_db_entry(e, feed["id"]) for e in parsed.entries]
     return entries
 
 
