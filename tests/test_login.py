@@ -3,7 +3,7 @@ import unittest
 import tempfile
 
 from smoke_signal import app, init_app
-from . import test_helpers
+from . import helpers
 
 
 def setup_db():
@@ -41,7 +41,7 @@ class LoginTestCase(unittest.TestCase):
         })
         resp = self.app.get("/feeds/")
         assert resp.status_code == 200
-        assert "_embedded" in test_helpers.get_json(resp)
+        assert "_embedded" in helpers.get_json(resp)
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(LoginTestCase)
