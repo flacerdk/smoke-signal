@@ -1,14 +1,12 @@
 # Methods for the REST API go here.
 
 import feedparser
-from flask import Response, g
+from flask import Response
 import json
 from sqlalchemy.orm.exc import NoResultFound
-from werkzeug.exceptions import NotFound, BadRequest, Unauthorized
-from werkzeug.security import check_password_hash
+from werkzeug.exceptions import NotFound, BadRequest
 
 from smoke_signal.database import helpers
-from smoke_signal.database.models import User
 
 
 def halify_entry_list(entry_list, feed=None, predicate="all"):
@@ -108,13 +106,3 @@ def toggle_status(feed_id, entry_id, data):
         return get_entry(feed_id, entry_id)
     except NoResultFound:
         raise NotFound
-
-
-def try_login(name, password):
-    try:
-        user = g.db.query(User).filter(User.name == name).one()
-        if check_password_hash(user.password, password):
-            return user
-        raise Unauthorized
-    except NoResultFound:
-        raise Unauthorized

@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, request, redirect, url_for
 from flask_login import login_required, login_user
-from werkzeug.exceptions import BadRequest, Unauthorized
+from werkzeug.exceptions import BadRequest
 from smoke_signal.main import methods
 from smoke_signal.login import LoginForm
 
@@ -13,16 +13,11 @@ main = Blueprint("main", __name__,
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    error = None
     if form.validate_on_submit():
-        try:
-            user = methods.try_login(form.name.data, form.password.data)
-            login_user(user)
-            next_ = request.args.get("next")
-            return redirect(next_ or url_for("main.index"))
-        except Unauthorized:
-            error = "Wrong name or password"
-    return render_template("login.html", form=form, error=error)
+        login_user(form.user)
+        next_ = request.args.get("next")
+        return redirect(next_ or url_for("main.index"))
+    return render_template("login.html", form=form, error=form.error)
 
 
 @main.route('/')
