@@ -31,29 +31,27 @@ const _postJSONRequest = (url, data) =>
 
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
-const refreshFeedList = () =>
+const getFeedList = () =>
       _getRequest('/feeds/')
       .then(response => response._embedded.feeds)
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)
-      .then(response => response)
 
 const fetchFeedEntries = feedId =>
       _getRequest(`/feeds/${feedId}/all`)
-      .then(response => response._embedded.entries)
 
 const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
       _postJSONRequest(`/feeds/${feedId}/${entryId}`,
                        { read: newReadStatus })
 
-const fetchEntries = (predicate) =>
+const fetchEntries = predicate =>
       _getRequest(`/feeds/${predicate}`)
       .then(response => response._embedded.entries)
 
 module.exports = {
   addFeed,
-  refreshFeedList,
+  getFeedList,
   refreshFeed,
   fetchFeedEntries,
   changeEntryReadStatus,

@@ -36,13 +36,18 @@ module.exports = {
     }, ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
 
   fetchFeedEntries: feedId =>
-    WebAPIUtils.fetchFeedEntries(feedId).then(entries => (
+    WebAPIUtils.fetchFeedEntries(feedId).then((response) => {
+      const feed = response
+      const entries = response._embedded.entries
+      ActionDispatcher.dispatch({
+        type: ActionTypes.CHANGE_ACTIVE_FEED,
+        feed,
+      })
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
-        feedId,
         entries,
       })
-    ), ex => console.log(`Couldn't load feed: ${ex.message}`)),
+    }, ex => console.log(`Couldn't load feed: ${ex.message}`)),
 
   scroll: offset =>
     ActionDispatcher.dispatch({
@@ -60,10 +65,13 @@ module.exports = {
     ), ex => console.log(`Couldn't update entry: ${ex.message}`)),
 
   fetchEntries: predicate =>
-    WebAPIUtils.fetchEntries(predicate).then(entries => (
+    WebAPIUtils.fetchEntries(predicate).then((entries) => {
+      ActionDispatcher.dispatch({
+        type: ActionTypes.CHANGE_ACTIVE_FEED,
+      })
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_ENTRIES,
         entries,
       })
-    ), ex => console.log(`Couldn't load feed: ${ex.message}`)),
+    }, ex => console.log(`Couldn't load feed: ${ex.message}`)),
 }

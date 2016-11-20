@@ -9,9 +9,14 @@ class FeedStore extends EventEmitter {
     super()
 
     this._feeds = {}
+    this._activeFeedId = 0
+
     this._addFeed = this._addFeed.bind(this)
+    this._activeFeedId = 0
+
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
+
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
         case ActionTypes.ADD_FEED:
@@ -24,6 +29,10 @@ class FeedStore extends EventEmitter {
           break
         case ActionTypes.REFRESH_FEED:
           this._setFeed(action.feed)
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.CHANGE_ACTIVE_FEED:
+          this._setActiveFeed(action.feed)
           this.emit(CHANGE_EVENT)
           break
         default:
@@ -58,6 +67,18 @@ class FeedStore extends EventEmitter {
   _setFeeds(newFeeds) {
     this._feeds = {}
     newFeeds.map(feed => this._addFeed(feed))
+  }
+
+  _setActiveFeed(feed) {
+    if (typeof feed !== 'undefined' && typeof feed.id !== 'undefined') {
+      this._activeFeedId = feed.id
+    } else {
+      this._activeFeedId = 0
+    }
+  }
+
+  get activeFeedId() {
+    return this._activeFeedId
   }
 }
 

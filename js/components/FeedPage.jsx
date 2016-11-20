@@ -32,7 +32,7 @@ export default class FeedPage extends React.Component {
       feeds: this._feedStore.feeds,
       entries: this._entryStore.entries,
       activeEntryIndex: this._entryStore.activeEntryIndex,
-      activeFeedId: this._entryStore.activeFeedId,
+      activeFeedId: this._feedStore.activeFeedId,
     }
   }
 

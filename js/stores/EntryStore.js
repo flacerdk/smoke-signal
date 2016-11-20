@@ -9,12 +9,10 @@ class EntryStore extends EventEmitter {
     super()
 
     this._entries = {}
-    this._activeFeedId = 0
     this._activeEntryIndex = 0
 
     this._setEntries = this._setEntries.bind(this)
     this._setActiveEntryIndex = this._setActiveEntryIndex.bind(this)
-    this._setActiveFeedId = this._setActiveFeedId.bind(this)
     this._updateEntry = this._updateEntry.bind(this)
 
     this.addChangeListener = this.addChangeListener.bind(this)
@@ -23,7 +21,6 @@ class EntryStore extends EventEmitter {
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
         case ActionTypes.FETCH_FEED_ENTRIES:
-          this._setActiveFeedId(action.feedId)
           this._setEntries(action.entries)
           this.emit(CHANGE_EVENT)
           break
@@ -36,7 +33,6 @@ class EntryStore extends EventEmitter {
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.FETCH_ENTRIES:
-          this._setActiveFeedId(0)
           this._setEntries(action.entries)
           this.emit(CHANGE_EVENT)
           break
