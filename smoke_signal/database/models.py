@@ -23,7 +23,16 @@ class Feed(Base):
         return '<title {}, url {}>'.format(self.title, self.url)
 
     def serialize(self):
-        return {'id': self.id, 'title': self.title, 'url': self.url}
+        href = "/feeds/{}".format(self.id)
+        links = {
+            "self": {"href": href},
+            "find": {
+                "href": "{}{{?id}}".format(href),
+                "templated": True
+            }
+        }
+        return {'id': self.id, 'title': self.title, 'url': self.url,
+                '_links': links}
 
 
 class Entry(Base):
@@ -56,10 +65,16 @@ class Entry(Base):
         return '<title {}, text {}>'.format(self.title, self.text)
 
     def serialize(self):
+        href = "/feeds/{}/{}".format(self.feed_id, self.id)
+        links = {
+            "self": {
+                "href": href
+            }
+        }
         return {'title': self.title, 'text': self.text,
                 'url': self.url, 'id': self.id,
                 'feed_id': self.feed_id, 'read': self.read,
-                'marked': self.marked,
+                'marked': self.marked, '_links': links,
                 'pub_date': self.pub_date.isoformat()}
 
 

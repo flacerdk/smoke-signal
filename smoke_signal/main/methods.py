@@ -10,22 +10,26 @@ from smoke_signal.database import helpers
 from smoke_signal.database.models import User
 
 
+def halify_entry_list(entry_list, feed=None, predicate="all"):
+    if feed is None:
+        entries = {}
+        entries["_links"] = {"self":
+                             {"href": "/feeds/{}".format(predicate)}}
+    else:
+        entries = feed
+        entries["_links"] = {"self":
+                             {"href": "/feeds/{}/{}".format(feed["id"],
+                                                            predicate)}}
+    entries["_embedded"] = {"entries": entry_list}
+    return entries
+
+
 def get_all_feeds():
     response = {}
     response["_links"] = {"self": {"href": "/feeds/"},
                           "find": {"href": "/feeds{?id}",
                                    "templated": True}}
-    feeds = helpers.feed_list()
-    for feed in feeds:
-        href = "/feeds/{}".format(feed["id"])
-        feed["_links"] = {
-            "self": {"href": href},
-            "find": {
-                "href": "{}{{?id}}".format(href),
-                "templated": True
-            }
-        }
-    response["_embedded"] = {"feeds": feeds}
+    response["_embedded"] = {"feeds": helpers.feed_list()}
     return Response(json.dumps(response), mimetype="application/json")
 
 
@@ -35,15 +39,7 @@ def post_feed(url):
         raise NotFound
     title = parsed.get("title", "No title")
     feed = helpers.add_feed(title, url)
-    href = "/feeds/{}".format(feed["id"])
-    feed["_links"] = {
-        "self": {"href": href},
-        "find": {
-            "href": "{}{{?id}}".format(href),
-            "templated": True
-        }
-    }
-    headers = {"location": href}
+    headers = {"location": feed["_links"]["self"]["href"]}
     return Response(json.dumps(feed), mimetype="application/json",
                     headers=headers)
 
@@ -51,17 +47,11 @@ def post_feed(url):
 def get_entries(predicate="all", **kwargs):
     if "feed_id" in kwargs.keys():
         try:
-            response = helpers.query_feed_by_id(kwargs["feed_id"])
-            feed_id = response["id"]
-            response["_links"] = {"self":
-                                  {"href": "/feeds/{}/{}".format(feed_id,
-                                                                 predicate)}}
+            feed = helpers.query_feed_by_id(kwargs["feed_id"])
         except NoResultFound:
             raise NotFound
     else:
-        response = {}
-        response["_links"] = {"self":
-                              {"href": "/feeds/{}".format(predicate)}}
+        feed = None
     if predicate == "all":
         query = helpers.query_entries_filtered_by(**kwargs)
     elif predicate == "read":
@@ -72,25 +62,16 @@ def get_entries(predicate="all", **kwargs):
         query = helpers.query_entries_filtered_by(marked=True, **kwargs)
     else:
         raise BadRequest
-    entries = [e.serialize() for e in query]
-    for entry in entries:
-        entry["_links"] = {
-            "self": {
-                "href": "/feeds/{}/{}".format(entry["feed_id"],
-                                              entry["id"])
-            }
-        }
-    response["_embedded"] = {"entries": entries}
-    return Response(json.dumps(response),
+    entry_list = [e.serialize() for e in query]
+    entries = halify_entry_list(entry_list, feed=feed,
+                                predicate=predicate)
+    return Response(json.dumps(entries),
                     mimetype="application/json")
 
 
 def get_entry(feed_id, entry_id):
     entry = helpers.query_entry_by_id(feed_id, entry_id)
     response = entry.serialize()
-    response["_links"] = {
-        "self": {"href": "/feeds/{}/{}".format(feed_id, entry_id)}
-    }
     return Response(json.dumps(response), mimetype="application/json")
 
 
