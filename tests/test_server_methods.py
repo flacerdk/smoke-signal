@@ -154,7 +154,7 @@ class MethodsTestCase(unittest.TestCase):
         assert resp.status_code == 200
         unread_entry_list = test_helpers.get_json(resp)["_embedded"]["entries"]
         assert unread_entry in unread_entry_list
-        assert len(unread_entry_list) == 1
+        assert len(unread_entry_list) == 5
 
     def test_feed_unread_not_in_read(self):
         unread_entry = test_helpers.change_first_entry(self.app, self.feed,
@@ -163,7 +163,7 @@ class MethodsTestCase(unittest.TestCase):
         assert resp.status_code == 200
         read_entry_list = test_helpers.get_json(resp)["_embedded"]["entries"]
         assert unread_entry not in read_entry_list
-        assert len(read_entry_list) == 4
+        assert read_entry_list == []
 
     def test_feed_marked(self):
         marked_entry = test_helpers.change_first_entry(self.app, self.feed,

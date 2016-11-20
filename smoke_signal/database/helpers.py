@@ -1,24 +1,12 @@
 # Miscellaneous functions to interact with the database.
 
 from smoke_signal.database.models import Entry, Feed
-from sqlalchemy import func, cast, Integer
 from flask import g
 
 
-# Returns the feed list, along with a count of unread entries.
 def feed_list():
-    query = g.db.query(Feed,
-                       func.count(Entry.read) -
-                       func.sum(cast(Entry.read, Integer))).\
-            outerjoin(Feed.entries).\
-            group_by(Feed.id)
-    feeds = []
-    for row in query.all():
-        feed = row[0].serialize()
-        if row[1] is not None:
-            feed["unread"] = row[1]
-        feeds.append(feed)
-    return feeds
+    query = g.db.query(Feed)
+    return [feed.serialize() for feed in query.all()]
 
 
 def add_feed(title, url):
@@ -39,16 +27,7 @@ def add_entries(feed_id, entries):
 
 
 def query_feed_by_id(feed_id):
-    row = g.db.query(Feed,
-                     func.count(Entry.read) -
-                     func.sum(cast(Entry.read, Integer))).\
-            outerjoin(Feed.entries).\
-            group_by(Feed.id).\
-            filter(Feed.id == feed_id).one()
-    feed = row[0].serialize()
-    if row[1] is not None:
-        feed["unread"] = row[1]
-    return feed
+    return g.db.query(Feed).filter_by(id=feed_id).one().serialize()
 
 
 def query_entry_by_id(feed_id, entry_id):
