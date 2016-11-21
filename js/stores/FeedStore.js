@@ -12,6 +12,7 @@ class FeedStore extends EventEmitter {
     this._activeId = 0
 
     this._addFeed = this._addFeed.bind(this)
+    this._setActiveFeed = this._setActiveFeed.bind(this)
 
     this.addChangeListener = this.addChangeListener.bind(this)
     this.removeChangeListener = this.removeChangeListener.bind(this)
@@ -24,10 +25,6 @@ class FeedStore extends EventEmitter {
           break
         case ActionTypes.REFRESH_FEED_LIST:
           this._setFeeds(action.feeds)
-          this.emit(CHANGE_EVENT)
-          break
-        case ActionTypes.REFRESH_FEED:
-          this._setFeed(action.feed)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.CHANGE_ACTIVE_FEED:

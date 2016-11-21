@@ -24,7 +24,9 @@ export default class EntryList extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
       this.scrollToActiveEntry()
-      FeedReaderActions.changeEntryReadStatus(this.props.activeEntry, true)
+      if (!this.props.activeEntry.read) {
+        FeedReaderActions.changeEntryReadStatus(this.props.activeEntry, true)
+      }
     }
   }
 

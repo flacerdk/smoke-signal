@@ -1,12 +1,12 @@
 import React from 'react'
 import FeedReaderActions from '../actions/FeedReaderActions'
 
-const handleFeedClicked = feedId => FeedReaderActions.fetchFeedEntries(feedId)
+const handleFeedClicked = feed => FeedReaderActions.changeActiveFeed(feed)
 
 const FeedList = (props) => {
   const feeds = props.feeds.map((feed) => {
     const link = `#/feeds/${feed.id}`
-    const onClick = handleFeedClicked.bind(null, feed.id)
+    const onClick = handleFeedClicked.bind(null, feed)
     let unread = '';
     if (typeof feed.unread !== 'undefined' &&
         feed.unread != null && feed.unread > 0) {

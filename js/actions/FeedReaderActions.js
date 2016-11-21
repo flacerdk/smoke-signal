@@ -31,32 +31,26 @@ module.exports = {
 
   refreshFeed: feedId =>
     WebAPIUtils.refreshFeed(feedId).then((response) => {
-      const feed = response
       const entries = response._embedded.entries
       ActionDispatcher.dispatch({
-        type: ActionTypes.REFRESH_FEED,
-        feed,
-      })
-      ActionDispatcher.dispatch({
-        type: ActionTypes.FETCH_FEED_ENTRIES,
-        feedId,
+        type: ActionTypes.FETCH_ENTRIES,
         entries,
       })
     }, ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
 
-  fetchFeedEntries: feedId =>
-    WebAPIUtils.fetchFeedEntries(feedId).then((response) => {
-      const feed = response
+  changeActiveFeed: (feed) => {
+    ActionDispatcher.dispatch({
+      type: ActionTypes.CHANGE_ACTIVE_FEED,
+      feed,
+    }, ex => console.log(`Couldn't load feed: ${ex.message}`))
+    WebAPIUtils.fetchFeedEntries(feed.id).then((response) => {
       const entries = response._embedded.entries
       ActionDispatcher.dispatch({
-        type: ActionTypes.CHANGE_ACTIVE_FEED,
-        feed,
-      })
-      ActionDispatcher.dispatch({
-        type: ActionTypes.FETCH_FEED_ENTRIES,
+        type: ActionTypes.FETCH_ENTRIES,
         entries,
       })
-    }, ex => console.log(`Couldn't load feed: ${ex.message}`)),
+    })
+  },
 
   changeActiveEntry: entry =>
     ActionDispatcher.dispatch({
@@ -75,9 +69,6 @@ module.exports = {
 
   fetchEntries: predicate =>
     WebAPIUtils.fetchEntries(predicate).then((entries) => {
-      ActionDispatcher.dispatch({
-        type: ActionTypes.CHANGE_ACTIVE_FEED,
-      })
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_ENTRIES,
         entries,
