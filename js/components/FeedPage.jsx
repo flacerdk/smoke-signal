@@ -25,6 +25,9 @@ export default class FeedPage extends React.Component {
     Mousetrap.bind('g r', () => {
       FeedReaderActions.refreshAllFeeds()
     })
+    Mousetrap.bind('r', () => {
+      FeedReaderActions.refreshFeed(this.state.activeFeedId)
+    })
   }
 
   componentWillUnmount() {
@@ -37,7 +40,7 @@ export default class FeedPage extends React.Component {
     return {
       feeds: this._feedStore.feeds,
       entries: this._entryStore.entries,
-      activeEntryId: this._entryStore.activeId,
+      activeEntry: this._entryStore.activeEntry,
       activeFeedId: this._feedStore.activeFeedId,
     }
   }
@@ -53,8 +56,7 @@ export default class FeedPage extends React.Component {
         <Sidebar feeds={this.state.feeds} />
         <EntryList
           entries={this.state.entries}
-          activeFeedId={this.state.activeFeedId}
-          activeEntryId={this.state.activeEntryId}
+          activeEntry={this.state.activeEntry}
         />
       </div>
     )

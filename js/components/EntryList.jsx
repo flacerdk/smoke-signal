@@ -3,30 +3,27 @@ import Mousetrap from 'mousetrap'
 import FeedReaderActions from '../actions/FeedReaderActions'
 
 export default class EntryList extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
-    this._getEntryId = this._getEntryId.bind(this)
+    this.activeEntryIndex = 0
     this.scrollToActiveEntry = this.scrollToActiveEntry.bind(this)
+    this.scrollActiveEntry = this.scrollActiveEntry.bind(this)
   }
 
   componentDidMount() {
-    Mousetrap.bind('j', () => FeedReaderActions.changeActiveEntry(this.props.activeEntryId + 1))
-    Mousetrap.bind('k', () => FeedReaderActions.changeActiveEntry(this.props.activeEntryId - 1))
+    Mousetrap.bind('j', () => FeedReaderActions.changeActiveEntry(this.scrollActiveEntry(1)))
+    Mousetrap.bind('k', () => FeedReaderActions.changeActiveEntry(this.scrollActiveEntry(-1)))
     Mousetrap.bind('m', () => {
-      const activeEntry = this.props.entries[this.props.activeEntryId]
-      const newReadStatus = !activeEntry.read
+      const newReadStatus = !this.props.activeEntry.read
       FeedReaderActions.changeEntryReadStatus(
-        activeEntry.feed_id,
-        activeEntry.id, newReadStatus)
-    })
-    Mousetrap.bind('r', () => {
-      FeedReaderActions.refreshFeed(this.props.activeFeedId)
+        this.props.activeEntry.feed_id,
+        this.props.activeEntry.id, newReadStatus)
     })
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.activeEntryId !== prevProps.activeEntryId) {
+    if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
       this.scrollToActiveEntry()
     }
   }
@@ -44,31 +41,49 @@ export default class EntryList extends React.Component {
     }
   }
 
-  _getEntryId(index) {
-    return this.props.entries[index].id
+  scrollActiveEntry(offset) {
+    const newIndex = this.activeEntryIndex + offset
+    if (newIndex >= 0 && newIndex < this.props.entries.length) {
+      return this.props.entries[this.activeEntryIndex + offset]
+    }
+    return this.props.entries[this.activeEntryIndex]
   }
 
   render() {
     const entries = this.props.entries
-      .map((entry) => {
-        // Trusting that feedparser does proper sanitization here
-        const createMarkup = () => ({ __html: entry.text })
+      .map((entry, index) => {
         const className = entry.read ? 'entry read' : 'entry unread'
         const setActiveRef = (e) => {
-          if (this.props.activeEntryId === entry.id) {
+          if (this.props.activeEntry !== {} &&
+              this.props.activeEntry.id === entry.id) {
             this.activeEntry = e
+            this.activeEntryIndex = index
           }
         }
+        const onClick = () => FeedReaderActions.changeActiveEntry(entry)
+        const href = `#/${entry.feed_id}/${entry.id}`
         return (
-          <div className={className} ref={setActiveRef} key={entry.id}>
-            <a className="entry_title" href={entry.url}>{entry.title}</a>
-            <div dangerouslySetInnerHTML={createMarkup()} />
-          </div>
+          <li className={className} ref={setActiveRef} key={entry.id}>
+            <a className="entry_title" href={href} onClick={onClick}>{entry.title}</a>
+          </li>
         )
       })
+    const createMarkup = () => ({ __html: this.props.activeEntry.text })
+    const href = this.props.activeEntry.url
+    const title = this.props.activeEntry.title
+    // Trusting that feedparser does proper sanitization here.
+    const activeEntry = (
+      <div id="active_entry">
+        <a className="entry_title" href={href}>{title}</a>
+        <div dangerouslySetInnerHTML={createMarkup()} />
+      </div>
+    )
     return (
-      <div id="entries">
-        {entries}
+      <div id="wrapper">
+        <ul id="entries">
+          {entries}
+        </ul>
+        {activeEntry}
       </div>
     )
   }
@@ -76,12 +91,17 @@ export default class EntryList extends React.Component {
 
 EntryList.propTypes = {
   entries: React.PropTypes.arrayOf(React.PropTypes.object),
-  activeEntryId: React.PropTypes.number,
-  activeFeedId: React.PropTypes.number,
+  activeEntry: React.PropTypes.shape({
+    id: React.PropTypes.number,
+    feed_id: React.PropTypes.number,
+    title: React.PropTypes.string,
+    text: React.PropTypes.string,
+    url: React.PropTypes.string,
+    read: React.PropTypes.bool,
+  }),
 }
 
 EntryList.defaultProps = {
   entries: [],
-  activeEntryId: 0,
-  activeFeedId: 0,
+  activeEntry: {},
 }

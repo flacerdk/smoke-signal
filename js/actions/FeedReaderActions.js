@@ -52,17 +52,16 @@ module.exports = {
         type: ActionTypes.CHANGE_ACTIVE_FEED,
         feed,
       })
-
       ActionDispatcher.dispatch({
         type: ActionTypes.FETCH_FEED_ENTRIES,
         entries,
       })
     }, ex => console.log(`Couldn't load feed: ${ex.message}`)),
 
-  changeActiveEntry: activeEntryId =>
+  changeActiveEntry: entry =>
     ActionDispatcher.dispatch({
       type: ActionTypes.CHANGE_ACTIVE_ENTRY,
-      activeEntryId,
+      entry,
     }),
 
   changeEntryReadStatus: (feedId, entryId, newReadStatus) =>
