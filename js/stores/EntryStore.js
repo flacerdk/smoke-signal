@@ -12,7 +12,7 @@ class EntryStore extends EventEmitter {
     this._activeEntryIndex = 0
 
     this._setEntries = this._setEntries.bind(this)
-    this._setActiveEntryIndex = this._setActiveEntryIndex.bind(this)
+    this._setActiveId = this._setActiveId.bind(this)
     this._updateEntry = this._updateEntry.bind(this)
 
     this.addChangeListener = this.addChangeListener.bind(this)
@@ -25,7 +25,7 @@ class EntryStore extends EventEmitter {
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.CHANGE_ACTIVE_ENTRY:
-          this._setActiveEntryIndex(this._activeEntryIndex + action.offset)
+          this._setActiveId(action.activeEntryId)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.MARK_ENTRY_AS_READ:
@@ -56,27 +56,19 @@ class EntryStore extends EventEmitter {
 
   _setEntries(newEntries) {
     this._entries = {}
-    this._activeEntryIndex = 0
+    this._activeId = 0
     newEntries.forEach((entry) => {
       this._entries[entry.id] = entry
       return false
     })
   }
 
-  get activeEntryIndex() {
-    return this._activeEntryIndex
+  get activeId() {
+    return this._activeId
   }
 
-  _setActiveEntryIndex(newIndex) {
-    this._activeEntryIndex = newIndex >= 0 ? newIndex : this._activeEntryIndex
-  }
-
-  get activeFeedId() {
-    return this._activeFeedId
-  }
-
-  _setActiveFeedId(newIndex) {
-    this._activeFeedId = newIndex >= 0 ? newIndex : this._activeFeedId
+  _setActiveId(newIndex) {
+    this._activeId = newIndex >= 0 ? newIndex : this._activeId
   }
 
   _updateEntry(newEntry) {

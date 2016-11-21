@@ -37,7 +37,7 @@ export default class FeedPage extends React.Component {
     return {
       feeds: this._feedStore.feeds,
       entries: this._entryStore.entries,
-      activeEntryIndex: this._entryStore.activeEntryIndex,
+      activeEntryId: this._entryStore.activeId,
       activeFeedId: this._feedStore.activeFeedId,
     }
   }
@@ -54,7 +54,7 @@ export default class FeedPage extends React.Component {
         <EntryList
           entries={this.state.entries}
           activeFeedId={this.state.activeFeedId}
-          activeEntryIndex={this.state.activeEntryIndex}
+          activeEntryId={this.state.activeEntryId}
         />
       </div>
     )
