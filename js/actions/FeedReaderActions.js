@@ -64,12 +64,12 @@ module.exports = {
       entry,
     }),
 
-  changeEntryReadStatus: (feedId, entryId, newReadStatus) =>
-    WebAPIUtils.changeEntryReadStatus(feedId, entryId, newReadStatus)
-    .then(entry => (
+  changeEntryReadStatus: (entry, newReadStatus) =>
+    WebAPIUtils.changeEntryReadStatus(entry.feed_id, entry.id, newReadStatus)
+    .then(newEntry => (
       ActionDispatcher.dispatch({
         type: ActionTypes.MARK_ENTRY_AS_READ,
-        entry,
+        entry: newEntry,
       })
     ), ex => console.log(`Couldn't update entry: ${ex.message}`)),
 

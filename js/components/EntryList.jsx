@@ -17,8 +17,8 @@ export default class EntryList extends React.Component {
     Mousetrap.bind('m', () => {
       const newReadStatus = !this.props.activeEntry.read
       FeedReaderActions.changeEntryReadStatus(
-        this.props.activeEntry.feed_id,
-        this.props.activeEntry.id, newReadStatus)
+        this.props.activeEntry,
+        newReadStatus)
     })
   }
 
