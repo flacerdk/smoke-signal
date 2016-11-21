@@ -32,7 +32,6 @@ export default class EntryList extends React.Component {
     Mousetrap.unbind('j')
     Mousetrap.unbind('k')
     Mousetrap.unbind('m')
-    Mousetrap.unbind('r')
   }
 
   scrollToActiveEntry() {
