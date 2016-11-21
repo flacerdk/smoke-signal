@@ -16,8 +16,7 @@ export default class EntryList extends React.Component {
     Mousetrap.bind('k', () => FeedReaderActions.changeActiveEntry(this.scrollActiveEntry(-1)))
     Mousetrap.bind('m', () => {
       const newReadStatus = !this.props.activeEntry.read
-      FeedReaderActions.changeEntryReadStatus(
-        this.props.activeEntry,
+      FeedReaderActions.changeEntryReadStatus(this.props.activeEntry,
         newReadStatus)
     })
   }
@@ -25,6 +24,7 @@ export default class EntryList extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
       this.scrollToActiveEntry()
+      FeedReaderActions.changeEntryReadStatus(this.props.activeEntry, true)
     }
   }
 
