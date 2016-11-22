@@ -7,18 +7,32 @@ describe('EntryStore', function () {
   const ActionDispatcher = require('../../dispatcher/ActionDispatcher')
   const EntryStore = require('../EntryStore')
   const ActionTypes = require('../../constants/FeedReaderConstants')
+  const entry = {
+    id: 1,
+    title: 'Test title',
+    url: 'http://example.com/test_url',
+    text: 'Test text',
+    read: false,
+    marked: false,
+  }
 
-  const actionFetchFeedEntries = {
+  const actionGetEntryList = {
     type: ActionTypes.GET_ENTRY_LIST,
-    feedId: 1,
-    entries: [
-      {
-        id: 1,
-        title: 'Test title',
-        url: 'http://example.com/test_url',
-        text: 'Test text',
-      },
-    ],
+    entries: [entry],
+  }
+
+  const changeActiveEntry = {
+    type: ActionTypes.CHANGE_ACTIVE_ENTRY,
+    entry,
+  }
+
+  const changeEntryStatus = () => {
+    const newEntry = entry
+    newEntry.read = true
+    return {
+      type: ActionTypes.CHANGE_ENTRY_STATUS,
+      entry: newEntry,
+    }
   }
 
   let spy
@@ -44,13 +58,27 @@ describe('EntryStore', function () {
     return entries.should.be.empty
   })
 
-  it('fetches a feed\'s entries', function () {
-    callback(actionFetchFeedEntries)
+  it('gets entry list', function () {
+    callback(actionGetEntryList)
     const entries = entryStore.entries
     entries.length.should.equal(1)
-    entries[0].id.should.equal(1)
-    entries[0].title.should.equal('Test title')
-    entries[0].url.should.to.equal('http://example.com/test_url')
-    entries[0].text.should.to.equal('Test text')
+    entries[0].should.equal(entry)
+  })
+
+  it('changes the active entry', function () {
+    callback(actionGetEntryList)
+    callback(changeActiveEntry)
+    const activeEntry = entryStore.activeEntry
+    activeEntry.should.equal(entry)
+  })
+
+  it('changes the entry\'s status', function () {
+    callback(actionGetEntryList)
+    callback(changeEntryStatus())
+    const entries = entryStore.entries
+    entries[0].read.should.equal(true)
+    const newEntry = entries[0]
+    newEntry.read = false
+    newEntry.should.equal(entry)
   })
 })

@@ -1,6 +1,5 @@
 import 'isomorphic-fetch'
 
-
 const _getRequest = url =>
       fetch(url, {
         credentials: 'same-origin',

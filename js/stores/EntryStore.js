@@ -69,7 +69,7 @@ class EntryStore extends EventEmitter {
   }
 
   get activeEntry() {
-    return this._entries[this._activeEntry.id]
+    return this._activeEntry
   }
 
   _setActiveEntry(newEntry) {
