@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import Mousetrap from 'mousetrap'
 import { ListGroup, ListGroupItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
@@ -25,7 +25,7 @@ export default class EntryList extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
       if (this.activeEntry) {
-        this.activeEntry.scrollIntoView(false)
+        scrollIntoViewIfNeeded(this.activeEntry)
       }
       if (!this.props.activeEntry.read) {
         EntryListActions.changeEntryStatus(this.props.activeEntry, { read: true })

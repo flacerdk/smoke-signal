@@ -30,6 +30,7 @@
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
     "react-test-renderer": "^15.3.2",
+    "scroll-into-view-if-needed": "^1.0.6",
     "webpack": "^1.13.2",
     "whatwg-fetch": "^2.0.0"
   }
