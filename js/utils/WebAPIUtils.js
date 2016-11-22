@@ -12,14 +12,16 @@ const _getRequest = url =>
       })
 
 const _postJSONRequest = (url, data) => {
-  const csrfToken = document.head.querySelector('[name=csrf-token]').content
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }
+  if (typeof document !== 'undefined') {
+    headers['X-CSRFToken'] = document.head.querySelector('[name=csrf-token]').content
+  }
   return fetch(url, {
     method: 'post',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrfToken,
-    },
+    headers,
     body: JSON.stringify(data),
     credentials: 'same-origin',
   })
@@ -34,9 +36,15 @@ const _postJSONRequest = (url, data) => {
 
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
-const getFeedList = options =>
-  _getRequest('/feeds/', options)
-  .then(response => response._embedded.feeds)
+const getFeedList = (options) => {
+  if (typeof options !== 'undefined' &&
+      ('refresh' in options || 'url' in options)) {
+    return _postJSONRequest('/feeds/', options)
+      .then(response => response._embedded.feeds)
+  }
+  return _getRequest('/feeds/')
+    .then(response => response._embedded.feeds)
+}
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)

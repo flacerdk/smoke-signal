@@ -50,9 +50,11 @@ const entryList = {
 
 describe('WebAPIUtils', function () {
   beforeEach(function () {
-    const requests = this.requests = []
-    fetchMock.get('/feeds/', function (url) {
-      requests.push(url)
+    fetchMock.get('/feeds/', function () {
+      return { _embedded: { feeds: [] } }
+    })
+
+    fetchMock.post('/feeds/', function () {
       return feedList
     })
 
@@ -84,8 +86,13 @@ describe('WebAPIUtils', function () {
     fetchMock.restore()
   })
 
-  it('should refresh feed list', function () {
+  it('should get empty feed list', function () {
     return WebAPIUtils.getFeedList()
+      .should.eventually.have.length(0)
+  })
+
+  it('should refresh feed list', function () {
+    return WebAPIUtils.getFeedList({ refresh: true })
       .should.eventually.become(feedList._embedded.feeds)
   })
 
@@ -97,5 +104,11 @@ describe('WebAPIUtils', function () {
   it('should fetch all entries', function () {
     return WebAPIUtils.fetchEntries('all')
       .should.eventually.become(entryList._embedded.entries)
+  })
+
+  it('should refresh feed', function () {
+    return WebAPIUtils.refreshFeed(1)
+      .then(r => r._embedded.entries)
+      .should.eventually.have.length(2)
   })
 })
