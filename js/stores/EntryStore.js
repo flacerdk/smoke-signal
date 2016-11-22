@@ -57,7 +57,11 @@ class EntryStore extends EventEmitter {
 
   _setEntries(newEntries) {
     this._entries = {}
-    this._activeEntry = newEntries[0]
+    if (newEntries.length > 0) {
+      this._activeEntry = newEntries[0]
+    } else {
+      this._activeEntry = {}
+    }
     newEntries.forEach((entry) => {
       this._entries[entry.id] = entry
       return false

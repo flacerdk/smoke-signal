@@ -42,8 +42,9 @@ class FeedList extends React.Component {
       )
     })
 
+    const className = 'list-group feed-list'
     return (
-      <ListGroup>
+      <ListGroup bsClass={className}>
         {feeds}
       </ListGroup>
     )

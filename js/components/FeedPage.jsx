@@ -61,7 +61,7 @@ export default class FeedPage extends React.Component {
           <Col lg={3} md={2}>
             <Sidebar feeds={this.state.feeds} />
           </Col>
-          <Col lg={10} md={8}>
+          <Col lg={8} md={6}>
             <Row>
               <EntryList
                 entries={this.state.entries}

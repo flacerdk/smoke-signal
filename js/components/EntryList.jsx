@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import Mousetrap from 'mousetrap'
 import { ListGroup, ListGroupItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
@@ -23,6 +24,9 @@ export default class EntryList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
+      if (this.activeEntry) {
+        this.activeEntry.scrollIntoView(false)
+      }
       if (!this.props.activeEntry.read) {
         EntryListActions.changeEntryStatus(this.props.activeEntry, { read: true })
       }
@@ -54,19 +58,30 @@ export default class EntryList extends React.Component {
           this.activeEntryIndex = index
         }
         const onClick = () => EntryListActions.changeActiveEntry(entry)
-        const href = `#/${entry.feed_id}/${entry.id}`
-        return (
-          <ListGroupItem bsClass={className} active={active} href={href} onClick={onClick} key={entry.id}>
-            {entry.title}
+        const ref = (e) => {
+          if (active) {
+            this.activeEntry = e
+          }
+        }
+        const component = (
+          <ListGroupItem
+            bsClass={className}
+            active={active}
+            onClick={onClick}
+            key={entry.id}
+          >
+            <div className="entry-title" ref={ref}>
+              {entry.title}
+            </div>
           </ListGroupItem>
         )
+        return component
       })
+    const className = 'list-group entry-list'
     return (
-      <div id="wrapper">
-        <ListGroup>
-          {entries}
-        </ListGroup>
-      </div>
+      <ListGroup bsClass={className}>
+        {entries}
+      </ListGroup>
     )
   }
 }
