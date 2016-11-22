@@ -9,7 +9,7 @@ class FeedStore extends EventEmitter {
     super()
 
     this._feeds = {}
-    this._activeId = 0
+    this._activeFeed = {}
 
     this._addFeed = this._addFeed.bind(this)
     this._setActiveFeed = this._setActiveFeed.bind(this)
@@ -23,7 +23,7 @@ class FeedStore extends EventEmitter {
           this._addFeed(action.newFeed)
           this.emit(CHANGE_EVENT)
           break
-        case ActionTypes.REFRESH_FEED_LIST:
+        case ActionTypes.GET_FEED_LIST:
           this._setFeeds(action.feeds)
           this.emit(CHANGE_EVENT)
           break
@@ -67,14 +67,14 @@ class FeedStore extends EventEmitter {
 
   _setActiveFeed(feed) {
     if (typeof feed !== 'undefined' && typeof feed.id !== 'undefined') {
-      this._activeId = feed.id
+      this._activeFeed = feed
     } else {
-      this._activeId = 0
+      this._activeFeed = {}
     }
   }
 
-  get activeId() {
-    return this._activeId
+  get activeFeed() {
+    return this._activeFeed
   }
 }
 

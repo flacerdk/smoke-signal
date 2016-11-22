@@ -1,5 +1,5 @@
-import React from 'react';
-import FeedReaderActions from '../actions/FeedReaderActions'
+import React from 'react'
+import FeedListActions from '../actions/FeedListActions'
 
 export default class AddFeedForm extends React.Component {
   constructor() {
@@ -24,7 +24,7 @@ export default class AddFeedForm extends React.Component {
       return
     }
     this.setState({ url: '' })
-    FeedReaderActions.addFeed(url)
+    FeedListActions.addFeed(url)
   }
 
   render() {

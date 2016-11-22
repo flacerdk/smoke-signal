@@ -36,6 +36,9 @@ div {
 
 .entry {
     margin-bottom: 10px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .unread {
@@ -51,6 +54,8 @@ div {
     margin-bottom: 5px;
     color: brown;
     text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 .entry_title:hover {
