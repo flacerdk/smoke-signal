@@ -13,7 +13,7 @@ const _getRequest = url =>
 
 const _postJSONRequest = (url, data) => {
   const csrfToken = document.head.querySelector('[name=csrf-token]').content
-  fetch(url, {
+  return fetch(url, {
     method: 'post',
     headers: {
       Accept: 'application/json',
