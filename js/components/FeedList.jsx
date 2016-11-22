@@ -33,7 +33,6 @@ class FeedList extends React.Component {
       }
       return (
         <ListGroupItem
-          bsClass="list-group-item feed"
           href={link}
           onClick={onClick}
           key={feed.id}
@@ -44,7 +43,7 @@ class FeedList extends React.Component {
     })
 
     return (
-      <ListGroup bsClass="list-group feed_list">
+      <ListGroup>
         {feeds}
       </ListGroup>
     )

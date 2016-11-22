@@ -46,7 +46,7 @@ export default class EntryList extends React.Component {
   render() {
     const entries = this.props.entries
       .map((entry, index) => {
-        const className = entry.read ? 'list-group-item entry read' : 'list-group-item entry unread'
+        const className = entry.read ? 'list-group-item read' : 'list-group-item unread'
         let active = false;
         if (this.props.activeEntry !== {} &&
             this.props.activeEntry.id === entry.id) {
