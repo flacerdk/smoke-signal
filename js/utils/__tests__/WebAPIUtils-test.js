@@ -32,7 +32,7 @@ describe('WebAPIUtils', function () {
   })
 
   it('should refresh feed list', function () {
-    return WebAPIUtils.refreshFeedList()
+    return WebAPIUtils.getFeedList()
       .should.eventually.become(feedList._embedded.feeds)
   })
 })

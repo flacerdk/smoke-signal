@@ -9,7 +9,7 @@ describe('EntryStore', function () {
   const ActionTypes = require('../../constants/FeedReaderConstants')
 
   const actionFetchFeedEntries = {
-    type: ActionTypes.FETCH_FEED_ENTRIES,
+    type: ActionTypes.GET_ENTRY_LIST,
     feedId: 1,
     entries: [
       {

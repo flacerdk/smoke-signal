@@ -18,7 +18,7 @@ describe('FeedStore', function () {
   }
 
   const actionRefreshFeedList = {
-    type: ActionTypes.REFRESH_FEED_LIST,
+    type: ActionTypes.GET_FEED_LIST,
     feeds: [
       {
         id: 1,

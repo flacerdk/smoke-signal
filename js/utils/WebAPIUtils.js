@@ -1,6 +1,5 @@
 import 'isomorphic-fetch'
 
-const csrfToken = document.head.querySelector('[name=csrf-token]').content
 
 const _getRequest = url =>
       fetch(url, {
@@ -13,30 +12,32 @@ const _getRequest = url =>
         } throw Error(response.statusText)
       })
 
-const _postJSONRequest = (url, data) =>
-      fetch(url, {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrfToken,
-        },
-        body: JSON.stringify(data),
-        credentials: 'same-origin',
-      })
-      .then((response) => {
-        if (response.ok) {
-          if (response.status === 200) {
-            return response.json()
-          } return []
-        } throw Error(response.statusText)
-      })
+const _postJSONRequest = (url, data) => {
+  const csrfToken = document.head.querySelector('[name=csrf-token]').content
+  fetch(url, {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken,
+    },
+    body: JSON.stringify(data),
+    credentials: 'same-origin',
+  })
+    .then((response) => {
+      if (response.ok) {
+        if (response.status === 200) {
+          return response.json()
+        } return []
+      } throw Error(response.statusText)
+    })
+}
 
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
 const getFeedList = options =>
-      _getRequest('/feeds/', options)
-      .then(response => response._embedded.feeds)
+  _getRequest('/feeds/', options)
+  .then(response => response._embedded.feeds)
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)
