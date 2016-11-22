@@ -1,6 +1,6 @@
 import React from 'react'
 import Mousetrap from 'mousetrap'
-import FeedReaderActions from '../actions/FeedReaderActions'
+import EntryListActions from '../actions/EntryListActions'
 
 export default class EntryList extends React.Component {
   constructor(props) {
@@ -12,11 +12,11 @@ export default class EntryList extends React.Component {
   }
 
   componentDidMount() {
-    Mousetrap.bind('j', () => FeedReaderActions.changeActiveEntry(this.scrollActiveEntry(1)))
-    Mousetrap.bind('k', () => FeedReaderActions.changeActiveEntry(this.scrollActiveEntry(-1)))
+    Mousetrap.bind('j', () => EntryListActions.changeActiveEntry(this.scrollActiveEntry(1)))
+    Mousetrap.bind('k', () => EntryListActions.changeActiveEntry(this.scrollActiveEntry(-1)))
     Mousetrap.bind('m', () => {
-      const newReadStatus = !this.props.activeEntry.read
-      FeedReaderActions.changeEntryReadStatus(this.props.activeEntry,
+      const newReadStatus = { read: !this.props.activeEntry.read }
+      EntryListActions.changeEntryStatus(this.props.activeEntry,
         newReadStatus)
     })
   }
@@ -25,7 +25,7 @@ export default class EntryList extends React.Component {
     if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
       this.scrollToActiveEntry()
       if (!this.props.activeEntry.read) {
-        FeedReaderActions.changeEntryReadStatus(this.props.activeEntry, true)
+        EntryListActions.changeEntryStatus(this.props.activeEntry, { read: true })
       }
     }
   }
@@ -61,7 +61,7 @@ export default class EntryList extends React.Component {
             this.activeEntryIndex = index
           }
         }
-        const onClick = () => FeedReaderActions.changeActiveEntry(entry)
+        const onClick = () => EntryListActions.changeActiveEntry(entry)
         const href = `#/${entry.feed_id}/${entry.id}`
         return (
           <li className={className} ref={setActiveRef} key={entry.id}>

@@ -1,10 +1,9 @@
 module.exports = {
   ADD_FEED: 'FeedReaderConstants.ADD_FEED',
-  REFRESH_FEED_LIST: 'FeedReaderConstants.REFRESH_FEED_LIST',
-  FETCH_FEED_ENTRIES: 'FeedReaderConstants.FETCH_FEED_ENTRIES',
-  CHANGE_ACTIVE_FEED: 'FeedReaderConstants.CHANGE_ACTIVE_FEED',
-  CHANGE_ACTIVE_ENTRY: 'FeedReaderConstants.CHANGE_ACTIVE_ENTRY',
-  MARK_ENTRY_AS_READ: 'FeedReaderConstants.MARK_ENTRY_AS_READ',
-  FETCH_ENTRIES: 'FeedReaderConstants.FETCH_ENTRIES',
+  GET_FEED_LIST: 'FeedReaderConstants.GET_FEED_LIST',
   REFRESH_FEED: 'FeedReaderConstants.REFRESH_FEED',
+  CHANGE_ACTIVE_FEED: 'FeedReaderConstants.CHANGE_ACTIVE_FEED',
+  GET_ENTRY_LIST: 'FeedReaderConstants.GET_ENTRY_LIST',
+  CHANGE_ACTIVE_ENTRY: 'FeedReaderConstants.CHANGE_ACTIVE_ENTRY',
+  CHANGE_ENTRY_STATUS: 'FeedReaderConstants.CHANGE_ENTRY_STATUS',
 }

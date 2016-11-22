@@ -34,24 +34,19 @@ const _postJSONRequest = (url, data) =>
 
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
-const getFeedList = () =>
-      _getRequest('/feeds/')
+const getFeedList = options =>
+      _getRequest('/feeds/', options)
       .then(response => response._embedded.feeds)
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)
 
-const refreshAllFeeds = () =>
-      _postJSONRequest('/feeds/',
-                       { refresh: true })
-      .then(response => response._embedded.feeds)
-
 const fetchFeedEntries = feedId =>
       _getRequest(`/feeds/${feedId}/all`)
 
-const changeEntryReadStatus = (feedId, entryId, newReadStatus) =>
+const changeEntryStatus = (feedId, entryId, newStatus) =>
       _postJSONRequest(`/feeds/${feedId}/${entryId}`,
-                       { read: newReadStatus })
+                       newStatus)
 
 const fetchEntries = predicate =>
       _getRequest(`/feeds/${predicate}`)
@@ -61,8 +56,7 @@ module.exports = {
   addFeed,
   getFeedList,
   refreshFeed,
-  refreshAllFeeds,
   fetchFeedEntries,
-  changeEntryReadStatus,
+  changeEntryStatus,
   fetchEntries,
 }
