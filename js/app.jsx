@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import FeedPage from './components/FeedPage'
-import FeedReaderActions from './actions/FeedReaderActions'
+import FeedListActions from './actions/FeedListActions'
 
-FeedReaderActions.getFeedList()
+FeedListActions.getFeedList()
 
 ReactDOM.render((
   <FeedPage />
