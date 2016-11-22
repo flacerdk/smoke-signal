@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button, Form, FormControl } from 'react-bootstrap/lib'
 import FeedListActions from '../actions/FeedListActions'
 
 export default class AddFeedForm extends React.Component {
@@ -29,15 +30,15 @@ export default class AddFeedForm extends React.Component {
 
   render() {
     return (
-      <form className="add_feed_form" onSubmit={this.handleSubmit}>
-        <input
+      <Form inline onSubmit={this.handleSubmit}>
+        <FormControl
           type="text"
           placeholder="URL..."
           value={this.state.url}
           onChange={this.handleUrlChange}
         />
-        <input type="submit" value="Add feed" />
-      </form>
+        <Button type="submit">Add feed</Button>
+      </Form>
     )
   }
 }

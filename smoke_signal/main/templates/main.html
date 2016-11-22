@@ -2,6 +2,11 @@
 <head>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Feeds</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
   <link rel=stylesheet type=text/css href="{{ url_for('.static', filename='style.css') }}">
 </head>
 {% block body %}

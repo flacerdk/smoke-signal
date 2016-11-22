@@ -1,5 +1,6 @@
 import React from 'react'
 import Mousetrap from 'mousetrap'
+import { ListGroup, ListGroupItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 
 export default class EntryList extends React.Component {
@@ -7,7 +8,6 @@ export default class EntryList extends React.Component {
     super(props)
 
     this.activeEntryIndex = 0
-    this.scrollToActiveEntry = this.scrollToActiveEntry.bind(this)
     this.scrollActiveEntry = this.scrollActiveEntry.bind(this)
   }
 
@@ -23,7 +23,6 @@ export default class EntryList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
-      this.scrollToActiveEntry()
       if (!this.props.activeEntry.read) {
         EntryListActions.changeEntryStatus(this.props.activeEntry, { read: true })
       }
@@ -34,12 +33,6 @@ export default class EntryList extends React.Component {
     Mousetrap.unbind('j')
     Mousetrap.unbind('k')
     Mousetrap.unbind('m')
-  }
-
-  scrollToActiveEntry() {
-    if (this.activeEntry) {
-      this.activeEntry.scrollIntoView()
-    }
   }
 
   scrollActiveEntry(offset) {
@@ -53,38 +46,26 @@ export default class EntryList extends React.Component {
   render() {
     const entries = this.props.entries
       .map((entry, index) => {
-        const className = entry.read ? 'entry read' : 'entry unread'
-        const setActiveRef = (e) => {
-          if (this.props.activeEntry !== {} &&
-              this.props.activeEntry.id === entry.id) {
-            this.activeEntry = e
-            this.activeEntryIndex = index
-          }
+        const className = entry.read ? 'list-group-item entry read' : 'list-group-item entry unread'
+        let active = false;
+        if (this.props.activeEntry !== {} &&
+            this.props.activeEntry.id === entry.id) {
+          active = true
+          this.activeEntryIndex = index
         }
         const onClick = () => EntryListActions.changeActiveEntry(entry)
         const href = `#/${entry.feed_id}/${entry.id}`
         return (
-          <li className={className} ref={setActiveRef} key={entry.id}>
-            <a className="entry_title" href={href} onClick={onClick}>{entry.title}</a>
-          </li>
+          <ListGroupItem bsClass={className} active={active} href={href} onClick={onClick} key={entry.id}>
+            {entry.title}
+          </ListGroupItem>
         )
       })
-    const createMarkup = () => ({ __html: this.props.activeEntry.text })
-    const href = this.props.activeEntry.url
-    const title = this.props.activeEntry.title
-    // Trusting that feedparser does proper sanitization here.
-    const activeEntry = (
-      <div id="active_entry">
-        <a className="entry_title" href={href}>{title}</a>
-        <div dangerouslySetInnerHTML={createMarkup()} />
-      </div>
-    )
     return (
       <div id="wrapper">
-        <ul id="entries">
+        <ListGroup>
           {entries}
-        </ul>
-        {activeEntry}
+        </ListGroup>
       </div>
     )
   }

@@ -1,7 +1,9 @@
 import React from 'react'
+import { Grid, Col, Row } from 'react-bootstrap/lib'
 import AddFeedForm from './AddFeedForm'
 import Sidebar from './Sidebar'
 import EntryList from './EntryList'
+import Entry from './Entry'
 import FeedStore from '../stores/FeedStore'
 import EntryStore from '../stores/EntryStore'
 
@@ -41,14 +43,34 @@ export default class FeedPage extends React.Component {
   }
 
   render() {
+    let entry = ''
+    if (typeof this.state.activeEntry !== 'undefined'
+        && this.state.activeEntry.id !== 0) {
+      entry = (
+        <Entry
+          title={this.state.activeEntry.title}
+          url={this.state.activeEntry.url}
+          text={this.state.activeEntry.text}
+        />
+      )
+    }
     return (
       <div id="feed_page">
         <AddFeedForm />
-        <Sidebar feeds={this.state.feeds} />
-        <EntryList
-          entries={this.state.entries}
-          activeEntry={this.state.activeEntry}
-        />
+        <Grid>
+          <Col>
+            <Sidebar feeds={this.state.feeds} />
+          </Col>
+          <Col>
+            <Row>
+            <EntryList
+              entries={this.state.entries}
+              activeEntry={this.state.activeEntry}
+            />
+            </Row>
+          <Row>{entry}</Row>
+          </Col>
+        </Grid>
       </div>
     )
   }
