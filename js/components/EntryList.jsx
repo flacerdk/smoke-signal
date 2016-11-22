@@ -48,6 +48,10 @@ export default class EntryList extends React.Component {
   }
 
   render() {
+    if (this.props.entries.length === 0) {
+      return null
+    }
+    
     const entries = this.props.entries
       .map((entry, index) => {
         const className = entry.read ? 'list-group-item read' : 'list-group-item unread'
