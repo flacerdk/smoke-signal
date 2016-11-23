@@ -9,7 +9,7 @@ module.exports = {
         type: ActionTypes.ADD_FEED,
         newFeed,
       })
-    ), ex => console.log(`Couldn't add feed: ${ex.message}`)),
+    )),
 
   getFeedList: () => {
     WebAPIUtils.getFeedList().then(feeds => (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, FormControl } from 'react-bootstrap/lib'
+import { Button, Form, FormControl, FormGroup } from 'react-bootstrap/lib'
 import FeedListActions from '../actions/FeedListActions'
 
 export default class AddFeedForm extends React.Component {
@@ -8,6 +8,7 @@ export default class AddFeedForm extends React.Component {
 
     this.state = {
       url: '',
+      error: false,
     }
 
     this.handleUrlChange = this.handleUrlChange.bind(this)
@@ -26,17 +27,21 @@ export default class AddFeedForm extends React.Component {
     }
     this.setState({ url: '' })
     FeedListActions.addFeed(url)
+    .catch(() => this.setState({ error: true }))
   }
 
   render() {
+    const validationState = this.state.error ? 'error' : null
     return (
       <Form inline onSubmit={this.handleSubmit}>
-        <FormControl
-          type="text"
-          placeholder="URL..."
-          value={this.state.url}
-          onChange={this.handleUrlChange}
-        />
+        <FormGroup validationState={validationState}>
+          <FormControl
+            type="text"
+            placeholder="URL..."
+            value={this.state.url}
+            onChange={this.handleUrlChange}
+          />
+        </FormGroup>
         <Button type="submit">Add feed</Button>
       </Form>
     )
