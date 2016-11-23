@@ -7,9 +7,17 @@ module.exports = {
     WebAPIUtils.addFeed(url).then(newFeed => (
       ActionDispatcher.dispatch({
         type: ActionTypes.ADD_FEED,
-        newFeed,
+        feed: newFeed,
       })
     )),
+
+  refreshFeed: feed =>
+    WebAPIUtils.refreshFeed(feed.id).then((newFeed) => {
+      ActionDispatcher.dispatch({
+        type: ActionTypes.REFRESH_FEED,
+        feed: newFeed,
+      })
+    }, ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
 
   getFeedList: () => {
     WebAPIUtils.getFeedList().then(feeds => (
@@ -18,15 +26,6 @@ module.exports = {
         feeds,
       })
     ), ex => console.log(`Couldn't load feed list: ${ex.message}`))
-  },
-
-  refreshAllFeeds: () => {
-    WebAPIUtils.getFeedList({ refresh: true }).then(feeds => (
-      ActionDispatcher.dispatch({
-        type: ActionTypes.GET_FEED_LIST,
-        feeds,
-      })
-    ), ex => console.log(`Couldn't refresh feeds: ${ex.message}`))
   },
 
   changeActiveFeed: (feed) => {

@@ -7,10 +7,10 @@ import FeedListActions from '../actions/FeedListActions'
 class FeedList extends React.Component {
   componentDidMount() {
     Mousetrap.bind('r', () => {
-      EntryListActions.refreshFeed(this.props.activeFeed)
+      FeedListActions.refreshFeed(this.props.activeFeed)
     })
     Mousetrap.bind('g r', () => {
-      FeedListActions.refreshAllFeeds()
+      this.props.feeds.map(feed => FeedListActions.refreshFeed(feed))
     })
   }
 

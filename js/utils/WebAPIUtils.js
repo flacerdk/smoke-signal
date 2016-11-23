@@ -38,7 +38,7 @@ const addFeed = url => _postJSONRequest('/feeds/', { url })
 
 const getFeedList = (options) => {
   if (typeof options !== 'undefined' &&
-      ('refresh' in options || 'url' in options)) {
+      'url' in options) {
     return _postJSONRequest('/feeds/', options)
       .then(response => response._embedded.feeds)
   }

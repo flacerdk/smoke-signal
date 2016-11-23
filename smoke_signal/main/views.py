@@ -35,11 +35,7 @@ def all_feeds():
     if not request.is_json:
         raise BadRequest
     try:
-        request_json = request.get_json()
-        if "refresh" in request_json and request_json["refresh"]:
-            return methods.refresh_all_feeds()
-        else:
-            return methods.post_feed(request.get_json()["url"])
+        return methods.post_feed(request.get_json()["url"])
     except KeyError:
         raise BadRequest
 

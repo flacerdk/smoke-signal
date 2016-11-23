@@ -3,21 +3,11 @@ import ActionDispatcher from '../dispatcher/ActionDispatcher'
 import WebAPIUtils from '../utils/WebAPIUtils'
 
 module.exports = {
-  refreshFeed: feed =>
-    WebAPIUtils.refreshFeed(feed.id).then((response) => {
-      const entries = response._embedded.entries
-      ActionDispatcher.dispatch({
-        type: ActionTypes.GET_ENTRY_LIST,
-        entries,
-      })
-    }, ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
-
   fetchFeedEntries: (feed) => {
-    WebAPIUtils.fetchFeedEntries(feed.id).then((response) => {
-      const entries = response._embedded.entries
+    WebAPIUtils.fetchFeedEntries(feed.id).then((newFeed) => {
       ActionDispatcher.dispatch({
         type: ActionTypes.GET_ENTRY_LIST,
-        entries,
+        feed: newFeed,
       })
     })
   },

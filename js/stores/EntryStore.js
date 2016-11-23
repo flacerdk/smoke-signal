@@ -22,7 +22,7 @@ class EntryStore extends EventEmitter {
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
         case ActionTypes.GET_ENTRY_LIST:
-          this._setEntries(action.entries)
+          this._setEntries(action.feed._embedded.entries)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.CHANGE_ACTIVE_ENTRY:

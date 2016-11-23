@@ -12,6 +12,8 @@ class FeedStore extends EventEmitter {
     this._activeFeed = {}
 
     this._addFeed = this._addFeed.bind(this)
+    this._setFeed = this._setFeed.bind(this)
+    this._updateUnread = this._updateUnread.bind(this)
     this._setActiveFeed = this._setActiveFeed.bind(this)
 
     this.addChangeListener = this.addChangeListener.bind(this)
@@ -20,15 +22,27 @@ class FeedStore extends EventEmitter {
     this.dispatchToken = ActionDispatcher.register((action) => {
       switch (action.type) {
         case ActionTypes.ADD_FEED:
-          this._addFeed(action.newFeed)
+          this._addFeed(action.feed)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.GET_FEED_LIST:
           this._setFeeds(action.feeds)
           this.emit(CHANGE_EVENT)
           break
+        case ActionTypes.GET_ENTRY_LIST:
+          this._setFeed(action.feed)
+          this.emit(CHANGE_EVENT)
+          break
         case ActionTypes.CHANGE_ACTIVE_FEED:
           this._setActiveFeed(action.feed)
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.REFRESH_FEED:
+          this._setFeed(action.feed)
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.CHANGE_ENTRY_STATUS:
+          this._updateUnread(action.entry)
           this.emit(CHANGE_EVENT)
           break
         default:
@@ -53,6 +67,28 @@ class FeedStore extends EventEmitter {
 
   _setFeed(feed) {
     this._feeds[feed.id] = feed
+  }
+
+  _updateUnread(entry) {
+    const feed = this._feeds[entry.feed_id]
+    if (feed) {
+      let idx
+      const oldEntry = feed._embedded.entries.find(
+        (e, i) => {
+          if (e.id === entry.id) {
+            idx = i
+            return true
+          }
+          return false
+        })
+      if (!oldEntry.read && entry.read) {
+        feed.unread -= 1
+      } else if (oldEntry.read && !entry.read) {
+        feed.unread += 1
+      }
+      feed._embedded.entries[idx] = entry
+    }
+    this._setFeed(feed)
   }
 
   get feeds() {
