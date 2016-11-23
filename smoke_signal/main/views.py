@@ -62,6 +62,17 @@ def all_entries(predicate):
     return methods.get_entries(predicate=predicate)
 
 
+@main.route('/feeds/all', methods=['POST'])
+@login_required
+def mark_all_read():
+    if not request.is_json or "read" not in request.get_json():
+        raise BadRequest
+    if request.get_json()["read"]:
+        return methods.mark_all_read()
+    else:
+        return '', 204
+
+
 @main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['GET', 'POST'])
 @login_required
 def entry(feed_id, entry_id):

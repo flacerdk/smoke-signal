@@ -99,3 +99,9 @@ def toggle_status(feed_id, entry_id, data):
         return get_entry(feed_id, entry_id)
     except NoResultFound:
         raise NotFound
+
+
+# TODO: should have a better response here
+def mark_all_read():
+    helpers.update_all_entries({"read": True})
+    return Response(json.dumps({"read": True}), mimetype="application/json")

@@ -55,3 +55,9 @@ def update_entry_status(feed_id, entry_id, data):
     query.update(data)
     g.db.commit()
     return query.one()
+
+
+def update_all_entries(data):
+    query = g.db.query(Entry)
+    query.update(data)
+    g.db.commit()

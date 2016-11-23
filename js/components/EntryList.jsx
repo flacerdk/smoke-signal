@@ -16,9 +16,11 @@ export default class EntryList extends React.Component {
     Mousetrap.bind('j', () => EntryListActions.changeActiveEntry(this.scrollActiveEntry(1)))
     Mousetrap.bind('k', () => EntryListActions.changeActiveEntry(this.scrollActiveEntry(-1)))
     Mousetrap.bind('m', () => {
-      const newReadStatus = { read: !this.props.activeEntry.read }
-      EntryListActions.changeEntryStatus(this.props.activeEntry,
-        newReadStatus)
+      if (Object.keys(this.props.activeEntry).length !== 0) {
+        const newReadStatus = { read: !this.props.activeEntry.read }
+        EntryListActions.changeEntryStatus(this.props.activeEntry,
+          newReadStatus)
+      }
     })
   }
 
