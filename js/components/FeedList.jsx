@@ -7,7 +7,7 @@ import FeedListActions from '../actions/FeedListActions'
 class FeedList extends React.Component {
   componentDidMount() {
     Mousetrap.bind('r', () => {
-      FeedListActions.refreshFeed(this.state.activeFeed)
+      EntryListActions.refreshFeed(this.props.activeFeed)
     })
     Mousetrap.bind('g r', () => {
       FeedListActions.refreshAllFeeds()
@@ -53,6 +53,11 @@ class FeedList extends React.Component {
 
 FeedList.propTypes = {
   feeds: React.PropTypes.arrayOf(React.PropTypes.object),
+  activeFeed: React.PropTypes.shape({
+    id: React.PropTypes.number,
+    title: React.PropTypes.string,
+    unread: React.PropTypes.number,
+  }),
 }
 
 module.exports = FeedList

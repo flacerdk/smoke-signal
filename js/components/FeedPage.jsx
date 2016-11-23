@@ -59,7 +59,10 @@ export default class FeedPage extends React.Component {
         <AddFeedForm />
         <Grid fluid>
           <Col lg={3} md={2}>
-            <Sidebar feeds={this.state.feeds} />
+            <Sidebar
+              feeds={this.state.feeds}
+              activeFeed={this.state.activeFeed}
+            />
           </Col>
           <Col lg={8} md={6}>
             <Row>
