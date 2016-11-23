@@ -8,7 +8,7 @@ class EntryStore extends EventEmitter {
   constructor() {
     super()
 
-    this._entries = {}
+    this._entries = []
     this._activeEntry = {}
 
     this._getEntries = this._getEntries.bind(this)
@@ -56,20 +56,16 @@ class EntryStore extends EventEmitter {
   }
 
   _getEntries() {
-    return Object.keys(this._entries).map(i => this._entries[i])
+    return this._entries
   }
 
   _setEntries(newEntries) {
-    this._entries = {}
+    this._entries = newEntries
     if (newEntries.length > 0) {
       this._activeEntry = newEntries[0]
     } else {
       this._activeEntry = {}
     }
-    newEntries.forEach((entry) => {
-      this._entries[entry.id] = entry
-      return false
-    })
   }
 
   get activeEntry() {
@@ -82,7 +78,8 @@ class EntryStore extends EventEmitter {
 
   _updateEntry(newEntry) {
     if (newEntry.id) {
-      this._entries[newEntry.id] = newEntry
+      const idx = this._entries.findIndex(e => e.id === newEntry.id)
+      this._entries[idx] = newEntry
     }
   }
 }

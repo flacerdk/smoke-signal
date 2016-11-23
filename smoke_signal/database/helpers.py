@@ -5,7 +5,7 @@ from flask import g
 
 
 def feed_list():
-    query = g.db.query(Feed)
+    query = g.db.query(Feed).order_by(Feed.title.desc())
     return [feed.serialize() for feed in query.all()]
 
 
@@ -35,7 +35,9 @@ def query_entry_by_id(feed_id, entry_id):
 
 
 def query_entries_filtered_by(**kwargs):
-    return g.db.query(Entry).filter_by(**kwargs)
+    return g.db.query(Entry).\
+        filter_by(**kwargs).\
+        order_by(Entry.pub_date.desc())
 
 
 def create_db_entry(feed_entry, feed_id):
@@ -49,7 +51,7 @@ def create_db_entry(feed_entry, feed_id):
 
 
 def update_entry_status(feed_id, entry_id, data):
-    query = query_entries_filtered_by(id=entry_id, feed_id=feed_id)
+    query = g.db.query(Entry).filter_by(id=entry_id, feed_id=feed_id)
     query.update(data)
     g.db.commit()
     return query.one()

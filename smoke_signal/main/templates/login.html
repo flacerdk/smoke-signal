@@ -13,12 +13,12 @@
 
   <form method="POST" class="form-signin" action="/login">
     {{ form.csrf_token }}
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 class="form-signin-heading">Please login.</h2>
     {{ form.name.label(class_="sr-only") }}
     {{ form.name(class_="form-control", size=20) }}
     {{ form.password.label(class_="sr-only") }}
     {{ form.password(class="form-control", size=20) }}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
   </form>
 
 </div> <!-- /container -->
