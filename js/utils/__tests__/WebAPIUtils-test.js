@@ -54,10 +54,6 @@ describe('WebAPIUtils', function () {
       return { _embedded: { feeds: [] } }
     })
 
-    fetchMock.post('/feeds/', function () {
-      return feedList
-    })
-
     fetchMock.post('/feeds/1', function () {
       const newEntry = {
         id: 3,
@@ -89,11 +85,6 @@ describe('WebAPIUtils', function () {
   it('should get empty feed list', function () {
     return WebAPIUtils.getFeedList()
       .should.eventually.have.length(0)
-  })
-
-  it('should refresh feed list', function () {
-    return WebAPIUtils.getFeedList({ refresh: true })
-      .should.eventually.become(feedList._embedded.feeds)
   })
 
   it('should fetch feed entries', function () {

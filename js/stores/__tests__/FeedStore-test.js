@@ -15,7 +15,7 @@ describe('FeedStore', function () {
 
   const actionAddFeed = {
     type: ActionTypes.ADD_FEED,
-    newFeed: feed,
+    feed,
   }
 
   const actionRefreshFeedList = {
