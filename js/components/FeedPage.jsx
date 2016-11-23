@@ -1,7 +1,8 @@
 import React from 'react'
 import { Grid, Col, Row } from 'react-bootstrap/lib'
 import AddFeedForm from './AddFeedForm'
-import Sidebar from './Sidebar'
+import FeedList from './FeedList'
+import NavList from './NavList'
 import EntryList from './EntryList'
 import Entry from './Entry'
 import FeedStore from '../stores/FeedStore'
@@ -56,15 +57,16 @@ export default class FeedPage extends React.Component {
     }
     return (
       <div id="feed_page">
-        <AddFeedForm />
         <Grid fluid>
-          <Col lg={3} md={2}>
-            <Sidebar
+          <Col lg={3} md={3}>
+            <AddFeedForm />
+            <FeedList
               feeds={this.state.feeds}
               activeFeed={this.state.activeFeed}
             />
           </Col>
-          <Col lg={8} md={6}>
+          <Col lg={9} md={9}>
+            <NavList />
             <Row>
               <EntryList
                 entries={this.state.entries}

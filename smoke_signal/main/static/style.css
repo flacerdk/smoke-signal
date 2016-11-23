@@ -5,6 +5,7 @@ div {
 }
 
 .feed-list {
+    margin-top: 20px;
     overflow-y: scroll;
     max-height: 500px;
 }
@@ -26,7 +27,7 @@ div {
 }
 
 .entry-list {
-    margin: 20px;
+    margin-top: 20px;
     overflow-y: scroll;
     max-height: 300px;
 }
