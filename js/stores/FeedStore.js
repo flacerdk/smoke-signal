@@ -29,7 +29,7 @@ class FeedStore extends EventEmitter {
           this._setFeeds(action.feeds)
           this.emit(CHANGE_EVENT)
           break
-        case ActionTypes.GET_ENTRY_LIST:
+        case ActionTypes.GET_FEED:
           this._setFeed(action.feed)
           this.emit(CHANGE_EVENT)
           break
@@ -71,7 +71,7 @@ class FeedStore extends EventEmitter {
 
   _updateUnread(entry) {
     const feed = this._feeds[entry.feed_id]
-    if (feed) {
+    if (feed && '_embedded' in feed) {
       let idx
       const oldEntry = feed._embedded.entries.find(
         (e, i) => {
@@ -87,8 +87,8 @@ class FeedStore extends EventEmitter {
         feed.unread += 1
       }
       feed._embedded.entries[idx] = entry
+      this._setFeed(feed)
     }
-    this._setFeed(feed)
   }
 
   get feeds() {

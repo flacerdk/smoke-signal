@@ -26,6 +26,7 @@ div {
 }
 
 .entry-list {
+    margin: 20px;
     overflow-y: scroll;
     max-height: 300px;
 }

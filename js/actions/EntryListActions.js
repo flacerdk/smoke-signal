@@ -6,7 +6,7 @@ module.exports = {
   fetchFeedEntries: (feed) => {
     WebAPIUtils.fetchFeedEntries(feed.id).then((newFeed) => {
       ActionDispatcher.dispatch({
-        type: ActionTypes.GET_ENTRY_LIST,
+        type: ActionTypes.GET_FEED,
         feed: newFeed,
       })
     })
