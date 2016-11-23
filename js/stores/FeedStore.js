@@ -29,10 +29,6 @@ class FeedStore extends EventEmitter {
           this._setFeeds(action.feeds)
           this.emit(CHANGE_EVENT)
           break
-        case ActionTypes.GET_FEED:
-          this._setFeed(action.feed)
-          this.emit(CHANGE_EVENT)
-          break
         case ActionTypes.CHANGE_ACTIVE_FEED:
           this._setActiveFeed(action.feed)
           this.emit(CHANGE_EVENT)
@@ -105,6 +101,7 @@ class FeedStore extends EventEmitter {
     newFeeds.map(feed => this._addFeed(feed))
   }
 
+  // FIXME: this is a bit of a hack; note that entries aren't updated.
   _markAllRead() {
     const newFeeds = Object.keys(this._feeds).map((i) => {
       const newFeed = this._feeds[i]

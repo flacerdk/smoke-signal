@@ -14,16 +14,40 @@ describe('EntryStore', function () {
     text: 'Test text',
     read: false,
     marked: false,
+    feed_id: 1,
+  }
+  const secondEntry = {
+    id: 2,
+    feed_id: 1,
+    read: false,
+  }
+  const feed = {
+    id: 1,
+    title: 'Test title',
+    url: 'http://example.com/test_url',
+    _embedded: {
+      entries: [entry, secondEntry],
+    },
+    unread: 2,
+  }
+
+  const actionGetFeed = {
+    type: ActionTypes.GET_FEED,
+    feed,
   }
 
   const actionGetEntryList = {
     type: ActionTypes.GET_ENTRY_LIST,
-    entries: [entry],
+    entries: [entry, secondEntry],
   }
 
   const changeActiveEntry = {
     type: ActionTypes.CHANGE_ACTIVE_ENTRY,
     entry,
+  }
+
+  const markAllRead = {
+    type: ActionTypes.MARK_ALL_READ,
   }
 
   const changeEntryStatus = () => {
@@ -58,10 +82,17 @@ describe('EntryStore', function () {
     return entries.should.be.empty
   })
 
+  it('gets feed', function () {
+    callback(actionGetFeed)
+    const entries = entryStore.entries
+    entries.length.should.equal(2)
+    entries[0].should.equal(entry)
+  })
+
   it('gets entry list', function () {
     callback(actionGetEntryList)
     const entries = entryStore.entries
-    entries.length.should.equal(1)
+    entries.length.should.equal(2)
     entries[0].should.equal(entry)
   })
 
@@ -80,5 +111,13 @@ describe('EntryStore', function () {
     const newEntry = entries[0]
     newEntry.read = false
     newEntry.should.equal(entry)
+  })
+
+  it('marks all entries read', function () {
+    callback(actionGetEntryList)
+    callback(markAllRead)
+    const entries = entryStore.entries
+    entries[0].read.should.be.true
+    entries[1].read.should.be.true
   })
 })

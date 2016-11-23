@@ -17,7 +17,7 @@ module.exports = {
         type: ActionTypes.REFRESH_FEED,
         feed: newFeed,
       })
-    }, ex => console.log(`Couldn't refresh feed: ${ex.message}`)),
+    }),
 
   getFeedList: () => {
     WebAPIUtils.getFeedList().then(feeds => (
@@ -25,14 +25,14 @@ module.exports = {
         type: ActionTypes.GET_FEED_LIST,
         feeds,
       })
-    ), ex => console.log(`Couldn't load feed list: ${ex.message}`))
+    ))
   },
 
   changeActiveFeed: (feed) => {
     ActionDispatcher.dispatch({
       type: ActionTypes.CHANGE_ACTIVE_FEED,
       feed,
-    }, ex => console.log(`Couldn't load feed: ${ex.message}`))
+    })
   },
 
   markAllRead: () =>

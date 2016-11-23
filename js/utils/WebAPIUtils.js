@@ -36,15 +36,8 @@ const _postJSONRequest = (url, data) => {
 
 const addFeed = url => _postJSONRequest('/feeds/', { url })
 
-const getFeedList = (options) => {
-  if (typeof options !== 'undefined' &&
-      'url' in options) {
-    return _postJSONRequest('/feeds/', options)
-      .then(response => response._embedded.feeds)
-  }
-  return _getRequest('/feeds/')
-    .then(response => response._embedded.feeds)
-}
+const getFeedList = () =>
+      _getRequest('/feeds/')
 
 const refreshFeed = feedId =>
       _postJSONRequest(`/feeds/${feedId}`)
@@ -58,10 +51,9 @@ const changeEntryStatus = (feedId, entryId, newStatus) =>
 
 const fetchEntries = predicate =>
       _getRequest(`/feeds/${predicate}`)
-      .then(response => response._embedded.entries)
 
 const markAllRead = () =>
-      _postJSONRequest('/feeds/all', {read: true})
+      _postJSONRequest('/feeds/all', { read: true })
 
 module.exports = {
   addFeed,

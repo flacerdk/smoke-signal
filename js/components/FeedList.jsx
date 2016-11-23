@@ -5,15 +5,22 @@ import EntryListActions from '../actions/EntryListActions'
 import FeedListActions from '../actions/FeedListActions'
 
 class FeedList extends React.Component {
+  // TODO: should notify the user when errors occur.
   componentDidMount() {
     Mousetrap.bind('r', () => {
-      FeedListActions.refreshFeed(this.props.activeFeed)
+      if (Object.keys(this.props.activeFeed).length !== 0) {
+        FeedListActions.refreshFeed(this.props.activeFeed)
+        .catch(e => console.log(`Couldn't refresh feed: ${e.message}`))
+      }
     })
     Mousetrap.bind('g r', () => {
-      this.props.feeds.map(feed => FeedListActions.refreshFeed(feed))
+      this.props.feeds.map(feed =>
+        FeedListActions.refreshFeed(feed)
+        .catch(e => console.log(`Couldn't refresh feed: ${e.message}`)))
     })
     Mousetrap.bind('g m', () => {
       FeedListActions.markAllRead()
+        .catch(e => console.log(`Failed trying to mark entries as read: ${e.message}`))
     })
   }
 

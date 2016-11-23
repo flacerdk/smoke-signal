@@ -82,22 +82,23 @@ describe('WebAPIUtils', function () {
     fetchMock.restore()
   })
 
-  it('should get empty feed list', function () {
+  it('gets empty feed list', function () {
     return WebAPIUtils.getFeedList()
+      .then(r => r._embedded.feeds)
       .should.eventually.have.length(0)
   })
 
-  it('should fetch feed entries', function () {
+  it('fetches feed entries', function () {
     return WebAPIUtils.fetchFeedEntries(1)
       .should.eventually.become(entryList._embedded.entries[0])
   })
 
-  it('should fetch all entries', function () {
+  it('fetches all entries', function () {
     return WebAPIUtils.fetchEntries('all')
-      .should.eventually.become(entryList._embedded.entries)
+      .should.eventually.become(entryList)
   })
 
-  it('should refresh feed', function () {
+  it('refreshes feed', function () {
     return WebAPIUtils.refreshFeed(1)
       .then(r => r._embedded.entries)
       .should.eventually.have.length(2)

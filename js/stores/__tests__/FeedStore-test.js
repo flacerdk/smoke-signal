@@ -7,10 +7,38 @@ describe('FeedStore', function () {
   const ActionTypes = require('../../constants/FeedReaderConstants')
   const ActionDispatcher = require('../../dispatcher/ActionDispatcher')
   const FeedStore = require('../FeedStore')
+  const entry = {
+    id: 1,
+    feed_id: 1,
+    read: false,
+  }
+  const readEntry = {
+    id: 1,
+    feed_id: 1,
+    read: true,
+  }
+  const secondEntry = {
+    id: 2,
+    feed_id: 1,
+    read: false,
+  }
   const feed = {
     id: 1,
     title: 'Test title',
     url: 'http://example.com/test_url',
+    _embedded: {
+      entries: [entry, secondEntry],
+    },
+    unread: 2,
+  }
+  const newFeed = {
+    id: 1,
+    title: 'Test title 2',
+    url: 'http://example.com/test_url',
+    _embedded: {
+      entries: [entry],
+    },
+    unread: 1,
   }
 
   const actionAddFeed = {
@@ -26,6 +54,25 @@ describe('FeedStore', function () {
   const actionChangeActiveFeed = {
     type: ActionTypes.CHANGE_ACTIVE_FEED,
     feed,
+  }
+
+  const actionRefreshFeed = {
+    type: ActionTypes.REFRESH_FEED,
+    feed: newFeed,
+  }
+
+  const actionMakeEntryRead = {
+    type: ActionTypes.CHANGE_ENTRY_STATUS,
+    entry: readEntry,
+  }
+
+  const actionMakeEntryUnread = {
+    type: ActionTypes.CHANGE_ENTRY_STATUS,
+    entry,
+  }
+
+  const actionMarkAllRead = {
+    type: ActionTypes.MARK_ALL_READ,
   }
 
   let spy
@@ -58,6 +105,14 @@ describe('FeedStore', function () {
     feeds[0].should.equal(feed)
   })
 
+  it('refreshes a feed', function () {
+    callback(actionRefreshFeedList)
+    callback(actionRefreshFeed)
+    const feeds = feedStore.feeds
+    feeds.length.should.equal(1)
+    feeds[0].should.equal(newFeed)
+  })
+
   it('refreshes the feed list', function () {
     callback(actionRefreshFeedList)
     const feeds = feedStore.feeds
@@ -71,5 +126,21 @@ describe('FeedStore', function () {
     callback(actionChangeActiveFeed)
     const activeFeed = feedStore.activeFeed
     activeFeed.should.equal(feed)
+  })
+
+  it('changes entry status', function () {
+    callback(actionRefreshFeedList)
+    callback(actionMakeEntryRead)
+    let newEntry = feedStore.feeds[0]._embedded.entries[0]
+    newEntry.should.equal(readEntry)
+    callback(actionMakeEntryUnread)
+    newEntry = feedStore.feeds[0]._embedded.entries[0]
+    newEntry.should.equal(entry)
+  })
+
+  it('marks all entries read', function () {
+    callback(actionRefreshFeedList)
+    callback(actionMarkAllRead)
+    feedStore.feeds[0].unread.should.equal(0)
   })
 })

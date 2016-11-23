@@ -13,7 +13,8 @@ module.exports = {
   },
 
   fetchEntries: predicate =>
-    WebAPIUtils.fetchEntries(predicate).then((entries) => {
+    WebAPIUtils.fetchEntries(predicate).then((response) => {
+      const entries = response._embedded.entries
       ActionDispatcher.dispatch({
         type: ActionTypes.GET_ENTRY_LIST,
         entries,

@@ -81,5 +81,7 @@ def entry(feed_id, entry_id):
     if not request.is_json:
         raise BadRequest
     data = request.get_json()
-    return methods.toggle_status(feed_id, entry_id,
-                                 data)
+    if "read" in data or "marked" in data:
+        return methods.toggle_status(feed_id, entry_id,
+                                     data)
+    raise BadRequest
