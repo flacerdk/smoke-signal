@@ -45,6 +45,10 @@ class FeedStore extends EventEmitter {
           this._updateUnread(action.entry)
           this.emit(CHANGE_EVENT)
           break
+        case ActionTypes.MARK_ALL_READ:
+          this._markAllRead()
+          this.emit(CHANGE_EVENT)
+          break
         default:
           // no op
       }
@@ -99,6 +103,15 @@ class FeedStore extends EventEmitter {
   _setFeeds(newFeeds) {
     this._feeds = {}
     newFeeds.map(feed => this._addFeed(feed))
+  }
+
+  _markAllRead() {
+    const newFeeds = Object.keys(this._feeds).map((i) => {
+      const newFeed = this._feeds[i]
+      newFeed.unread = 0
+      return newFeed
+    })
+    this._setFeeds(newFeeds)
   }
 
   _setActiveFeed(feed) {

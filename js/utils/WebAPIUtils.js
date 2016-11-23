@@ -60,6 +60,9 @@ const fetchEntries = predicate =>
       _getRequest(`/feeds/${predicate}`)
       .then(response => response._embedded.entries)
 
+const markAllRead = () =>
+      _postJSONRequest('/feeds/all', {read: true})
+
 module.exports = {
   addFeed,
   getFeedList,
@@ -67,4 +70,5 @@ module.exports = {
   fetchFeedEntries,
   changeEntryStatus,
   fetchEntries,
+  markAllRead,
 }

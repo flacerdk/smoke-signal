@@ -7,4 +7,5 @@ module.exports = {
   GET_ENTRY_LIST: 'FeedReaderConstants.GET_ENTRY_LIST',
   CHANGE_ACTIVE_ENTRY: 'FeedReaderConstants.CHANGE_ACTIVE_ENTRY',
   CHANGE_ENTRY_STATUS: 'FeedReaderConstants.CHANGE_ENTRY_STATUS',
+  MARK_ALL_READ: 'FeedReaderConstants.MARK_ALL_READ',
 }

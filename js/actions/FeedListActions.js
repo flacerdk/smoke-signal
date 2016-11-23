@@ -34,4 +34,11 @@ module.exports = {
       feed,
     }, ex => console.log(`Couldn't load feed: ${ex.message}`))
   },
+
+  markAllRead: () =>
+    WebAPIUtils.markAllRead().then(() => (
+      ActionDispatcher.dispatch({
+        type: ActionTypes.MARK_ALL_READ,
+      })
+    )),
 }

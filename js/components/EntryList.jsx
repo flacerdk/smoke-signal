@@ -25,7 +25,8 @@ export default class EntryList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.activeEntry.id !== prevProps.activeEntry.id) {
+    if (Object.keys(this.props.activeEntry).length !== 0
+      && this.props.activeEntry.id !== prevProps.activeEntry.id) {
       if (this.activeEntry) {
         scrollIntoViewIfNeeded(this.activeEntry)
       }

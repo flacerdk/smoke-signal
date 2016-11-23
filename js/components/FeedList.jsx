@@ -12,11 +12,15 @@ class FeedList extends React.Component {
     Mousetrap.bind('g r', () => {
       this.props.feeds.map(feed => FeedListActions.refreshFeed(feed))
     })
+    Mousetrap.bind('g m', () => {
+      FeedListActions.markAllRead()
+    })
   }
 
   componentWillUnmount() {
     Mousetrap.unbind('r')
     Mousetrap.unbind('g r')
+    Mousetrap.unbind('g m')
   }
 
   render() {

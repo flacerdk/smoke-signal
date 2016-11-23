@@ -37,6 +37,10 @@ class EntryStore extends EventEmitter {
           this._updateEntry(action.entry)
           this.emit(CHANGE_EVENT)
           break
+        case ActionTypes.MARK_ALL_READ:
+          this._markAllEntriesRead()
+          this.emit(CHANGE_EVENT)
+          break
         default:
           // no op
       }
@@ -66,6 +70,15 @@ class EntryStore extends EventEmitter {
     } else {
       this._activeEntry = {}
     }
+  }
+
+  _markAllEntriesRead() {
+    const newEntries = this._entries.map((e) => {
+      const newEntry = e
+      newEntry.read = true
+      return newEntry
+    })
+    this._setEntries(newEntries)
   }
 
   get activeEntry() {
