@@ -29,10 +29,10 @@ module.exports = {
 
   changeEntryStatus: (entry, newStatus) =>
     WebAPIUtils.changeEntryStatus(entry.feed_id, entry.id, newStatus)
-    .then(newEntry => (
+    .then(feed => (
       ActionDispatcher.dispatch({
         type: ActionTypes.CHANGE_ENTRY_STATUS,
-        entry: newEntry,
+        feed,
       })
     ), ex => console.log(`Couldn't update entry: ${ex.message}`)),
 }

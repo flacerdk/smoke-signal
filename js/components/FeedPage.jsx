@@ -58,15 +58,18 @@ export default class FeedPage extends React.Component {
     return (
       <div id="feed_page">
         <Grid fluid>
-          <Col lg={3} md={3}>
+          <Row>
             <AddFeedForm />
+            <NavList />
+          </Row>
+          <Row>
+          <Col lg={3} md={3}>
             <FeedList
               feeds={this.state.feeds}
               activeFeed={this.state.activeFeed}
             />
           </Col>
           <Col lg={9} md={9}>
-            <NavList />
             <Row>
               <EntryList
                 entries={this.state.entries}
@@ -75,6 +78,7 @@ export default class FeedPage extends React.Component {
             </Row>
             <Row>{entry}</Row>
           </Col>
+          </Row>
         </Grid>
       </div>
     )

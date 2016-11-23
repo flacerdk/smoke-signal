@@ -31,6 +31,25 @@ describe('EntryStore', function () {
     unread: 2,
   }
 
+  const newFeed = {
+    id: 1,
+    title: 'Test title',
+    url: 'http://example.com/test_url',
+    _embedded: {
+      entry:
+      {
+        id: 1,
+        title: 'Test title',
+        url: 'http://example.com/test_url',
+        text: 'Test text',
+        read: true,
+        marked: false,
+        feed_id: 1,
+      },
+    },
+    unread: 0,
+  }
+
   const actionGetFeed = {
     type: ActionTypes.GET_FEED,
     feed,
@@ -51,11 +70,9 @@ describe('EntryStore', function () {
   }
 
   const changeEntryStatus = () => {
-    const newEntry = entry
-    newEntry.read = true
     return {
       type: ActionTypes.CHANGE_ENTRY_STATUS,
-      entry: newEntry,
+      feed: newFeed,
     }
   }
 
@@ -110,7 +127,7 @@ describe('EntryStore', function () {
     entries[0].read.should.equal(true)
     const newEntry = entries[0]
     newEntry.read = false
-    newEntry.should.equal(entry)
+    newEntry.read.should.equal(entry.read)
   })
 
   it('marks all entries read', function () {

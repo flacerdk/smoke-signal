@@ -34,7 +34,7 @@ class EntryStore extends EventEmitter {
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.CHANGE_ENTRY_STATUS:
-          this._updateEntry(action.entry)
+          this._updateEntry(action.feed._embedded.entry)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.MARK_ALL_READ:

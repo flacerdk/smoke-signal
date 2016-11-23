@@ -70,15 +70,18 @@ def get_entries(predicate="all", **kwargs):
 
 def get_entry(feed_id, entry_id):
     entry = helpers.query_entry_by_id(feed_id, entry_id)
-    response = entry.serialize()
-    return Response(json.dumps(response), mimetype="application/json")
+    feed = helpers.query_feed_by_id(feed_id)
+    feed["_embedded"] = {"entry": entry.serialize()}
+    return Response(json.dumps(feed), mimetype="application/json")
 
 
 def refresh_feed(feed_id):
     try:
         feed = helpers.query_feed_by_id(feed_id)
         helpers.add_entries(feed_id, parse_entries(feed))
-        return get_entries(predicate="all", feed_id=feed_id)
+        feed = helpers.query_feed_by_id(feed_id)
+        return Response(json.dumps(feed),
+                        mimetype="application/json")
     except NoResultFound:
         raise NotFound
 

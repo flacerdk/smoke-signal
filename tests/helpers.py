@@ -48,7 +48,7 @@ def change_first_entry(app, feed, data):
     parsed_json = get_json(get_entries_response(app, feed))
     entry_list = parsed_json["_embedded"]["entries"]
     entry = entry_list[0]
-    return get_json(change_entry_status(app, entry, data))
+    return get_json(change_entry_status(app, entry, data))["_embedded"]["entry"]
 
 
 def change_entry_status(app, entry, data):

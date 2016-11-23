@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, FormControl, FormGroup } from 'react-bootstrap/lib'
+import { Button, Navbar, FormControl, FormGroup } from 'react-bootstrap/lib'
 import FeedListActions from '../actions/FeedListActions'
 
 export default class AddFeedForm extends React.Component {
@@ -33,7 +33,7 @@ export default class AddFeedForm extends React.Component {
   render() {
     const validationState = this.state.error ? 'error' : null
     return (
-      <Form inline onSubmit={this.handleSubmit}>
+      <Navbar.Form pullLeft onSubmit={this.handleSubmit}>
         <FormGroup validationState={validationState}>
           <FormControl
             type="text"
@@ -43,7 +43,7 @@ export default class AddFeedForm extends React.Component {
           />
         </FormGroup>
         <Button type="submit">Add feed</Button>
-      </Form>
+      </Navbar.Form>
     )
   }
 }

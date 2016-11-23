@@ -95,7 +95,7 @@ class MethodsTestCase(unittest.TestCase):
         resp = helpers.change_entry_status(self.app, entry,
                                            {"read": True})
         assert resp.status_code == 200
-        entry = helpers.get_json(resp)
+        entry = helpers.get_json(resp)["_embedded"]["entry"]
         assert entry["read"]
 
     def test_feed_read(self):
@@ -109,7 +109,7 @@ class MethodsTestCase(unittest.TestCase):
 
     def test_feed_read_not_in_unread(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
-                                                     {"read": True})
+                                                {"read": True})
         resp = self.app.get("/feeds/{}/unread".format(read_entry["feed_id"]))
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -118,7 +118,7 @@ class MethodsTestCase(unittest.TestCase):
 
     def test_feed_unread(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
-                                                       {"read": False})
+                                                  {"read": False})
         resp = self.app.get("/feeds/{}/unread".format(unread_entry["feed_id"]))
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -212,6 +212,15 @@ class MethodsTestCase(unittest.TestCase):
         resp = self.app.post("/feeds/1/1", data=json.dumps({"invalid": True}),
                              content_type="application/json")
         assert resp.status_code == 400
+
+    def test_mark_all_read(self):
+        resp = self.app.post("/feeds/all", data=json.dumps({"read": True}),
+                             content_type="application/json")
+        assert resp.status_code == 200
+        all_entries = helpers.get_json(self.app.get("/feeds/all"))
+        read_entries = helpers.get_json(self.app.get("/feeds/read"))
+        assert all_entries["_embedded"]["entries"] == \
+            read_entries["_embedded"]["entries"]
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(MethodsTestCase)

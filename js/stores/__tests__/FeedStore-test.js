@@ -41,6 +41,40 @@ describe('FeedStore', function () {
     unread: 1,
   }
 
+  const readFeed = {
+    id: 1,
+    title: 'Test title 2',
+    url: 'http://example.com/test_url',
+    _embedded: {
+      entry: {
+        id: 1,
+        feed_id: 1,
+        read: false,
+      },
+    },
+    unread: 0,
+  }
+
+  const unreadFeed = {
+    id: 1,
+    title: 'Test title 2',
+    url: 'http://example.com/test_url',
+    _embedded: {
+      entry: {
+        id: 1,
+        feed_id: 1,
+        read: true,
+      },
+    },
+    unread: 1,
+  }
+
+  const feedList = {
+    _embedded: {
+      feeds: [feed],
+    },
+  }
+
   const actionAddFeed = {
     type: ActionTypes.ADD_FEED,
     feed,
@@ -48,7 +82,7 @@ describe('FeedStore', function () {
 
   const actionRefreshFeedList = {
     type: ActionTypes.GET_FEED_LIST,
-    feeds: [feed],
+    feeds: feedList,
   }
 
   const actionChangeActiveFeed = {
@@ -63,12 +97,12 @@ describe('FeedStore', function () {
 
   const actionMakeEntryRead = {
     type: ActionTypes.CHANGE_ENTRY_STATUS,
-    entry: readEntry,
+    feed: readFeed,
   }
 
   const actionMakeEntryUnread = {
     type: ActionTypes.CHANGE_ENTRY_STATUS,
-    entry,
+    feed: unreadFeed,
   }
 
   const actionMarkAllRead = {
@@ -131,11 +165,9 @@ describe('FeedStore', function () {
   it('changes entry status', function () {
     callback(actionRefreshFeedList)
     callback(actionMakeEntryRead)
-    let newEntry = feedStore.feeds[0]._embedded.entries[0]
-    newEntry.should.equal(readEntry)
+    feedStore.feeds[0].unread.should.equal(0)
     callback(actionMakeEntryUnread)
-    newEntry = feedStore.feeds[0]._embedded.entries[0]
-    newEntry.should.equal(entry)
+    feedStore.feeds[0].unread.should.equal(1)
   })
 
   it('marks all entries read', function () {
