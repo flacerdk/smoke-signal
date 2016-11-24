@@ -4,14 +4,15 @@ A simple web-based RSS reader.
 
 ## Setup
 
-`smoke-signal` requires sqlite, Python 3 and the JavaScript libraries listed in
-`package.json` under "dependencies". Install the Python dependencies with `pip
-install -r requirements.txt`. If you have npm, you can install the JavaScript
-dependencies with `npm install`.
+`smoke-signal` requires sqlite, Python 3, lxml and the JavaScript libraries
+listed in `package.json` under "dependencies". Install the Python dependencies
+with `pip install -r requirements.txt`. If you have npm, you can install the
+JavaScript dependencies with `npm install`.
 
 Create a configuration file in `instance/config.py`; the file `config.py` in the
 root directory can serve as a starting point. Note that you have to fill in a
-username and password, which will be used as your login credentials.
+username and password, which will be used as your login credentials, as well as
+a secret key which will be used for CSRF protection.
 
 You can run `python -m utils.opml_import` script on an OPML file to import a
 list of feeds. There's a sample at `sample.opml`.
@@ -21,21 +22,25 @@ run the server.
 
 ## Key shortcuts
 
-Use `j` and `k` to scroll down/up entries, `m` to toggle an entry as read, `r`
-to refresh the feed, and `g r` to refresh all feeds. (Warning: the last one is
-pretty slow at the moment.)
+Use `j` and `k` to scroll down/up entries, `m` to toggle an entry as read, `g m`
+to mark all entries as read, `r` to refresh the feed, and `g r` to refresh all
+feeds. (Warning: the last one is pretty slow at the moment.)
 
 ## Tests
 
 Tests can be run with `python -m unittest discover -t . -s tests -v`.
 
-## TODO
+## Issues
 
-The reader is very simple as of now; at the moment, my priority is to get it
-decent enough that I'll be willing to use it instead of The Old Reader. Most
-importantly, the interface is still very ugly, as I've focused on getting all
-the components working. Also, refreshing all feeds is very slow; I plan on
-fixing that soon.
+The reader is not at all optimized for large datasets; there's no pagination, so
+for example, `/feeds/all` will get every single entry from the server. I intend
+to implement pagination soon. Also, refreshing all feeds (with `g r`) will fetch
+all feeds. That can definitely be optimized.
+
+There are many features to be added, such as search, and being able to add a
+feed by handing the home page's URL to the server and making it look for the
+feed. These features are likely not hard to implement, but for now I'm focusing
+on fixing eventual bugs in the existing features.
 
 Later, I want to add some extensibility: the ability to add your own script to
 fetch a feed, à la Liferea. Surprisingly, there are still websites that don't
