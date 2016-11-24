@@ -7,7 +7,8 @@ from server.login import LoginForm
 main = Blueprint("main", __name__,
                  template_folder="templates",
                  static_folder="static",
-                 static_url_path="/main/static")
+                 static_url_path="/main/static",
+                 url_prefix="/smoke_signal")
 
 
 @main.route('/login', methods=['GET', 'POST'])

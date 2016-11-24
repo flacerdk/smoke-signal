@@ -1,5 +1,7 @@
 import 'isomorphic-fetch'
 
+const BASE_URI = '/smoke_signal'
+
 const _getRequest = url =>
       fetch(url, {
         credentials: 'same-origin',
@@ -34,26 +36,26 @@ const _postJSONRequest = (url, data) => {
     })
 }
 
-const addFeed = url => _postJSONRequest('/feeds/', { url })
+const addFeed = url => _postJSONRequest(`${BASE_URI}/feeds/`, { url })
 
 const getFeedList = () =>
-      _getRequest('/feeds/')
+      _getRequest(`${BASE_URI}/feeds`)
 
 const refreshFeed = feedId =>
-      _postJSONRequest(`/feeds/${feedId}`)
+      _postJSONRequest(`${BASE_URI}/feeds/${feedId}`)
 
 const fetchFeedEntries = feedId =>
-      _getRequest(`/feeds/${feedId}/all`)
+      _getRequest(`${BASE_URI}/feeds/${feedId}/all`)
 
 const changeEntryStatus = (feedId, entryId, newStatus) =>
-      _postJSONRequest(`/feeds/${feedId}/${entryId}`,
+      _postJSONRequest(`${BASE_URI}/feeds/${feedId}/${entryId}`,
                        newStatus)
 
 const fetchEntries = predicate =>
-      _getRequest(`/feeds/${predicate}`)
+      _getRequest(`${BASE_URI}/feeds/${predicate}`)
 
 const markAllRead = () =>
-      _postJSONRequest('/feeds/all', { read: true })
+      _postJSONRequest(`${BASE_URI}/feeds/all`, { read: true })
 
 module.exports = {
   addFeed,

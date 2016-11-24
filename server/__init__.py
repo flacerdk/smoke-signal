@@ -1,6 +1,7 @@
 from flask import Flask, g
 from flask_wtf.csrf import CsrfProtect
 from flask_login import current_user, LoginManager
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
@@ -12,6 +13,8 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
 app.config.from_pyfile("config.py")
 app.register_blueprint(main)
+db_path = os.path.join(os.path.dirname(__file__), app.config["DATABASE_PATH"])
+db_uri = 'sqlite:///{}'.format(db_path)
 
 csrf = CsrfProtect()
 csrf.init_app(app)
@@ -43,7 +46,7 @@ def init_app():
 
 @app.before_request
 def init_db(create=False):
-    engine = create_engine(app.config["DATABASE_PATH"])
+    engine = create_engine(db_uri)
     Session = sessionmaker(bind=engine)
     g.db = Session()
     if create or not engine.dialect.has_table(engine.connect(), "feed"):
