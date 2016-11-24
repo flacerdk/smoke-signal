@@ -10,7 +10,8 @@ class FeedList extends React.Component {
     Mousetrap.bind('r', () => {
       if (Object.keys(this.props.activeFeed).length !== 0) {
         FeedListActions.refreshFeed(this.props.activeFeed)
-        .catch(e => console.log(`Couldn't refresh feed: ${e.message}`))
+          .then(() => EntryListActions.fetchFeedEntries(this.props.activeFeed))
+          .catch(e => console.log(`Couldn't refresh feed: ${e.message}`))
       }
     })
     Mousetrap.bind('g r', () => {
