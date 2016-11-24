@@ -11,6 +11,7 @@ def setup_db():
     app.config['DATABASE_PATH'] = 'sqlite:///' + db_path
     app.config['TESTING'] = True
     app.config['LOGIN_DISABLED'] = True
+    app.config['WTF_CSRF_ENABLED'] = False
     with app.app_context():
         init_app()
     return db_fd, db_path
@@ -26,15 +27,15 @@ class InitTestCase(unittest.TestCase):
         os.unlink(self.db_path)
 
     def test_alive(self):
-        resp = self.app.get('/')
+        resp = self.app.get('/smoke_signal/')
         assert resp.status_code == 200
 
     def test_empty_feed_list(self):
-        resp = self.app.get('/feeds/')
+        resp = self.app.get('/smoke_signal/feeds/')
         assert resp.status_code == 200
         feeds = helpers.get_json(resp)["_embedded"]["feeds"]
         assert feeds == []
-        resp = self.app.get('/feeds/1')
+        resp = self.app.get('/smoke_signal/feeds/1')
         assert resp.status_code == 404
 
 
