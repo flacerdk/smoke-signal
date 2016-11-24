@@ -39,7 +39,7 @@ const _postJSONRequest = (url, data) => {
 const addFeed = url => _postJSONRequest(`${BASE_URI}/feeds/`, { url })
 
 const getFeedList = () =>
-      _getRequest(`${BASE_URI}/feeds`)
+      _getRequest(`${BASE_URI}/feeds/`)
 
 const refreshFeed = feedId =>
       _postJSONRequest(`${BASE_URI}/feeds/${feedId}`)

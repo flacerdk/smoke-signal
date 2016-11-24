@@ -2,6 +2,9 @@
 
 A simple web-based RSS reader.
 
+Try the [demo](https://flacer.dk/smoke_signal/), with username
+`userusernamename` and password `wordpass`.
+
 ## Setup
 
 `smoke-signal` requires sqlite, Python 3, lxml and the JavaScript libraries
