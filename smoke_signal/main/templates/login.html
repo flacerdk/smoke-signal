@@ -13,7 +13,6 @@
 
   <form method="POST" class="form-signin" action="/login">
     {{ form.csrf_token }}
-    <h2 class="form-signin-heading">Please login.</h2>
     {{ form.name.label(class_="sr-only") }}
     {{ form.name(class_="form-control", size=20) }}
     {{ form.password.label(class_="sr-only") }}

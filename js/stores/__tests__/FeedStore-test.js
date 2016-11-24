@@ -12,11 +12,6 @@ describe('FeedStore', function () {
     feed_id: 1,
     read: false,
   }
-  const readEntry = {
-    id: 1,
-    feed_id: 1,
-    read: true,
-  }
   const secondEntry = {
     id: 2,
     feed_id: 1,
