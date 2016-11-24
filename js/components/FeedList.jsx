@@ -32,6 +32,10 @@ class FeedList extends React.Component {
   }
 
   render() {
+    if (this.props.feeds.length === 0) {
+      return null
+    }
+
     const feeds = this.props.feeds.map((feed) => {
       const link = `#/feeds/${feed.id}`
       const onClick = () => {
