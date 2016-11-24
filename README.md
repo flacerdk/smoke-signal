@@ -15,7 +15,7 @@ username and password, which will be used as your login credentials, as well as
 a secret key which will be used for CSRF protection.
 
 You can run `python -m utils.opml_import` script on an OPML file to import a
-list of feeds. There's a sample at `sample.opml`.
+list of feeds.
 
 Finally, run `webpack -p` to bundle the JavaScript code and `python run.py` to
 run the server.
