@@ -1,6 +1,6 @@
 # Miscellaneous functions to interact with the database.
 
-from smoke_signal.database.models import Entry, Feed
+from server.database.models import Entry, Feed
 from flask import g
 
 

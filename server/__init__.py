@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
 
-from smoke_signal.database.models import Base, User
+from server.database.models import Base, User
 from .main.views import main
 
 app = Flask(__name__, instance_relative_config=True)

@@ -2,7 +2,7 @@ import os
 import unittest
 import tempfile
 
-from smoke_signal import app, init_app
+from server import app, init_app
 from . import helpers
 
 

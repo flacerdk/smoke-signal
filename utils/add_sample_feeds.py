@@ -1,5 +1,5 @@
-from smoke_signal import app, init_db
-from smoke_signal.database.helpers import add_feed
+from server import app, init_db
+from server.database.helpers import add_feed
 from utils.generate_feed import SampleFeed
 
 import feedparser
@@ -9,7 +9,7 @@ import sys
 
 FEEDS_DIR = app.root_path + "/test_resources/feeds/"
 
-app.config['DATABASE_PATH'] = 'sqlite:///smoke_signal/test_resources/posts.db'
+app.config['DATABASE_PATH'] = 'sqlite:///server/test_resources/posts.db'
 
 
 def create_sample_feed_files(num_feeds, num_items, option="add"):

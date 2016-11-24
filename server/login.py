@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
 from werkzeug.security import check_password_hash
 
-from smoke_signal.database.models import User
+from server.database.models import User
 
 
 class LoginForm(FlaskForm):

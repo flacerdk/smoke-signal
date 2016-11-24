@@ -1,8 +1,8 @@
 from flask import render_template, Blueprint, request, redirect, url_for
 from flask_login import login_required, login_user
 from werkzeug.exceptions import BadRequest
-from smoke_signal.main import methods
-from smoke_signal.login import LoginForm
+from server.main import methods
+from server.login import LoginForm
 
 main = Blueprint("main", __name__,
                  template_folder="templates",

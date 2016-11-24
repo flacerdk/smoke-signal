@@ -3,7 +3,7 @@ import os
 import unittest
 import tempfile
 
-from smoke_signal import app
+from server import app
 from .test_init import setup_db
 from . import helpers
 

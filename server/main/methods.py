@@ -6,7 +6,7 @@ import json
 from sqlalchemy.orm.exc import NoResultFound
 from werkzeug.exceptions import NotFound, BadRequest
 
-from smoke_signal.database import helpers
+from server.database import helpers
 
 
 def halify_entry_list(entry_list, feed=None, predicate="all"):

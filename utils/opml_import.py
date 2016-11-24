@@ -1,6 +1,6 @@
 from flask import g
-from smoke_signal.database.models import Feed
-from smoke_signal import app, init_db
+from server.database.models import Feed
+from server import app, init_db
 import xml.etree.ElementTree as etree
 import sys
 

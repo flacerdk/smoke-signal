@@ -1,13 +1,13 @@
 from flask import g
 from .opml_import import opml_to_dict
-from smoke_signal import app, init_db
-from smoke_signal.database.models import Feed
+from server import app, init_db
+from server.database.models import Feed
 import sys
 from urllib.request import urlopen, URLError
 
 feeds_dir = app.root_path + "/test_resources/feeds/"
 
-app.config['DATABASE_PATH'] = 'sqlite:///smoke_signal/test_resources/posts.db'
+app.config['DATABASE_PATH'] = 'sqlite:///server/test_resources/posts.db'
 if len(sys.argv) != 2:
     sys.exit("Usage: {name} opml_file".format(name=sys.argv[0]))
 feeds = opml_to_dict(sys.argv[1])
