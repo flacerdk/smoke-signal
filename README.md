@@ -49,7 +49,7 @@ Later, I want to add some extensibility: the ability to add your own script to
 fetch a feed, à la Liferea. Surprisingly, there are still websites that don't
 have an RSS feed in 2016.
 
-Although at the moment the Python code (under `smoke_signal/`) and the
+Although at the moment the Python code (under `server/`) and the
 JavaScript code (under `js/`) are in the same project, the two are completely
 decoupled, other than Flask serves some HTML. I'm likely to split the code into
 different projects in the future, which will make a possible migration to Node
