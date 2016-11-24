@@ -48,13 +48,14 @@ def change_first_entry(app, feed, data):
     parsed_json = get_json(get_entries_response(app, feed))
     entry_list = parsed_json["_embedded"]["entries"]
     entry = entry_list[0]
-    return get_json(change_entry_status(app, entry, data))["_embedded"]["entry"]
+    return get_json(
+        change_entry_status(app, entry, data))["_embedded"]["entry"]
 
 
 def change_entry_status(app, entry, data):
     resp = app.post(
         "/smoke_signal/feeds/{}/{}".format(entry["feed_id"],
-                              entry["id"]),
+                                           entry["id"]),
         data=json.dumps(data),
         content_type="application/json")
     return resp

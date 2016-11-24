@@ -101,7 +101,8 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_read(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
                                                 {"read": True})
-        resp = self.app.get("/smoke_signal/feeds/{}/read".format(read_entry["feed_id"]))
+        resp = self.app.get("/smoke_signal/feeds/{}/read".
+                            format(read_entry["feed_id"]))
         assert resp.status_code == 200
         read_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert read_entry in read_entry_list
@@ -110,7 +111,8 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_read_not_in_unread(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
                                                 {"read": True})
-        resp = self.app.get("/smoke_signal/feeds/{}/unread".format(read_entry["feed_id"]))
+        resp = self.app.get("/smoke_signal/feeds/{}/unread".
+                            format(read_entry["feed_id"]))
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert read_entry not in unread_entry_list
@@ -119,7 +121,8 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_unread(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"read": False})
-        resp = self.app.get("/smoke_signal/feeds/{}/unread".format(unread_entry["feed_id"]))
+        resp = self.app.get("/smoke_signal/feeds/{}/unread".
+                            format(unread_entry["feed_id"]))
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert unread_entry in unread_entry_list
@@ -128,7 +131,8 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_unread_not_in_read(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"read": False})
-        resp = self.app.get("/smoke_signal/feeds/{}/read".format(unread_entry["feed_id"]))
+        resp = self.app.get("/smoke_signal/feeds/{}/read".
+                            format(unread_entry["feed_id"]))
         assert resp.status_code == 200
         read_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert unread_entry not in read_entry_list
@@ -166,7 +170,7 @@ class MethodsTestCase(unittest.TestCase):
 
     def test_all_feeds_unread(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
-                                                       {"read": False})
+                                                  {"read": False})
         resp = self.app.get("/smoke_signal/feeds/unread")
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -209,12 +213,14 @@ class MethodsTestCase(unittest.TestCase):
         assert resp.status_code == 400
 
     def test_change_entry_status_invalid_predicate(self):
-        resp = self.app.post("/smoke_signal/feeds/1/1", data=json.dumps({"invalid": True}),
+        resp = self.app.post("/smoke_signal/feeds/1/1",
+                             data=json.dumps({"invalid": True}),
                              content_type="application/json")
         assert resp.status_code == 400
 
     def test_mark_all_read(self):
-        resp = self.app.post("/smoke_signal/feeds/all", data=json.dumps({"read": True}),
+        resp = self.app.post("/smoke_signal/feeds/all",
+                             data=json.dumps({"read": True}),
                              content_type="application/json")
         assert resp.status_code == 200
         all_entries = helpers.get_json(self.app.get("/smoke_signal/feeds/all"))
