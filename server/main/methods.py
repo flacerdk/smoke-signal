@@ -7,6 +7,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from werkzeug.exceptions import NotFound, BadRequest
 
 from server.database import helpers
+from server.database.models import Entry
 
 
 def halify_entry_list(entry_list, feed=None, predicate="all"):
@@ -28,7 +29,8 @@ def get_all_feeds():
     response["_links"] = {"self": {"href": "/feeds/"},
                           "find": {"href": "/feeds{?id}",
                                    "templated": True}}
-    response["_embedded"] = {"feeds": helpers.feed_list()}
+    feeds = [feed.serialize() for feed in helpers.query_all_feeds().all()]
+    response["_embedded"] = {"feeds": feeds}
     return Response(json.dumps(response), mimetype="application/json")
 
 
@@ -37,7 +39,7 @@ def post_feed(url):
     if parsed == {}:
         raise NotFound
     title = parsed.get("title", "No title")
-    feed = helpers.add_feed(title, url)
+    feed = helpers.add_feed(title, url).serialize()
     headers = {"location": feed["_links"]["self"]["href"]}
     return Response(json.dumps(feed), mimetype="application/json",
                     headers=headers)
@@ -46,7 +48,7 @@ def post_feed(url):
 def get_entries(predicate="all", **kwargs):
     if "feed_id" in kwargs.keys():
         try:
-            feed = helpers.query_feed_by_id(kwargs["feed_id"])
+            feed = helpers.query_feed_by_id(kwargs["feed_id"]).serialize()
         except NoResultFound:
             raise NotFound
     else:
@@ -68,38 +70,46 @@ def get_entries(predicate="all", **kwargs):
                     mimetype="application/json")
 
 
-def get_entry(feed_id, entry_id):
-    entry = helpers.query_entry_by_id(feed_id, entry_id)
-    feed = helpers.query_feed_by_id(feed_id)
+def get_entry(entry_id):
+    entry = helpers.query_entry_by_id(entry_id)
+    feed = helpers.query_feed_by_id(entry.feed_id).serialize()
     feed["_embedded"] = {"entry": entry.serialize()}
     return Response(json.dumps(feed), mimetype="application/json")
 
 
 def refresh_feed(feed_id):
     try:
-        feed = helpers.query_feed_by_id(feed_id)
-        helpers.add_entries(feed_id, parse_entries(feed))
-        feed = helpers.query_feed_by_id(feed_id)
+        feed = helpers.query_feed_by_id(feed_id).serialize()
+        new_feed = feedparser.parse(feed["url"])
+        entries = [parse_entry(feed_id, e) for e in new_feed.entries]
+        helpers.add_entries(feed_id, entries)
+        feed = helpers.query_feed_by_id(feed_id).serialize()
         return Response(json.dumps(feed),
                         mimetype="application/json")
     except NoResultFound:
         raise NotFound
 
 
-def parse_entries(feed):
-    parsed = feedparser.parse(feed["url"])
-    entries = [helpers.create_db_entry(e, feed["id"]) for e in parsed.entries]
-    return entries
+def parse_entry(feed_id, feed_entry):
+    title = feed_entry.get("title", "No title")
+    guid = feed_entry.get("id", "No ID")
+    summary = feed_entry.get("summary", title)
+    link = feed_entry.get("link", "/page_not_found.html")
+    pub_date = feed_entry.get("published_parsed", None)
+    entry = Entry(title, guid, link, summary, feed_id, pub_date=pub_date)
+    return entry
 
 
-def toggle_status(feed_id, entry_id, data):
+def toggle_status(entry_id, data):
     if "read" not in data and "marked" not in data:
         raise BadRequest
     data = {p: data[p] for p in ["read", "marked"] if p in data}
     try:
+        entry = helpers.query_entry_by_id(entry_id)
+        feed_id = entry.feed_id
         helpers.update_entry_status(feed_id, entry_id,
                                     data)
-        return get_entry(feed_id, entry_id)
+        return get_entry(entry_id)
     except NoResultFound:
         raise NotFound
 

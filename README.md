@@ -36,7 +36,7 @@ Tests can be run with `python -m unittest discover -t . -s tests -v`.
 ## Issues
 
 The reader is not at all optimized for large datasets; there's no pagination, so
-for example, `/feeds/all` will get every single entry from the server. I intend
+for example, `/api/entry/all` will get every single entry from the server. I intend
 to implement pagination soon. Also, refreshing all feeds (with `g r`) will fetch
 all feeds. That can definitely be optimized.
 

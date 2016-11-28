@@ -28,18 +28,18 @@ class LoginTestCase(unittest.TestCase):
         os.unlink(self.db_path)
 
     def test_login(self):
-        resp = self.app.post("/smoke_signal/login", data={
+        resp = self.app.post("/login", data={
             "name": "Test",
             "password": "Test"
         })
         assert resp.status_code == 302
 
     def test_get_feeds(self):
-        self.app.post("/smoke_signal/login", data={
+        self.app.post("/login", data={
             "name": "Test",
             "password": "Test"
         })
-        resp = self.app.get("/smoke_signal/feeds/")
+        resp = self.app.get("/api/feed")
         assert resp.status_code == 200
         assert "_embedded" in helpers.get_json(resp)
 

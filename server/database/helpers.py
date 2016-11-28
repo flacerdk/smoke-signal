@@ -4,9 +4,12 @@ from server.database.models import Entry, Feed
 from flask import g
 
 
-def feed_list():
-    query = g.db.query(Feed).order_by(Feed.title.desc())
-    return [feed.serialize() for feed in query.all()]
+def query_all_feeds():
+    return g.db.query(Feed).order_by(Feed.title.desc())
+
+
+def query_feed_by_id(feed_id):
+    return g.db.query(Feed).filter_by(id=feed_id).one()
 
 
 def add_feed(title, url):
@@ -16,6 +19,16 @@ def add_feed(title, url):
     return query_feed_by_id(feed.id)
 
 
+def query_entries_filtered_by(**kwargs):
+    return g.db.query(Entry).\
+        filter_by(**kwargs).\
+        order_by(Entry.pub_date.desc())
+
+
+def query_entry_by_id(entry_id):
+    return g.db.query(Entry).filter_by(id=entry_id).one()
+
+
 def add_entries(feed_id, entries):
     for e in entries:
         guid = e.guid
@@ -23,31 +36,13 @@ def add_entries(feed_id, entries):
         if query.all() == []:
             g.db.add(e)
     g.db.commit()
-    return query_entries_filtered_by(feed_id=feed_id).all()
+    return query_entries_filtered_by(feed_id=feed_id)
 
 
-def query_feed_by_id(feed_id):
-    return g.db.query(Feed).filter_by(id=feed_id).one().serialize()
-
-
-def query_entry_by_id(feed_id, entry_id):
-    return g.db.query(Entry).filter_by(id=entry_id, feed_id=feed_id).one()
-
-
-def query_entries_filtered_by(**kwargs):
-    return g.db.query(Entry).\
-        filter_by(**kwargs).\
-        order_by(Entry.pub_date.desc())
-
-
-def create_db_entry(feed_entry, feed_id):
-    title = feed_entry.get("title", "No title")
-    guid = feed_entry.get("id", "No ID")
-    summary = feed_entry.get("summary", title)
-    link = feed_entry.get("link", "/page_not_found.html")
-    pub_date = feed_entry.get("published_parsed", None)
-    entry = Entry(title, guid, link, summary, feed_id, pub_date=pub_date)
-    return entry
+def update_all_entries(data):
+    query = g.db.query(Entry)
+    query.update(data)
+    g.db.commit()
 
 
 def update_entry_status(feed_id, entry_id, data):
@@ -55,9 +50,3 @@ def update_entry_status(feed_id, entry_id, data):
     query.update(data)
     g.db.commit()
     return query.one()
-
-
-def update_all_entries(data):
-    query = g.db.query(Entry)
-    query.update(data)
-    g.db.commit()

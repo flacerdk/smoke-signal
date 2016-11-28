@@ -7,8 +7,7 @@ from server.login import LoginForm
 main = Blueprint("main", __name__,
                  template_folder="templates",
                  static_folder="static",
-                 static_url_path="/main/static",
-                 url_prefix="/smoke_signal")
+                 static_url_path="/main/static")
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -28,20 +27,23 @@ def index():
     return render_template('main.html', feeds=feeds)
 
 
-@main.route('/feeds/', methods=['GET', 'POST'])
+@main.route('/api/feed', methods=['GET', 'POST'])
 @login_required
 def all_feeds():
     if request.method == 'GET':
         return methods.get_all_feeds()
     if not request.is_json:
         raise BadRequest
-    try:
-        return methods.post_feed(request.get_json()["url"])
-    except KeyError:
+    data = request.get_json()
+    if "url" in data:
+        return methods.post_feed(data["url"])
+    elif "read" in data:
+        return methods.mark_all_read()
+    else:
         raise BadRequest
 
 
-@main.route('/feeds/<int:feed_id>', methods=['GET', 'POST'])
+@main.route('/api/feed/<int:feed_id>', methods=['GET', 'POST'])
 @login_required
 def feed(feed_id):
     if request.method == 'GET':
@@ -49,7 +51,7 @@ def feed(feed_id):
     return methods.refresh_feed(feed_id)
 
 
-@main.route('/feeds/<int:feed_id>/<predicate>', methods=['GET'])
+@main.route('/api/feed/<int:feed_id>/<predicate>', methods=['GET'])
 @login_required
 def all_feed_entries(feed_id, predicate):
     if predicate not in ["all", "read", "unread", "marked"]:
@@ -57,32 +59,23 @@ def all_feed_entries(feed_id, predicate):
     return methods.get_entries(predicate=predicate, feed_id=feed_id)
 
 
-@main.route('/feeds/<predicate>', methods=['GET'])
+@main.route('/api/entry/<predicate>', methods=['GET'])
 @login_required
 def all_entries(predicate):
+    if predicate not in ["all", "read", "unread", "marked"]:
+        raise BadRequest
     return methods.get_entries(predicate=predicate)
 
 
-@main.route('/feeds/all', methods=['POST'])
+@main.route('/api/entry/<int:entry_id>', methods=['GET', 'POST'])
 @login_required
-def mark_all_read():
-    if not request.is_json or "read" not in request.get_json():
-        raise BadRequest
-    if request.get_json()["read"]:
-        return methods.mark_all_read()
-    else:
-        return '', 204
-
-
-@main.route('/feeds/<int:feed_id>/<int:entry_id>', methods=['GET', 'POST'])
-@login_required
-def entry(feed_id, entry_id):
+def entry(entry_id):
     if request.method == 'GET':
-        return methods.get_entry(feed_id, entry_id)
+        return methods.get_entry(entry_id)
     if not request.is_json:
         raise BadRequest
     data = request.get_json()
     if "read" in data or "marked" in data:
-        return methods.toggle_status(feed_id, entry_id,
+        return methods.toggle_status(entry_id,
                                      data)
     raise BadRequest

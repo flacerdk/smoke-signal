@@ -17,7 +17,7 @@ def create_mock_rss(title, feed_path, num_entries):
 
 def add_feed(app, url):
     data = json.dumps({"url": url})
-    return app.post("/smoke_signal/feeds/", data=data,
+    return app.post("/api/feed", data=data,
                     content_type="application/json")
 
 
@@ -36,12 +36,12 @@ def add_entries(feed, num_entries):
 
 def refresh_feed(app, feed, num_entries):
     add_entries(feed, num_entries)
-    return app.post("/smoke_signal/feeds/{}".format(feed["id"]))
+    return app.post("/api/feed/{}".format(feed["id"]))
 
 
 def get_entries_response(app, feed):
-    app.post("/smoke_signal/feeds/{}".format(feed["id"]))
-    return app.get("/smoke_signal/feeds/{}".format(feed["id"]))
+    app.post("/api/feed/{}".format(feed["id"]))
+    return app.get("/api/feed/{}".format(feed["id"]))
 
 
 def change_first_entry(app, feed, data):
@@ -54,8 +54,7 @@ def change_first_entry(app, feed, data):
 
 def change_entry_status(app, entry, data):
     resp = app.post(
-        "/smoke_signal/feeds/{}/{}".format(entry["feed_id"],
-                                           entry["id"]),
+        "/api/entry/{}".format(entry["id"]),
         data=json.dumps(data),
         content_type="application/json")
     return resp

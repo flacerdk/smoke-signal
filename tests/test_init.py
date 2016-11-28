@@ -27,15 +27,15 @@ class InitTestCase(unittest.TestCase):
         os.unlink(self.db_path)
 
     def test_alive(self):
-        resp = self.app.get('/smoke_signal/')
+        resp = self.app.get('/')
         assert resp.status_code == 200
 
     def test_empty_feed_list(self):
-        resp = self.app.get('/smoke_signal/feeds/')
+        resp = self.app.get('/api/feed')
         assert resp.status_code == 200
         feeds = helpers.get_json(resp)["_embedded"]["feeds"]
         assert feeds == []
-        resp = self.app.get('/smoke_signal/feeds/1')
+        resp = self.app.get('/api/feed/1')
         assert resp.status_code == 404
 
 

@@ -49,13 +49,13 @@ const entryList = {
 }
 
 describe('WebAPIUtils', function () {
-  const BASE_URI = '/smoke_signal'
+  const BASE_URI = '/api'
   beforeEach(function () {
-    fetchMock.get(`${BASE_URI}/feeds/`, function () {
+    fetchMock.get(`${BASE_URI}/feed`, function () {
       return { _embedded: { feeds: [] } }
     })
 
-    fetchMock.post(`${BASE_URI}/feeds/1`, function () {
+    fetchMock.post(`${BASE_URI}/feed/1`, function () {
       const newEntry = {
         id: 3,
         feed_id: 1,
@@ -70,11 +70,11 @@ describe('WebAPIUtils', function () {
       return { _embedded: { entries } }
     })
 
-    fetchMock.get(`${BASE_URI}/feeds/1/all`, function () {
+    fetchMock.get(`${BASE_URI}/feed/1`, function () {
       return entryList._embedded.entries[0]
     })
 
-    fetchMock.get(`${BASE_URI}/feeds/all`, function () {
+    fetchMock.get(`${BASE_URI}/entry/all`, function () {
       return entryList
     })
   })

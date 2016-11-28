@@ -36,7 +36,7 @@ class MethodsTestCase(unittest.TestCase):
         return feed, feed_path
 
     def test_add_feed_not_json(self):
-        resp = self.app.post("/smoke_signal/feeds/")
+        resp = self.app.post("/api/feed")
         assert resp.status_code == 400
 
     def test_add_valid_feed(self):
@@ -50,7 +50,7 @@ class MethodsTestCase(unittest.TestCase):
         return self.feed
 
     def test_add_and_get_feed_list(self):
-        resp = self.app.get("/smoke_signal/feeds/")
+        resp = self.app.get("/api/feed")
         assert resp.status_code == 200
         parsed_json = helpers.get_json(resp)
         assert "_embedded" in parsed_json
@@ -73,7 +73,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_refresh_feed(self):
         resp = helpers.refresh_feed(self.app, self.feed, 10)
         assert resp.status_code == 200
-        resp = self.app.get("/smoke_signal/feeds/{}".format(self.feed["id"]))
+        resp = self.app.get("/api/feed/{}".format(self.feed["id"]))
         assert resp.status_code == 200
         entry_list = helpers.get_json(resp)
         assert "_embedded" in entry_list
@@ -101,7 +101,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_read(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
                                                 {"read": True})
-        resp = self.app.get("/smoke_signal/feeds/{}/read".
+        resp = self.app.get("/api/feed/{}/read".
                             format(read_entry["feed_id"]))
         assert resp.status_code == 200
         read_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -111,7 +111,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_read_not_in_unread(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
                                                 {"read": True})
-        resp = self.app.get("/smoke_signal/feeds/{}/unread".
+        resp = self.app.get("/api/feed/{}/unread".
                             format(read_entry["feed_id"]))
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -121,7 +121,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_unread(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"read": False})
-        resp = self.app.get("/smoke_signal/feeds/{}/unread".
+        resp = self.app.get("/api/feed/{}/unread".
                             format(unread_entry["feed_id"]))
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -131,7 +131,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_unread_not_in_read(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"read": False})
-        resp = self.app.get("/smoke_signal/feeds/{}/read".
+        resp = self.app.get("/api/feed/{}/read".
                             format(unread_entry["feed_id"]))
         assert resp.status_code == 200
         read_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
@@ -141,7 +141,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_feed_marked(self):
         marked_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"marked": True})
-        resp = self.app.get("/smoke_signal/feeds/{}/marked".format(
+        resp = self.app.get("/api/feed/{}/marked".format(
             marked_entry["feed_id"]))
         assert resp.status_code == 200
         marked = helpers.get_json(resp)["_embedded"]["entries"]
@@ -149,7 +149,7 @@ class MethodsTestCase(unittest.TestCase):
 
     def test_multiple_feeds(self):
         self._add_feed(5)
-        resp = self.app.get("/smoke_signal/feeds/")
+        resp = self.app.get("/api/feed")
         assert resp.status_code == 200
         parsed_json = helpers.get_json(resp)
         assert "_embedded" in parsed_json
@@ -160,8 +160,8 @@ class MethodsTestCase(unittest.TestCase):
     def test_multiple_feeds_get_all(self):
         self._add_feed(5)
         for (feed, feed_path) in self.feeds:
-            self.app.post("/smoke_signal/feeds/{}".format(feed["id"]))
-        resp = self.app.get("/smoke_signal/feeds/all")
+            self.app.post("/api/feed/{}".format(feed["id"]))
+        resp = self.app.get("/api/entry/all")
         assert resp.status_code == 200
         parsed_json = helpers.get_json(resp)
         assert "_embedded" in parsed_json
@@ -171,7 +171,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_all_feeds_unread(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"read": False})
-        resp = self.app.get("/smoke_signal/feeds/unread")
+        resp = self.app.get("/api/entry/unread")
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert unread_entry in unread_entry_list
@@ -179,7 +179,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_all_feeds_read(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
                                                 {"read": True})
-        resp = self.app.get("/smoke_signal/feeds/read")
+        resp = self.app.get("/api/entry/read")
         assert resp.status_code == 200
         read_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert read_entry in read_entry_list
@@ -187,7 +187,7 @@ class MethodsTestCase(unittest.TestCase):
     def test_all_feeds_unread_not_in_read(self):
         unread_entry = helpers.change_first_entry(self.app, self.feed,
                                                   {"read": False})
-        resp = self.app.get("/smoke_signal/feeds/read")
+        resp = self.app.get("/api/entry/read")
         assert resp.status_code == 200
         read_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert unread_entry not in read_entry_list
@@ -195,36 +195,36 @@ class MethodsTestCase(unittest.TestCase):
     def test_all_feeds_read_not_in_unread(self):
         read_entry = helpers.change_first_entry(self.app, self.feed,
                                                 {"read": True})
-        resp = self.app.get("/smoke_signal/feeds/unread")
+        resp = self.app.get("/api/entry/unread")
         assert resp.status_code == 200
         unread_entry_list = helpers.get_json(resp)["_embedded"]["entries"]
         assert read_entry not in unread_entry_list
 
     def test_feed_invalid_predicate(self):
-        resp = self.app.get("/smoke_signal/feeds/1/invalid")
+        resp = self.app.get("/api/feed/1/invalid")
         assert resp.status_code == 400
 
     def test_invalid_predicate(self):
-        resp = self.app.get("/smoke_signal/feeds/invalid")
+        resp = self.app.get("/api/entry/invalid")
         assert resp.status_code == 400
 
     def test_change_entry_status_not_json(self):
-        resp = self.app.post("/smoke_signal/feeds/1/1")
+        resp = self.app.post("/api/entry/1")
         assert resp.status_code == 400
 
     def test_change_entry_status_invalid_predicate(self):
-        resp = self.app.post("/smoke_signal/feeds/1/1",
+        resp = self.app.post("/api/entry/1",
                              data=json.dumps({"invalid": True}),
                              content_type="application/json")
         assert resp.status_code == 400
 
     def test_mark_all_read(self):
-        resp = self.app.post("/smoke_signal/feeds/all",
+        resp = self.app.post("/api/feed",
                              data=json.dumps({"read": True}),
                              content_type="application/json")
         assert resp.status_code == 200
-        all_entries = helpers.get_json(self.app.get("/smoke_signal/feeds/all"))
-        read_entries = helpers.get_json(self.app.get("/smoke_signal/feeds/read"))
+        all_entries = helpers.get_json(self.app.get("/api/entry/all"))
+        read_entries = helpers.get_json(self.app.get("/api/entry/read"))
         assert all_entries["_embedded"]["entries"] == \
             read_entries["_embedded"]["entries"]
 
