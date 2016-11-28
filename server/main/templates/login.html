@@ -11,7 +11,7 @@
 {% block body %}
 <div class="container">
 
-  <form method="POST" class="form-signin" action="/smoke_signal/login">
+  <form method="POST" class="form-signin" action="/login">
     {{ form.csrf_token }}
     {{ form.name.label(class_="sr-only") }}
     {{ form.name(class_="form-control", size=20) }}
