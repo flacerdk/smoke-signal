@@ -12,12 +12,21 @@
 <div class="container">
 
   <form method="POST" class="form-signin" action="/login">
+    {% if error %}
+    <div class="form-group has-error">
+    {% else %}
+    <div class="form-group">
+    {% endif %}
     {{ form.csrf_token }}
     {{ form.name.label(class_="sr-only") }}
-    {{ form.name(class_="form-control", size=20) }}
+    {{ form.name(class_="form-control") }}
     {{ form.password.label(class_="sr-only") }}
-    {{ form.password(class="form-control", size=20) }}
+    {{ form.password(class="form-control") }}
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    {% if error %}
+    <div class="form-control-feedback">{{ error }}</div>
+    {% endif %}
+    </div>
   </form>
 
 </div> <!-- /container -->

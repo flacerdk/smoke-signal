@@ -34,6 +34,14 @@ class LoginTestCase(unittest.TestCase):
         })
         assert resp.status_code == 302
 
+    def test_wrong_login(self):
+        resp = self.app.post("/login", data={
+            "name": "Wrong",
+            "password": "wrong"
+        })
+        assert resp.status_code == 200
+        assert b"Wrong name or password" in resp.get_data()
+
     def test_get_feeds(self):
         self.app.post("/login", data={
             "name": "Test",

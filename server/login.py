@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
 from werkzeug.security import check_password_hash
+from sqlalchemy.orm.exc import NoResultFound
 
 from server.database.models import User
 
@@ -21,9 +22,12 @@ class LoginForm(FlaskForm):
         if not form_validated:
             return False
 
-        user = g.db.query(User).filter(User.name == self.name.data).one()
-        if check_password_hash(user.password, self.password.data):
-            self.user = user
-            return True
+        try:
+            user = g.db.query(User).filter(User.name == self.name.data).one()
+            if check_password_hash(user.password, self.password.data):
+                self.user = user
+                return True
+        except NoResultFound:
+            pass
         self.error = "Wrong name or password"
         return False
