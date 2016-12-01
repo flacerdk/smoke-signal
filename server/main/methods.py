@@ -17,7 +17,7 @@ def halify_entry_list(entry_list, total, feed=None, next_page=None,
         href = "/api/entry/{}".format(predicate)
     else:
         entries = feed
-        href = "/api/entry/{}/{}".format(feed["id"], predicate)
+        href = "/api/feed/{}/{}".format(feed["id"], predicate)
     entries["total"] = total
     entries["_links"] = {"self":
                          {"href": href}}

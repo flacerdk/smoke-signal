@@ -18,9 +18,14 @@ const _getEntryList = (response) => {
 module.exports = {
   fetchFeedEntries: (feed) => {
     WebAPIUtils.fetchFeedEntries(feed.id).then((newFeed) => {
+      let next = ''
+      if ('next' in newFeed._links) {
+        next = newFeed._links.next.href
+      }
       ActionDispatcher.dispatch({
         type: ActionTypes.GET_FEED,
         feed: newFeed,
+        next,
       })
     })
   },

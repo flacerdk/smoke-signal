@@ -228,16 +228,24 @@ class MethodsTestCase(unittest.TestCase):
         assert all_entries["_embedded"]["entries"] == \
             read_entries["_embedded"]["entries"]
 
-    def test_pagination(self):
+    def test_feed_entries_pagination(self):
         feed, path = self._add_feed(21)
         resp = helpers.get_entries_response(self.app, feed)
         assert resp.status_code == 200
         feed = helpers.get_json(resp)
         assert "next" in feed["_links"]
-        self_href = feed["_links"]["self"]["href"]
         next_href = feed["_links"]["next"]["href"]
-        assert next_href == self_href + "?page=2"
+        assert next_href == "/api/feed/{}/all?page=2".format(feed["id"])
 
+    def test_general_entries_pagination(self):
+        self._add_feed(21)
+        for feed, path in self.feeds:
+            self.app.post("/api/feed/{}".format(feed["id"]))
+        resp = self.app.get("/api/entry/all")
+        entries = helpers.get_json(resp)
+        assert "next" in entries["_links"]
+        next_href = entries["_links"]["next"]["href"]
+        assert next_href == "/api/entry/all?page=2"
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(MethodsTestCase)

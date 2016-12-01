@@ -24,6 +24,7 @@ class EntryStore extends EventEmitter {
       switch (action.type) {
         case ActionTypes.GET_FEED:
           this._setEntries(action.feed._embedded.entries)
+          this._setNext(action.next)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.GET_ENTRY_LIST:
