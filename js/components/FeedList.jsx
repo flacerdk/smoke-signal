@@ -37,7 +37,7 @@ class FeedList extends React.Component {
     }
 
     const feeds = this.props.feeds.map((feed) => {
-      const link = `#/feeds/${feed.id}`
+      const link = `#/api/feed/${feed.id}`
       const onClick = () => {
         FeedListActions.changeActiveFeed(feed)
         EntryListActions.fetchFeedEntries(feed)

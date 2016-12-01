@@ -10,6 +10,7 @@ class EntryStore extends EventEmitter {
 
     this._entries = []
     this._activeEntry = {}
+    this._next = ''
 
     this._getEntries = this._getEntries.bind(this)
     this._setEntries = this._setEntries.bind(this)
@@ -27,6 +28,12 @@ class EntryStore extends EventEmitter {
           break
         case ActionTypes.GET_ENTRY_LIST:
           this._setEntries(action.entries)
+          this._setNext(action.next)
+          this.emit(CHANGE_EVENT)
+          break
+        case ActionTypes.ADD_ENTRIES:
+          this._addEntries(action.entries)
+          this._setNext(action.next)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.CHANGE_ACTIVE_ENTRY:
@@ -70,6 +77,11 @@ class EntryStore extends EventEmitter {
     } else {
       this._activeEntry = {}
     }
+    this._setNext('')
+  }
+
+  _addEntries(newEntries) {
+    this._entries = this._entries.concat(newEntries)
   }
 
   _markAllEntriesRead() {
@@ -94,6 +106,14 @@ class EntryStore extends EventEmitter {
       const idx = this._entries.findIndex(e => e.id === newEntry.id)
       this._entries[idx] = newEntry
     }
+  }
+
+  _setNext(next) {
+    this._next = next
+  }
+
+  get next() {
+    return this._next
   }
 }
 

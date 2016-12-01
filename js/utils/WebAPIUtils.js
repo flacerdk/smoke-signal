@@ -2,7 +2,7 @@ import 'isomorphic-fetch'
 
 const BASE_URI = '/api'
 
-const _getRequest = url =>
+const getRequest = url =>
       fetch(url, {
         credentials: 'same-origin',
       }).then((response) => {
@@ -39,20 +39,20 @@ const _postJSONRequest = (url, data) => {
 const addFeed = url => _postJSONRequest(`${BASE_URI}/feed`, { url })
 
 const getFeedList = () =>
-      _getRequest(`${BASE_URI}/feed`)
+      getRequest(`${BASE_URI}/feed`)
 
 const refreshFeed = feedId =>
       _postJSONRequest(`${BASE_URI}/feed/${feedId}`)
 
 const fetchFeedEntries = feedId =>
-      _getRequest(`${BASE_URI}/feed/${feedId}`)
+      getRequest(`${BASE_URI}/feed/${feedId}`)
 
 const changeEntryStatus = (feedId, entryId, newStatus) =>
       _postJSONRequest(`${BASE_URI}/entry/${entryId}`,
                        newStatus)
 
 const fetchEntries = predicate =>
-      _getRequest(`${BASE_URI}/entry/${predicate}`)
+      getRequest(`${BASE_URI}/entry/${predicate}`)
 
 const markAllRead = () =>
       _postJSONRequest(`${BASE_URI}/feed`, { read: true })
@@ -65,4 +65,5 @@ module.exports = {
   changeEntryStatus,
   fetchEntries,
   markAllRead,
+  getRequest,
 }

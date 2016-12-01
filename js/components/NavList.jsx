@@ -2,13 +2,17 @@ import React from 'react'
 import { Nav, NavItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 
-const NavList = () => {
-  const predicates = ['all', 'read', 'unread', 'marked']
+const NavList = (props) => {
+  const predicates = ['all', 'read', 'unread', 'marked', 'more']
   const handleSelect = (selectedKey) => {
-    EntryListActions.fetchEntries(predicates[selectedKey])
+    if (predicates[selectedKey] === 'more') {
+      EntryListActions.fetchMoreEntries(props.next)
+    } else {
+      EntryListActions.fetchEntries(predicates[selectedKey])
+    }
   }
   const elements = predicates.map((p, i) => {
-    const link = `#/feeds/${p}`
+    const link = `#/api/entry/${p}`
     return (
       <NavItem eventKey={i} href={link}>{p}</NavItem>
     )

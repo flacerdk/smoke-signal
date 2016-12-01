@@ -10,16 +10,21 @@ from server.database import helpers
 from server.database.models import Entry
 
 
-def halify_entry_list(entry_list, feed=None, predicate="all"):
+def halify_entry_list(entry_list, total, feed=None, next_page=None,
+                      predicate="all"):
     if feed is None:
         entries = {}
-        entries["_links"] = {"self":
-                             {"href": "/feeds/{}".format(predicate)}}
+        href = "/api/entry/{}".format(predicate)
     else:
         entries = feed
-        entries["_links"] = {"self":
-                             {"href": "/feeds/{}/{}".format(feed["id"],
-                                                            predicate)}}
+        href = "/api/entry/{}/{}".format(feed["id"], predicate)
+    entries["total"] = total
+    entries["_links"] = {"self":
+                         {"href": href}}
+    if next_page is not None:
+        entries["_links"]["next"] = {"href": "{}?page={}".format(
+            href,
+            next_page)}
     entries["_embedded"] = {"entries": entry_list}
     return entries
 
@@ -45,7 +50,7 @@ def post_feed(url):
                     headers=headers)
 
 
-def get_entries(predicate="all", **kwargs):
+def get_entries(predicate="all", page=1, **kwargs):
     if "feed_id" in kwargs.keys():
         try:
             feed = helpers.query_feed_by_id(kwargs["feed_id"]).serialize()
@@ -54,17 +59,22 @@ def get_entries(predicate="all", **kwargs):
     else:
         feed = None
     if predicate == "all":
-        query = helpers.query_entries_filtered_by(**kwargs)
+        pass
     elif predicate == "read":
-        query = helpers.query_entries_filtered_by(read=True, **kwargs)
+        kwargs["read"] = True
     elif predicate == "unread":
-        query = helpers.query_entries_filtered_by(read=False, **kwargs)
+        kwargs["read"] = False
     elif predicate == "marked":
-        query = helpers.query_entries_filtered_by(marked=True, **kwargs)
+        kwargs["marked"] = True
     else:
         raise BadRequest
+    query, total, last = helpers.query_entries_paged(page, **kwargs)
+    next_page = None
+    if not last:
+        next_page = page + 1
     entry_list = [e.serialize() for e in query]
-    entries = halify_entry_list(entry_list, feed=feed,
+    entries = halify_entry_list(entry_list, total, feed=feed,
+                                next_page=next_page,
                                 predicate=predicate)
     return Response(json.dumps(entries),
                     mimetype="application/json")

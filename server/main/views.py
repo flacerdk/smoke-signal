@@ -47,7 +47,9 @@ def all_feeds():
 @login_required
 def feed(feed_id):
     if request.method == 'GET':
-        return all_feed_entries(feed_id, "all")
+        page = request.args.get("page", 1, type=int)
+        return methods.get_entries(page=page,
+                                   feed_id=feed_id)
     return methods.refresh_feed(feed_id)
 
 
@@ -56,7 +58,9 @@ def feed(feed_id):
 def all_feed_entries(feed_id, predicate):
     if predicate not in ["all", "read", "unread", "marked"]:
         raise BadRequest
-    return methods.get_entries(predicate=predicate, feed_id=feed_id)
+    page = request.args.get("page", 1, type=int)
+    return methods.get_entries(predicate=predicate, page=page,
+                               feed_id=feed_id)
 
 
 @main.route('/api/entry/<predicate>', methods=['GET'])
@@ -64,7 +68,9 @@ def all_feed_entries(feed_id, predicate):
 def all_entries(predicate):
     if predicate not in ["all", "read", "unread", "marked"]:
         raise BadRequest
-    return methods.get_entries(predicate=predicate)
+    page = request.args.get("page", 1, type=int)
+    return methods.get_entries(predicate=predicate,
+                               page=page)
 
 
 @main.route('/api/entry/<int:entry_id>', methods=['GET', 'POST'])

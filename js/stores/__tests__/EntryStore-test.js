@@ -3,52 +3,58 @@ import sinon from 'sinon'
 
 chai.should()
 
+const mockEntry = (id, feedId) => (
+  {
+    id,
+    title: `Test title ${id}`,
+    url: `http://example.com/test_url${id}`,
+    text: 'Test text',
+    read: false,
+    marked: false,
+    feed_id: feedId,
+  }
+)
+
+const mockFeed = (id, entries) => {
+  const numEntries = entries.length
+  const _links = {
+    self: {
+      href: `/api/feed/${id}`,
+    },
+  }
+  if (numEntries > 20) {
+    _links.next = {
+      href: `/api/feed/${id}?page=2`,
+    }
+  }
+
+  return {
+    id,
+    title: 'Test title',
+    url: 'http://example.com/test_url',
+    _embedded: {
+      entries,
+    },
+    _links,
+    unread: numEntries,
+  }
+}
+
 describe('EntryStore', function () {
   const ActionDispatcher = require('../../dispatcher/ActionDispatcher')
   const EntryStore = require('../EntryStore')
   const ActionTypes = require('../../constants/FeedReaderConstants')
-  const entry = {
-    id: 1,
-    title: 'Test title',
-    url: 'http://example.com/test_url',
-    text: 'Test text',
-    read: false,
-    marked: false,
-    feed_id: 1,
-  }
-  const secondEntry = {
-    id: 2,
-    feed_id: 1,
-    read: false,
-  }
-  const feed = {
-    id: 1,
-    title: 'Test title',
-    url: 'http://example.com/test_url',
-    _embedded: {
-      entries: [entry, secondEntry],
-    },
-    unread: 2,
-  }
+  const entry = mockEntry(1, 1)
+  const secondEntry = mockEntry(2, 1)
+  const feed = mockFeed(1, [entry, secondEntry])
 
-  const newFeed = {
-    id: 1,
-    title: 'Test title',
-    url: 'http://example.com/test_url',
-    _embedded: {
-      entry:
-      {
-        id: 1,
-        title: 'Test title',
-        url: 'http://example.com/test_url',
-        text: 'Test text',
-        read: true,
-        marked: false,
-        feed_id: 1,
-      },
-    },
-    unread: 0,
-  }
+  const newFeed = mockFeed(1, [])
+  newFeed._embedded.entry = entry
+  newFeed._embedded.entry.read = true
+  newFeed._embedded.unread = 0
+
+  const entryList = Array(21).fill().map((_, i) => mockEntry(i, 1))
+  const largeFeed = mockFeed(1, entryList)
 
   const actionGetFeed = {
     type: ActionTypes.GET_FEED,
@@ -60,20 +66,26 @@ describe('EntryStore', function () {
     entries: [entry, secondEntry],
   }
 
-  const changeActiveEntry = {
+  const actionChangeActiveEntry = {
     type: ActionTypes.CHANGE_ACTIVE_ENTRY,
     entry,
   }
 
-  const markAllRead = {
+  const actionMarkAllRead = {
     type: ActionTypes.MARK_ALL_READ,
   }
 
-  const changeEntryStatus = () => {
-    return {
+  const actionChangeEntryStatus = () => (
+    {
       type: ActionTypes.CHANGE_ENTRY_STATUS,
       feed: newFeed,
     }
+  )
+
+  const actionGetLargeFeed = {
+    type: ActionTypes.GET_ENTRY_LIST,
+    entries: largeFeed._embedded.entries,
+    next: largeFeed._links.next.href,
   }
 
   let spy
@@ -115,14 +127,14 @@ describe('EntryStore', function () {
 
   it('changes the active entry', function () {
     callback(actionGetEntryList)
-    callback(changeActiveEntry)
+    callback(actionChangeActiveEntry)
     const activeEntry = entryStore.activeEntry
     activeEntry.should.equal(entry)
   })
 
   it('changes the entry\'s status', function () {
     callback(actionGetEntryList)
-    callback(changeEntryStatus())
+    callback(actionChangeEntryStatus())
     const entries = entryStore.entries
     entries[0].read.should.equal(true)
     const newEntry = entries[0]
@@ -132,9 +144,15 @@ describe('EntryStore', function () {
 
   it('marks all entries read', function () {
     callback(actionGetEntryList)
-    callback(markAllRead)
+    callback(actionMarkAllRead)
     const entries = entryStore.entries
     entries[0].read.should.be.true
     entries[1].read.should.be.true
+  })
+
+  it('stores a link to next page', function () {
+    callback(actionGetLargeFeed)
+    const next = entryStore.next
+    next.should.equal(largeFeed._links.next.href)
   })
 })

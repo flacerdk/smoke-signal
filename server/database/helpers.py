@@ -3,6 +3,7 @@
 from server.database.models import Entry, Feed
 from flask import g
 
+PAGE_SIZE = 20
 
 def query_all_feeds():
     return g.db.query(Feed).order_by(Feed.title.desc())
@@ -23,6 +24,16 @@ def query_entries_filtered_by(**kwargs):
     return g.db.query(Entry).\
         filter_by(**kwargs).\
         order_by(Entry.pub_date.desc())
+
+
+def query_entries_paged(page=1, **kwargs):
+    if page < 1:
+        raise ValueError
+    query = query_entries_filtered_by(**kwargs)
+    total = query.count()
+    query_paged = query.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE)
+    last = total < page*PAGE_SIZE
+    return query_paged, total, last
 
 
 def query_entry_by_id(entry_id):

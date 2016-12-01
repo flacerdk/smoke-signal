@@ -36,6 +36,7 @@ export default class FeedPage extends React.Component {
       entries: this._entryStore.entries,
       activeEntry: this._entryStore.activeEntry,
       activeFeed: this._feedStore.activeFeed,
+      next: this._entryStore.next,
     }
   }
 
@@ -60,7 +61,9 @@ export default class FeedPage extends React.Component {
         <Grid fluid>
           <Row>
             <AddFeedForm />
-            <NavList />
+            <NavList
+              next={this.state.next}
+            />
           </Row>
           <Row>
           <Col lg={3} md={3}>
