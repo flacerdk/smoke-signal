@@ -61,26 +61,25 @@ export default class FeedPage extends React.Component {
         <Grid fluid>
           <Row>
             <AddFeedForm />
-            <NavList
-              next={this.state.next}
-            />
+            <NavList />
           </Row>
           <Row>
-          <Col lg={3} md={3}>
-            <FeedList
-              feeds={this.state.feeds}
-              activeFeed={this.state.activeFeed}
-            />
-          </Col>
-          <Col lg={9} md={9}>
-            <Row>
-              <EntryList
-                entries={this.state.entries}
-                activeEntry={this.state.activeEntry}
+            <Col lg={3} md={3}>
+              <FeedList
+                feeds={this.state.feeds}
+                activeFeed={this.state.activeFeed}
               />
-            </Row>
-            <Row>{entry}</Row>
-          </Col>
+            </Col>
+            <Col lg={9} md={9}>
+              <Row>
+                <EntryList
+                  entries={this.state.entries}
+                  activeEntry={this.state.activeEntry}
+                  next={this.state.next}
+                />
+              </Row>
+              <Row>{entry}</Row>
+            </Col>
           </Row>
         </Grid>
       </div>

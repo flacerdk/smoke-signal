@@ -30,6 +30,7 @@ div {
     margin-top: 20px;
     overflow-y: scroll;
     max-height: 300px;
+    margin-bottom: 0px;
 }
 
 .entry {

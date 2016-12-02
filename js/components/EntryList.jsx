@@ -1,7 +1,7 @@
 import React from 'react'
 import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import Mousetrap from 'mousetrap'
-import { ListGroup, ListGroupItem } from 'react-bootstrap/lib'
+import { Button, ListGroup, ListGroupItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 
 export default class EntryList extends React.Component {
@@ -85,10 +85,14 @@ export default class EntryList extends React.Component {
         return component
       })
     const className = 'list-group entry-list'
+    const loadMore = () => EntryListActions.fetchMoreEntries(this.props.next)
     return (
-      <ListGroup bsClass={className}>
-        {entries}
-      </ListGroup>
+      <div>
+        <ListGroup bsClass={className}>
+          {entries}
+        </ListGroup>
+        <Button bsSize="small" block onClick={loadMore}>Load more</Button>
+      </div>
     )
   }
 }
@@ -103,6 +107,7 @@ EntryList.propTypes = {
     url: React.PropTypes.string,
     read: React.PropTypes.bool,
   }),
+  next: React.PropTypes.string,
 }
 
 EntryList.defaultProps = {
