@@ -13,7 +13,11 @@ const getRequest = url =>
         } throw Error(response.statusText)
       })
 
-const _postJSONRequest = (url, data) => {
+const _postJSONRequest = (url, data, requestMethod) => {
+  let method = requestMethod
+  if (typeof method === 'undefined') {
+    method = 'post'
+  }
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -22,7 +26,7 @@ const _postJSONRequest = (url, data) => {
     headers['X-CSRFToken'] = document.head.querySelector('[name=csrf-token]').content
   }
   return fetch(url, {
-    method: 'post',
+    method,
     headers,
     body: JSON.stringify(data),
     credentials: 'same-origin',
@@ -57,6 +61,9 @@ const fetchEntries = predicate =>
 const markAllRead = () =>
       _postJSONRequest(`${BASE_URI}/feed`, { read: true })
 
+const deleteFeed = feedId =>
+      _postJSONRequest(`${BASE_URI}/feed/${feedId}`, {}, 'delete')
+
 module.exports = {
   addFeed,
   getFeedList,
@@ -66,4 +73,5 @@ module.exports = {
   fetchEntries,
   markAllRead,
   getRequest,
+  deleteFeed,
 }

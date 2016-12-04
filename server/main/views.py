@@ -1,6 +1,7 @@
 from flask import render_template, Blueprint, request, redirect, url_for
 from flask_login import login_required, login_user
 from werkzeug.exceptions import BadRequest
+
 from server.main import methods
 from server.login import LoginForm
 
@@ -43,14 +44,17 @@ def all_feeds():
         raise BadRequest
 
 
-@main.route('/api/feed/<int:feed_id>', methods=['GET', 'POST'])
+@main.route('/api/feed/<int:feed_id>', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def feed(feed_id):
     if request.method == 'GET':
         page = request.args.get("page", 1, type=int)
         return methods.get_entries(page=page,
                                    feed_id=feed_id)
-    return methods.refresh_feed(feed_id)
+    elif request.method == 'POST':
+        return methods.refresh_feed(feed_id)
+    else:
+        return methods.delete_feed(feed_id)
 
 
 @main.route('/api/feed/<int:feed_id>/<predicate>', methods=['GET'])

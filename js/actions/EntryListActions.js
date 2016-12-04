@@ -2,19 +2,6 @@ import ActionTypes from '../constants/FeedReaderConstants'
 import ActionDispatcher from '../dispatcher/ActionDispatcher'
 import WebAPIUtils from '../utils/WebAPIUtils'
 
-const _getEntryList = (response) => {
-  const entries = response._embedded.entries
-  let next = ''
-  if ('next' in response._links) {
-    next = response._links.next.href
-  }
-  ActionDispatcher.dispatch({
-    type: ActionTypes.GET_ENTRY_LIST,
-    entries,
-    next,
-  })
-}
-
 module.exports = {
   fetchFeedEntries: (feed) => {
     WebAPIUtils.fetchFeedEntries(feed.id).then((newFeed) => {
@@ -32,7 +19,19 @@ module.exports = {
 
   fetchEntries: (predicate) => {
     WebAPIUtils.fetchEntries(predicate).then(
-      response => _getEntryList(response),
+      (response) => {
+        const entries = response._embedded.entries
+        let next = ''
+        if ('next' in response._links) {
+          next = response._links.next.href
+        }
+        ActionDispatcher.dispatch({
+          type: ActionTypes.GET_ENTRY_LIST,
+          entries,
+          next,
+          predicate,
+        })
+      },
       ex => console.log(`Couldn't load feed: ${ex.message}`))
   },
 
