@@ -11,6 +11,7 @@ class EntryStore extends EventEmitter {
     this._entries = []
     this._activeEntry = {}
     this._next = ''
+    this._predicate = 'all'
 
     this._getEntries = this._getEntries.bind(this)
     this._setEntries = this._setEntries.bind(this)
@@ -25,11 +26,13 @@ class EntryStore extends EventEmitter {
         case ActionTypes.GET_FEED:
           this._setEntries(action.feed._embedded.entries)
           this._setNext(action.next)
+          this._setPredicate('all')
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.GET_ENTRY_LIST:
           this._setEntries(action.entries)
           this._setNext(action.next)
+          this._setPredicate(action.predicate)
           this.emit(CHANGE_EVENT)
           break
         case ActionTypes.ADD_ENTRIES:
@@ -116,6 +119,15 @@ class EntryStore extends EventEmitter {
   get next() {
     return this._next
   }
+
+  _setPredicate(predicate) {
+    this._predicate = predicate
+  }
+
+  get predicate() {
+    return this._predicate
+  }
+
 }
 
 module.exports = EntryStore

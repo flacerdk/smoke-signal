@@ -5,6 +5,7 @@ from flask import g
 
 PAGE_SIZE = 20
 
+
 def query_all_feeds():
     return g.db.query(Feed).order_by(Feed.title.desc())
 
@@ -18,6 +19,11 @@ def add_feed(title, url):
     g.db.add(feed)
     g.db.commit()
     return query_feed_by_id(feed.id)
+
+
+def delete_feed(feed):
+    g.db.delete(feed)
+    g.db.commit()
 
 
 def query_entries_filtered_by(**kwargs):

@@ -41,4 +41,12 @@ module.exports = {
         type: ActionTypes.MARK_ALL_READ,
       })
     )),
+
+  deleteFeed: feed =>
+    WebAPIUtils.deleteFeed(feed.id).then(feeds => (
+      ActionDispatcher.dispatch({
+        type: ActionTypes.GET_FEED_LIST,
+        feeds,
+      })
+    )),
 }

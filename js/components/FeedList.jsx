@@ -8,7 +8,8 @@ class FeedList extends React.Component {
   // TODO: should notify the user when errors occur.
   componentDidMount() {
     Mousetrap.bind('r', () => {
-      if (Object.keys(this.props.activeFeed).length !== 0) {
+      if (typeof this.props.activeFeed !== 'undefined'
+        && Object.keys(this.props.activeFeed).length !== 0) {
         FeedListActions.refreshFeed(this.props.activeFeed)
           .then(() => EntryListActions.fetchFeedEntries(this.props.activeFeed))
           .catch(e => console.log(`Couldn't refresh feed: ${e.message}`))
@@ -74,6 +75,11 @@ FeedList.propTypes = {
     title: React.PropTypes.string,
     unread: React.PropTypes.number,
   }),
+}
+
+FeedList.defaultProps = {
+  feeds: {},
+  activeFeed: undefined,
 }
 
 module.exports = FeedList

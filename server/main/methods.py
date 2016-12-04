@@ -100,6 +100,15 @@ def refresh_feed(feed_id):
         raise NotFound
 
 
+def delete_feed(feed_id):
+    try:
+        feed = helpers.query_feed_by_id(feed_id)
+    except NoResultFound:
+        raise NotFound
+    helpers.delete_feed(feed)
+    return get_all_feeds()
+
+
 def parse_entry(feed_id, feed_entry):
     title = feed_entry.get("title", "No title")
     guid = feed_entry.get("id", "No ID")
