@@ -8,7 +8,7 @@ export default class AddFeedForm extends React.Component {
 
     this.state = {
       url: '',
-      error: false,
+      error: null,
     }
 
     this.handleUrlChange = this.handleUrlChange.bind(this)
@@ -27,15 +27,14 @@ export default class AddFeedForm extends React.Component {
     }
     this.setState({ url: '' })
     FeedListActions.addFeed(url)
-    .catch(() => this.setState({ error: true }))
+    .catch(() => this.setState({ error: 'error' }))
   }
 
   render() {
-    const validationState = this.state.error ? 'error' : null
     return (
       <Navbar.Form pullLeft>
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup validationState={validationState}>
+          <FormGroup validationState={this.state.error}>
             <FormControl
               type="text"
               placeholder="URL..."

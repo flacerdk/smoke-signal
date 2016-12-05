@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ControlLabel, FormControl, FormGroup, Jumbotron } from 'react-bootstrap/lib'
+import { Button, FormControl, FormGroup, HelpBlock, Jumbotron } from 'react-bootstrap/lib'
 import { importOPML } from '../actions/FeedListActions'
 
 export default class EmptyPage extends React.Component {
@@ -8,7 +8,7 @@ export default class EmptyPage extends React.Component {
 
     this.state = {
       file: {},
-      error: false,
+      error: null,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -21,7 +21,7 @@ export default class EmptyPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    importOPML(this.state.file).catch(() => this.setState({ error: true }))
+    importOPML(this.state.file).catch(() => this.setState({ error: 'error' }))
 
     this.setState({ file: {} })
   }
@@ -29,11 +29,15 @@ export default class EmptyPage extends React.Component {
   render() {
     const opmlInput = (
       <form onSubmit={this.handleSubmit}>
-        <FormGroup controlId="opml_file">
+        <FormGroup
+          controlId="opml_file"
+          validationState={this.state.error}
+        >
           <FormControl
             type="file"
             onChange={this.handleChange}
           />
+          <HelpBlock>Choose an OPML file.</HelpBlock>
         </FormGroup>
         <Button type="submit">Import OPML</Button>
       </form>
