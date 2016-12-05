@@ -35,19 +35,20 @@ Tests can be run with `python -m unittest discover -t . -s tests -v`.
 
 ## Issues
 
-The reader is not at all optimized for large datasets; there's no pagination, so
-for example, `/api/entry/all` will get every single entry from the server. I intend
-to implement pagination soon. Also, refreshing all feeds (with `g r`) will fetch
-all feeds. That can definitely be optimized.
-
 There are many features to be added, such as search, and being able to add a
 feed by handing the home page's URL to the server and making it look for the
 feed. These features are likely not hard to implement, but for now I'm focusing
 on fixing eventual bugs in the existing features.
 
+In particular, the JavaScript code could use more tests. It could also give the
+user better feedback when something wrong (which I expect to usually be a
+network-related problem) happens.
+
 Later, I want to add some extensibility: the ability to add your own script to
 fetch a feed, à la Liferea. Surprisingly, there are still websites that don't
-have an RSS feed in 2016.
+have an RSS feed in 2016. Also, there's a lot of room for improvement in
+styling; Bootstrap has been of great help there and it's probably not hard to
+build it up from it. 
 
 Although at the moment the Python code (under `server/`) and the
 JavaScript code (under `js/`) are in the same project, the two are completely
