@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap/lib'
+import { Button, PageHeader } from 'react-bootstrap/lib'
 
 const FeedPageHeader = (props) => {
   let actionButton = ''
@@ -10,10 +10,10 @@ const FeedPageHeader = (props) => {
   }
 
   return (
-    <div id="feed-header">
-      {actionButton}
-      <h1>{props.title}</h1>
-    </div>
+    <PageHeader>
+      {props.title}
+      <div className="unsubscribe-button">{actionButton}</div>
+    </PageHeader>
   )
 }
 

@@ -1,6 +1,6 @@
 from flask import g
-from server.database.models import Feed
-from server import app, init_db
+from .database.models import Feed
+import server
 import xml.etree.ElementTree as etree
 import sys
 
@@ -13,13 +13,12 @@ def opml_to_dict(filename):
 
 
 def add_feed_list(feeds):
-    with app.app_context():
-        init_db()
-        session = g.db
-        for f in feeds:
-            feed = Feed(f['title'], f['url'])
-            session.add(feed)
-        session.commit()
+    server.init_db()
+    session = g.db
+    for f in feeds:
+        feed = Feed(f['title'], f['url'])
+        session.add(feed)
+    session.commit()
 
 
 def opml_import(filename):
@@ -28,7 +27,7 @@ def opml_import(filename):
 
 
 def create_db_from_opml(filename):
-    init_db()
+    server.init_db(create=True)
     opml_import(filename)
 
 if __name__ == "__main__":

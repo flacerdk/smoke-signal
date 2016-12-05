@@ -69,3 +69,7 @@ div {
 #active_entry {
     float: left;
 }
+
+.unsubscribe-button {
+    float: right;
+}

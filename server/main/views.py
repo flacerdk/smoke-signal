@@ -4,6 +4,7 @@ from werkzeug.exceptions import BadRequest
 
 from server.main import methods
 from server.login import LoginForm
+from server.import_opml import create_db_from_opml
 
 main = Blueprint("main", __name__,
                  template_folder="templates",
@@ -21,11 +22,16 @@ def login():
     return render_template("login.html", form=form, error=form.error)
 
 
-@main.route('/')
+@main.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    feeds = methods.get_all_feeds()
-    return render_template('main.html', feeds=feeds)
+    if request.method == 'GET':
+        feeds = methods.get_all_feeds()
+        return render_template('main.html', feeds=feeds)
+    else:
+        if "opml_file" not in request.files:
+            raise BadRequest
+        return methods.import_opml(request.files["opml_file"])
 
 
 @main.route('/api/feed', methods=['GET', 'POST'])

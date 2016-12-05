@@ -64,6 +64,25 @@ const markAllRead = () =>
 const deleteFeed = feedId =>
       _postJSONRequest(`${BASE_URI}/feed/${feedId}`, {}, 'delete')
 
+const importOPML = (file) => {
+  const data = new FormData()
+  data.append('opml_file', file)
+  return fetch('/', {
+    method: 'POST',
+    body: data,
+    headers: {
+      'X-CSRFToken': document.head.querySelector('[name=csrf-token]').content,
+    },
+    credentials: 'same-origin',
+  })
+    .then((response) => {
+      if (response.ok && response.status === 200) {
+        return response.json()
+      }
+      return []
+    })
+}
+
 module.exports = {
   addFeed,
   getFeedList,
@@ -74,4 +93,5 @@ module.exports = {
   markAllRead,
   getRequest,
   deleteFeed,
+  importOPML,
 }

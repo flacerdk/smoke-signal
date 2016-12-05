@@ -8,6 +8,7 @@ from werkzeug.exceptions import NotFound, BadRequest
 
 from server.database import helpers
 from server.database.models import Entry
+from server.import_opml import create_db_from_opml
 
 
 def halify_entry_list(entry_list, total, feed=None, next_page=None,
@@ -137,3 +138,11 @@ def toggle_status(entry_id, data):
 def mark_all_read():
     helpers.update_all_entries({"read": True})
     return Response(json.dumps({"read": True}), mimetype="application/json")
+
+
+def import_opml(f):
+    if f.mimetype != "text/x-opml+xml":
+        print(f.mimetype)
+        raise BadRequest
+    create_db_from_opml(f)
+    return get_all_feeds()

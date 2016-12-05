@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Col, Row } from 'react-bootstrap/lib'
+import { Grid, Col, Row, Navbar } from 'react-bootstrap/lib'
 import AddFeedForm from './AddFeedForm'
 import FeedList from './FeedList'
 import NavList from './NavList'
@@ -10,6 +10,8 @@ import EntryStore from '../stores/EntryStore'
 import FeedPageHeader from './FeedPageHeader'
 import FeedListActions from '../actions/FeedListActions'
 import EntryListActions from '../actions/EntryListActions'
+import Predicates from '../constants/Predicates'
+import EmptyPage from './EmptyPage'
 
 export default class FeedPage extends React.Component {
   constructor() {
@@ -59,8 +61,10 @@ export default class FeedPage extends React.Component {
   }
 
   render() {
-    let feedPageHeader
-    if (typeof this.state.activeFeed !== 'undefined') {
+    let feedPageHeader = null
+    if (this.state.feeds.length === 0) {
+      feedPageHeader = (<EmptyPage />)
+    } else if (typeof this.state.activeFeed !== 'undefined') {
       const title = this.state.activeFeed.title
       const action = {
         text: 'Unsubscribe',
@@ -72,7 +76,8 @@ export default class FeedPage extends React.Component {
         </div>
       )
     } else {
-      feedPageHeader = (<FeedPageHeader title={this.state.predicate} />)
+      const predicate = Predicates[this.state.predicate]
+      feedPageHeader = (<FeedPageHeader title={predicate} />)
     }
 
     const entriesColumn = (
@@ -104,8 +109,10 @@ export default class FeedPage extends React.Component {
       <div id="feed_page">
         <Grid fluid>
           <Row>
+            <Navbar>
             <AddFeedForm />
             <NavList />
+            </Navbar>
           </Row>
           <Row>
             <Col lg={3} md={3}>

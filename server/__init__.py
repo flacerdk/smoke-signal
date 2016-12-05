@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
 
-from server.database.models import Base, User
+from server.database.models import Base, Entry, Feed, User
 from .main.views import main
 
 app = Flask(__name__, instance_relative_config=True)
@@ -50,8 +50,9 @@ def init_db(create=False):
     Session = sessionmaker(bind=engine)
     g.db = Session()
     if create or not engine.dialect.has_table(engine.connect(), "feed"):
-        Base.metadata.drop_all(engine)
-        Base.metadata.create_all(engine)
+        Entry.__table__.drop(engine, checkfirst=True)
+        Feed.__table__.drop(engine, checkfirst=True)
+    Base.metadata.create_all(engine, checkfirst=True)
 
 
 @app.teardown_appcontext

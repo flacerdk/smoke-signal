@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, NavItem } from 'react-bootstrap/lib'
+import { Nav, Navbar, NavItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 
 const NavList = () => {
@@ -14,9 +14,9 @@ const NavList = () => {
     )
   })
   return (
-    <Nav bsStyle="pills" onSelect={handleSelect}>
-      {elements}
-    </Nav>
+      <Nav bsStyle="pills" onSelect={handleSelect}>
+        {elements}
+      </Nav>
   )
 }
 

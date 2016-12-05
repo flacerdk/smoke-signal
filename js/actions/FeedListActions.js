@@ -49,4 +49,12 @@ module.exports = {
         feeds,
       })
     )),
+
+  importOPML: formData =>
+    WebAPIUtils.importOPML(formData).then((feeds) => {
+      ActionDispatcher.dispatch({
+        type: ActionTypes.GET_FEED_LIST,
+        feeds,
+      })
+    }),
 }
