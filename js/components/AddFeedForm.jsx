@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button, Form, Navbar, FormControl, FormGroup } from 'react-bootstrap/lib'
 import FeedListActions from '../actions/FeedListActions'
 
 export default class AddFeedForm extends React.Component {
@@ -32,19 +31,16 @@ export default class AddFeedForm extends React.Component {
 
   render() {
     return (
-      <Navbar.Form pullLeft>
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup validationState={this.state.error}>
-            <FormControl
-              type="text"
-              placeholder="URL..."
-              value={this.state.url}
-              onChange={this.handleUrlChange}
-            />
-          </FormGroup>
-          <Button type="submit">Add feed</Button>
-        </Form>
-      </Navbar.Form>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          id="add_feed"
+          type="text"
+          placeholder="URL..."
+          value={this.state.url}
+          onChange={this.handleUrlChange}
+        />
+        <button type="submit">Add feed</button>
+      </form>
     )
   }
 }

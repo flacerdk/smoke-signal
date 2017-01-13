@@ -1,6 +1,5 @@
 import React from 'react'
 import Mousetrap from 'mousetrap'
-import { ListGroup, ListGroupItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 import FeedListActions from '../actions/FeedListActions'
 
@@ -49,21 +48,17 @@ class FeedList extends React.Component {
         unread = `(${feed.unread})`
       }
       return (
-        <ListGroupItem
-          href={link}
-          onClick={onClick}
-          key={feed.id}
-        >
-          {feed.title} {unread}
-        </ListGroupItem>
+        <li key={feed.id}>
+          <a href={link} onClick={onClick}>{feed.title}{unread}</a>
+        </li>
       )
     })
 
     const className = 'list-group feed-list'
     return (
-      <ListGroup bsClass={className}>
+      <ul className={className}>
         {feeds}
-      </ListGroup>
+      </ul>
     )
   }
 }

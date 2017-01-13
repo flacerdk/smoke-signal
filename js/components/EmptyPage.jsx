@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button, FormControl, FormGroup, HelpBlock, Jumbotron } from 'react-bootstrap/lib'
 import { importOPML } from '../actions/FeedListActions'
 
 export default class EmptyPage extends React.Component {
@@ -29,26 +28,22 @@ export default class EmptyPage extends React.Component {
   render() {
     const opmlInput = (
       <form onSubmit={this.handleSubmit}>
-        <FormGroup
-          controlId="opml_file"
-          validationState={this.state.error}
-        >
-          <FormControl
-            type="file"
-            onChange={this.handleChange}
-          />
-          <HelpBlock>Choose an OPML file.</HelpBlock>
-        </FormGroup>
-        <Button type="submit">Import OPML</Button>
+        <label htmlFor="opml_file">Choose an OPML file.</label>
+        <input
+          id="opml_file"
+          type="file"
+          onChange={this.handleChange}
+        />
+        <button type="submit">Import OPML</button>
       </form>
     )
 
     const message = (
-      <Jumbotron>
+      <div>
         <h1>Hello!</h1>
         <p>Looks like you have no feeds yet. Add a feed or import an OPML file.</p>
         {opmlInput}
-      </Jumbotron>
+      </div>
     )
 
     return message

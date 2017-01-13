@@ -1,5 +1,4 @@
 import React from 'react'
-import { Grid, Col, Row, Navbar } from 'react-bootstrap/lib'
 import AddFeedForm from './AddFeedForm'
 import FeedList from './FeedList'
 import NavList from './NavList'
@@ -82,19 +81,19 @@ export default class FeedPage extends React.Component {
 
     const entriesColumn = (
       <div>
-        <Row>
+        <div className="header">
           {feedPageHeader}
-        </Row>
-        <Row>
+        </div>
+        <div>
           <EntryList
             entries={this.state.entries}
             activeEntry={this.state.activeEntry}
             next={this.state.next}
           />
-        </Row>
+        </div>
       </div>)
 
-    let activeEntry = ''
+    let activeEntry = null
     if (typeof this.state.activeEntry !== 'undefined'
         && this.state.activeEntry.id !== 0) {
       activeEntry = (
@@ -107,26 +106,26 @@ export default class FeedPage extends React.Component {
     }
     return (
       <div id="feed_page">
-        <Grid fluid>
-          <Row>
-            <Navbar>
-            <AddFeedForm />
-            <NavList />
-            </Navbar>
-          </Row>
-          <Row>
-            <Col lg={3} md={3}>
+        <div className="grid">
+          <div>
+            <nav>
+              <AddFeedForm />
+              <NavList />
+            </nav>
+          </div>
+          <div className="main">
+            <div>
               <FeedList
                 feeds={this.state.feeds}
                 activeFeed={this.state.activeFeed}
               />
-            </Col>
-            <Col lg={9} md={9}>
+            </div>
+            <div>
               {entriesColumn}
-              <Row>{activeEntry}</Row>
-            </Col>
-          </Row>
-        </Grid>
+              <div>{activeEntry}</div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

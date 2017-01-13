@@ -1,5 +1,4 @@
 import React from 'react'
-import { Nav, Navbar, NavItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 
 const NavList = () => {
@@ -9,14 +8,15 @@ const NavList = () => {
   }
   const elements = predicates.map((p, i) => {
     const link = `#/api/entry/${p}`
+    const onClick = () => handleSelect(i)
     return (
-      <NavItem eventKey={i} href={link}>{p}</NavItem>
+      <li key={i}><a href={link} onClick={onClick}>{p}</a></li>
     )
   })
   return (
-      <Nav bsStyle="pills" onSelect={handleSelect}>
-        {elements}
-      </Nav>
+    <ul className="nav">
+      {elements}
+    </ul>
   )
 }
 

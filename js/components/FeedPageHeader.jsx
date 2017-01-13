@@ -1,19 +1,18 @@
 import React from 'react'
-import { Button, PageHeader } from 'react-bootstrap/lib'
 
 const FeedPageHeader = (props) => {
   let actionButton = ''
   if (typeof props.action !== 'undefined') {
     actionButton = (
-      <Button onClick={props.action.onClick}>{props.action.text}</Button>
+      <button onClick={props.action.onClick}>{props.action.text}</button>
     )
   }
 
   return (
-    <PageHeader>
+    <header>
       {props.title}
       <div className="unsubscribe-button">{actionButton}</div>
-    </PageHeader>
+    </header>
   )
 }
 

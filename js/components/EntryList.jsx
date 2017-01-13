@@ -1,7 +1,6 @@
 import React from 'react'
 import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import Mousetrap from 'mousetrap'
-import { Button, ListGroup, ListGroupItem } from 'react-bootstrap/lib'
 import EntryListActions from '../actions/EntryListActions'
 
 export default class EntryList extends React.Component {
@@ -57,11 +56,12 @@ export default class EntryList extends React.Component {
 
     const entries = this.props.entries
       .map((entry, index) => {
-        const className = entry.read ? 'list-group-item read' : 'list-group-item unread'
+        let className = entry.read ? 'list-group-item read' : 'list-group-item unread'
         let active = false;
         if (this.props.activeEntry !== {} &&
             this.props.activeEntry.id === entry.id) {
           active = true
+          className += ' active'
           this.activeEntryIndex = index
         }
         const onClick = () => EntryListActions.changeActiveEntry(entry)
@@ -71,16 +71,11 @@ export default class EntryList extends React.Component {
           }
         }
         const component = (
-          <ListGroupItem
-            bsClass={className}
-            active={active}
-            onClick={onClick}
-            key={entry.id}
-          >
-            <div className="entry-title" ref={ref}>
+          <li className={className} key={entry.id}>
+            <button className="entry-title" onClick={onClick} ref={ref}>
               {entry.title}
-            </div>
-          </ListGroupItem>
+            </button>
+          </li>
         )
         return component
       })
@@ -88,10 +83,10 @@ export default class EntryList extends React.Component {
     const loadMore = () => EntryListActions.fetchMoreEntries(this.props.next)
     return (
       <div>
-        <ListGroup bsClass={className}>
+        <ul className={className}>
           {entries}
-        </ListGroup>
-        <Button bsSize="small" block onClick={loadMore}>Load more</Button>
+        </ul>
+        <button onClick={loadMore}>Load more</button>
       </div>
     )
   }
