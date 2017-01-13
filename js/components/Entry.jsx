@@ -6,7 +6,7 @@ const Entry = (props) => {
   return (
     <div id="active_entry">
       <a className="entry_title" href={props.url}>{props.title}</a>
-      <div dangerouslySetInnerHTML={createMarkup()} />
+      <div className="entry_body" dangerouslySetInnerHTML={createMarkup()} />
     </div>
   )
 }

@@ -114,15 +114,15 @@ export default class FeedPage extends React.Component {
             </nav>
           </div>
           <div className="main">
-            <div>
+            <div className="sidebar">
               <FeedList
                 feeds={this.state.feeds}
                 activeFeed={this.state.activeFeed}
               />
             </div>
-            <div>
+            <div className="body">
               {entriesColumn}
-              <div>{activeEntry}</div>
+              {activeEntry}
             </div>
           </div>
         </div>

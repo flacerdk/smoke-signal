@@ -16,7 +16,11 @@ var config = {
         test : /\.jsx?/,
         include : BUILD_DIR,
         loader : 'babel'
-      }
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass',
+      },
     ]
   },
   resolve: {

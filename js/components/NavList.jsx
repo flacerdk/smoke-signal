@@ -10,7 +10,9 @@ const NavList = () => {
     const link = `#/api/entry/${p}`
     const onClick = () => handleSelect(i)
     return (
-      <li key={i}><a href={link} onClick={onClick}>{p}</a></li>
+      <li key={i}>
+        <a href={link} onClick={onClick}>{p}</a>
+      </li>
     )
   })
   return (
