@@ -4,9 +4,9 @@ const Entry = (props) => {
   const createMarkup = () => ({ __html: props.text })
   // Trusting that feedparser does proper sanitization here.
   return (
-    <div id="active_entry">
-      <a className="entry_title" href={props.url}>{props.title}</a>
-      <div className="entry_body" dangerouslySetInnerHTML={createMarkup()} />
+    <div className="active-entry">
+      <a className="entry-title" href={props.url}>{props.title}</a>
+      <div className="entry-body" dangerouslySetInnerHTML={createMarkup()} />
     </div>
   )
 }

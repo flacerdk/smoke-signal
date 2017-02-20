@@ -3,6 +3,8 @@ import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import Mousetrap from 'mousetrap'
 import EntryListActions from '../actions/EntryListActions'
 
+require('../styles/entry-list.scss')
+
 export default class EntryList extends React.Component {
   constructor(props) {
     super(props)
@@ -56,7 +58,7 @@ export default class EntryList extends React.Component {
 
     const entries = this.props.entries
       .map((entry, index) => {
-        let className = entry.read ? 'list-group-item read' : 'list-group-item unread'
+        let className = entry.read ? 'list-item read' : 'list-item unread'
         let active = false;
         if (this.props.activeEntry !== {} &&
             this.props.activeEntry.id === entry.id) {
@@ -71,22 +73,18 @@ export default class EntryList extends React.Component {
           }
         }
         const component = (
-          <li className={className} key={entry.id}>
-            <button className="entry-title" onClick={onClick} ref={ref}>
-              {entry.title}
-            </button>
-          </li>
+          <button onClick={onClick} ref={ref} className={className} key={entry.id}>
+            {entry.title}
+          </button>
         )
         return component
       })
     const className = 'list-group entry-list'
     const loadMore = () => EntryListActions.fetchMoreEntries(this.props.next)
     return (
-      <div>
-        <ul className={className}>
-          {entries}
-        </ul>
-        <button onClick={loadMore}>Load more</button>
+      <div className={className}>
+        {entries}
+        <button className="list-item load-more" onClick={loadMore}>Load more</button>
       </div>
     )
   }

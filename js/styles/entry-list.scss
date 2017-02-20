@@ -1,0 +1,40 @@
+@import 'variables';
+
+.entry-list {
+  border-radius: $s1;
+  box-shadow: $bs-medium;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4 * $s1;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.active-entry {
+  background-color: $white;
+  border-radius: $s1;
+  box-shadow: $bs-medium;
+  padding: 4 * $s1;
+}
+
+.entry-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    color: $navy;
+  }
+}
+
+.load-more {
+  text-align: center;
+}
+
+.unread {
+  background-color: mix($navy, $white, 10%);
+}
+
+.read {
+  background-color: $white;
+}

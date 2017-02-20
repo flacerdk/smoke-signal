@@ -79,20 +79,6 @@ export default class FeedPage extends React.Component {
       feedPageHeader = (<FeedPageHeader title={predicate} />)
     }
 
-    const entriesColumn = (
-      <div>
-        <div className="header">
-          {feedPageHeader}
-        </div>
-        <div>
-          <EntryList
-            entries={this.state.entries}
-            activeEntry={this.state.activeEntry}
-            next={this.state.next}
-          />
-        </div>
-      </div>)
-
     let activeEntry = null
     if (typeof this.state.activeEntry !== 'undefined'
         && this.state.activeEntry.id !== 0) {
@@ -105,27 +91,28 @@ export default class FeedPage extends React.Component {
       )
     }
     return (
-      <div id="feed_page">
-        <div className="grid">
-          <div>
-            <nav>
-              <AddFeedForm />
-              <NavList />
-            </nav>
-          </div>
-          <div className="main">
-            <div className="sidebar">
-              <FeedList
-                feeds={this.state.feeds}
-                activeFeed={this.state.activeFeed}
-              />
-            </div>
-            <div className="body">
-              {entriesColumn}
+      <div>
+        <nav>
+          <AddFeedForm />
+          <NavList />
+        </nav>
+        <main>
+          <FeedList
+            feeds={this.state.feeds}
+            activeFeed={this.state.activeFeed}
+          />
+          <section>
+            {feedPageHeader}
+            <EntryList
+              entries={this.state.entries}
+              activeEntry={this.state.activeEntry}
+              next={this.state.next}
+            />
+            <article>
               {activeEntry}
-            </div>
-          </div>
-        </div>
+            </article>
+          </section>
+        </main>
       </div>
     )
   }

@@ -1,5 +1,7 @@
 import React from 'react'
 
+require('../styles/page-header.scss')
+
 const FeedPageHeader = (props) => {
   let actionButton = ''
   if (typeof props.action !== 'undefined') {

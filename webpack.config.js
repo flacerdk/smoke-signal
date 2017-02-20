@@ -1,14 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var BUILD_DIR = path.resolve(__dirname, 'js');
-var APP_DIR = path.resolve(__dirname, 'server/main/static/scripts');
+var APP_DIR = path.resolve(__dirname, 'server/main/static');
 
 var config = {
   entry: BUILD_DIR + '/app.jsx',
   output: {
     path: APP_DIR,
-    filename: 'bundle.js'
+    filename: 'scripts/bundle.js'
   },
   module: {
     loaders: [
@@ -19,7 +20,7 @@ var config = {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass',
+        loader: ExtractTextPlugin.extract('css!sass'),
       },
     ]
   },
@@ -32,6 +33,9 @@ var config = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new ExtractTextPlugin('css/style.css', {
+      allChunks: true
     })
   ]
 };

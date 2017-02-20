@@ -31,7 +31,7 @@ export default class AddFeedForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="add-feed-form" onSubmit={this.handleSubmit}>
         <input
           id="add_feed"
           type="text"

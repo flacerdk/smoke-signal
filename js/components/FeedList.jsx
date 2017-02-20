@@ -3,6 +3,8 @@ import Mousetrap from 'mousetrap'
 import EntryListActions from '../actions/EntryListActions'
 import FeedListActions from '../actions/FeedListActions'
 
+require('../styles/feed-list.scss')
+
 class FeedList extends React.Component {
   // TODO: should notify the user when errors occur.
   componentDidMount() {
@@ -37,7 +39,6 @@ class FeedList extends React.Component {
     }
 
     const feeds = this.props.feeds.map((feed) => {
-      const link = `#/api/feed/${feed.id}`
       const onClick = () => {
         FeedListActions.changeActiveFeed(feed)
         EntryListActions.fetchFeedEntries(feed)
@@ -48,17 +49,17 @@ class FeedList extends React.Component {
         unread = `(${feed.unread})`
       }
       return (
-        <li key={feed.id}>
-          <a href={link} onClick={onClick}>{feed.title}{unread}</a>
-        </li>
+        <button onClick={onClick} key={feed.id} className="list-item">
+          {feed.title}{unread}
+        </button>
       )
     })
 
     const className = 'list-group feed-list'
     return (
-      <ul className={className}>
+      <div className={className}>
         {feeds}
-      </ul>
+      </div>
     )
   }
 }

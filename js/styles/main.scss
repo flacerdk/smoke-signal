@@ -1,0 +1,26 @@
+@import 'variables';
+
+body {
+  background-color: $bg-color;
+}
+
+div {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+img {
+  height: auto;
+  width: 100%;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
