@@ -1,6 +1,7 @@
 $white: #fff;
 
 $bs-medium: 0 2px 4px 0 rgba(0, 0, 0, .16);
+$bs-small: 0 1px 2px 0 rgba(0, 0, 0, .16);
 
 $text-color: rgba(0, 0, 0, .8);
 
@@ -9,5 +10,6 @@ $blue: #337fd7;
 $navy: #31a2ce;
 
 $bg-color: mix($white, $grey, 90%);
+$button-bg-color: mix($white, $blue, 70%);
 
 $s1: 4px;

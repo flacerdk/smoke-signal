@@ -1,7 +1,18 @@
+@import 'variables';
+
 .add-feed-form {
-  margin-bottom: 10px;
 
   input {
-    margin: 5px;
+    border: 1px solid mix($white, $grey, 50%);
+    border-radius: $s1 0 0 $s1;
+    height: 8 * $s1;
+    padding: 2 * $s1;
+  }
+
+  button {
+    background-color: $button-bg-color;
+    border: 0;
+    border-radius: 0 $s1 $s1 0;
+    height: 8 * $s1;
   }
 }

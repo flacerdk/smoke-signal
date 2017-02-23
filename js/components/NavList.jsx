@@ -18,7 +18,7 @@ const NavList = () => {
     )
   })
   return (
-    <ul>
+    <ul className="nav-list-predicates">
       {elements}
     </ul>
   )

@@ -2,13 +2,42 @@
 
 nav {
   align-items: center;
+  background-color: $white;
+  border-radius: $s1;
+  box-shadow: $bs-medium;
   display: flex;
   flex-direction: row;
+  margin-bottom: 4 * $s1;
+  padding: 0 4 * $s1;
+}
 
-  ul {
-    display: flex;
-    flex: 1;
-    justify-content: space-around;
-    list-style: none;
+.nav-list-predicates {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  list-style: none;
+  margin-left: 2 * $s1;
+  padding: 0;
+
+  li {
+    margin: 0 2 * $s1;
+  }
+
+  a {
+    background-color: $button-bg-color;
+    border-radius: $s1;
+    box-shadow: $bs-small;
+    color: $text-color;
+    display: inline-block;
+    padding: $s1;
+    text-decoration: none;
+
+    &:hover {
+      color: $grey;
+    }
+
+    &:focus {
+      font-size: 24px;
+    }
   }
 }

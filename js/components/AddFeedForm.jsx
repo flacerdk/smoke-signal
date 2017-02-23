@@ -1,6 +1,8 @@
 import React from 'react'
 import FeedListActions from '../actions/FeedListActions'
 
+require('../styles/add-feed-form.scss')
+
 export default class AddFeedForm extends React.Component {
   constructor() {
     super()
