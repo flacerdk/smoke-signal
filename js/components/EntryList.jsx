@@ -1,6 +1,8 @@
 import React from 'react'
+import ScrollArea from 'react-scrollbar'
 import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import Mousetrap from 'mousetrap'
+
 import EntryListActions from '../actions/EntryListActions'
 
 require('../styles/entry-list.scss')
@@ -82,10 +84,15 @@ export default class EntryList extends React.Component {
     const className = 'list-group entry-list'
     const loadMore = () => EntryListActions.fetchMoreEntries(this.props.next)
     return (
-      <div className={className}>
-        {entries}
-        <button className="list-item load-more" onClick={loadMore}>Load more</button>
-      </div>
+      <ScrollArea
+        horizontal={false}
+        className="entry-list-container"
+      >
+        <div className={className}>
+          {entries}
+          <button className="list-item load-more" onClick={loadMore}>Load more</button>
+        </div>
+      </ScrollArea>
     )
   }
 }

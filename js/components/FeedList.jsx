@@ -1,5 +1,7 @@
 import React from 'react'
 import Mousetrap from 'mousetrap'
+import ScrollArea from 'react-scrollbar'
+
 import EntryListActions from '../actions/EntryListActions'
 import FeedListActions from '../actions/FeedListActions'
 
@@ -58,7 +60,13 @@ class FeedList extends React.Component {
     const className = 'list-group feed-list'
     return (
       <div className={className}>
-        {feeds}
+        <ScrollArea
+          horizontal={false}
+        >
+          <div>
+            {feeds}
+          </div>
+        </ScrollArea>
       </div>
     )
   }
